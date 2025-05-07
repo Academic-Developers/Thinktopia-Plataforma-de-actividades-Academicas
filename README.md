@@ -58,18 +58,19 @@ El propósito principal del sistema es facilitar la organización de actividades
 ## Requisitos Previos
 - Navegador web moderno (Chrome, Firefox, Edge)
 - Conexión a Internet
-- Sistema con soporte para JavaScript y cookies habilitadas
 
 ---
 
-Estado del Proyecto
+##Estado del Proyecto
+
 •	Versión 1.0.0
 ________________________________________
-Notas adicionales
+##Notas adicionales
+
 •	Este proyecto se desarrolla bajo una metodología ágil, con énfasis en la flexibilidad y en las necesidades del usuario final.
 •	La interfaz inicial tendrá accesibilidad limitada, priorizando funcionalidades clave en etapas tempranas.
 ________________________________________
-Licencia
+##Licencia
 Este proyecto es de uso académico y de colaboración abierto. Para mayor información, contacta a los responsables del proyecto.
 ________________________________________
 
