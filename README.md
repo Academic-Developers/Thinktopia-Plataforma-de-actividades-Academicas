@@ -78,6 +78,3 @@ Licencia
 
 Este proyecto es de uso académico y de colaboración abierto. Para mayor información, contacta a los responsables del proyecto.
 
----
-
-¿Quieres que agregue alguna sección adicional, como instrucciones para contribución, licencias específicas o enlaces a recursos?
