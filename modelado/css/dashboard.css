@@ -1,0 +1,188 @@
+
+@import url('./variables.css');
+
+/* ==== RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==== BODY ==== */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-paragraph);
+}
+
+/* ==== HEADER ==== */
+header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;  
+  box-sizing: border-box; 
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; 
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+  margin: 0; 
+  padding: 0; 
+  flex-grow: 1;
+  justify-content: center;
+}
+
+nav img {
+  margin-right: auto; 
+  flex-shrink: 0;
+}
+
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: rgb(26, 26, 26);
+  font-family: var(--font-nav);
+  font-weight: 500;
+  padding-bottom: 4px;
+  letter-spacing: 0.0313rem;
+}
+
+nav .menu-icon {
+  margin-left: auto;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2.7px;
+  background-color: var(--primary-color); 
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+
+/* ==== SECCIÓN DE BIENVENIDA ==== */
+section h1 {
+  font-family: var(--font-title-primary);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-top: 1.2rem;
+}
+
+section button {
+  background-color: var(--primary-color);
+  padding: 0.5rem 2rem;
+  border: 1px solid var(--secundary-color); 
+  border-radius: 0.5rem;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+
+section button:hover {
+  background-color: var(--secundary-color);
+}
+
+
+.button-text{
+  font-size: 1rem; 
+  font-family: var(--font-title-primary);
+  color:white;
+}
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+
+.icon-img {
+    width:70px; 
+    height: auto;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.card-value {
+    margin: 0.2rem 0 0;
+    font-size: 1rem;
+    color: #5a5a5a;
+}
+
+
+/* ==== FOOTER ==== */
+footer {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  box-sizing: border-box; 
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0 0;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-title-secondary);
+}
