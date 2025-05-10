@@ -94,29 +94,21 @@ section h1 {
   margin-top: 1.2rem;
 }
 
-section button {
+.btn-dashboard {
   background-color: var(--primary-color);
   padding: 0.5rem 2rem;
   border: 1px solid var(--secundary-color); 
   border-radius: 0.5rem;
-  margin-left: 2rem;
-  margin-bottom: 1.5rem;  
   cursor: pointer;
   transition: background-color 0.3s ease;
-  
+  margin-left: 2rem;
+  margin-right: 0;
 }
 
-
-section button:hover {
+.btn-dashboard:hover {
   background-color: var(--secundary-color);
 }
-
-
-.button-text{
-  font-size: 1rem; 
-  font-family: var(--font-title-primary);
-  color:white;
-}
+  
 .dashboard-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
