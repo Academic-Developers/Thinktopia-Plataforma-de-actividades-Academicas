@@ -5,6 +5,7 @@
     display:flex;
     justify-content: space-between;
      text-align: center;
+
     
 }
 
@@ -27,8 +28,18 @@
         .logo{ width:auto ;height:auto;
                           
        }
+       
+       .principal{font-family:var(--font-title-primary) ;
+        color:var(--text-color) ; background:var( --primary-color) ;
+    }
+
+    .secondary{font-family: var(--font-title-secondary); background: var( --background-color);}
 
 
-         
+         .contenido{font-family: var(--font-paragraph);background:var(--background-color) ;}
    
-   
+   .boton{background:var(--secundary-color) ;}
+
+   .mission{background: var(--secundary-color);}
+
+   .mision{font-family: var(--font-paragraph);background:var(--secundary-color) }
