@@ -1,0 +1,17 @@
+
+.titulo{font-family: var(--font-title-primary) ;
+        color:var(--text-color) ;}
+
+.verdadero {font-family: var(--font-paragrap);color:var(--secundary-color) ;}
+
+.falso{font-family: var(--font-paragrap);color:var(--secundary-color);}
+
+#ordinales{font-family:var(--font-paragrap) ;color: royalblue;}
+
+#discretas{font-family:var(--font-paragrap) ;color: royalblue;}
+
+.Entrega p{font-family:var(--font-paragrap) ;color: royalblue; ;}
+
+.boton{background:var(--secundary-color) ;}
+
+
