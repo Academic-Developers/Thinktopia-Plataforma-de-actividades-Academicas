@@ -167,4 +167,14 @@
 }
 
 .Pie{background-color: var(--primary-color);
-     text-align: center;}
+      margin: auto;
+          }
+
+          .logochico{ width:20% ;
+                     height: auto;}
+
+          .redes{text-align: center;}
+
+         
+
+     
