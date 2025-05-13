@@ -1,0 +1,14 @@
+
+/* Se debe importar en el archivo CSS que se usara, por ejemplo: @import url('variables.css'); */
+/* Ejemplo de uso de las variables: background-color: var(--background-color); */
+
+/* Ajusten las paletas de colores, fuentes, etc si es necesario! */
+:root {
+    --primary-color: #6DB0E3;  
+    --secundary-color: #1E3A8A;
+    --background-color: #F8FAFC;
+    --text-color: #111827;
+    --main-font: 'Nunito', sans-serif;
+    --secundary-font: 'Inter', sans-serif;
+  }
+  
