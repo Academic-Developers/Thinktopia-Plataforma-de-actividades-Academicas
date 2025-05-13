@@ -103,12 +103,18 @@ section h1 {
   transition: background-color 0.3s ease;
   margin-left: 2rem;
   margin-right: 0;
+  color:white;
+  font-family: var(--font-title-primary);
+  word-spacing: 0.0313rem;
+  font-weight: 450;
 }
+  
 
 .btn-dashboard:hover {
   background-color: var(--secundary-color);
 }
-  
+
+/*==== SECCIÓN DE TARJETAS ==== */
 .dashboard-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -121,6 +127,7 @@ section h1 {
     align-items: center;
     background-color: var(--background-color);
     padding: 1rem;
+    min-height: 150px; 
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -153,6 +160,21 @@ section h1 {
     color: #5a5a5a;
 }
 
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-link .card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-link .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
 /* ==== FOOTER ==== */
 footer {

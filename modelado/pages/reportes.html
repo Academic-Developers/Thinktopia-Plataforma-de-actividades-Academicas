@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reportes</title>
+  <link rel="stylesheet" href="../css/variables.css"/>
+  <link rel="stylesheet" href="../css/reports.css"/>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63"/>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html" class="tab active">Dashboard</a></li>
+        <li><a href="#">Mis Cursos</a></li>
+        <li><a href="reportes.html">Reportes</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-btn">
+        <img src="../assets/icons/menu.svg" alt="Menu Icon" width="50" height="50"/>
+      </button>
+    </nav>
+
+    <!-- <aside id="sidebar" class="sidebar hidden">
+      <button id="close-btn">✕</button>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Mis Cursos</a></li>
+        <li><a href="#">Reportes</a></li>
+      </ul>
+    </aside> -->
+
+  </header>
+
+  <main>
+    <section class="title-icon">
+      <img src="../assets/icons/pencil.svg" alt="Pencil Icon" width="50" height="50"/>
+      <h1>Reportes</h1>
+    </section>
+
+    <section class="filters-container">
+      <div class="filters">
+        <details class="dropdown">
+          <summary>Curso</summary>
+          <ul class="dropdown-menu">
+            <li><a href="#">Curso 1</a></li>
+            <li><a href="#">Curso 2</a></li>
+            <li><a href="#">Curso 3</a></li>
+          </ul>
+        </details>
+
+        <details class="dropdown">
+          <summary>Periodo</summary>
+          <ul class="dropdown-menu">
+            <li><a href="#">Primer Periodo</a></li>
+            <li><a href="#">Segundo Periodo</a></li>
+          </ul>
+        </details>
+      </div>
+
+        <button class="btn-reports">
+            <span>Generar</span>
+        </button>
+    </section>
+
+    <h2 class="secondary-title">Reportes Recientes</h2>
+<section class="reports-container">
+
+  <!-- Tarjeta 1 -->
+  <div class="card">
+    <div class="card-icon">
+      <img
+        class="report-icon" 
+        src="../assets/icons/icon_g11_reporte1.svg" 
+        alt="Reporte" 
+        width="50" 
+        height="50" />
+    </div>
+    <div class="card-content">
+      <h3 class="card-title">Reporte de Calificación por Actividad</h3>
+    </div>
+    <div class="download">
+      <p class="card-doctype">Excel</p>
+      <img 
+        class="download-doc"
+        src="../assets/icons/document-arrow-down.svg" 
+        alt="Descargar" 
+        width="50" 
+        height="50" />
+    </div>
+  </div>
+
+  <!-- Tarjeta 2 -->
+  <div class="card">
+    <div class="card-icon">
+      <img
+        class="report-icon"
+        src="../assets/icons/icon_g11-4_reporte2.svg" 
+        alt="Reporte" 
+        width="50" 
+        height="50" />
+    </div>
+    <div class="card-content">
+      <h3 class="card-title">Reporte de Asistencia</h3>
+    </div>
+    <div class="download">
+      <p class="card-doctype">Excel</p>
+      <img 
+        class="download-doc" 
+        src="../assets/icons/document-arrow-down.svg" 
+        alt="Descargar" 
+        width="50" 
+        height="50" />
+    </div>
+  </div>
+
+  <!-- Tarjeta 3 -->
+  <div class="card">
+    <div class="card-icon">
+      <img 
+        class="report-icon" 
+        src="../assets/icons/icon_g11-4_reporte2.svg" 
+        alt="Reporte" 
+        width="50" 
+        height="50" />
+    </div>
+    <div class="card-content">
+      <h3 class="card-title">Reporte General del Curso</h3>
+    </div>
+    <div class="download">
+      <p class="card-doctype">Excel</p>
+      <img 
+        class="download-doc"
+        src="../assets/icons/document-arrow-down.svg" 
+        alt="Descargar" 
+        width="50" 
+        height="50" />
+    </div>
+  </div>
+
+</section>
+
+  </main>
+
+  <footer>
+    <p>Footer content goes here</p>
+    <ul>
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
