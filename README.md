@@ -14,8 +14,6 @@ El propósito principal del sistema es facilitar la organización de actividades
 
 ## Audiencia Objetivo
 - Docentes y estudiantes de instituciones secundarias y universitarias.
-- Administradores académicos.
-- Desarrolladores y futuros colaboradores del proyecto.
 
 ---
 
@@ -51,7 +49,8 @@ El propósito principal del sistema es facilitar la organización de actividades
 | Evelin Andrea Checa | Desarrollador | Gestión, análisis, diseño y desarrollo | evecheca40@gmail.com |
 | Cáceres Giménez Cesia Fiorella | Desarrollador | Gestión, análisis, diseño, testing | cesiaf.gimenez@gmail.com |
 | Francisco Nicolas Toro Goitea | Desarrollador | Gestión, análisis, diseño, testing | torofrancisco13@gmail.com |
-| Milagros Magaly Cabrera | Scrum | Gestión y coordinación, diseño y desarrollo | milagrosmagalycabrera@gmail.com |
+| Milagros Magaly Cabrera | Scrum | Gestión y coordinación | milagrosmagalycabrera@gmail.com |
+
 
 ---
 
