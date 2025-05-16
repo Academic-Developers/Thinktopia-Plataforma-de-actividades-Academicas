@@ -90,8 +90,8 @@ section h1 {
   font-weight: 600;
   color: var(--text-color);
   margin-bottom: 1rem;
-  margin-left: 2rem;
   margin-top: 1.2rem;
+  padding-left: 5rem;
 }
 
 .btn-dashboard {
@@ -101,7 +101,7 @@ section h1 {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 2rem;
+  margin-left: 5rem;
   margin-right: 0;
   color:white;
   font-family: var(--font-title-primary);
@@ -118,8 +118,10 @@ section h1 {
 .dashboard-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding-left: 5rem;
+    padding-right: 5rem;
     gap: 1.5rem;
-    padding: 1rem;
+    padding-top: 2rem;
 }
 
 .card {
