@@ -56,11 +56,6 @@ nav a {
   letter-spacing: 0.0313rem;
 }
 
-nav .menu-icon {
-  margin-left: auto;
-  width: 40px;
-  flex-shrink: 0;
-}
 
 nav a::after {
   content: "";
