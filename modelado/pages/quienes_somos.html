@@ -1,136 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Milagros Cabrera, miembro de Thinktopia" />
-    
+<html lang="es">
 
-    <meta
-      name="description"
-      content="Conocé quiénes somosnuestro equipo, historia y valores que impulsan nuestro trabajo en Thinktopia."
-    />
-    <meta
-      name="keywords"
-      content="quiénes somos, equipo, historia,Thinktopia, valores"
-    />
-    <!--Poppins fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Milagros Cabrera, miembro de Thinktopia" />
+  <meta name="description"
+    content="Conocé quiénes somos, nuestro equipo, historia y valores que impulsan nuestro trabajo en Thinktopia." />
+  <meta name="keywords" content="quiénes somos, equipo, historia, Thinktopia, valores" />
 
-<!--Inter fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Thinktopia - ¿Quiénes somos?</title>
+  <link rel="shortcut icon" href="../assets/icons/quienes_somos.svg" type="image/x-icon" />
 
-<!--Nunito fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Nunito:wght@400;600&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet" />
 
-    <title>Thinktopia - ¿Quienes somos?</title>
-    <link rel="shortcut icon" href="../assets/icons/quienes_somos.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/quienes_somos.css" />
-    <link rel="stylesheet" href="../css/variables.css">
-  </head>
-  <body>
-    <header class="header">
-      <nav class="nav">
-        <img class="logo" src="../assets/img/logo_oscuro_horizontal.png.png" alt="">
-        <ul>
-       <li ><a href="../pages/">Home</a></li>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/quienes_somos.css" />
+</head>
 
-       <li><a href="./dashboard.html">Dashboard</a></li>
+<body>
+  <header class="header">
+    <nav class="nav container">
 
-       <li><a href="./login.html">Mis cursos</a></li>
+      <img class="logo" src="../assets/img/logo_oscuro_horizontal.png.png" alt="Logo de Thinktopia" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="./dashboard.html">Dashboard</a></li>
+        <li><a href="./login.html">Mis cursos</a></li>
+        <li><a href="#">Reportes</a></li>
+        <li><a href="#">Estudiantes</a></li>
+        <li><a href="./quienes_somos.html" class="active">¿Quiénes Somos?</a></li>
+        <li><a href="./gestion_contenido.html">Gestión de Contenido</a></li>
+        <li><a href="./asistencia.html">Asistencia</a></li>
+      </ul>
+    </nav>
+  </header>
 
-       <li> <a href="">Reportes</a></li>
+  <main class="quienes-somos container">
+    <h1 class="title-somos">¿Quiénes somos?</h1>
 
-       <li><a href="#">Estudiantes</a></li>
-
-       </li><a href="./quienes_somos.html">¿Quienes Somos?</a><li>
-
-      </li><a href="./gestion_contenido.html">Gestion de Contenido</a><li>
-        </ul>
-    </header>
-
-    <section class="quienes-somos">
-      <h1 class="title-somos">Quienes somos</h1>
-
-      <p class="text-intro">Somos un grupo de cinco estudiantes de la Tecnicatura en Desarrollo de Software, trabajando en conjunto para crear <strong>Thinktopia</strong>, una plataforma orientada a la gestión de actividades académicas. </p>
-      <p class="text-intro">Nuestro objetivo es ofrecer una solución moderna, funcional y accesible para estudiantes y docentes.
+    <section class="intro">
+      <p class="text-intro">
+        Somos cinco estudiantes de la Tecnicatura en Desarrollo de Software creando <strong>Thinktopia</strong>, una
+        plataforma académica moderna, funcional y accesible.
       </p>
-     <br>
-      <h2 class="subtitle-miembros">Integrantes del Team: </h2>
-
-      <article class="miembros-art">
-        <figure>
-          <img src="../assets/img/fotoEve.jpeg" class="img-integrantes" alt="foto de perfil de Evelin" />
-          <figcaption>Checa Evelin - Miembro del equipo de desarrollo</figcaption>
-        </figure>
-
-        <div  class="contenido-integrantes">
-        <h3 class="nombre-integrantes">Checa Evelin</h3>
-        <p class="text-integrantes">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Exercitationem possimus, illo eos similique recusandae quaerat
-          repellendus amet natus aspernatur saepe officiis, dolor sed?
-          Perferendis, provident quibusdam voluptate nostrum facilis ex.
-        </p>
-      </div>
-      </article>
-
-      <article class="miembros-art">
-        <figure>
-          <img src="../assets/img/profile_cesia.png" class="img-integrantes" alt="foto de perfil de Cesia" />
-          <figcaption>Cesia Fiorella - Miembro del equipo de desarrollo</figcaption>
-        </figure>
-
-        <div  class="contenido-integrantes">
-        <h3 class="nombre-integrantes">Cáceres Giménez Cesia Fiorella</h3>
-        <p class="text-integrantes">
-          Mi nombre es Cesia Cáceres y me desempeño como desarrolladora y diseñadora en este proyecto. Participo en la construcción de la plataforma desde el diseño de interfaces hasta la implementación de funcionalidades, asegurando una experiencia visual atractiva y técnicamente sólida.</p>
-          <p class="text-integrantes"> Mi compromiso es contribuir al desarrollo de herramientas innovadoras que promuevan la participación estudiantil mediante el uso de la tecnología y la gamificación</p>
-        </div>
-      </article>
-
-      <article class="miembros-art">
-        <figure>
-          <img src="../assets/img/perfil_magui.png" alt="foto de perfil Milagros Cabrera" class="img-integrantes"/>
-          <figcaption>Milagros Cabrera - Miembro del equipo de desarrollo </figcaption>
-        </figure>
-
-        <div  class="contenido-integrantes">
-        <h3 class="nombre-integrantes">Cabrera Milagros Magaly</h3>
-       
-        <p class="text-integrantes">Hola,mi nombre es Milagros Cabrera, tengo 23 años y me apasiona el desarrollo de software. En este proyecto, me desempeño como desarrolladora, Scrum Master y colaboradora en el área de diseño. Aporto desde la estructura técnica hasta los detalles visuales, buscando siempre crear experiencias funcionales, atractivas y accesibles.</p>
-  
-        <p class="text-integrantes">Soy una persona curiosa, amante del café y en constante búsqueda de nuevos desafíos. Me motiva aprender, trabajar en equipo y construir soluciones que conecten con las personas. Mi enfoque combina tecnología, creatividad y organización para lograr resuados que marquen la diferencia.</p>
-        </div>
-      </article>
-
-      <article class="miembros-art">
-        <figure>
-          <img src="../assets/img/img-fran.jpeg" class="img-integrantes" alt="foto de perfil de Francisco" />
-          <figcaption> Francisco Toro- Miembro del equipo de desarrollo</figcaption>
-        </figure>
-
-        <div  class="contenido-integrantes">
-        <h3 class="nombre-integrantes">Toro Goitea Francisco Nicolas</h3>
-        <p class="text-integrantes">
-          Mi nombre es Francisco, soy un Desarrollador de Software/Web en formación constante. Intento aprender cada día un poco mas para poder colaborar en proyectos como este. </p>
-          <p class="text-integrantes">Aquí
-          me desempeño como un Desarrollador Web Full-Stack, aportando desde lo visual hasta de aquello que no se ve.. Para agregar un poco mas sobre mí, me considero una persona que siempre quiere dar lo mejor de si y que jamás quiere quedarse atrás. ¿Hobbies? Basket, futbol y algún que otro Online Game como World of Warcraft!
-        </p>
-      </div>
-      </article>
+      <p class="text-intro">
+        Buscamos facilitar el aprendizaje de estudiantes y docentes con una solución intuitiva y colaborativa.
+      </p>
     </section>
 
-    <footer class="footer">
-      <p>Thinktopia &copy; 2025 - Todos los derechos reservados</p>
-      <p><img src="../assets/icons/instagram.svg" alt=""> Thinktopia </p>
-       <p><img src="../assets/icons/facebook.svg (1).svg" alt=""> Thinktopia </p>
-    </footer>
-  </body>
+    <section class="equipo">
+      <h2 class="subtitle-miembros">Integrantes del equipo</h2>
+
+      <div class="miembros-grid">
+        <!-- Evelin -->
+        <article class="miembro">
+          <img src="../assets/img/fotoEve.jpeg" alt="Foto de Evelin Checa" class="img-integrantes" />
+          <div class="contenido-integrantes">
+            <h3 class="nombre-integrantes">Checa Evelin</h3>
+            <p class="text-integrantes">Soy Evelin Checa, desarrolladora web Frontend y Backend en Thinktopia desde
+              abril de 2025.
+              Con este proyecto, buscamos ofrecer a los alumnos un espacio de aprendizaje más motivador y enriquecedor,
+              donde puedan expresarse libremente, compartir sus inquietudes e interactuar ágilmente con los docentes</p>
+          </div>
+        </article>
+
+        <!-- Cesia -->
+        <article class="miembro">
+          <img src="../assets/img/profile_cesia.png" alt="Foto de Cesia Fiorella" class="img-integrantes" />
+          <div class="contenido-integrantes">
+            <h3 class="nombre-integrantes">Cáceres Giménez Cesia Fiorella</h3>
+            <p class="text-integrantes">Mi nombre es Cesia Cáceres y me desempeño como desarrolladora y diseñadora en
+              este proyecto. Participo en la construcción de la plataforma desde el diseño de interfaces hasta la
+              implementación de funcionalidades, asegurando una experiencia visual atractiva y técnicamente sólida</p>
+          </div>
+        </article>
+
+        <!-- Milagros -->
+        <article class="miembro">
+          <img src="../assets/img/perfil_magui.png" alt="Foto de Milagros Cabrera" class="img-integrantes" />
+          <div class="contenido-integrantes">
+            <h3 class="nombre-integrantes">Cabrera Milagros Magaly</h3>
+            <p class="text-integrantes">Hola,mi nombre es Milagros Cabrera, tengo 23 años y me apasiona el desarrollo de
+              software. En este proyecto, me desempeño como desarrolladora, Scrum Master y colaboradora en el área de
+              diseño. Aporto desde la estructura técnica hasta los detalles visuales, buscando siempre crear
+              experiencias funcionales, atractivas y accesibles.</p>
+          </div>
+        </article>
+
+        <!-- Francisco -->
+        <article class="miembro">
+          <img src="../assets/img/img-fran.jpeg" alt="Foto de Francisco Toro" class="img-integrantes" />
+          <div class="contenido-integrantes">
+            <h3 class="nombre-integrantes">Toro Goitea Francisco Nicolás</h3>
+            <p class="text-integrantes">Desarrollador Full-Stack. Mi motivación es aprender y crecer con cada proyecto.
+              Disfruto aportar ideas y soluciones útiles al equipo. Para agregar un poco mas sobre mí, me considero una
+              persona que siempre quiere dar lo mejor de si y que jamás quiere quedarse atrás. ¿Hobbies? Basket, futbol
+              y algún que otro juegito como World of Warcraft!</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="Pie">
+    <img class="logochico" src="./assets/img/logo_oscuro_horizontal_1.png.png" alt="">
+    <p class="redes">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
+    <p class="redes"><img src="./assets/icons/instagram.svg" alt=""> Thinktopia </p>
+    <p class="redes"><img src="./assets/icons/facebook (1).svg" alt=""> Thinktopia </p>
+  </footer>
+</body>
+
 </html>

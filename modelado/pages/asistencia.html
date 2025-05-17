@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Milagros Cabrera, miembro de Thinktopia" />
+  <meta name="description"
+    content="Conocé nuestro servicio de asistencias en Thinktopia, dedicado a brindarte apoyo, soluciones rápidas y un acompañamiento personalizado para tus necesidades" />
+  <meta name="keywords" content="asistencias, soporte, ayuda, Thinktopia, soluciones, atención personalizada" />
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Nunito:wght@400;600&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/asistencia.css" />
+  <title>Thinktopia - Registro de Asistencia</title>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav container">
+
+      <img class="logo" src="../assets/img/logo_oscuro_horizontal.png.png" alt="Logo de Thinktopia" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="./dashboard.html">Dashboard</a></li>
+        <li><a href="./login.html">Mis cursos</a></li>
+        <li><a href="#">Reportes</a></li>
+        <li><a href="#">Estudiantes</a></li>
+        <li><a href="./gestion_contenido.html">Gestión de Contenido</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="tabla-asistencias">
+
+    <h1 class="title-asistencia">Asistencia</h1>
+
+    <section aria-labelledby="filtro" class="filtros-asistencia">
+        <form class="asistencias">
+          <label for="filtro-carrera" class="filtro-text">filtrar por:</label>
+          <select id="filtro-carrera" name="carrera">
+            <option value="carrera">Carrera</option>
+            <option value="materias">Materias</option>
+            <option value="curso">Curso</option>
+            <option value="comision">Comision</option>
+            <option value="fecha">Fecha</option>
+            <option value="turno">Turno</option>
+          </select>
+
+        <button type="submit" class="button-asistencia">Subir asistencia</button>
+        </form>
+    </section>
+
+
+    <section class="">
+      <h2 class="subtitle-asistencia">Asistencias registradas:</h2>
+
+      <table class="table">
+        <thead class="encabezado-table">
+          <tr class="contenido">
+            <th class="title-table">Carrera</th>
+            <th class="title-table">Materia</th>
+            <th class="title-table">Fecha</th>
+            <th class="title-table">Curso</th>
+            <th class="title-table">Comision</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <td class="text-table">Bachiller en Economia</td>
+          <td  class="text-table">Estadistica y probabilidad</td>
+          <td  class="text-table">09/03/25</td>
+          <td class="text-table">Primer año</td>
+          <td  class="text-table">Comision 1</td>
+          <td><button class="buton-editar">Editar</button></td>
+          </tr>
+
+          <tr class="contenido">
+
+            <td  class="text-table">Tecnicatura en Higiene y seguridad</td>
+            <td class="text-table">Matematica 1</td>
+            <td class="text-table">19/04/25</td>
+            <td  class="text-table">Segundo año</td>
+            <td  class="text-table">Comision 2</td>
+            <td><button class="buton-editar">Editar</button></td>
+          </tr>
+
+          <tr class="contenido">
+
+            <td  class="text-table">Tecnicatura en Desarrollo de Software</td>
+            <td  class="text-table">Matematica 2</td>
+            <td  class="text-table">10/05/25</td>
+            <td class="text-table">Tercer año</td>
+            <td  class="text-table">Comision 3</td>
+            <td><button class="buton-editar">Editar</button></td>
+          </tr>
+
+
+          <tr class="contenido">
+
+            <td  class="text-table">Bachiller en Administracion</td>
+            <td  class="text-table">Estadistica y probabilidad </td>
+            <td  class="text-table">20/07/25</td>
+            <td  class="text-table">Cuarto año</td>
+            <td  class="text-table">Comision 4</td>
+            <td><button class="buton-editar">Editar</button></td>
+          </tr>
+
+
+          <tr class="contenido">
+            <td class="text-table">Tecnicatura en Ciencia de Datos</td>
+            <td class="text-table">Matematica 1</td>
+            <td class="text-table">10/05/25</td>
+            <td  class="text-table">Primer año</td>
+            <td  class="text-table">Comision 3</td>
+            <td><button class="buton-editar">Editar</button></td>
+          </tr>
+
+          <tr class="contenido">
+            <td class="text-table">Bachiller en Cs Sociales</td>
+            <td class="text-table">Estadistica y probabilidad</td>
+            <td class="text-table">10/05/25</td>
+            <td class="text-table">Quinto año</td>
+            <td class="text-table">Comision 5</td>
+            <td><button class="buton-editar">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </section>
+
+  </main>
+
+  <footer class="Pie">
+    <img class="logochico" src="./assets/img/logo_oscuro_horizontal_1.png.png" alt="">
+    <p class="redes">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
+    <p class="redes"><img src="./assets/icons/instagram.svg" alt=""> Thinktopia </p>
+    <p class="redes"><img src="./assets/icons/facebook (1).svg" alt=""> Thinktopia </p>
+  </footer>
+</body>
+
+</html>
