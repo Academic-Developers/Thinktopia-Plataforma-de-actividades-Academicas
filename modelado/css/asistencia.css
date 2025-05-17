@@ -9,6 +9,8 @@ body {
   font-family: var(--main-font);
   color: var(--text-color);
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -29,7 +31,7 @@ body {
 
 main {
   max-width: 75rem;
-  margin: 0 auto;
+  
 }
 
 .nav-links {
@@ -53,6 +55,7 @@ main {
 .tabla-asistencias {
   margin: 0 auto;
   max-width: 80rem;
+  flex: 1;
 }
 .title-asistencia {
   color: var(--secundary-color);
@@ -64,8 +67,13 @@ main {
 }
 .asistencias {
   display: flex;
-  /* justify-content:space-between;
-  align-items: center; */
+  justify-content:space-between;
+  align-items: center;
+}
+.filtro-inicio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .filtro-text {
   font-family: var(--secundary-font);
@@ -77,8 +85,10 @@ main {
   color: var(--btn-primary-text);
   font-family: var(--secundary-font);
   font-weight: 600;
+  font-size: 1em;
   padding: 0.9em;
   border: none;
+  border-radius: 1em;
 }
 .button-asistencia:hover {
   background-color: var(--btn-primary-hover);
@@ -106,7 +116,10 @@ main {
   background: var(--outer-background);
   color: var(--background-color);
 }
-
+.contenido {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
 .title-table {
   padding: 12px 15px;
   text-align: left;
@@ -115,38 +128,12 @@ main {
   user-select: none;
 }
 
-.contenido {
-  border-bottom: 1px solid #ddd;
-  transition: background-color 0.2s ease;
-}
-
-.contenido:hover {
-  background-color: #f1f5f9;
-}
-
 .text-table {
   padding: 12px 15px;
   font-family: var(--secundary-font);
   font-size: 1rem;
   color: var(--text-color);
 }
-
-/* select[name="asistencia"] {
-  padding: 6px 10px;
-  font-family: var(--main-font);
-  font-size: 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  color: var(--text-color);
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-select[name="asistencia"]:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}  */
 
 .buton-editar {
   background-color: var(--btn-secondary-bg);
@@ -167,7 +154,7 @@ select[name="asistencia"]:focus {
 
 .Pie {
   background-color: var(--primary-color);
-  margin: auto;
+  
 }
 
 .logochico {
