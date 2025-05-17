@@ -1,25 +1,5 @@
-:root {
-    --primary-color: #6DB0E3;
-    --primary-color-hover: #1d4ed8;   /* hover del color principal */   
-    --secundary-color: #1E3A8A;
-    --background-color: #F8FAFC;
-    --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cositas (forms, etc)*/
-    --text-color: #111827;
+@import url('variables.css');
 
-    /* Tipografia, fuentes */
-    --main-font: 'Nunito', sans-serif;
-    --secundary-font: 'Inter', sans-serif;
-
-    /* Botones! Buttons */
-    --btn-primary-bg: #47ACE5; /* Celeste mas fuerte para botones */
-    --btn-primary-text: white;
-    --btn-primary-hover: var(--primary-color-hover);
-    --btn-secondary-bg: var(--color-secondary);
-    --btn-secondary-text: var(--color-white);
-    /* --btn-disabled-bg: #d1d5db;       
-    --btn-disabled-text: #9ca3af;  */
-  }
-  
   * {
     margin: 0;
     padding: 0;
@@ -69,7 +49,7 @@
   text-align: center;
   color: var(--text-color);
   margin-bottom: 1.5rem;
-  font-family: var(--main-font);
+  font-family: var(--font-title-primary);
 }
 
 /* Grupo de campos */
