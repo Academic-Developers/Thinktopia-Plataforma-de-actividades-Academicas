@@ -5,6 +5,42 @@
 /* Ajusten las paletas de colores, fuentes, etc si es necesario! */
 
 
+
+ @font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 :root {
     --primary-color: #6DB0E3;
     --primary-color-hover: #1d4ed8;   /* hover del color principal */   
@@ -25,5 +61,11 @@
     --btn-secondary-text: var(--color-white);
     /* --btn-disabled-bg: #d1d5db;       
     --btn-disabled-text: #9ca3af;  */
-  }
-  
+    
+  /* Fuentes */
+  --font-title-primary: 'Poppins', sans-serif;
+  --font-title-secondary: 'Inter', sans-serif;
+  --font-paragraph: 'Nunito', sans-serif;
+  --font-nav: 'Poppins', sans-serif;
+}
+ 
