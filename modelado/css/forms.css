@@ -1,0 +1,127 @@
+:root {
+    --primary-color: #6DB0E3;
+    --primary-color-hover: #1d4ed8;   /* hover del color principal */   
+    --secundary-color: #1E3A8A;
+    --background-color: #F8FAFC;
+    --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cositas (forms, etc)*/
+    --text-color: #111827;
+
+    /* Tipografia, fuentes */
+    --main-font: 'Nunito', sans-serif;
+    --secundary-font: 'Inter', sans-serif;
+
+    /* Botones! Buttons */
+    --btn-primary-bg: #47ACE5; /* Celeste mas fuerte para botones */
+    --btn-primary-text: white;
+    --btn-primary-hover: var(--primary-color-hover);
+    --btn-secondary-bg: var(--color-secondary);
+    --btn-secondary-text: var(--color-white);
+    /* --btn-disabled-bg: #d1d5db;       
+    --btn-disabled-text: #9ca3af;  */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+ body {
+  background: var(--outer-background);
+  font-family: var(--main-font);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+}
+
+/* Logo top left */
+.logo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.logo img {
+  height: 3.5rem;         
+  width: auto;            
+  max-width: 100%;        
+  object-fit: contain;    
+}
+
+/* Contenedor del formulario */
+.form-container {
+  background-color: var(--background-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 30rem;
+  min-height: 24rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Título del formulario */
+.form-title {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-family: var(--main-font);
+}
+
+/* Grupo de campos */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Etiquetas y campos */
+.form-label {
+  font-family: var(--secundary-font);
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--secundary-color);
+  border-radius: 0.3rem;
+}
+
+/* Botón */
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  opacity: 0.9;
+}
+
+.form-link-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Link inferior */
+.form-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-family: var(--secundary-font);
+}
+
+
