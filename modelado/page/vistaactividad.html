@@ -1,25 +1,100 @@
-git<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrega</title>
-    <link rel="stylesheet" href="./css/form.css">
-    <link rel="stylesheet" href="./css/variables.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/vistaactividad.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    
 </head>
 <body>
-    <section class="Entrega">
-        <h2>Estadistica y Probabilidad Aplicada</h2><br>
-        <h3>Trabajo Evaluativo Numero 1</h3><br>
-        <p>En esta evidencia, se evaluaran contenidos de la Unidad 1 y 
-              se aprueba con el 60 % de las respuestas correctas.Tienes como 
-          tiempo limite para la entregamiercoles 27 de mayo de 2025 a las 23:59 hs.
-        </p>  
+  <header class="header">
+       <img class="logo" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="">
+        <nav class="nav">
+          <ul>
+         <li ><a href="./page/index.html">Home</a></li>
 
-       <input type="submit" value="Agregar" Class="boton">      <input type="submit" value="Editar"class="boton">
+         <li><a href="./page/dashboard.html">Dashboard</a></li>
+              
+         <li><a href="#">Estudiantes</a></li>
+         
+         <li><a href="#">Gestion de contenido</a></li>
 
-       <input type="submit" value="Enviar" class="boton" >
-    </section>
+         </li><a href="./page/quienes_somos.html">¿Quienes Somos?</a><li>
+
+          </ul>
+                     
+    </header>
+
+
+ <div class="container">
+  <h1>Actividades</h1>
+
+  <div class="controls">
+    <select>
+      <option class="filtro">Filtrar</option>
+    </select>
+    <select>
+      <option class="ordenar">Ordenar Por</option>
+    </select>
+
+    <div class="menu">
+     <select >
+      
+      <option value="crear actividad">Crear actividad</option>
+      <option value="Agregar documento">Agregar documento</option>
+      <option value="Crear cuestionario">Crear cuestionario</option>
+      </select>
+        
+      </div>
+    </div>
+  </div>
+
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Curso</th>
+        <th>Fecha de creacion</th>
+        <th>Fecha de entrega</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Título 1</td>
+        <td>curso1</td>
+        <td>15/05/2025</td>
+        <td>20/05/2025</td>
+        <td><button class="edit-button">Editar</button></td>
+      </tr>
+      <tr>
+        <td>Título 2</td>
+        <td>curso2</td>
+        <td>15/06/2025</td>
+        <td>20/06/2025</td>
+        <td><button class="edit-button">Editar</button></td>
+      </tr>
+      <tr>
+        <td>Título 3</td>
+        <td>curso3</td>
+        <td>7/05/2024</td>
+        <td>14/05/2024</td>
+        <td><button class="edit-button">Editar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<footer class="Pie">
+            <img class="logochico"src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="">
+            <p class="redes">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
+            <p class="redes"><img src="../assets/icons/instagram.svg" alt=""> Thinktopia </p>
+             <p class="redes"><img src="../assets/icons/facebook (1).svg" alt=""> Thinktopia </p>
+             
+
+          </footer>
+       
+       
 </body>
 </html>
