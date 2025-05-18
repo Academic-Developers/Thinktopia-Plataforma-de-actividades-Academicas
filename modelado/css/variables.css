@@ -42,22 +42,18 @@
 }
 
 :root {
-    --primary-color: #6DB0E3;
-    --primary-color-hover: #1d4ed8;   /* hover del color principal */   
-    --secundary-color: #1E3A8A;
-    --background-color: #F8FAFC;
+    --primary-color: #6DB0E3; /* Celeste */
+    --secondary-color: #1E3A8A; /* Azul oscuro */
+    --primary-color-hover: #1d4ed8; /* Azul mas fuerte */
+    --background-color: #F8FAFC;  /* Gris claro */
     --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cositas (forms, etc)*/
     --text-color: #111827;
-
-    /* Tipografia, fuentes */
-    --main-font: 'Nunito', sans-serif;
-    --secundary-font: 'Inter', sans-serif;
 
     /* Botones! Buttons */
     --btn-primary-bg: #47ACE5; /* Celeste mas fuerte para botones */
     --btn-primary-text: white;
-    --btn-primary-hover: var(--primary-color-hover);
-    --btn-secondary-bg: var(--color-secondary);
+    --btn-primary-hover: var(--secondary-color);
+    --btn-secondary-bg: var(--primary-color);
     --btn-secondary-text: var(--color-white);
     /* --btn-disabled-bg: #d1d5db;       
     --btn-disabled-text: #9ca3af;  */

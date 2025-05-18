@@ -93,21 +93,24 @@ section h1 {
 .btn-dashboard {
   background-color: var(--primary-color);
   padding: 0.5rem 2rem;
-  border: 1px solid var(--secundary-color); 
+  border: none; 
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-left: 5rem;
   margin-right: 0;
-  color:white;
+  color: white;
   font-family: var(--font-title-primary);
   word-spacing: 0.0313rem;
-  font-weight: 450;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-  
+
 
 .btn-dashboard:hover {
-  background-color: var(--secundary-color);
+  background-color: var(--secondary-color);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 /*==== SECCIÓN DE TARJETAS ==== */
