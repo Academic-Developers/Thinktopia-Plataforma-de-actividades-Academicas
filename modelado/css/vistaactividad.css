@@ -77,12 +77,22 @@
 .filtro{
     margin-left: 15em;
     margin-top: 0em;
-    margin-right: 10em
+    margin-right: 10em;
+    
 }
+
+select{font-size: 20px;}
 
 .tabla{ text-align: center;
-        margin-left:15em ;
-        margin-bottom: 15em;
+        margin-left:18em ;
+        margin-bottom: 7em;
         margin-top: 3em;
+        
+        
 
 }
+
+th,td{font-size: 20px;
+      font-family: var(--font-title-secondary);
+
+    }
