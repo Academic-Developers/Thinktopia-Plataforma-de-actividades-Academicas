@@ -60,10 +60,10 @@ main {
 .title-asistencia {
   color: var(--secundary-color);
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
   margin: 1em auto;
-  font-size: 1.9em;
-  font-family: var(--main-font);
+  font-size: 1.5em;
+  font-family: var(   --font-title-primary);
 }
 .asistencias {
   display: flex;
@@ -76,14 +76,14 @@ main {
   gap: 0.5rem;
 }
 .filtro-text {
-  font-family: var(--secundary-font);
-  font-size: 1em;
+  font-family: var(  --font-paragraph);
+  font-size: 1.1em;
   text-align: center;
 }
 .button-asistencia {
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-text);
-  font-family: var(--secundary-font);
+  font-family: var(--font-title-secondary);
   font-weight: 600;
   font-size: 1em;
   padding: 0.9em;
@@ -99,7 +99,7 @@ main {
   font-size: 1.7em;
   text-align: center;
   margin: 1em;
-  font-family: var(--main--font);
+  font-family: var(--font-title-secondary);
   font-weight: bold;
 }
 
@@ -124,14 +124,15 @@ main {
   padding: 12px 15px;
   text-align: left;
   font-weight: 700;
-  font-family: var(--secundary-font);
+  font-family: var(--font-title-primary);
   user-select: none;
 }
 
 .text-table {
   padding: 12px 15px;
-  font-family: var(--secundary-font);
+  font-family: var(  --font-paragraph);
   font-size: 1rem;
+  font-weight: 600;
   color: var(--text-color);
 }
 
@@ -142,7 +143,7 @@ main {
   padding: 8px 18px;
   border-radius: 5px;
   cursor: pointer;
-  font-family: var(--secundary-font);
+  font-family: var( --font-paragraph);
   font-weight: 600;
   transition: background-color 0.3s ease;
 }
