@@ -12,9 +12,12 @@
         corrección, seguimiento, plataforma educativa" />
 
     <title>Entregas</title>
+    <link rel="stylesheet" href="../css/variables.css"/>
+    <link rel="stylesheet" href="../css/entregas.css"/>
 
 </head>
 <body>
+  <header>
     <nav>
       <a href="index.html" class="logo">
         <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63"/>
@@ -23,26 +26,111 @@
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="#">Mis Cursos</a></li>
         <li><a href="reportes.html">Reportes</a></li>
-        <li><a href="reportes.html">Asistencias</a></li>
+        <li><a href="asistencia.html">Asistencias</a></li>
         <li><a href="actividades.html" class="tab active">Actividades</a></li>
       </ul>
     </nav>
-
-    <section class="title-icon">
-      <img src="../assets/icons/journal-check.svg" alt="Pencil Icon" width="50" height="50"/>
-      <h1>Reportes</h1>
-    </section>
-        <section class="filters-container">
+  </header>
+  <section class="title-icon">
+      <img src="../assets/icons/check_cicle_icon.svg" alt="Pencil Icon" width="50" height="50"/>
+      <h1>Entregas</h1>
+  </section>
+  <section class="filters-container">
       <article class="filters">
         <details class="dropdown">
-          <summary>Filtrar po</summary>
+          <summary>Filtrar por</summary>
           <ul class="dropdown-menu">
-            <li><a href="#">Curso 1</a></li>
-            <li><a href="#">Curso 2</a></li>
-            <li><a href="#">Curso 3</a></li>
+            <li><a href="#">Curso</a></li>
+            <li><a href="#">Fecha de Entrega</a></li>
+            <li><a href="#">Estado</a></li>
+            <li><a href="#">Tipo</a></li>
           </ul>
         </details>
-    </section>
+      </article>
+  </section>
+  <section class="entregas-container">
+    <article class="entregas">
+      <table class="tabla-entregas">
+        <thead>
+          <tr>
+            <th>Alumno</th>
+            <th>Curso</th>
+            <th>Fecha de Entrega</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="window.open('archivos/ana-cuestionario.pdf', '_blank')">
+            <td>Ana López</td>
+            <td>Primer Año</td>
+            <td>18/05/2025</td>
+            <td>Cuestionario</td>
+            <td>Calificado</td>
+            <td>
+              <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+          <tr onclick="window.open('archivos/ana-documento.pdf', '_blank')">
+            <td>Ana López</td>
+            <td>Primer Año</td>
+            <td>20/05/2025</td>
+            <td>Documento</td>
+            <td>Calificado</td>
+            <td>
+              <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+          <tr onclick="window.open('archivos/lucas-documento.pdf', '_blank')">
+            <td>Lucas Rivero</td>
+            <td>Tecer Año</td>
+            <td>20/05/2025</td>
+            <td>Documento</td>
+            <td>Calificado</td>
+            <td>
+              <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+          <tr onclick="window.open('archivos/maria-documento.pdf', '_blank')">
+            <td>María Torres</td>
+            <td>Tecer Año</td>
+            <td>20/05/2025</td>
+            <td>Documento</td>
+            <td>Pendiente</td>
+            <td>
+              <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+<footer class="footer"> 
+  <div class="footer-content">
+    <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
+    
+    <div class="footer-text">
+      <p class="copyright">
+        Thinktopia &copy; 2025 - Todos los derechos reservados
+      </p>
+
+      <ul class="social-media">
+        <li>
+          <a href="#" aria-label="Instagram de Thinktopia">
+            <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
+          </a>
+        </li>
+        <li>
+          <a href="#" aria-label="Facebook de Thinktopia">
+            <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
 
 
 </body>

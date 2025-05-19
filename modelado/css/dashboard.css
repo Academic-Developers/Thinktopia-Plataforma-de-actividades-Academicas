@@ -23,13 +23,14 @@ header {
   align-items: center;
   width: 100%;  
   box-sizing: border-box; 
+
 }
 
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; 
+  width: 100%;
 }
 
 nav ul {
@@ -92,21 +93,24 @@ section h1 {
 .btn-dashboard {
   background-color: var(--primary-color);
   padding: 0.5rem 2rem;
-  border: 1px solid var(--secundary-color); 
+  border: none; 
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-left: 5rem;
   margin-right: 0;
-  color:white;
+  color: white;
   font-family: var(--font-title-primary);
   word-spacing: 0.0313rem;
-  font-weight: 450;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-  
+
 
 .btn-dashboard:hover {
-  background-color: var(--secundary-color);
+  background-color: var(--secondary-color);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 /*==== SECCIÓN DE TARJETAS ==== */
@@ -180,20 +184,54 @@ footer {
   padding: 2rem 1rem;
   background-color: var(--primary-color);
   color: white;
-  text-align: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
-footer ul {
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-chico {
+  max-width: 200px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-text p {
+  margin: 0.5rem 0;
+  font-family: var(--font-title-secondary);
+}
+
+.social-media {
   list-style: none;
   display: flex;
   justify-content: center;
   gap: 1.5rem;
   padding: 1rem 0 0;
+  margin: 0;
 }
 
-footer a {
+.social-media a {
   color: white;
   text-decoration: none;
   font-family: var(--font-title-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-media img {
+  width: 20px;
+  height: 20px;
 }
