@@ -166,15 +166,64 @@
 
 }
 
-.Pie{background-color: var(--primary-color);
-      margin: auto;
-          }
+/* ==== FOOTER ==== */
+footer {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  box-sizing: border-box;
+}
 
-          .logochico{ width:20% ;
-                     height: auto;}
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-          .redes{text-align: center;}
+.logo-chico {
+  max-width: 200px;
+  height: auto;
+  flex-shrink: 0;
+}
 
-         
+.footer-text {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-text p {
+  margin: 0.5rem 0;
+  font-family: var(--font-title-secondary);
+}
+
+.social-media {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0 0;
+  margin: 0;
+}
+
+.social-media a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-title-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-media img {
+  width: 20px;
+  height: 20px;
+}
+       
 
      
