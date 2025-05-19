@@ -138,178 +138,30 @@
       </section>
     </main>
 
-    <footer>
-      <p>Footer content goes here</p>
-      <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </ul>
-    </footer>
+    <footer class="footer"> 
+      <div class="footer-content">
+        <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
+        
+        <div class="footer-text">
+          <p class="copyright">
+            Thinktopia &copy; 2025 - Todos los derechos reservados
+          </p>
+
+          <ul class="social-media">
+            <li>
+              <a href="#" aria-label="Instagram de Thinktopia">
+                <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Facebook de Thinktopia">
+                <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </footer>
   </body>
 </html>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Equipo Thinktopia" />
-    <meta name="robots" content="noindex, nofollow" />
-    <meta
-      name="description"
-      content="Plataforma de actividades académicas, accede a la gestión de contenido de tus actividades académicas en Thinktopia - Plataforma de Actividades Academicas"
-    />
-    <meta
-      name="keywords"
-      content="Thinktopia, docente, gestión de contenido, actividades académicas, estudiantes, profesores, aprendizaje, educación, educación virtual, educación en linea"
-    />
-    <title>Docente - Gestión contenido</title>
-    <link rel="stylesheet" href="../css/gestion-contenido-docente.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter&family=Nunito&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body>
-    <header>
-      <nav>
-        <a href="index.html">
-          <img
-            src="../assets/img/logo_claro_horizontal.png.png"
-            alt="Logo de ThinkTopia"
-            width="222"
-            height="63"
-          />
-        </a>
-        <ul>
-          <li><a href="dashboard.html" class="tab active">Dashboard</a></li>
-          <li><a href="#">Mis Cursos</a></li>
-          <li><a href="reportes.html">Reportes</a></li>
-          <li><a href="asistencia.html">Asistencias</a></li>
-          <li><a href="actividades.html">Actividades</a></li>
-          <li><a href="gestion-contenido-docente.html">Gestión de Contenido</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main class="main-container">
-      <section class="content-header">
-        <h1>Gestión de Contenido</h1>
-        <button class="btn-primary" id="btnAgregarContenido">
-          ➕ Agregar contenido
-        </button>
-      </section>
-
-      <section class="search-bar">
-        <input
-          type="text"
-          id="buscarContenido"
-          placeholder="🔍 Buscar contenido por título, tema, materia..."
-        />
-      </section>
-
-      <section class="content-list">
-        <!-- Ejemplos de contenido cargado -->
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
-          <p class="materia">Materia: Matemática</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre ecuaciones de primer grado.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Geometría Básica</h3>
-          <p class="materia">Materia: Matemática</p>
-          <p class="descripcion">
-            Introducción a los conceptos básicos de geometría, incluyendo
-            puntos, rectas y planos.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Física</h3>
-          <p class="materia">Materia: Física</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre mecánica y termodinámica.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Química Orgánica</h3>
-          <p class="materia">Materia: Química</p>
-          <p class="descripcion">
-            Introducción a los conceptos básicos de química orgánica, incluyendo
-            la estructura y propiedades de los compuestos orgánicos.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Biología</h3>
-          <p class="materia">Materia: Biología</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre biología celular y genética.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Historia Universal</h3>
-          <p class="materia">Materia: Historia</p>
-          <p class="descripcion">
-            Introducción a la historia universal, desde la antigüedad hasta la
-            actualidad.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <!-- <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Lengua y Literatura</h3>
-          <p class="materia">Materia: Lengua y Literatura</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre gramática y literatura.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article> -->
-
-        <!-- Más tarjetas dinámicas... -->
-      </section>
-    </main>
-
-    <footer>
-      <p>Footer content goes here</p>
-      <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </ul>
-    </footer>
-  </body>
-</html>
