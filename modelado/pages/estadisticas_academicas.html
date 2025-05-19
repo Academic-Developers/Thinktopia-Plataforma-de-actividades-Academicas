@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel visual de estadísticas y métricas de rendimiento con gráficos interactivos y tarjetas resumen para seguimiento de participación.">
+    <meta name="keywords"
+        content="estadísticas, métricas, panel de control, rendimiento, gráficos, participación, comparativas, visualización de datos">
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Nunito:wght@400;600&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/estadisticas.css" />
+    <!--Iconos-->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/ultraviolet/40/statistics.png"
+        alt="Icono de estadistica" />
+
+    <title>Estadisticas Academicas - Thinktopia</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="../../index.html">
+                <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63"
+                    class="logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#">Mis Cursos</a></li>
+                <li><a href="reportes.html">Reportes</a></li>
+                <li><a href="asistencia.html">Asistencias</a></li>
+                <li><a href="actividades.html">Actividades</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+   
+        <section class="filtrar-curso">
+             <h1 class="title-estadistica">Estadisticas Academicas</h1>
+
+            <label for="curso" class="text-filtro">Curso:</label>
+            <select id="curso" class="select-filtro" name="curso">
+                <option value="">Seleccionar</option>
+                <option value="curso1">Estadistica y probabilidad</option>
+                <option value="curso1">Matematica 1</option>
+                <option value="curso2">Matematica 2</option>
+            </select>
+            <br>
+        </section>
+
+        <section class="info-estadistica">
+            <article class="tarjeta">
+                <figure>
+                    <img src="../assets/icons/users.png" class="img-estadistica"  alt="Icono de estudiantes">
+                </figure>
+                <h2 class="subtitle-estadistica">Total Estudiantes:</h2>
+                <p class="text-estadistica">32</p>
+            </article>
+
+            <article class="tarjeta">
+                <figure>
+                    <img src="../assets/icons/star.png" class="img-estadistica"  alt="Icono de promedio">
+                </figure>
+                <h2 class="subtitle-estadistica">Promedio del Curso</h2>
+                <p class="text-estadistica">7,6 / 10</p>
+            </article>
+
+            <article class="tarjeta">
+                <figure>
+                    <img src="../assets/icons/tasks.png" class="img-estadistica"  alt="Icono de tareas">
+                </figure>
+                <h2 class="subtitle-estadistica">Tasa de Envío de Tareas</h2>
+                <p class="text-estadistica">85%</p>
+            </article>
+
+            <article class="tarjeta">
+                <figure>
+                    <img src="../assets/icons/calendar-check.png" class="img-estadistica" alt="Icono de asistencia">
+                </figure>
+                <h2 class="subtitle-estadistica">Promedio de Asistencia</h2>
+                <p class="text-estadistica">91%</p>
+            </article>
+        </section>
+
+        <section class="alerta-riesgo">
+            <figure>
+                <img src="../assets/icons/warning.png" class="tarjeta-alerta" alt="Icono de advertencia">
+            </figure>
+            <h3 class="text-riesgo">5 Estudiantes están en Riesgo de Reprobar</h3>
+            <button type="button" class="buton-ver">Ver más</button>
+        </section>
+
+
+        <!-- LISTA DE ESTUDIANTES -->
+        <section>
+            <ul class="lista-estudiantes">
+                <li>
+                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Ana López
+                </li>
+                <li>
+                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Mario Torres
+                </li>
+                <li>
+                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Laura García
+                </li>
+                <li>
+                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Lucas Rivas
+                </li>
+                <li>
+                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Diego Peña
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
