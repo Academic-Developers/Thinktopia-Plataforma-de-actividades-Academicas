@@ -9,59 +9,67 @@
     
 </head>
 <body>
-  <header class="header">
-       <img class="logo" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="">
-        <nav class="nav">
-          <ul>
-         <li ><a href="./page/index.html">Home</a></li>
+     <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63"/>
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#">Mis Cursos</a></li>
+        <li><a href="reportes.html">Reportes</a></li>
+        <li><a href="reportes.html">Asistencias</a></li>
+        <li><a href="actividades.html" class="tab active">Actividades</a></li>
+      </ul>
+    </nav>
+  </header>
+    <section class="title-icon">
+       <img src="../assets/icons/pencil.svg" alt="Logo"/>
+       <h1>Actividades</h1>
+       
 
-         <li><a href="./page/dashboard.html">Dashboard</a></li>
-              
-         <li><a href="#">Estudiantes</a></li>
-         
-         <li><a href="#">Gestion de contenido</a></li>
-
-         </li><a href="./page/quienes_somos.html">¿Quienes Somos?</a><li>
-
-          </ul>
-                     
-    </header>
-
-
- <div class="container">
-  <h1>Actividades</h1>
-
-  <div class="controls">
-    <select>
-      <option class="filtro">Filtrar</option>
-    </select>
-    <select>
-      <option class="ordenar">Ordenar Por</option>
-    </select>
-
-    <div class="menu">
-     <select >
-      
-      <option value="crear actividad">Crear actividad</option>
-      <option value="Agregar documento">Agregar documento</option>
-      <option value="Crear cuestionario">Crear cuestionario</option>
-      </select>
+    </section>
+    
+       
+  <div class="filters-container">
+    <div class="filters">
+      <details class ="dropdown">
+    <summary >
+      Filtrar
+    </summary>
+    </details>
+      <details class ="dropdown">
+    <summary >
+      Ordenar Por
+    </summary>
+    </details>
+    <details class ="dropdown">
+     <summary > Crear Actividad </summary>
+      <ul  class ="dropdown-menu" >
+       <li >Crear cuestionario</li>
+       <li >Agregar documento</li>
+      </ul>
+          
+          
+    </details>
+     
         
-      </div>
-    </div>
+     </div>
   </div>
-
-  <table class="tabla">
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Curso</th>
-        <th>Fecha de creacion</th>
-        <th>Fecha de entrega</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
+  <section class="actividad-container">
+    <article class="actividad">
+      <table class="tabla-actividad">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Curso</th>
+            <th>Fecha de Creacion</th>
+            <th>Fecha de entrega</th>
+             <th>Accion</th>
+            
+          </tr>
+        </thead>
+        <tbody>
       <tr>
         <td>Título 1</td>
         <td>curso1</td>
@@ -84,17 +92,38 @@
         <td><button class="edit-button">Editar</button></td>
       </tr>
     </tbody>
-  </table>
-</div>
-<footer class="Pie">
-            <img class="logochico"src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="">
-            <p class="redes">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
-            <p class="redes"><img src="../assets/icons/instagram.svg" alt=""> Thinktopia </p>
-             <p class="redes"><img src="../assets/icons/facebook (1).svg" alt=""> Thinktopia </p>
-             
+      
+         
+            
+      
+      </table>
+  </section>
 
-          </footer>
-       
+ 
+<footer class="footer"> 
+  <div class="footer-content">
+    <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
+    
+    <div class="footer-text">
+      <p class="copyright">
+        Thinktopia &copy; 2025 - Todos los derechos reservados
+      </p>
+
+      <ul class="social-media">
+        <li>
+          <a href="#" aria-label="Instagram de Thinktopia">
+            <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
+          </a>
+        </li>
+        <li>
+          <a href="#" aria-label="Facebook de Thinktopia">
+            <img src="../assets/icons/facebook (1).svg" alt="Facebook"> Thinktopia
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
        
 </body>
 </html>
