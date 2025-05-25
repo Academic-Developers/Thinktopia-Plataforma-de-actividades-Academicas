@@ -26,11 +26,14 @@ El propósito principal del sistema es facilitar la organización de actividades
 ---
 
 ## Alcance
-- Registro y login de usuarios con roles diferenciados (estudiantes y docentes).
-- Creación y asignación de actividades.
-- Visualización de actividades, calificaciones, estadísticas y progreso.
-- Notificaciones automáticas y gestión de perfiles.
-- Diseño responsivo básico, accesible vía navegador web.
+- Registro e inicio de sesión de usuarios (solo nombre, correo y rol).
+- Gestión básica de actividades por parte del docente (crear, editar, eliminar).
+- Visualización y entrega de actividades por parte del estudiante.
+- Seguimiento básico de entrega (entregada / no entregada).
+- Notificación simple (por ejemplo, mensaje visual dentro de la app cuando una actividad está cerca de vencer).
+- Ranking, puntos.
+- Asistencia
+- Calendario 
 
 ---
 
@@ -45,7 +48,6 @@ El propósito principal del sistema es facilitar la organización de actividades
 ## Personal Involucrado
 | Nombre | Rol | Responsabilidades | Contacto |
 |---------|-----|---------------------|----------|
-| Carolina Soledad Sanchez | Desarrollador | Gestión, análisis, diseño y desarrollo | carolinasanchz20@gmail.com |
 | Evelin Andrea Checa | Desarrollador | Gestión, análisis, diseño y desarrollo | evecheca40@gmail.com |
 | Cáceres Giménez Cesia Fiorella | Desarrollador | Gestión, análisis, diseño, testing | cesiaf.gimenez@gmail.com |
 | Francisco Nicolas Toro Goitea | Desarrollador | Gestión, análisis, diseño, testing | torofrancisco13@gmail.com |
