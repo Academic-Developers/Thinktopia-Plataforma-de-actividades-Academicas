@@ -32,9 +32,9 @@
         list-style: none; 
          text-align: center;
         justify-content: center;
-          margin-left: 5em ;
+          margin-left: 0.5em ;
           padding: 0;
-          gap: 50px;}
+          gap: 20px;}
 
 
 .nav a {font-family:var(--font-nav);
