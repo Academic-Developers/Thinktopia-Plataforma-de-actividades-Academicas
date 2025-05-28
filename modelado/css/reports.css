@@ -1,4 +1,5 @@
 @import url('variables.css');
+@import url('filters.css'); 
 
 /* ==== RESET ==== */
 * {
@@ -140,44 +141,39 @@ nav a.active::after {
 }
 
 /* ==== SECCIÓN DE FILTROS ==== */
+
 .btn-primary {
     flex-shrink: 0;
     white-space: nowrap;
     margin-right: 0;
     background-color: var(--primary-color);
     color: white;
-}
-
-.btn {
     font-family: var(--font-title-primary), sans-serif;
 }
 
 .filters-container {
+    display: flex;
     gap: 1rem;
     max-width: 75rem;
     margin: 0 auto;
     padding: 2rem 1rem 1rem;
     box-sizing: border-box;
-    display: flex; /* fuerza que esté visible en desktop */
 }
 
 .mobile-filters {
-    display: none;
-}
-
-.mobile-filters button {
+    display: none; 
     margin-bottom: 4px;
 }
+
 
 @media (max-width: 991.98px) {
     .mobile-filters {
         display: block;
     }
     .filters-container {
-        display: none !important;
+        display: none; 
     }
 }
-
 
 /* ==== SECCIÓN DE REPORTES ==== */
 .reports-container {
