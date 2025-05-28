@@ -148,6 +148,10 @@
 
   width:20% ;
   height: auto;
+  margin-top: 2em;
+  
+  
+  
 }
 
 .card h3{
@@ -155,7 +159,7 @@
   font-size: 20px;
   margin-bottom: 0.5rem; 
   color: var(--text-color);
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .card p{
@@ -168,6 +172,7 @@
 
 .Pie{background-color: var(--primary-color);
       margin: auto;
+      width: 100%;
           }
 
           .logochico{ width:20% ;
@@ -176,5 +181,3 @@
           .redes{text-align: center;}
 
          
-
-     
