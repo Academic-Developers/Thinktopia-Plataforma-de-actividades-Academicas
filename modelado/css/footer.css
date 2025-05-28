@@ -1,0 +1,11 @@
+@import url(' ./variables.css  ' );
+
+.bg-thinktopia {
+  background-color:var(--primary-color);
+   /* si lo necesitas para contrastar */
+   
+}
+          .logochico{ width:20% ;
+                     height: auto;}
+
+          .redes{text-align: center;}

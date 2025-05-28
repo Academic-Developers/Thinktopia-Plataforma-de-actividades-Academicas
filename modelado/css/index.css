@@ -124,7 +124,7 @@
   width:100% ;
   flex-wrap: wrap;
  background: 
-    linear-gradient(to bottom, #6D98E3 20%, var(--background-color) 80%);
+  linear-gradient(to bottom, #6D98E3 20%, var(--background-color) 80%);
    
 
 }      
@@ -170,14 +170,39 @@
 
 }
 
-.Pie{background-color: var(--primary-color);
-      margin: auto;
-      width: 100%;
-          }
 
-          .logochico{ width:20% ;
-                     height: auto;}
+         /* ==== FOOTER ==== */
+footer {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  box-sizing: border-box;
+}
 
-          .redes{text-align: center;}
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-         
+.logo-chico {
+  max-width: 200px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-text p {
+  margin: 0.5rem 0;
+  font-family: var(--font-title-secondary);
+}
