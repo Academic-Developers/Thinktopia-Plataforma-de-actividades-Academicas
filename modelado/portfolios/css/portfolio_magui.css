@@ -1,6 +1,120 @@
-:root{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 75rem;
+}
+/* NAVBAR  FALTA CENTRARLO*/
+.navbar {
+  font-family: "Roboto", sans-serif;
+  background-color: #0d3b66;
+}
+.logo-navbar {
+  color: #e1f4ff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.titles {
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
+/* SECTION HOME */
+
+.title-home {
+  font-size: 2rem;
+  font-weight: 600;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.subtitle-home {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  color: #5b708b;
+}
+.text-home {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: 500;
+}
+.buton-proyectos {
+  color: white;
+  background-color: #007bff;
+  font-family: "Poppins", sans-serif;
+  width: 22vh;
+  font-weight: 700;
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  border-color: transparent;
+}
+/*SECCION SOBRE MI */
+.title-sobre-mi {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #5b708b;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.text-sobre-mi {
+  font-family: "Roboto", sans-serif;
+  color: #4a4a4a;
+  line-height: 1.6;
+    font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.subtitle-sobre-mi {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #007bff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+li{
+    font-size: 1.1rem;
+    font-family:"Roboto", sans-serif;
+}
+
+/* SECCION DE PROYECTOS */
+.title-proyectos {
+  font-family: "poppins", sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #5b708b;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.texto-proyectos {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  text-align: start;
+  color: #4a4a4a;
+  flex-wrap: wrap;
+}
+.subtitle-proyectos{
+      font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  font-weight:600;
+  color: #007bff;
+}
+.text-proyectos{
+      font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+/* SECCION DE FOOTER: FALTA CREAR RESPONSIVE */
+.footer-text {
+  color: #e1f4ff;
+  background-color: #0d3b66;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
