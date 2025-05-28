@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -30,46 +30,46 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Milagros M Cabrera</a>
+                <a class="navbar-brand logo-navbar " href="#home">Milagros M Cabrera</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ms-4 ">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#home">Home</a>
+                            <a class="nav-link me-4 titles" aria-current="page" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#sobre-mi">Sobre Mi</a>
+                            <a class="nav-link me-4 titles" href="#sobre-mi">Sobre Mi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#proyectos">Proyectos</a>
+                            <a class="nav-link me-4 titles" href="#proyectos">Proyectos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contacto">Contacto</a>
+                            <a class="nav-link me-4 titles" href="#contacto">Contacto</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-    <main>
+<br>
+    <main class="container">
         <section id="#home">
             <h1 class="title-home">¡Hola! Soy Milagros Cabrera</h1>
             <h2 class="subtitle-home">Técnica en Desarrollo de Software | Full Stack Developer</h2>
-            <p class="text-home"> Soy una apasionada por la tecnología y el desarrollo web.<br />
+            <p class="text-home"> Soy una apasionada por la tecnología y el desarrollo web.<br>
                 Disfruto viajar, descubrir nuevos lugares y aprender algo nuevo cada día. </p>
-            <a href="#proyectos" class="buton-proyectos">Ver Proyectos</a>
+            <a href="#proyectos" class="buton-proyectos btn">Ver Proyectos</a>
         </section>
-
+<br>
         <section id="#sobre-mi">
             <h2 class="title-sobre-mi">Sobre Mi</h2>
             <p class="text-sobre-mi"> Soy una desarrolladora de software en formación con
-                enfoque en el desarrollo Full Stack. <br />
+                enfoque en el desarrollo Full Stack. <br>
                 Me encanta transformar ideas en aplicaciones funcionales,
                 interactivas y escalables.</p>
 
@@ -89,27 +89,30 @@
                 </li>
             </ul>
 
-            <p class="texto-sobre-mi">También podés conocer más sobre mí en mis redes profesionales o
+            <p class="text-sobre-mi">También podés conocer más sobre mí en mis redes profesionales o
                 descargar mi CV:</p>
 
-            <div class="redes">
-                <a href="https://www.linkedin.com/in/milagros-cabrera-dev/" target="_blank"
-                    aria-label="Visitar mi perfil de LinkedIn" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                <a href="https://github.com/MilagrosCabrera23" target="_blank"
-                    aria-label="Visitar mi perfil de GitHub"><i class="bi bi-github"></i></a>
+            <div class="redes  gap-2 d-flex">
+                <a href="https://www.linkedin.com/in/milagros-cabrera-dev/" class="btn btn-primary" target="_blank"
+                    aria-label="Visitar mi perfil de LinkedIn" rel="noopener noreferrer"><i
+                        class="bi bi-linkedin me-2"></i></a>
+                <a href="https://github.com/MilagrosCabrera23" class="btn btn-dark" target="_blank"
+                    aria-label="Visitar mi perfil de GitHub"><i class="bi bi-github me-2"></i></a>
 
-                <a href="../../assets/cv/cv_magui.docx" download class="btn mt-1">Descargar mi CV</a>
+                <a href="../../assets/cv/cv_magui.docx" target="_blank" download class="btn btn-success"><i
+                        class="bi bi-arrow-down-circle-fill me-2">Descargar mi CV</i></a>
             </div>
         </section>
-
+<br>
         <section id="#proyectos">
             <h2 class="title-proyectos"> Mis Proyectos</h2>
             <p class="texto-proyectos">A continuación te muestro algunos de los proyectos que he realizado
                 en este último tiempo, usando distintas tecnologías.</p>
 
-            <article>
+            <article class="proyecto">
                 <h4 class="subtitle-proyectos">Arg Broker – Gestión de Inversiones</h4>
-                <p class="text-proyectos"> Plataforma para gestionar inversiones financieras de forma sencilla. Permite registrarse, comprar y
+                <p class="text-proyectos"> Plataforma para gestionar inversiones financieras de forma sencilla. Permite
+                    registrarse, comprar y
                     vender acciones, y visualizar el rendimiento del portafolio con gráficos e indicadores. Además,
                     ofrece funcionalidades como recuperación de contraseña, autenticación y seguimiento de
                     ganancias/pérdidas para tomar decisiones informadas</p>
@@ -123,9 +126,10 @@
                 </a>
             </article>
 
-            <article>
+            <article class="proyecto">
                 <h4 class="subtitle-proyectos">E-commerce Firebase – Trendy Threads</h4>
-                <p class="text"> Catálogo de ropa online organizado por categorías, diseñado para ofrecer una experiencia de compra
+                <p class="text-proyectos"> Catálogo de ropa online organizado por categorías, diseñado para ofrecer una
+                    experiencia de compra
                     cómoda y atractiva. Incluye carrito de compras, detalles completos de productos (imagen,
                     descripción, precio) y navegación intuitiva para facilitar la selección de artículos.</p>
 
@@ -141,9 +145,10 @@
                 </a>
             </article>
 
-            <article>
-                <h4 class="subtitle-proyectotitle">Sistema IoT con Node-RED</h4>
-                <p class="text-proyectos"> Dashboard web en tiempo real para visualizar datos de sensores IoT (ESP32), integrados con MySQL.
+            <article class="proyecto">
+                <h4 class="subtitle-proyectos">Sistema IoT con Node-RED</h4>
+                <p class="text-proyectos"> Dashboard web en tiempo real para visualizar datos de sensores IoT (ESP32),
+                    integrados con MySQL.
                     Incluye monitoreo continuo, alertas automáticas ante valores fuera de rango y escalabilidad para
                     agregar nuevos dispositivos sin afectar el rendimiento.</p>
 
@@ -158,9 +163,10 @@
                 </a>
             </article>
 
-            <article>
+            <article class="proyecto">
                 <h4 class="subtitle-proyectos">Mi Portafolio Frontend</h4>
-                <p class="text-proyectos">Sitio web responsive creado con React y Vite para presentar mi perfil profesional como
+                <p class="text-proyectos">Sitio web responsive creado con React y Vite para presentar mi perfil
+                    profesional como
                     desarrolladora Full Stack. Incluye secciones sobre mí, habilidades técnicas, proyectos destacados y
                     un formulario de contacto funcional. El diseño moderno y accesible se complementa con animaciones
                     suaves, notificaciones interactivas y compatibilidad con distintos dispositivos.</p>
@@ -182,7 +188,8 @@
             <p class="text-contacto"> ¿Querés contactarme? Enviame un mensaje directamente desde este
                 formulario y te respondere a la brevedad.</p>
 
-            <form class="form-contacto"  action="mailto:milagrosmagalycabrera@gmail.com" method="post" enctype="text/plain">
+            <form class="form-contacto" action="mailto:milagrosmagalycabrera@gmail.com" method="post"
+                enctype="text/plain">
 
                 <label for="form-nombre" class="form-label text-forms">Nombre Completo:</label>
                 <input type="text" class="form-control" id="form-nombre" placeholder="Escriba su nombre aquí" required>
@@ -200,7 +207,8 @@
 
 
                 <label for="form-mensaje" class="form-label text-forms">Escribí tu mensaje:</label>
-                <textarea class="form-control" id="form-mensaje" placeholder="Escriba su mensaje" rows="5" required></textarea>
+                <textarea class="form-control" id="form-mensaje" placeholder="Escriba su mensaje" rows="5"
+                    required></textarea>
 
                 <button type="submit" class="btn btn-primary mt-3 button-contacto">Enviar mensaje</button>
             </form>
