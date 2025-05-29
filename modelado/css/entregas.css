@@ -77,16 +77,6 @@ nav a.active::after {
   width: 100%;
 }
 
-/* ==== SECCIÓN DE TÍTULO ==== */
-.title,
-.filters-container {
-    max-width: 75rem;
-    margin: 0 auto;
-    padding: 2rem 1rem 1rem;
-    box-sizing: border-box;
-}
-
-
 /* ==== SECCIÓN DE FILTROS ==== */
 
 /* Submenús desplegables tipo mega menú */
