@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <meta name="author" content="Equipo Thinktopia" /> 
-  <meta name="robots" content="noindex, nofollow" /> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Equipo Thinktopia" />
+  <meta name="robots" content="noindex, nofollow" />
   <meta name="description" content="Panel principal del docente en Thinktopia. 
     Accedé a la visión general de tus cursos, seguimiento de estudiantes,
     notificaciones y herramientas académicas." />
-     
+
   <meta name="keywords" content="Thinktopia, docente, dashboard, seguimiento académico,
-    cursos, panel de control, educación, herramientas docentes" /> 
-    
+    cursos, panel de control, educación, herramientas docentes" />
+
   <title>Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- CSS variables y estilos principales -->
   <link rel="stylesheet" href="../css/variables.css">
@@ -26,7 +30,7 @@
   <header>
     <nav>
       <a href="index.html" class="logo">
-        <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63"/>
+        <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63" />
       </a>
       <ul class="nav-links">
         <li><a href="dashboard.html" class="tab active">Dashboard</a></li>
@@ -34,115 +38,104 @@
         <li><a href="reportes.html">Reportes</a></li>
         <li><a href="asistencia.html">Asistencias</a></li>
         <li><a href="estadisticas_academicas.html">Estadisticas</a></li>
-        <li><a href="actividades.html" >Actividades</a></li>
-        <li><a href="gestion-contenido-docente.html" >Gestion contenido</a></li>
+        <li><a href="actividades.html">Actividades</a></li>
+        <li><a href="gestion-contenido-docente.html">Gestion contenido</a></li>
       </ul>
     </nav>
   </header>
-        <section>
-            <h1>¡Bienvenido, Profesor Pedro!</h1> 
-                <button class="btn-dashboard">
-                    <span class="button-text">Crear Nueva Tarea</span>
-                </button>
-        </section>
-
-    <section class="dashboard-container">
-  <a href="URL_CURSOS" class="card-link">
-    <article class="card">
-      <article class="card-icon"> 
-        <img
-          src="../assets/icons/cursos_icon.svg"
-          alt="Cursos Asignados"
-          width="50"
-          height="50"
-          class="icon-img"
-        >
-      </article>
-      <article class="card-content">
-        <h3 class="card-title">Cursos Asignados</h3>
-        <p class="card-value">3 Cursos</p>
-      </article>
-    </article>
-  </a>
-
-  <a href="entregas.html" class="card-link">
-    <article class="card">
-      <article class="card-icon"> 
-        <img
-          src="../assets/icons/tareas_icon.svg"
-          alt="Tareas Activas"
-          width="50"
-          height="50"
-          class="icon-img"
-        >
-      </article>
-      <article class="card-content">
-        <h3 class="card-title">Tareas Activas</h3>
-        <p class="card-value">12 Tareas</p>
-      </article>
-    </article>
-  </a>
-
-  <a href="estadisticas.html" class="card-link">
-    <article class="card">
-      <article class="card-icon">
-        <img
-          src="../assets/icons/estadistcas_icon.svg"
-          alt="Estadísticas"
-          width="50"
-          height="50"
-          class="icon-img"
-        >
-      </article>
-      <article class="card-content">
-        <h3 class="card-title">Estadísticas</h3>
-      </article>
-    </article>
-  </a>
-
-  <a href="asistencias.html" class="card-link">
-    <article class="card">
-      <article class="card-icon"> 
-        <img
-          src="../assets/icons/asistencia_icon.svg"
-          alt="Asistencias"
-          width="60"
-          height="60"
-          class="icon-img"
-        >
-      </article>
-      <article class="card-content">
-        <h3 class="card-title">Asistencias</h3>
-      </article>
-    </article>
-  </a>
-    </section>
-
-
-    <footer class="footer"> 
-      <div class="footer-content">
-        <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
-        
-        <div class="footer-text">
-          <p class="copyright">
-            Thinktopia &copy; 2025 - Todos los derechos reservados
-          </p>
-
-          <ul class="social-media">
-            <li>
-              <a href="#" aria-label="Instagram de Thinktopia">
-                <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
-              </a>
-            </li>
-            <li>
-              <a href="#" aria-label="Facebook de Thinktopia">
-                <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
-              </a>
-            </li>
-          </ul>
+  <section class="title">
+    <h1 class="title-element">¡Bienvenido, Profesor Pedro!</h1>
+    <button type="button" class="btn btn-dashboard btn-primary btn-md">Crear Nueva Tarea</button>
+  </section>
+  <div class="dashboard-container row row-cols-1 row-cols-lg-2 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+      <a href="#" class="card-link">
+        <div class="custom-card h-100">
+          <div class="card-icon">
+            <img src="../assets/icons/cursos_icon.svg" alt="Icono Cursos" class="icon-img" />
+          </div>
+          <div class="card-content">
+            <h5 class="card-title">Cursos Asignados</h5>
+            <p class="card-value">Aquí tienes información relevante sobre tus cursos asignados y progreso.</p>
+          </div>
         </div>
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+      <a href="#" class="card-link">
+        <div class="custom-card h-100">
+          <div class="card-icon">
+            <img src="../assets/icons/tareas_icon.svg" alt="Icono Tareas" class="icon-img" />
+          </div>
+          <div class="card-content">
+            <h5 class="card-title">Tareas Pendientes</h5>
+            <p class="card-value">Controla tus tareas pendientes y fechas límite fácilmente.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+      <a href="#" class="card-link">
+        <div class="custom-card h-100">
+          <div class="card-icon">
+            <img src="../assets/icons//estadistcas_icon.svg" alt="Icono Calendario" class="icon-img" />
+          </div>
+          <div class="card-content">
+            <h5 class="card-title">Estadísticas</h5>
+            <p class="card-value">Consulta el rendimiento y participación de tus estudiantes.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col">
+      <a href="#" class="card-link">
+        <div class="custom-card h-100">
+          <div class="card-icon">
+            <img src="../assets/icons/asistencia_icon.svg" alt="Icono Mensajes" class="icon-img" />
+          </div>
+          <div class="card-content">
+            <h5 class="card-title">Asistencias</h5>
+            <p class="card-value">Accede al historial de asistencias registradas por el sistema.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+
+  <footer class="footer">
+    <div class="footer-content">
+      <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
+
+      <div class="footer-text">
+        <p class="copyright">
+          Thinktopia &copy; 2025 - Todos los derechos reservados
+        </p>
+
+        <ul class="social-media">
+          <li>
+            <a href="#" aria-label="Instagram de Thinktopia">
+              <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Facebook de Thinktopia">
+              <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
+            </a>
+          </li>
+        </ul>
       </div>
+    </div>
   </footer>
 
 </body>
+
 </html>

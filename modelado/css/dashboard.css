@@ -1,4 +1,3 @@
-
 @import url('./variables.css');
 
 /* ==== RESET ==== */
@@ -21,8 +20,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;  
-  box-sizing: border-box; 
+  width: 100%;
+  box-sizing: border-box;
 
 }
 
@@ -37,14 +36,14 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 5rem;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
   flex-grow: 1;
   justify-content: center;
 }
 
 nav img {
-  margin-right: auto; 
+  margin-right: auto;
   flex-shrink: 0;
 }
 
@@ -66,7 +65,7 @@ nav a::after {
   bottom: 0;
   width: 0%;
   height: 2.7px;
-  background-color: var(--primary-color); 
+  background-color: var(--primary-color);
   transition: width 0.3s ease;
 }
 
@@ -78,87 +77,90 @@ nav a.active::after {
   width: 100%;
 }
 
-
 /* ==== SECCIÓN DE BIENVENIDA ==== */
+.title {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 2rem 5rem 1rem;
+    box-sizing: border-box;
+}
+
+.title-element {
+  margin-left: 0;
+  padding-left: 0;
+}
+
 section h1 {
   font-family: var(--font-title-primary);
   font-size: 2rem;
   font-weight: 600;
   color: var(--text-color);
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
   margin-top: 1.2rem;
-  padding-left: 5rem;
 }
 
 .btn-dashboard {
   background-color: var(--primary-color);
-  padding: 0.5rem 2rem;
-  border: none; 
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-left: 5rem;
-  margin-right: 0;
   color: white;
   font-family: var(--font-title-primary);
   word-spacing: 0.0313rem;
   font-weight: 700;
-  font-size: 1.1rem;
+}
+
+/* ==== SECCIÓN DE TARJETAS ==== */
+.dashboard-container {
+  padding: 2rem 5rem;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.custom-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 1rem;
+  min-height: 150px;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-.btn-dashboard:hover {
-  background-color: var(--secondary-color);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/*==== SECCIÓN DE TARJETAS ==== */
-.dashboard-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding-left: 5rem;
-    padding-right: 5rem;
-    gap: 1.5rem;
-    padding-top: 2rem;
-}
-
-.card {
-    display: flex;
-    align-items: center;
-    background-color: var(--background-color);
-    padding: 1rem;
-    min-height: 150px; 
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
-    margin-right: 2rem;
-    margin-left: 2rem;
-}
-
-.icon-img {
-    width:70px; 
-    height: auto;
+.custom-card {
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  min-height: auto;
 }
 
 .card-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-title {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: var(--text-color);
+  flex: 1 1 0;
+  min-width: 0;
+  font-family: var(--font-title-primary);
 }
 
 .card-value {
-    margin: 0.2rem 0 0;
-    font-size: 1rem;
-    color: #5a5a5a;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  font-family: var(--font-paragraph);
+  color: gray
+}
+
+.card-icon {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.icon-img {
+  width: 65px;
+  height: auto;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-color);
 }
 
 .card-link {
@@ -167,14 +169,31 @@ section h1 {
   display: block;
 }
 
-.card-link .card {
+.card-link .custom-card {
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-link .card:hover {
+.card-link .custom-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 576px) {
+  .custom-card {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .card-icon {
+    margin: 0 0 1rem 0;
+  }
+
+  .icon-img {
+    width: 50px;
+  }
 }
 
 /* ==== FOOTER ==== */
