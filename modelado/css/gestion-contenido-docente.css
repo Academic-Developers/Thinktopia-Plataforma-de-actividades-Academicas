@@ -1,6 +1,5 @@
 @import url('variables.css');
 
-
   /* ==== RESET ==== */
 * {
   margin: 0;
@@ -10,48 +9,27 @@
 
 /* ==== BODY ==== */
 body {
-  margin: 0 auto;
   font-family: var(--font-paragraph);
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ==== HEADER ==== */
-header {
+.navbar {
   padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;  
   box-sizing: border-box; 
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%; 
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 5rem;
-  margin: 0; 
-  padding: 0; 
-  flex-grow: 1;
-  justify-content: center;
-}
-
-nav img {
+.navbar-brand {
   margin-right: auto; 
-  flex-shrink: 0;
 }
 
-nav a {
+.nav-link {
   position: relative;
   text-decoration: none;
   color: rgb(26, 26, 26);
@@ -61,8 +39,7 @@ nav a {
   letter-spacing: 0.0313rem;
 }
 
-
-nav a::after {
+.nav-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -73,17 +50,13 @@ nav a::after {
   transition: width 0.3s ease;
 }
 
-nav a:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
-
-nav a.active::after {
-  width: 100%;
-}
-
 
 /* === Main container === */
-.main-container {
+.container-fluid {
   max-width: 75rem;
   margin: 2rem auto;
   padding: 0 1rem;
@@ -93,10 +66,9 @@ nav a.active::after {
 /* === Título + Botón === */
 .content-header {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 2rem;
 }
 
@@ -126,8 +98,7 @@ nav a.active::after {
   margin-bottom: 2rem;
 }
 
-.search-bar input {
-  width: 100%;
+.form-control {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   border: 1px solid #d1d5db;
@@ -137,19 +108,12 @@ nav a.active::after {
   font-family: var(--font-paragraph);
 }
 
-.search-bar input:focus {
+.form-control:focus {
   outline: none;
   border-color: var(--primary-color);
 }
 
 /* === Lista de contenidos === */
-.content-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-/* === Card de contenido === */
 .card-contenido {
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
@@ -199,25 +163,6 @@ nav a.active::after {
   font-family: var(--font-paragraph);
 }
 
-.btn-editar {
-  background-color: #10b981;
-  color: white;
-}
-
-.btn-editar:hover {
-  opacity: 0.9;
-}
-
-.btn-eliminar {
-  background-color: #ef4444;
-  color: white;
-}
-
-.btn-eliminar:hover {
-  opacity: 0.9;
-}
-
-
 /* ==== FOOTER ==== */
 footer {
   width: 100%;
@@ -228,29 +173,12 @@ footer {
   box-sizing: border-box;
 }
 
-.footer-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
 .logo-chico {
   max-width: 200px;
   height: auto;
-  flex-shrink: 0;
 }
 
-.footer-text {
-  flex: 1;
-  text-align: center;
-}
-
-.footer-text p {
-  margin: 0.5rem 0;
+.copyright {
   font-family: var(--font-title-secondary);
 }
 
@@ -275,12 +203,4 @@ footer {
 .social-media img {
   width: 20px;
   height: 20px;
-}
-
-/* === Responsividad para pantallas pequeñas === */
-@media (min-width: 640px) {
-  .content-header {
-    flex-direction: row;
-    align-items: center;
-  }
 }
