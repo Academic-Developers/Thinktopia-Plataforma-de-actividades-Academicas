@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Equipo Thinktopia" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Plataforma de actividades académicas, accede a la gestión de contenido de tus actividades académicas en Thinktopia - Plataforma de Actividades Academicas"
+    />
+    <meta
+      name="keywords"
+      content="Thinktopia, docente, gestión de contenido, actividades académicas, estudiantes, profesores, aprendizaje, educación, educación virtual, educación en linea"
+    />
+    <title>Docente - Gestión contenido</title>
+    <link rel="stylesheet" href="../css/gestion-contenido-docente.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="../assets/img/logo_claro_horizontal.png.png"
+            alt="Logo de ThinkTopia"
+            width="222"
+            height="63"
+          />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="dashboard.html">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mis Cursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reportes.html">Reportes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="asistencia.html">Asistencias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="actividades.html">Actividades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gestion-contenido-docente.html">Gestión de Contenido</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <section class="row my-4">
+        <div class="col-12 col-md-8">
+          <h1>Gestión de Contenido</h1>
+        </div>
+        <div class="col-12 col-md-4 text-right">
+          <button class="btn btn-primary" id="btnAgregarContenido">
+            ➕ Agregar contenido
+          </button>
+        </div>
+      </section>
+
+      <section class="row my-4">
+        <div class="col-12">
+          <input
+            type="text"
+            id="buscarContenido"
+            class="form-control"
+            placeholder="🔍 Buscar contenido por título, tema, materia..."
+          />
+        </div>
+      </section>
+
+      <section class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <div class="card-contenido">
+            <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
+            <p class="materia">Materia: Matemática</p>
+            <p class="descripcion">
+              Conjunto de ejercicios sobre ecuaciones de primer grado.
+            </p>
+            <div class="acciones">
+              <button class="btn btn-warning btn-editar">✏️ Editar</button>
+              <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
+            </div>
+          </div>
+         
+
+        </div>
+        
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4">
+            <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
+          </div>
+          <div class="col-12 col-md-8 text-md-right">
+            <p class="copyright mb-2 mb-md-0">
+              Thinktopia &copy; 2025 - Todos los derechos reservados
+            </p>
+            <ul class="social-media list-unstyled mb-0">
+              <li class="d-inline-block mr-3">
+                <a href="#" aria-label="Instagram de Thinktopia">
+                  <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
+                </a>
+              </li>
+              <li class="d-inline-block">
+                <a href="#" aria-label="Facebook de Thinktopia">
+                  <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
