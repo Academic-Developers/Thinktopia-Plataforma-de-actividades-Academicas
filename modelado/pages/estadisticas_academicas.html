@@ -15,8 +15,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Nunito:wght@400;600&family=Poppins:wght@400;600;700&display=swap"
         rel="stylesheet" />
-         <!-- Bootsrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootsrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/variables.css" />
     <link rel="stylesheet" href="../css/estadisticas.css" />
@@ -48,15 +48,13 @@
 
         <section class="filtrar-curso">
             <h1 class="title-estadistica">Estadisticas Academicas</h1>
-
-            <label for="curso" class="text-filtro">Curso:</label>
-            <select id="curso" class="select-filtro" name="curso">
-                <option value="">Seleccionar</option>
+        
+            <select id="curso" class="form-select select-filtro" aria-label="Default select example" name="curso">
+                <option selected>Seleccionar</option>
                 <option value="curso1">Estadistica y probabilidad</option>
-                <option value="curso1">Matematica 1</option>
-                <option value="curso2">Matematica 2</option>
+                <option value="curso2">Matematica 1</option>
+                <option value="curso3">Matematica 2</option>
             </select>
-            <br>
         </section>
 
         <section class="info-estadistica">

@@ -1,3 +1,5 @@
+@import url("variables.css");
+
 * {
   margin: 0;
   padding: 0;
@@ -17,14 +19,14 @@ main {
 .tabla-asistencias {
   margin: 0 auto;
   max-width: 80rem;
-  flex: 1;
+
 }
 .title-asistencia {
   color: var(--secundary-color);
   text-align: center;
   font-weight: 600;
   margin: 1em auto;
-  font-size: 1.5em;
+  font-size: 1.9em;
   font-family: var(   --font-title-primary);
 }
 .asistencia{
@@ -56,9 +58,7 @@ main {
   border: none;
   border-radius: 1em;
 }
-.button-asistencia:hover {
-  background-color: var(--btn-primary-hover);
-}
+
 
 .subtitle-asistencia {
   color: var(--primary-color);
@@ -72,16 +72,11 @@ main {
 .table {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--background-color);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
   border-radius: 8px;
   overflow: hidden;
 }
 
-.encabezado-table {
-  background-color: var(--outer-background);
-  color: var(--background-color);
-}
 .contenido {
   border-bottom: 1px solid #ddd;
   transition: background-color 0.2s ease;
