@@ -6,80 +6,30 @@
   box-sizing: border-box;
 }
 
-.header {
-  padding: 1rem 2rem;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-}
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo {
-  margin-right: auto;
-  flex-shrink: 0;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 5rem;
-  margin: 0;
-  padding: 0;
-  flex-grow: 1;
-  justify-content: center;
-}
-.nav-links a {
-  position: relative;
-  text-decoration: none;
-  color: rgb(26, 26, 26);
-  font-family: var(--font-nav);
-  font-weight: 500;
-  padding-bottom: 4px;
-  letter-spacing: 0.0313rem;
-}
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2.7px;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
+.filtrar-curso {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title-estadistica {
   font-family: var(--font-title-primary);
   font-size: 2rem;
   color: var(--primary-color);
-}
-.filtrar-curso {
-  display: flex;
   text-align: center;
-  gap: 1rem;
-  flex-direction: column;
 }
-
 .text-filtro {
   font-size: 1rem;
   font-family: var(--font-paragraph);
 }
 
-.select-filtro {
-  padding: 0.5rem;
-  border-radius: 0.3em;
-  font-size: 1rem;
-  width: auto;
-  margin: 0 auto;
-}
 
 .info-estadistica {
   display: flex;
@@ -122,39 +72,24 @@
   color: #a8071a;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  border-radius: 10px;
   text-align: center;
-  margin-bottom: 2rem;
+  max-width: 50rem;
 }
 
 .tarjeta-alerta{
-  width: 1rem;
-  height: 2rem;
+  width:auto;
+  height:4rem;
+
+  object-fit: cover;
 }
 
 .text-riesgo {
   text-align: center;
-  margin: 1em;
+  justify-content: center;
   font-family: var(--font-title-primary);
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
-.buton-ver {
-  padding: 0.2rem;
-  background-color: var(--btn-primary-bg);
-  color: var(--btn-primary-text);
-  border: none;
-  border-radius: 0.4rem;
-  font-family: var(--font-nav);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.buton-ver:hover {
-  background-color: #005a8d;
-}
 
 .lista-estudiantes {
   list-style: none;
