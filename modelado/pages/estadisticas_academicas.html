@@ -62,7 +62,7 @@
         <section class="info-estadistica">
             <article class="tarjeta">
                 <figure>
-                    <img src="../assets/icons/" class="img-estadistica" alt="Icono de estudiantes">
+                    <img src="../assets/icons/people-fill.svg" class="img-estadistica" alt="Icono de estudiantes">
                 </figure>
                 <h2 class="subtitle-estadistica">Total Estudiantes:</h2>
                 <p class="text-estadistica">32</p>
@@ -70,15 +70,7 @@
 
             <article class="tarjeta">
                 <figure>
-                    <img src="../assets/icons/" class="img-estadistica" alt="Icono de promedio">
-                </figure>
-                <h2 class="subtitle-estadistica">Promedio del Curso</h2>
-                <p class="text-estadistica">7,6 / 10</p>
-            </article>
-
-            <article class="tarjeta">
-                <figure>
-                    <img src="../assets/icons/" class="img-estadistica" alt="Icono de tareas">
+                    <img src="../assets/icons/tareas_icon.svg" class="img-estadistica" alt="Icono de tareas">
                 </figure>
                 <h2 class="subtitle-estadistica">Tasa de Envío de Tareas</h2>
                 <p class="text-estadistica">85%</p>
@@ -86,42 +78,71 @@
 
             <article class="tarjeta">
                 <figure>
+                    <img src="../assets/icons/star-fill.svg" class="img-estadistica" alt="Icono de promedio">
+                </figure>
+                <h2 class="subtitle-estadistica">Promedio del Curso</h2>
+                <p class="text-estadistica">7,6 / 10</p>
+            </article>
+
+            <article class="tarjeta">
+                <figure>
                     <img src="../assets/icons/asistencia_icon.svg" class="img-estadistica" alt="Icono de asistencia">
                 </figure>
                 <h2 class="subtitle-estadistica">Promedio de Asistencia</h2>
-                <p class="text-estadistica">91%</p>
+                  <p class="text-estadistica">91%</p>
             </article>
         </section>
 
         <section class="alerta-riesgo">
             <figure>
-                <img src="../assets/icons/cursos_icon.svg " class="tarjeta-alerta" alt="Icono de advertencia">
+                <img src="../assets/icons/exclamation-triangle-fill.svg" class="img-alerta" alt="Icono de advertencia">
             </figure>
-            <h3 class="text-riesgo">5 Estudiantes están en Riesgo de Reprobar</h3>
-            <button type="button" class="btn btn-primary">Ver más</button>
+            <h3 class="text-riesgo">5 estudiantes están en Riesgo de Reprobar</h3>
+            <!-- Botón que abre el modal -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEstudiantes">
+                Ver más
+            </button>
         </section>
 
 
-        <!-- LISTA DE ESTUDIANTES -->
-        <section>
-            <ul class="lista-estudiantes">
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Ana López
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Mario Torres
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Laura García
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Lucas Rivas
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Diego Peña
-                </li>
-            </ul>
-        </section>
+        <div class="modal fade" id="modalEstudiantes" tabindex="-1" aria-labelledby="modalEstudiantesLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEstudiantesLabel">Estudiantes en riesgo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="lista-estudiantes list-unstyled">
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Ana López
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Mario Torres
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Laura García
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Lucas Rivas
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Diego Peña
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
