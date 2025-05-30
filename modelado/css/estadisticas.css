@@ -18,7 +18,9 @@
   flex-direction: column;
   align-items: center;
 }
-
+.form-select {
+    width: 25%;
+  }
 .title-estadistica {
   font-family: var(--font-title-primary);
   font-size: 2rem;
@@ -91,3 +93,80 @@ li {
   font-weight: 600;
   font-family: var(--font-paragraph);
 }
+
+@media (min-width: 300px) and (max-width: 900px) {
+  .filtrar-curso {
+    width: auto;
+  }
+  .title-estadistica {
+    font-size: 1.7rem;
+  }
+  .form-select {
+    width: 60%;
+  }
+  .text-filtro {
+    font-size: 0.95rem;
+  }
+  .img-estadistica {
+    width: 3rem;
+  }
+  .subtitle-estadistica {
+    font-size: 1rem;
+  }
+  .text-estadistica {
+    font-size: 0.95rem;
+  }
+  .alerta-riesgo {
+    width: auto;
+    height: 3rem;
+  }
+  .img-alerta {
+    width: 1rem;
+    margin: 1rem auto;
+  }
+  .text-riesgo {
+    font-size: 0.7rem;
+  }
+  .ver-mas {
+   font-size: 1rem;
+  }
+  li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1400px){
+.title-estadistica {
+    font-size: 1.9rem;
+  }
+  .form-select {
+    width: 25%;
+  }
+  .text-filtro {
+    font-size: 1rem;
+  }
+  .img-estadistica {
+    width: 5.2rem;
+  }
+  .subtitle-estadistica {
+    font-size: 1.4rem;
+  }
+  .text-estadistica {
+    font-size: 1.2rem;
+  }
+ 
+  .img-alerta {
+    width: 3rem;
+  
+  }
+  .text-riesgo {
+    font-size: 1rem;
+  }
+  .ver-mas {
+   font-size: 1.1rem;
+  }
+  li {
+    font-size: 0.9rem;
+  }
+}
+
