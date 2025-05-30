@@ -47,22 +47,20 @@
 
     <h1 class="title-asistencia">Asistencia</h1>
 
-    <section aria-labelledby="filtro" class="filtros-asistencia">
-      <form class="asistencias">
-        <div class="filtros-inicio">
-          <label for="filtro-carrera" class="filtro-text">filtrar por:</label>
-          <select id="filtro-carrera" name="carrera">
-            <option value="carrera">Carrera</option>
+ <section aria-labelledby="filtro" class="asistencia" for="filtro-carrera">
+
+    <select id="filtro-carrera"class="form-select" aria-label="Default select example">
+      <option selected class="option">Filtrar por:</option>
+          <option value="carrera">Carrera</option>
             <option value="materias">Materias</option>
             <option value="curso">Curso</option>
-            <option value="comision">Comision</option>
+            <option value="comision">Comisión</option>
             <option value="fecha">Fecha</option>
             <option value="turno">Turno</option>
-          </select>
-        </div>
+    </select>
 
         <button type="submit" class="button-asistencia">Subir asistencia</button>
-      </form>
+  
     </section>
 
 
