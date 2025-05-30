@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Equipo Thinktopia" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Sección de reportes docentes en Thinktopia. 
+    Consultá el rendimiento académico de tus estudiantes, asistencia, entregas y 
+    evolución de cada curso." />
+
+  <meta name="keywords" content="Thinktopia, reportes, docente, estadísticas, asistencia, 
+    entregas, seguimiento, plataforma educativa" />
+
+  <title>Reportes</title>
+
+  <!-- Bootsrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/reports.css" />
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#">Mis Cursos</a></li>
+        <li><a href="reportes.html" class="tab active">Reportes</a></li>
+        <li><a href="reportes.html">Asistencias</a></li>
+        <li><a href="actividades.html">Actividades</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="title">
+      <section class="title-icon">
+        <img src="../assets/icons/pencil.svg" alt="Pencil Icon" width="50" height="50" />
+        <h1>Reportes</h1>
+      </section>
+    </section>
+    <!-- Versión de escritorio -->
+    <section class="filters-container d-none d-md-flex justify-content-between align-items-center px-4">
+      <div class="btn-group w-25">
+        <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Filtrar por categoría
+        </button>
+
+        <ul class="dropdown-menu w-100">
+          <li><a class="dropdown-item" href="#">Arte digital</a></li>
+          <li><a class="dropdown-item" href="#">Software</a></li>
+          <li><a class="dropdown-item" href="#">Ciencia de datos</a></li>
+        </ul>
+      </div>
+
+      <div class="btn-group w-25">
+        <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Filtrar por Periodo
+        </button>
+        <ul class="dropdown-menu w-100">
+          <li><a class="dropdown-item" href="#">Primer Periodo</a></li>
+          <li><a class="dropdown-item" href="#">Segundo Periodo</a></li>
+        </ul>
+      </div>
+
+      <button class="btn btn-primary btn-sm h-100">
+        Generar
+      </button>
+    </section>
+
+    <!-- Versión móvil -->
+    <div class="mobile-filters mobile-only px-3">
+      <button class="btn btn-primary btn-outline-primary btn-filtros-custom w-100 mb-2" data-bs-toggle="collapse"
+        data-bs-target="#mobileFilters" aria-expanded="false">
+        Mostrar filtros
+      </button>
+      <div class="collapse" id="mobileFilters">
+        <div class="card card-body">
+          <div class="mb-3">
+            <div class="btn-group w-100">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filtrar por categoría
+              </button>
+              <ul class="dropdown-menu w-100">
+                <li><a class="dropdown-item" href="#">Arte digital</a></li>
+                <li><a class="dropdown-item" href="#">Software</a></li>
+                <li><a class="dropdown-item" href="#">Ciencia de datos</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="btn-group w-100">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filtrar Por periodo
+              </button>
+              <ul class="dropdown-menu w-100">
+                <li><a class="dropdown-item" href="#">Primer Periodo</a></li>
+                <li><a class="dropdown-item" href="#">Segundo Periodo</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100">
+            Generar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2 class="secondary-title">Reportes Recientes</h2>
+    </div>
+    <section class="container reports-container  my-4">
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <article class="col-12">
+          <div class="custom-card">
+            <div class="card-icon">
+              <img class="report-icon" src="../assets/icons/icon_g11_reporte1.svg" alt="Reporte" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title text-truncate" title="Reporte de Calificación por Actividad">
+                Reporte de Calificación por Actividad
+              </h3>
+            </div>
+            <div class="download">
+              <p class="card-doctype">Excel</p>
+              <a href="../documentos/archivo.docx" download>
+                <img class="download-doc" src="../assets/icons/document-arrow-down.svg" alt="Descargar" />
+              </a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="col-12">
+          <div class="custom-card">
+            <div class="card-icon">
+              <img class="report-icon" src="../assets/icons/icon_g11_reporte1.svg" alt="Reporte" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title text-truncate" title="Reporte de Asistencia">
+                Reporte de Asistencia
+              </h3>
+            </div>
+            <div class="download">
+              <p class="card-doctype">Excel</p>
+              <a href="../documentos/archivo.docx" download>
+                <img class="download-doc" src="../assets/icons/document-arrow-down.svg" alt="Descargar" />
+              </a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="col-12">
+          <div class="custom-card">
+            <div class="card-icon">
+              <img class="report-icon" src="../assets/icons/icon_g11-4_reporte2.svg" alt="Reporte" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title text-truncate" title="Reporte de Calificación por Actividad">
+                Reporte General del Curso
+              </h3>
+            </div>
+            <div class="download">
+              <p class="card-doctype">Excel</p>
+              <a href="../documentos/archivo.docx" download>
+                <img class="download-doc" src="../assets/icons/document-arrow-down.svg" alt="Descargar" />
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
+
+      <div class="footer-text">
+        <p class="copyright">
+          Thinktopia &copy; 2025 - Todos los derechos reservados
+        </p>
+
+        <ul class="social-media">
+          <li>
+            <a href="#" aria-label="Instagram de Thinktopia">
+              <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Facebook de Thinktopia">
+              <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- Bootsrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

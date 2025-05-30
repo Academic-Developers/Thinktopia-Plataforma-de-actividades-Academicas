@@ -4,11 +4,6 @@
 
 /* Ajusten las paletas de colores, fuentes, etc si es necesario! */
 
-/* Se debe importar en el archivo CSS que se usara, por ejemplo: @import url('variables.css'); */
-/* Ejemplo de uso de las variables: background-color: var(--background-color); */
-
-/* Ajusten las paletas de colores, fuentes, etc si es necesario! */
-
 
 
  @font-face {
@@ -54,6 +49,12 @@
     --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cositas (forms, etc)*/
     --text-color: #111827;
 
+    /* Tipografia, fuentes */ 
+    --font-title-primary: 'Poppins', sans-serif;
+    --font-title-secondary: 'Inter', sans-serif;
+    --font-paragraph: 'Nunito', sans-serif;
+    --font-nav: 'Poppins', sans-serif;
+
     /* Botones! Buttons */
     --btn-primary-bg: #47ACE5; /* Celeste mas fuerte para botones */
     --btn-primary-text: white;
@@ -63,10 +64,6 @@
     /* --btn-disabled-bg: #d1d5db;       
     --btn-disabled-text: #9ca3af;  */
     
-  /* Fuentes */
-  --font-title-primary: 'Poppins', sans-serif;
-  --font-title-secondary: 'Inter', sans-serif;
-  --font-paragraph: 'Nunito', sans-serif;
-  --font-nav: 'Poppins', sans-serif;
 }
+
  

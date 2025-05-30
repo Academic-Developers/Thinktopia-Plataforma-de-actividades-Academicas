@@ -1,0 +1,337 @@
+@import url('./variables.css');
+
+/* ==== RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==== BODY ==== */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-paragraph);
+}
+/* ==== HEADER ==== */
+header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;  
+  box-sizing: border-box; 
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; 
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+  margin: 0; 
+  padding: 0; 
+  flex-grow: 1;
+  justify-content: center;
+}
+
+nav img {
+  margin-right: auto; 
+  flex-shrink: 0;
+}
+
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: rgb(26, 26, 26);
+  font-family: var(--font-nav);
+  font-weight: 500;
+  padding-bottom: 4px;
+  letter-spacing: 0.0313rem;
+}
+
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2.7px;
+  background-color: var(--primary-color); 
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+/* ==== SECCIÓN DE TÍTULO ==== */
+section h1 {
+    font-family: var(--font-title-primary);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-top: 1.2rem;
+}
+
+.title-icon{
+    display: flex;
+    align-items: center;
+    gap:12px;
+    padding:1rem 4rem;
+    height: 20%;
+    width: auto;
+}
+
+.title-icon h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+
+/* ==== SECCIÓN DE FILTROS ==== */
+
+
+.filters-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+
+.filters {
+    font-family: var(--font-title-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+}
+
+.dropdown {
+    padding-left: 5rem;
+    padding-top: 2rem;
+}
+ 
+
+.dropdown summary{
+    border: 1px solid #ccc;
+    padding: 0.3rem 1rem 0.3rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px #0000001A;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown summary:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown summary::after {
+    content: "▼";
+    font-size: 12px;
+    padding-left: 3rem;
+}
+
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px #0000001A;
+    position: absolute;
+    z-index: 1000;
+    width: max-content;
+    min-width: 150px;
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333;
+    text-decoration: none; 
+    font-family: 'Segoe UI', sans-serif;
+    transition: background-color 0.2s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* ==== TABLA DE ENTREGAS ==== */
+
+.entregas-container {
+  padding: 2rem 5rem 2rem;
+  padding-left: 5rem;
+}
+
+.tabla-entregas {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-paragraph);
+  font-weight: 700;
+  color: var(--text-color);
+  border-collapse: separate; 
+  border-spacing: 0; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; 
+}
+
+.tabla-entregas thead {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.tabla-entregas th,
+.tabla-entregas td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+
+
+.tabla-entregas tbody tr {
+    background-color: var(--background-color);
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.tabla-entregas tbody td {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+
+.tabla-entregas tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Botón Calificar */
+.btn-calificar {
+    background-color: var(--btn-secondary-bg);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--secndary-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s ease;
+    margin: 0 auto; 
+    display: block; 
+    color: white;
+    font-family: var(--font-title-primary);
+    word-spacing: 0.0313rem;
+    font-weight: 700;
+    font-size: 1rem;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+
+
+.btn-calificar:hover {
+    pointer-events: auto;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tabla-entregas tbody tr:hover .btn-calificar:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+
+
+
+/* alinear contenido */
+.tabla-entregas th:first-child,
+.tabla-entregas td:first-child {
+  padding-left: 2.5rem;
+}
+
+/* Centra la última columna (acción) */
+.tabla-entregas th:last-child,
+.tabla-entregas td:last-child {
+  text-align: center;
+}
+
+/* ==== FOOTER ==== */
+footer {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-chico {
+  max-width: 200px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-text p {
+  margin: 0.5rem 0;
+  font-family: var(--font-title-secondary);
+}
+
+.social-media {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0 0;
+  margin: 0;
+}
+
+.social-media a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-title-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-media img {
+  width: 20px;
+  height: 20px;
+}
