@@ -7,132 +7,49 @@
 }
 body {
   background-color: var(--background-color);
-    line-height: 1.6;
+  line-height: 1.6;
 }
-
-.header {
-  background-color: var(--primary-color);
+.quienes-somos {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 1rem 0;
-  box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.08) !important;
+  flex-direction: column;
 }
 .container {
-  max-width: 75rem; 
+  max-width: 75rem;
   margin: 0 auto;
   padding: 1rem;
 }
-
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-}
-.logo {
-  width: 20%;
-  height: auto;
-}
-.nav-links {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  text-align: center;
-  justify-content: center;
-  margin-left: 5em;
-  padding: 0;
-  font-family: var(--font-nav);
-  flex-wrap: wrap;
-  color:var(--btn-primary-text)  ;
- gap: 1rem;
-}
-
-.nav-links a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 600; 
-}
-.nav-links a.active {
-  text-decoration: underline;
-}
-
 .title-somos {
   color: var(--secundary-color);
   text-align: center;
   font-weight: bold;
   margin: 0.5em;
-  font-size: 1.8em;
+  font-size: 1.9rem; 
   font-family: var(--font-title-primary);
 }
 .text-intro {
   text-align: center;
   justify-content: center;
-  font-size: 1.1rem; 
-    max-width: 50rem;
-    margin: 0 auto; 
+  font-size: 1.4rem; 
+  max-width: 50rem;
+  margin: 0 auto;
   font-family: var(--font-paragraph);
 }
 
 .subtitle-miembros {
-  color: var(--primary-color); 
- font-size: 1.8rem;
+  color: var(--primary-color);
+  font-size: 1.8rem;
   text-align: center;
   margin: 1em;
-  font-family: var(--font-title-secondary); 
+  font-family: var(--font-title-secondary);
   font-weight: bold;
 }
 .miembros-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
   margin-top: 2rem;
   justify-content: center;
 }
-
-.quienes-somos {
-  display: flex;
-  flex-direction: column;
-}
-.miembros-art {
-  display: flex;
-  align-items: center; 
-  flex-wrap: wrap;
-  gap: 1.5em;
-}
-.img-integrantes {
-  width: 40%;
-  max-width: 100%;
-  height: 30rem;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.nombre-integrantes {
-  color: var(--secundary-color);
-  font-size: 1.3rem; 
-  font-family: var(--secundary-font);
-  text-align: center;
-}
-.text-integrantes {
-  color: var(--text-color);
-  font-size: 1.3rem; 
-  font-family: "Poppins", sans-serif;
-  margin: 2em;
-  text-align: left;
-}
-
-
-
-/* Las cartas tendrán 2 por fila en pantallas grandes */
-@media (min-width: 48rem) {
-  .miembros-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 .miembro {
   background-color: var(--white);
   border-radius: 0rem;
@@ -140,40 +57,34 @@ body {
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 .miembro:hover {
   transform: translateY(-0.3125rem);
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.12);
 }
-
-.img-integrantes {
-  width: 100%;
-  height: 25.75rem;
-  object-fit: contain;
-}
-
-.contenido-integrantes {
-  padding: 1rem;
+.miembros-art {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5em;
 }
-
-.text-integrantes {
-  font-size: 0.95rem;
-  font-family: "Inter", sans-serif;
-  color: var(--text-color);
-}
-.Pie {
-  background-color: var(--primary-color);
-  margin: auto;
-}
-
-.logochico {
-  width: 20%;
-  height: auto;
-}
-
-.redes {
+.nombre-integrantes {
+  color: var(--secundary-color);
+  font-size: 1.4rem; 
+  font-family: var(--secundary-font);
   text-align: center;
 }
+.text-integrantes {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  margin:1em;
+  text-align: left;
+}
+.img-integrantes {
+   width: auto;
+  height:30rem; 
+  object-fit: cover;
+
+}
+
+/*MEDIAS QUERIES */
