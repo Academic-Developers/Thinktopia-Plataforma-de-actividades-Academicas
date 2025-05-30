@@ -14,7 +14,6 @@ main {
   max-width: 75rem;
 }
 
-
 .tabla-asistencias {
   margin: 0 auto;
   max-width: 80rem;
@@ -80,7 +79,7 @@ main {
 }
 
 .encabezado-table {
-  background: var(--outer-background);
+  background-color: var(--outer-background);
   color: var(--background-color);
 }
 .contenido {
@@ -88,35 +87,22 @@ main {
   transition: background-color 0.2s ease;
 }
 .title-table {
-  padding: 12px 15px;
-  text-align: left;
   font-weight: 700;
   font-family: var(--font-title-primary);
   user-select: none;
+  font-size: 1.2rem;
 }
 
 .text-table {
-  padding: 12px 15px;
-  font-family: var(  --font-paragraph);
-  font-size: 1rem;
+  padding: 1rem; 
+  font-family: var( --font-paragraph);
+  font-size: 1.2rem;
   font-weight: 600;
+  font-family: var(--font-paragraph);
   color: var(--text-color);
 }
 
-.buton-editar {
-  background-color: var(--btn-secondary-bg);
-  color: var(--btn-secondary-text);
-  border: none;
-  padding: 8px 18px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: var( --font-paragraph);
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
 
-.buton-editar:hover {
-  background-color: var(--primary-color-hover);
-  color: white;
-}
+
+
 
