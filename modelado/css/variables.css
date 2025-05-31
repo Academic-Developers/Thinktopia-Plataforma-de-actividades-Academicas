@@ -47,7 +47,6 @@
     --primary-color-hover: #1d4ed8; /* Azul mas fuerte */
     --background-color: #F8FAFC;  /* Gris claro */
     --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cositas (forms, etc)*/
-    --text-color: #111827;
 
     /* Tipografia, fuentes */ 
     --font-title-primary: 'Poppins', sans-serif;
@@ -56,13 +55,17 @@
     --font-nav: 'Poppins', sans-serif;
 
     /* Botones! Buttons */
-    --btn-primary-bg: #47ACE5; /* Celeste mas fuerte para botones */
+    --btn-primary-bg: #41a9e6; /* Celeste mas fuerte para botones BACKGROUND*/
     --btn-primary-text: white;
     --btn-primary-hover: var(--secondary-color);
     --btn-secondary-bg: var(--primary-color);
     --btn-secondary-text: var(--color-white);
     /* --btn-disabled-bg: #d1d5db;       
     --btn-disabled-text: #9ca3af;  */
+
+    /* Text colores */
+      --text-color: #111827;  /* Gris oscuro */
+      --text-color-secondary: #6b7280; /* Gris medio */
     
 }
 
