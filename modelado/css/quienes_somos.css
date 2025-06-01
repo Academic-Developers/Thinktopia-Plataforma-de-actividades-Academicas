@@ -16,23 +16,20 @@ body {
 .container {
   max-width: 75rem;
   margin: 0 auto;
-  display: flex;
   justify-content: space-between;
-  text-align: center;
 }
 .title-somos {
-  color: var(--secundary-color);
+  color: var(--secondary-color);
   text-align: center;
   font-weight: bold;
   margin: 0.5em;
-  font-size: 1.9rem; 
+  font-size: 1.9rem;
   font-family: var(--font-title-primary);
 }
 .text-intro {
   text-align: center;
   justify-content: center;
-  font-size: 1.4rem; 
-  max-width: 50rem;
+  font-size: 1.4rem;
   margin: 0 auto;
   font-family: var(--font-paragraph);
 }
@@ -54,7 +51,6 @@ body {
 }
 .miembro {
   background-color: var(--white);
-  border-radius: 0rem;
   box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -63,15 +59,9 @@ body {
   transform: translateY(-0.3125rem);
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.12);
 }
-.miembros-art {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5em;
-}
 .nombre-integrantes {
-  color: var(--secundary-color);
-  font-size: 1.4rem; 
+  color: var(--secondary-color);
+  font-size: 1.4rem;
   font-family: var(--secundary-font);
   text-align: center;
 }
@@ -79,14 +69,40 @@ body {
   color: var(--text-color);
   font-size: 1.2rem;
   font-family: "Poppins", sans-serif;
-  margin:1em;
+  margin: 1em;
   text-align: left;
 }
 .img-integrantes {
-   width: auto;
-  height:30rem; 
+  width: auto;
+  height:30rem;
   object-fit: cover;
-
 }
 
 /*MEDIAS QUERIES */
+@media (min-width: 300px) and (max-width: 900px) {
+  .title-somos {
+    font-size: 1.7rem;
+  }
+  .text-intro {
+    font-size: 1.4rem;
+  }
+  .subtitle-miembros {
+    font-size: 1.6rem;
+  }
+  .miembros-grid {
+    display: grid;
+     grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+  .nombre-integrantes {
+    font-size: 1.5rem;
+  }
+  .text-integrantes {
+    font-size: 1.4rem;
+  }
+  .img-integrantes {
+  width: 100%;
+  height: auto;;
+  }
+}
+
