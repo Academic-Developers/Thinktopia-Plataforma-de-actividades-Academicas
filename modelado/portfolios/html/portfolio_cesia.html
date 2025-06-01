@@ -2,25 +2,30 @@
 <html lang="es">
 
 <head>
+    <!-- Metadatos y enlaces a recursos externos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio de Cesia</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fuentes personalizadas -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Metadatos para SEO y redes sociales -->
+    <meta name="description" content="Portfolio profesional de Cesia Giménez, desarrolladora y entusiasta de la IA.">
+    <meta property="og:title" content="Portfolio de Cesia">
+    <meta property="og:description" content="Desarrollo de Software, Ciencia de Datos e Inteligencia Artificial.">
+    <meta property="og:image" content="URL_IMAGEN">
+    <!-- Estilos personalizados -->
     <link href="../css/portfolio_cesia/portfolio_cesia.css" rel="stylesheet">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Iconos de tecnologías -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 </head>
 
 <body>
-    <!-- Navbar -->
+    <!-- =======================
+         Barra de navegación
+    ======================== -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
             <a class="navbar-brand" href="#hero">Cesia Giménez</a>
@@ -35,13 +40,17 @@
                     <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                 </ul>
+                <!-- Botón para cambiar tema claro/oscuro -->
                 <button class="btn" onclick="toggleTheme()" aria-label="Cambiar tema claro/oscuro">🌗</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- =======================
+         Sección Hero / Presentación
+    ======================== -->
     <section class="hero container d-flex flex-column flex-md-row align-items-center gap-4" id="hero">
+        <!-- Imagen de perfil -->
         <img src="/modelado/assets/img/profile_1.jpg" alt="Foto de Cesia" class="profile-img img-fluid">
         <div class="hero-content">
             <h1 class="mt-3">
@@ -49,10 +58,12 @@
                 Cáceres Giménez
             </h1>
             <p class="lead">Desarrollo de Software | Ciencia de Datos e Inteligencia Artificial</p>
-            <a href="../css/portfolio_cesia/assets/Cesia_Caceres_CV.pdf" class="btn cta-btn btn-lg mt-2 mb-2" target="_blank"
-                rel="noopener noreferrer">
+            <!-- Enlace al CV -->
+            <a href="../css/portfolio_cesia/assets/Cesia_Caceres_CV.pdf" class="btn cta-btn btn-lg mt-2 mb-2"
+                target="_blank" rel="noopener noreferrer">
                 Visita mi CV
             </a>
+            <!-- Descripción personal -->
             <div class="sobre-mi mt-4">
                 <p>Soy una persona con una gran pasión por la creatividad, el arte y la tecnología. Me encanta combinar
                     pensamiento analítico con
@@ -62,10 +73,11 @@
         </div>
     </section>
 
+    <!-- =======================
+         Sección de Habilidades Técnicas
+    ======================== -->
     <section class="container mt-8">
         <div class="mb-4">
-
-            <!-- Habilidades -->
             <section class="container my-5" id="habilidades">
                 <h2 class="section-title mb-4">Habilidades Técnicas</h2>
                 <div class="row g-4">
@@ -90,7 +102,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Ciencia de Datos -->
                     <div class="col-md-6">
                         <div class="card skill-card h-100 shadow-sm">
@@ -112,7 +123,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Diseño Gráfico -->
                     <div class="col-md-6">
                         <div class="card skill-card h-100 shadow-sm">
@@ -132,7 +142,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Otros -->
                     <div class="col-md-6">
                         <div class="card skill-card h-100 shadow-sm">
@@ -152,9 +161,12 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
             </section>
 
+            <!-- =======================
+                 Sección de Idiomas y Comunicación
+            ======================== -->
             <section class="container mt-5" id="idiomas-comunicacion">
                 <h2 class="section-title mb-4">Idiomas y Habilidades Comunicativas</h2>
                 <div class="row g-4">
@@ -177,8 +189,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Comunicativas -->
+                    <!-- Habilidades Comunicativas -->
                     <div class="col-md-6">
                         <div class="card skill-card h-100 shadow-sm">
                             <div class="card-body sk-content">
@@ -201,11 +212,13 @@
                 </div>
             </section>
 
-            <!-- Proyectos -->
+            <!-- =======================
+                 Sección de Proyectos
+            ======================== -->
             <section class="container mt-8" id="proyectos">
                 <h2 class="section-title">Proyectos</h2>
                 <div class="row g-4 mt-0">
-
+                    <!-- Proyecto 1 -->
                     <div class="col-md-6 col-12">
                         <div class="card project-card">
                             <div class="card-body">
@@ -217,15 +230,15 @@
                                 </p>
                                 <p><strong><img class="tool-icon" src="../css/portfolio_cesia/assets/tools.svg"
                                             alt="Icono de herramientas">
-                                    ESP32, Ubidots, MQTT, MicroPython,
-                                    sensores DHT22/DS18B20.</strong>
+                                        ESP32, Ubidots, MQTT, MicroPython,
+                                        sensores DHT22/DS18B20.</strong>
                                 </p>
                                 <p class="text-muted"><em>En progreso — integración hardware-software y análisis de
                                         datos.</em></p>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Proyecto 2 -->
                     <div class="col-md-6 col-12">
                         <div class="card project-card">
                             <div class="card-body">
@@ -244,7 +257,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- Proyecto 3 -->
                     <div class="col-md-6 col-12">
                         <div class="card project-card">
                             <div class="card-body">
@@ -264,7 +277,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- Proyecto 4 -->
                     <div class="col-md-6 col-12">
                         <div class="card project-card">
                             <div class="card-body">
@@ -284,12 +297,15 @@
                     </div>
                 </div>
             </section>
+        </div>
     </section>
-    </div>
-    <!-- Footer -->
+
+    <!-- =======================
+         Pie de página / Contacto
+    ======================== -->
     <footer class="footer-custom d-flex flex-column flex-md-row align-items-center gap-4 p-4" id="contacto">
-        <!-- Contacto -->
-        <section id="contacto" class="mt-4">
+        <!-- Información de contacto -->
+        <section class="mt-4">
             <h2 class="footer-title mb-3 ">Contacto</h2>
             <p class="sub-title">Email: <a href="mailto:cesiaf.gimenez@gmail.com"
                     class="text-white text-decoration-none">cesiaf.gimenez@gmail.com</a></p>
@@ -298,8 +314,12 @@
         </section>
     </footer>
 
+    <!-- =======================
+         Scripts y funcionalidades
+    ======================== -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </section>
+    <!-- Script para cambiar tema claro/oscuro -->
     <script>
         function toggleTheme() {
             const currentTheme = document.body.getAttribute('data-theme');
@@ -312,23 +332,6 @@
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
         });
-    </script>
-    <script>
-        const swiper = new Swiper('.tech-swiper', {
-            slidesPerView: 5,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            // Flechas manuales personalizadas
-            navigation: {
-                nextEl: '.custom-next',
-                prevEl: '.custom-prev',
-            },
-        });
-
     </script>
 </body>
 
