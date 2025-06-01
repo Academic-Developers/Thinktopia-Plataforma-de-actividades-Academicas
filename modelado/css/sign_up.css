@@ -1,12 +1,12 @@
 @import url('variables.css');
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- body {
+body {
   background: var(--outer-background);
   font-family: var(--main-font);
   height: 100vh;
@@ -17,7 +17,6 @@
   position: relative;
 }
 
-/* Logo top left */
 .logo {
   position: absolute;
   top: 1rem;
@@ -25,26 +24,24 @@
 }
 
 .logo img {
-  height: 3.5rem;         
-  width: auto;            
-  max-width: 100%;        
-  object-fit: contain;    
+  height: 3.5rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-/* Contenedor del formulario */
 .form-container {
   background-color: var(--background-color);
-  padding: 2rem;
+  padding: 4rem;
   border-radius: 1rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.438);
   width: 100%;
-  max-width: 30rem;
+  max-width: 35rem;
   min-height: 24rem;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 35rem;
+  
 }
 
-/* Título del formulario */
 .form-title {
   text-align: center;
   color: var(--text-color);
@@ -52,12 +49,11 @@
   font-family: var(--font-title-primary);
 }
 
-/* Grupo de campos */
 .form-group {
   margin-bottom: 1.5rem;
+  
 }
 
-/* Etiquetas y campos */
 .form-label {
   font-family: var(--font-title-secondary);
   font-size: 1rem;
@@ -66,15 +62,43 @@
   display: block;
 }
 
+.input-group {
+  position: relative;
+}
+
+.input-group-text {
+  position: absolute;
+  left: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+}
+
 .form-control {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
   font-size: 0.9rem;
   border: 1px solid var(--secundary-color);
   border-radius: 0.3rem;
 }
 
-/* Botón */
+.toggle-password {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .btn-primary {
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-text);
@@ -91,18 +115,20 @@
   opacity: 0.9;
 }
 
-.form-link-container{
+.form-link-container {
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
 }
 
-/* Link inferior */
 .form-link {
   text-align: center;
-  margin-top: 1rem;
   font-size: 0.9rem;
   font-family: var(--font-title-secondary);
-  
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-
+.form-link:hover {
+  color: var(--btn-primary-bg);
+}
