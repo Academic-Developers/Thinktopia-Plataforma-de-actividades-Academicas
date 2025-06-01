@@ -15,61 +15,6 @@ body {
     font-family: var(--font-paragraph);
 }
 
-/* ==== HEADER ==== */
-header {
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 4rem;
-    flex-grow: 1;
-    justify-content: center;
-}
-
-nav img {
-    margin-right: auto;
-    flex-shrink: 0;
-}
-
-nav a {
-    position: relative;
-    text-decoration: none;
-    color: var(--text-color);
-    font-family: var(--font-nav);
-    font-weight: 500;
-    padding-bottom: 4px;
-    letter-spacing: 0.0313rem;
-}
-
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2.7px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-nav a:hover::after,
-nav a.active::after {
-    width: 100%;
-}
-
 
 /* ==== SECCIÓN DE FILTROS ==== */
 
