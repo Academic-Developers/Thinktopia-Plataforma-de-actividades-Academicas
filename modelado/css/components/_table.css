@@ -1,55 +1,76 @@
-/* ==== TABLA DE ENTREGAS ==== */
-
-.entregas-container {
-  padding: 2rem 5rem 2rem;
-  padding-left: 5rem;
+/* ==== COMPONENTE TABLA ==== */
+/* Contenedor genérico para la tabla */
+.table-container {
+  padding: 2rem 5rem;
 }
-/* Estilo general para tablas personalizadas */
-.tabla {
+
+/* Estilo general de la tabla */
+.tabla-genérica {
   width: 100%;
   margin: 0;
   font-family: var(--font-paragraph);
   font-weight: 700;
   color: var(--text-color);
-  border-collapse: separate; 
-  border-spacing: 0; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden; 
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
 }
 
-.tabla thead tr {
-  background-color: var(--primary-color) !important;
-  color: white !important;
+.table-responsive {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Estilo del encabezado */
+.tabla-genérica thead {
+  background-color: var(--primary-color);
+  color: white;
   text-align: center;
 }
 
-.tabla th,
-.tabla td {
+/* Celdas encabezado y cuerpo */
+.tabla-genérica th,
+.tabla-genérica td {
   padding: 1rem 1.5rem;
   text-align: left;
 }
 
-.tabla thead th {
-  background-color: var(--primary-color) !important;
-  color: white !important;
+/* Primera columna con padding extra para alinear */
+.tabla-genérica th:first-child,
+.tabla-genérica td:first-child {
+  padding-left: 2.5rem;
+}
+
+/* Última columna centrada */
+.tabla-genérica th:last-child,
+.tabla-genérica td:last-child {
   text-align: center;
 }
 
+/* Filas cuerpo con fondo y efecto hover */
+.tabla-genérica tbody tr {
+  background-color: var(--background-color);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
 
-.tabla tbody td {
+/* Línea separadora */
+.tabla-genérica tbody td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.tabla tbody tr:hover {
+/* Hover filas */
+.tabla-genérica tbody tr:hover {
   background-color: #f0f0f0;
 }
 
-/* Botón genérico dentro de la tabla */
-.tabla .edit-button {
+/* Botón estilizado */
+.edit-button {
   background-color: var(--btn-secondary-bg);
   padding: 0.5rem 1rem;
-  border: 1px solid var(--secndary-color);
+  border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s ease;
@@ -65,24 +86,13 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.tabla .edit-button:hover {
-  pointer-events: auto;
+.edit-button:hover {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.tabla tbody tr:hover .edit-button:hover {
+/* Hover conjunto: fila + botón */
+.tabla-genérica tbody tr:hover .edit-button:hover {
   background-color: var(--secondary-color);
   color: white;
   border-color: var(--secondary-color);
-}
-
-/* Alineación de columnas */
-.tabla th:first-child,
-.tabla td:first-child {
-  padding-left: 2.5rem;
-}
-
-.tabla th:last-child,
-.tabla td:last-child {
-  text-align: center;
 }

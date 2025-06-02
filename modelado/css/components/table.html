@@ -1,61 +1,38 @@
-<section class="entregas-container">
-      <article class="entregas">
-        <div class="table-responsive">
-          <table class="table table-bordered tabla">
-            <thead>
-              <tr class="contenido">
-                <th class="title-table" scope="col">Alumno</th>
-                <th class="title-table" scope="col">Curso</th>
-                <th class="title-table" scope="col">Fecha de Entrega</th>
-                <th class="title-table" scope="col">Tipo</th>
-                <th class="title-table" scope="col">Estado</th>
-                <th class="title-table" scope="col">Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="contenido" onclick="window.open('archivos/ana-cuestionario.pdf', '_blank')">
-                <td class="text-table">Ana López</td>
-                <td class="text-table">Primer Año</td>
-                <td class="text-table">18/05/2025</td>
-                <td class="text-table">Cuestionario</td>
-                <td class="text-table">Calificado</td>
-                <td>
-                  <button type="button" class="btn btn-primary" onclick="event.stopPropagation();">Calificar</button>
-                </td>
-              </tr>
-              <tr class="contenido" onclick="window.open('archivos/ana-documento.pdf', '_blank')">
-                <td class="text-table">Ana López</td>
-                <td class="text-table">Primer Año</td>
-                <td class="text-table">20/05/2025</td>
-                <td class="text-table">Documento</td>
-                <td class="text-table">Calificado</td>
-                <td>
-                  <button type="button" class="btn btn-primary" onclick="event.stopPropagation();">Calificar</button>
-                </td>
-              </tr>
-              <tr class="contenido" onclick="window.open('archivos/lucas-documento.pdf', '_blank')">
-                <td class="text-table">Lucas Rivero</td>
-                <td class="text-table">Tercer Año</td>
-                <td class="text-table">20/05/2025</td>
-                <td class="text-table">Documento</td>
-                <td class="text-table">Calificado</td>
-                <td>
-                  <button type="button" class="btn btn-primary" onclick="event.stopPropagation();">Calificar</button>
-                </td>
-              </tr>
-              <tr class="contenido" onclick="window.open('archivos/maria-documento.pdf', '_blank')">
-                <td class="text-table">María Torres</td>
-                <td class="text-table">Tercer Año</td>
-                <td class="text-table">20/05/2025</td>
-                <td class="text-table">Documento</td>
-                <td class="text-table">Pendiente</td>
-                <td>
-                  <button type="button" class="btn btn-primary" onclick="event.stopPropagation();">Calificar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </article>
-    </section>
+<!-- Componente Tabla Genérica -->
+<section class="table-container">
+  <article>
+    <div class="table-responsive">
+      <table class="tabla-genérica">
+        <thead>
+          <tr>
+            <th>Columna 1</th>
+            <th>Columna 2</th>
+            <th>Columna 3</th>
+            <th>Columna 4</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dato 1</td>
+            <td>Dato 2</td>
+            <td>Dato 3</td>
+            <td>Dato 4</td>
+            <td>
+              <button type="button" class="action-button">Acción</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dato 5</td>
+            <td>Dato 6</td>
+            <td>Dato 7</td>
+            <td>Dato 8</td>
+            <td>
+              <button type="button" class="action-button">Acción</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
