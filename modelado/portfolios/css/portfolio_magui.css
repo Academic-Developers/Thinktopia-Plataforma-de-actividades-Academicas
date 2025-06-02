@@ -2,14 +2,6 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  --primary: #ff499e;
-  --secondary: #e913b3;
-  --accent: #a480cf;
-  --blue: #779be7;
-  --light-blue: #49b6ff;
-  --text-dark: #2c2c2c;
-  --text-light: #ffffff;
-  --bg-light: #fdfdfd;
 }
 
 .container {
