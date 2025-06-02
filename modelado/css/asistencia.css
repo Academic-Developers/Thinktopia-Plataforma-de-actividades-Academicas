@@ -16,6 +16,8 @@ body {
 
 main {
   max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .tabla-asistencias {
@@ -72,8 +74,9 @@ main {
   .table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
     border-radius: 8px;
+    overflow: hidden;
    overflow-x: scroll;
   }
 
@@ -107,7 +110,7 @@ main {
     align-items: center;
   }
   .form-select {
-    width: 30%;
+    width: 50%;
   }
   .filtro-text {
     font-size: 1.2em;
@@ -119,8 +122,6 @@ main {
   .subtitle-asistencia {
     font-size: 1.5em;
   }
-  .table {
-  }
   .title-table {
     font-size: 1.3rem;
   }
@@ -129,5 +130,4 @@ main {
   }
 }
 
-/* @media (min-width: 800px) and (max-width: 1100px) {
-} */ */
+

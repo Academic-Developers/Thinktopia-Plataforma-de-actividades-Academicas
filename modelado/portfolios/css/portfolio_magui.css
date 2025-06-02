@@ -6,6 +6,8 @@
 
 .container {
   max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 /* NAVBAR */
 .navbar {
@@ -165,7 +167,7 @@ strong {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--secondary);
+  color: #e913b3;
 }
 .text-proyectos {
   font-family: "Roboto", sans-serif;
