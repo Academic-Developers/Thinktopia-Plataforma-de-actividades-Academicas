@@ -2,18 +2,12 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  --primary: #ff499e;
-  --secondary: #e913b3;
-  --accent: #a480cf;
-  --blue: #779be7;
-  --light-blue: #49b6ff;
-  --text-dark: #2c2c2c;
-  --text-light: #ffffff;
-  --bg-light: #fdfdfd;
 }
 
 .container {
   max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 /* NAVBAR */
 .navbar {
@@ -173,7 +167,11 @@ strong {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
+<<<<<<< HEAD
   color: var(--secondary);
+=======
+  color: #e913b3;
+>>>>>>> 4aba285db654960024640a1a58a3c25d8b5a1656
 }
 .text-proyectos {
   font-family: "Roboto", sans-serif;
