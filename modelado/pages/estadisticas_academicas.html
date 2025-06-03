@@ -15,6 +15,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Nunito:wght@400;600&family=Poppins:wght@400;600;700&display=swap"
         rel="stylesheet" />
+    <!-- Bootsrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/variables.css" />
     <link rel="stylesheet" href="../css/estadisticas.css" />
@@ -27,42 +29,58 @@
 
 <body>
     <header class="header">
-        <nav class="nav container">
-            <a href="../../index.html">
-                <img src="../assets/img/logo_claro_horizontal.png.png" alt="Logo de ThinkTopia" width="222" height="63"
-                    class="logo">
-            </a>
-            <ul class="nav-links">
-                <li><a href="dashboard.html" class="tab active">Dashboard</a></li>
-                <li><a href="#">Mis Cursos</a></li>
-                <li><a href="reportes.html">Reportes</a></li>
-                <li><a href="asistencia.html">Asistencias</a></li>
-                <li><a href="estadisticas_academicas.html">Estadisticas</a></li>
-                <li><a href="actividades.html">Actividades</a></li>
-                <li><a href="gestion-contenido-docente.html">Gestion contenido</a></li>
-            </ul>
-        </nav>
-    </header>
+   <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="index.html">
+        <img src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo de ThinkTopia" width="222" height="63" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mis Cursos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reportes.html">Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="asistencia.html">Asistencias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="actividades.html">Actividades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gestion-contenido-docente.html">Gestión de Contenido</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
 
     <main class="container">
 
         <section class="filtrar-curso">
             <h1 class="title-estadistica">Estadisticas Academicas</h1>
 
-            <label for="curso" class="text-filtro">Curso:</label>
-            <select id="curso" class="select-filtro" name="curso">
-                <option value="">Seleccionar</option>
+            <select id="curso" class="form-select" aria-label="Default select example" name="curso">
+                <option selected>Seleccionar materia</option>
                 <option value="curso1">Estadistica y probabilidad</option>
-                <option value="curso1">Matematica 1</option>
-                <option value="curso2">Matematica 2</option>
+                <option value="curso2">Matematica 1</option>
+                <option value="curso3">Matematica 2</option>
             </select>
-            <br>
         </section>
 
         <section class="info-estadistica">
             <article class="tarjeta">
                 <figure>
-                    <img src="../assets/icons/users.png" class="img-estadistica" alt="Icono de estudiantes">
+                    <img src="../assets/icons/people-fill.svg" class="img-estadistica" alt="Icono de estudiantes">
                 </figure>
                 <h2 class="subtitle-estadistica">Total Estudiantes:</h2>
                 <p class="text-estadistica">32</p>
@@ -70,15 +88,7 @@
 
             <article class="tarjeta">
                 <figure>
-                    <img src="../assets/icons/star.png" class="img-estadistica" alt="Icono de promedio">
-                </figure>
-                <h2 class="subtitle-estadistica">Promedio del Curso</h2>
-                <p class="text-estadistica">7,6 / 10</p>
-            </article>
-
-            <article class="tarjeta">
-                <figure>
-                    <img src="../assets/icons/tasks.png" class="img-estadistica" alt="Icono de tareas">
+                    <img src="../assets/icons/tareas_icon.svg" class="img-estadistica" alt="Icono de tareas">
                 </figure>
                 <h2 class="subtitle-estadistica">Tasa de Envío de Tareas</h2>
                 <p class="text-estadistica">85%</p>
@@ -86,47 +96,115 @@
 
             <article class="tarjeta">
                 <figure>
-                    <img src="../assets/icons/calendar-check.png" class="img-estadistica" alt="Icono de asistencia">
+                    <img src="../assets/icons/star-fill.svg" class="img-estadistica" alt="Icono de promedio">
+                </figure>
+                <h2 class="subtitle-estadistica">Promedio del Curso</h2>
+                <p class="text-estadistica">7,6 / 10</p>
+            </article>
+
+            <article class="tarjeta">
+                <figure>
+                    <img src="../assets/icons/asistencia_icon.svg" class="img-estadistica" alt="Icono de asistencia">
                 </figure>
                 <h2 class="subtitle-estadistica">Promedio de Asistencia</h2>
-                <p class="text-estadistica">91%</p>
+                  <p class="text-estadistica">91%</p>
             </article>
         </section>
 
         <section class="alerta-riesgo">
             <figure>
-                <img src="../assets/icons/warning.png" class="tarjeta-alerta" alt="Icono de advertencia">
+                <img src="../assets/icons/exclamation-triangle-fill.svg" class="img-alerta" alt="Icono de advertencia">
             </figure>
-            <h3 class="text-riesgo">5 Estudiantes están en Riesgo de Reprobar</h3>
-            <button type="button" class="buton-ver">Ver más</button>
+            <h3 class="text-riesgo">5 estudiantes están en Riesgo de Reprobar</h3>
+            <!-- Botón que abre el modal -->
+            <button type="button" class="btn btn-danger ver-mas" data-bs-toggle="modal" data-bs-target="#modalEstudiantes">
+                Ver más
+            </button>
         </section>
 
 
-        <!-- LISTA DE ESTUDIANTES -->
-        <section>
-            <ul class="lista-estudiantes">
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Ana López
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Mario Torres
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Laura García
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Lucas Rivas
-                </li>
-                <li>
-                    <img src="../assets/icons/user.png" class="estudiante" alt="Icono de estudiante"> Diego Peña
-                </li>
-            </ul>
-        </section>
+        <div class="modal fade" id="modalEstudiantes" tabindex="-1" aria-labelledby="modalEstudiantesLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEstudiantesLabel">Estudiantes en riesgo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="lista-estudiantes list-unstyled">
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Ana López
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Mario Torres
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Laura García
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Lucas Rivas
+                            </li>
+                            <li>
+                                <img src="../assets/icons/person-circle.svg" class="estudiante"
+                                    alt="Icono de estudiante"> Diego Peña
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
+<<<<<<< HEAD
     <footer>
+        <!-- Bootsrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+=======
+   <footer class="footer">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4">
+            <img
+              class="logo-chico"
+              src="../assets/img/logo_oscuro_horizontal_1.png.png"
+              alt="Logo Thinktopia"
+            />
+          </div>
+          <div class="col-12 col-md-8 text-md-end">
+            <p class="copyright mb-2 mb-md-0">
+              Thinktopia &copy; 2025 - Todos los derechos reservados
+            </p>
+            <ul class="social-media list-unstyled mb-0">
+              <li class="d-inline-block me-3">
+                <a href="#" aria-label="Instagram de Thinktopia">
+                  <img src="../assets/icons/instagram.svg" alt="Instagram" />
+                  Thinktopia
+                </a>
+              </li>
+              <li class="d-inline-block">
+                <a href="#" aria-label="Facebook de Thinktopia">
+                  <img src="../assets/icons/facebook.svg" alt="Facebook" />
+                  Thinktopia
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+>>>>>>> 4aba285db654960024640a1a58a3c25d8b5a1656
     </footer>
+        <!-- Bootsrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

@@ -1,0 +1,136 @@
+@import url('variables.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--outer-background);
+  font-family: var(--main-font);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.logo img {
+  height: 3.5rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.form-container {
+  background-color: var(--background-color);
+  padding: 4rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.438);
+  width: 100%;
+  max-width: 35rem;
+  min-height: 24rem;
+  max-height: 30rem;
+  
+}
+
+.form-title {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-title-primary);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  
+}
+
+.form-label {
+  font-family: var(--font-title-secondary);
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group-text {
+  position: absolute;
+  left: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 2rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--secundary-color);
+  border-radius: 0.3rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  opacity: 0.9;
+}
+
+.form-link-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.form-link {
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: var(--font-title-secondary);
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.form-link:hover {
+  color: var(--btn-primary-bg);
+}
+
+

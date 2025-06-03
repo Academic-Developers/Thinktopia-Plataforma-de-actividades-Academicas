@@ -15,153 +15,151 @@
     />
     <title>Docente - Gestión contenido</title>
     <link rel="stylesheet" href="../css/gestion-contenido-docente.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter&family=Nunito&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   </head>
 
   <body>
+
     <header>
-      <nav>
-        <a href="index.html">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html">
           <img
-            src="../assets/img/logo_claro_horizontal.png.png"
+            src="../assets/img/logo_oscuro_horizontal_1.png.png"
             alt="Logo de ThinkTopia"
             width="222"
             height="63"
           />
         </a>
-        <ul>
-          <li><a href="dashboard.html" class="tab active">Dashboard</a></li>
-          <li><a href="#">Mis Cursos</a></li>
-          <li><a href="reportes.html">Reportes</a></li>
-          <li><a href="asistencia.html">Asistencias</a></li>
-          <li><a href="actividades.html">Actividades</a></li>
-          <li><a href="gestion-contenido-docente.html">Gestión de Contenido</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main class="main-container">
-      <section class="content-header">
-        <h1>Gestión de Contenido</h1>
-        <button class="btn-primary" id="btnAgregarContenido">
-          ➕ Agregar contenido
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
-      </section>
-
-      <section class="search-bar">
-        <input
-          type="text"
-          id="buscarContenido"
-          placeholder="🔍 Buscar contenido por título, tema, materia..."
-        />
-      </section>
-
-      <section class="content-list">
-        <!-- Ejemplos de contenido cargado -->
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
-          <p class="materia">Materia: Matemática</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre ecuaciones de primer grado.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Geometría Básica</h3>
-          <p class="materia">Materia: Matemática</p>
-          <p class="descripcion">
-            Introducción a los conceptos básicos de geometría, incluyendo
-            puntos, rectas y planos.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Física</h3>
-          <p class="materia">Materia: Física</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre mecánica y termodinámica.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Química Orgánica</h3>
-          <p class="materia">Materia: Química</p>
-          <p class="descripcion">
-            Introducción a los conceptos básicos de química orgánica, incluyendo
-            la estructura y propiedades de los compuestos orgánicos.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Ejercicios de Biología</h3>
-          <p class="materia">Materia: Biología</p>
-          <p class="descripcion">
-            Conjunto de ejercicios sobre biología celular y genética.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-
-        <article class="card-contenido">
-          <h3 class="titulo-contenido">Historia Universal</h3>
-          <p class="materia">Materia: Historia</p>
-          <p class="descripcion">
-            Introducción a la historia universal, desde la antigüedad hasta la
-            actualidad.
-          </p>
-          <div class="acciones">
-            <button class="btn-editar">✏️ Editar</button>
-            <button class="btn-eliminar">🗑️ Eliminar</button>
-          </div>
-        </article>
-      </section>
-    </main>
-
-    <footer class="footer"> 
-      <div class="footer-content">
-        <img class="logo-chico" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo Thinktopia">
-        
-        <div class="footer-text">
-          <p class="copyright">
-            Thinktopia &copy; 2025 - Todos los derechos reservados
-          </p>
-
-          <ul class="social-media">
-            <li>
-              <a href="#" aria-label="Instagram de Thinktopia">
-                <img src="../assets/icons/instagram.svg" alt="Instagram"> Thinktopia
-              </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link " href="dashboard.html">Dashboard</a>
             </li>
-            <li>
-              <a href="#" aria-label="Facebook de Thinktopia">
-                <img src="../assets/icons/facebook.svg" alt="Facebook"> Thinktopia
-              </a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mis Cursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reportes.html">Reportes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="asistencia.html">Asistencias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="actividades.html">Actividades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gestion-contenido-docente.html">Gestión de Contenido</a>
             </li>
           </ul>
         </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <section class="row my-4">
+        <div class="col-12 col-md-8">
+          <h1>Gestión de Contenido</h1>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <button class="btn btn-primary" id="btnAgregarContenido">
+            ➕ Agregar contenido
+          </button>
+        </div>
+      </section>
+
+      <section class="row my-4">
+        <div class="col-12">
+          <input
+            type="text"
+            id="buscarContenido"
+            class="form-control"
+            placeholder="🔍 Buscar contenido por título, tema, materia..."
+          />
+        </div>
+      </section>
+
+      <section class="row my-4">
+        <div class="card-container">
+
+          <div class="card-contenido">
+            <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
+            <p class="materia">Materia: Matemática</p>
+            <p class="descripcion">
+              Conjunto de ejercicios sobre ecuaciones de primer año.
+            </p>
+            <div class="acciones">
+              <button class="btn btn-warning btn-editar">✏️ Editar</button>
+              <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
+            </div>
+          </div>
+
+          
+          <div class="card-contenido">
+            <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
+            <p class="materia">Materia: Matemática</p>
+            <p class="descripcion">
+              Conjunto de ejercicios sobre ecuaciones de primer año.
+            </p>
+            <div class="acciones">
+              <button class="btn btn-warning btn-editar">✏️ Editar</button>
+              <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4">
+            <img
+              class="logo-chico"
+              src="../assets/img/logo_oscuro_horizontal_1.png.png"
+              alt="Logo Thinktopia"
+            />
+          </div>
+          <div class="col-12 col-md-8 text-md-end">
+            <p class="copyright mb-2 mb-md-0">
+              Thinktopia &copy; 2025 - Todos los derechos reservados
+            </p>
+            <ul class="social-media list-unstyled mb-0">
+              <li class="d-inline-block me-3">
+                <a href="#" aria-label="Instagram de Thinktopia">
+                  <img src="../assets/icons/instagram.svg" alt="Instagram" />
+                  Thinktopia
+                </a>
+              </li>
+              <li class="d-inline-block">
+                <a href="#" aria-label="Facebook de Thinktopia">
+                  <img src="../assets/icons/facebook.svg" alt="Facebook" />
+                  Thinktopia
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-  </footer>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+      crossorigin="anonymous"
+    ></script>
+    
   </body>
 </html>
 

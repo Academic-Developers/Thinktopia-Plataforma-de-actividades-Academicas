@@ -1,0 +1,56 @@
+
+/* Footer dashboard */
+
+footer {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  background-color: var(--primary-color);
+  color: var(--btn-primary-text);
+  box-sizing: border-box;
+}
+
+.logo-chico {
+  max-width: 12.5rem;
+  height: auto;
+}
+
+.copyright {
+  font-family: var(--font-title-secondary);
+}
+
+.social-media {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0 0;
+  
+}
+
+.social-media a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-title-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-media img {
+  width: 20px;
+  height: 20px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .social-media {
+    margin-right: 4rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .social-media {
+    margin-left: 13rem;
+  }
+}
