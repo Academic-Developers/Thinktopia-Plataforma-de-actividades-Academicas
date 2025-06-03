@@ -33,11 +33,7 @@ El propósito principal del sistema es facilitar la organización de actividades
 - Notificación simple (por ejemplo, mensaje visual dentro de la app cuando una actividad está cerca de vencer).
 - Ranking, puntos.
 - Asistencia
-<<<<<<< HEAD
-- Calendario
-=======
 - Calendario 
->>>>>>> main
 
 ---
 

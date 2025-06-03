@@ -1,36 +1,84 @@
 @import url("variables.css");
-@import url("components/dashboard-navbar-footer/footer-dashboard.css");
-@import url("components/dashboard-navbar-footer/navbar-dashboard.css");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+.header {
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  margin-right: auto;
+  flex-shrink: 0;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  justify-content: center;
+}
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: rgb(26, 26, 26);
+  font-family: var(--font-nav);
+  font-weight: 500;
+  padding-bottom: 4px;
+  letter-spacing: 0.0313rem;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2.7px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
 .container {
-  max-width: 75rem;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
-.filtrar-curso {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  flex-direction: column;
-  align-items: center;
-}
-.form-select {
-    width: 25%;
-  }
 .title-estadistica {
   font-family: var(--font-title-primary);
   font-size: 2rem;
   color: var(--primary-color);
-  text-align: center;
 }
+.filtrar-curso {
+  display: flex;
+  text-align: center;
+  gap: 1rem;
+  flex-direction: column;
+}
+
 .text-filtro {
   font-size: 1rem;
   font-family: var(--font-paragraph);
+}
+
+.select-filtro {
+  padding: 0.5rem;
+  border-radius: 0.3em;
+  font-size: 1rem;
+  width: auto;
+  margin: 0 auto;
 }
 
 .info-estadistica {
@@ -71,103 +119,60 @@
 .alerta-riesgo {
   background-color: #ffe5e5;
   border: 1px solid #ff4d4f;
+  color: #a8071a;
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
+  border-radius: 10px;
   text-align: center;
+  margin-bottom: 2rem;
 }
-.img-alerta {
-  width: 2.7rem;
-  height: auto;
+
+.tarjeta-alerta{
+  width: 1rem;
+  height: 2rem;
 }
 
 .text-riesgo {
   text-align: center;
-  justify-content: center;
-  padding: 1rem;
+  margin: 1em;
   font-family: var(--font-title-primary);
-  font-size: 1.2rem;
-  color: #ff4d4f;
+  font-size: 1rem;
 }
 
-li {
-  font-size: 1.2rem;
-  font-weight: 600;
-  font-family: var(--font-paragraph);
+.buton-ver {
+  padding: 0.2rem;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: none;
+  border-radius: 0.4rem;
+  font-family: var(--font-nav);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-@media (min-width: 300px) and (max-width: 900px) {
-  .filtrar-curso {
-    width: auto;
-  }
-  .title-estadistica {
-    font-size: 1.7rem;
-  }
-  .form-select {
-    width: 60%;
-  }
-  .text-filtro {
-    font-size: 0.95rem;
-  }
-  .img-estadistica {
-    width: 3rem;
-  }
-  .subtitle-estadistica {
-    font-size: 1rem;
-  }
-  .text-estadistica {
-    font-size: 0.95rem;
-  }
-  .alerta-riesgo {
-    width: auto;
-    height: 3rem;
-  }
-  .img-alerta {
-    width: 1rem;
-    margin: 1rem auto;
-  }
-  .text-riesgo {
-    font-size: 0.7rem;
-  }
-  .ver-mas {
-   font-size: 1rem;
-  }
-  li {
-    font-size: 0.9rem;
-  }
+.buton-ver:hover {
+  background-color: #005a8d;
 }
 
-@media (min-width: 1000px) and (max-width: 1400px){
-.title-estadistica {
-    font-size: 1.9rem;
-  }
-  .form-select {
-    width: 25%;
-  }
-  .text-filtro {
-    font-size: 1rem;
-  }
-  .img-estadistica {
-    width: 5.2rem;
-  }
-  .subtitle-estadistica {
-    font-size: 1.4rem;
-  }
-  .text-estadistica {
-    font-size: 1.2rem;
-  }
- 
-  .img-alerta {
-    width: 3rem;
-  
-  }
-  .text-riesgo {
-    font-size: 1rem;
-  }
-  .ver-mas {
-   font-size: 1.1rem;
-  }
-  li {
-    font-size: 0.9rem;
-  }
+.lista-estudiantes {
+  list-style: none;
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.lista-estudiantes li {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.estudiante {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.8rem;
+}

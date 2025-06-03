@@ -1,87 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/forms.css" />
+       <meta name="author" content="Equipo Thinktopia" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Plataforma de actividades académicas, Registrate en Thinktopia - Plataforma de Actividades Academicas"
+    />
+    <meta
+      name="keywords"
+      content="Thinktopia, docente, login, actividades académicas, estudiantes, profesores, aprendizaje, educación, educación virtual, educación en linea"
+    />
+    <link rel="icon" type="image/x-icon" href="./../img/logo_oscuro_horizontal_1.png.png">
+    <title>Thinktopia - Registrate</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../css/forms.css" />
-  <meta name="author" content="Equipo Thinktopia" />
-  <meta name="robots" content="noindex, nofollow" />
-  <meta name="description"
-    content="Plataforma de actividades académicas, Registrate en Thinktopia - Plataforma de Actividades Academicas" />
-  <meta name="keywords"
-    content="Thinktopia, docente, login, actividades académicas, estudiantes, profesores, aprendizaje, educación, educación virtual, educación en linea" />
-  <meta name="keywords"
-    content="Thinktopia, docente, registro, estudiantes,gestión de contenido, actividades académicas, estudiantes, profesores, aprendizaje, educación, educación virtual, educación en linea" />
-  <!-- Links -->
-  <!-- Estilos -->
-  <link rel="stylesheet" href="../css/sign_up.css" />
-  <!-- FontAwesomeIcon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="./../img/logo_oscuro_horizontal_1.png.png">
-  <title>Thinktopia - Registrate</title>
-</head>
+ <body>
+  <a href="./index.html" class="logo"><img src="./../img/logo_oscuro_horizontal_1.png.png" alt=""></a>
 
-<body>
-   <a href="./index.html" class="logo">
-      <img
-        src="../assets/img/logo_oscuro_horizontal_1.png.png"
-        alt="Thinktopia Logo"
-      />
-    </a>
+  <form class="form-container">
+    <h2 class="form-title">Registrate en Thinktopia</h2>
 
-  <div class="form-container">
-    <form>
-      <h2 class="form-title">Registrate en Thinktopia</h2>
+    <div class="form-group">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" id="email" placeholder="👤 Ingresa tu correo" required>
+    </div>
 
-      <div class="form-group">
-        <label for="email" class="form-label">Correo electrónico</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electronico" required>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="password" placeholder="🔒 Ingresa tu contraseña" required>
+    </div>
 
-      <div class="form-group">
-        <label for="password" class="form-label">Contraseña</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="fas fa-lock"></i>
-          </span>
-          <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
-          <button type="button" class="btn btn-outline-secondary toggle-password">
-            <i class="fas fa-eye-slash"></i>
-          </button>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+      <input type="password" class="form-control" id="confirm-password" placeholder="🔒 Confirma tu contraseña" required>
+    </div>
 
-      <div class="form-group">
-        <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="fas fa-lock"></i>
-          </span>
-          <input type="password" class="form-control" id="confirm-password" placeholder=" Confirme su contraseña"
-            required>
-          <button type="button" class="btn btn-outline-secondary toggle-password">
-            <i class="fas fa-eye-slash"></i>
-          </button>
-        </div>
-      </div>
+    <button type="submit" class="btn-primary">Registrarme</button>
 
-      <button type="submit" class="btn-primary">Registrarme</button>
-    </form>
-
-      <div class="form-link-container">
-        <a class="form-link" href="./login.html">¿Ya tienes una cuenta? Inicia sesión ahora!</a>
-      </div>
-  </div>
-
+    <p class="form-link">
+      ¿Ya tienes una cuenta? <a href="./login.html">Iniciar sesión</a>
+    </p>
+  </form>
 </body>
 
-</body>
-
+  </body>
 </html>
