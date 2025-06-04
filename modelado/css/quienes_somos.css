@@ -162,7 +162,17 @@ body {
   border-radius: 50%;
   border: 3px solid var(--primary-color);
 }
-
+.button-portafolio{
+   background-color: var( --secondary-color);
+  color: var(--btn-primary-text);
+  font-family: var(--font-title-secondary);
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0.9em;
+   text-decoration: none;
+  border: transparent;
+  border-radius: 0.4em;
+}
 /*MEDIAS QUERIES */
 @media (min-width: 300px) and (max-width: 900px) {
   .titles {
