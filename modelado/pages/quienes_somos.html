@@ -21,17 +21,24 @@
     rel="stylesheet" />
 
   <!-- Bootsrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
+
+  <!-- Cloudflare -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Estilos -->
   <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/nav.css">
   <link rel="stylesheet" href="../css/quienes_somos.css" />
 
 </head>
 
 <body>
 
-   <!-- <header class="header">
+  <header class="header">
     <img class="logo" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="">
     <nav class="nav">
       <ul>
@@ -44,125 +51,220 @@
         <li><a href="./quienes_somos.html">¿Quienes Somos?</a></li>
       </ul>
     </nav>
-  </header> -->
+  </header>
 
   <main class="quienes-somos container">
-    <h1 class="title-somos">¿Quiénes somos?</h1>
-
     <section class="intro">
-      <p class="text-intro">
-        Somos cuatro estudiantes de la Tecnicatura en Desarrollo de Software creando <strong>Thinktopia</strong>, una
-        plataforma académica moderna, funcional y accesible.
-      </p>
-      <p class="text-intro">
-        Buscamos facilitar el aprendizaje de estudiantes y docentes con una solución intuitiva y colaborativa.
+
+      <h1 class="title">¿Quiénes somos?</h1>
+
+      <p class="text">
+        En Thinktopia, creemos que la educación debe ser una experiencia significativa, creativa y transformadora. Desde
+        nuestra fundación en 2020 en Villa Aurora, Córdoba, trabajamos para reinventar la forma en que las instituciones
+        educativas gestionan su día a día, fusionando pedagogía moderna con tecnología intuitiva.</p>
+
+      <p class="text">
+        Con más de 5 años de trayectoria acompañando a escuelas, institutos y centros de formación en toda
+        Latinoamérica, desarrollamos soluciones digitales que motivan tanto a estudiantes como a docentes. Nuestro
+        enfoque combina gamificación, seguimiento personalizado y herramientas de gestión para hacer que aprender,
+        enseñar y coordinar tareas sea más fácil, dinámico y motivador.
       </p>
     </section>
 
+    <section class="mision-thintopia">
+      <h2 class="subtitle">Nuestra misión</h2>
+      <p class="text">
+        Brindar una educación integral, inclusiva y centrada en el desarrollo del pensamiento digital y humano,
+        empoderando a cada estudiante a través del conocimiento y la tecnología.
+      </p>
+
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <div class="icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="title-card">Creatividad e innovación</div>
+            <p class="text-valores">Apostamos por soluciones nuevas.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <div class="icon"><i class="fas fa-hands-praying"></i></div>
+            <div class="title-card">Inclusión y respeto</div>
+            <p class="text-valores">Pensamos en todos los estudiantes, sin distinción.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <div class="icon"><i class="fas fa-rotate"></i></div>
+            <div class="title-card">Aprendizaje continuo</div>
+            <p class="text-valores">Estamos en constante actualización.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card">
+            <div class="icon"><i class="fas fa-people-group"></i></div>
+            <div class="title-card">Trabajo colaborativo</div>
+            <p class="text-valores">Creemos en el poder de los equipos diversos.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
     <section class="equipo">
-      <h2 class="subtitle-miembros">Integrantes del equipo</h2>
+      <h2 class="title">Nuestro Equipo</h2>
+      <p class="text">Un equipo comprometido con transformar la educación digital.</p>
+
+      <div class="row g-4 justify-content-center">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card h-100 text-center">
+            <img src="../assets/icons/miembro2.svg" alt="Foto de Martin" class="team-photo">
+            <div class="team-nombre">Martín López</div>
+            <div class="rol">Coordinador de Tecnología</div>
+            <p class="text-miembro">Impulsa soluciones educativas innovadoras y escalables, alineadas con los desafíos
+              actuales del aprendizaje digital.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card h-100 text-center">
+            <img src="../assets/icons/miembro1.svg" alt="Foto de Valentina" class="team-photo">
+            <div class="team-nombre">Valentina Suárez</div>
+            <div class="rol">Directora General</div>
+            <p class="text-miembro">Impulsa la visión educativa y tecnológica de Thinktopia con liderazgo y pasión.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card h-100 text-center">
+            <img src="../assets/icons/miembro2.svg" alt="Foto de Tomás" class="team-photo">
+            <div class="team-nombre">Tomás Rivera</div>
+            <div class="rol">Soporte y Formación</div>
+            <p class="text-miembro">Acompaña a docentes e instituciones en el uso eficaz de la plataforma.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="team-card h-100 text-center">
+            <img src="../assets/icons/miembro1.svg" alt="Foto de Lucia" class="team-photo">
+            <div class="team-nombre">Lucía Herrera</div>
+            <div class="rol">Facilitadora Pedagógica</div>
+            <p class="text-miembro">Integra enfoques didácticos modernos para fomentar un aprendizaje significativo y
+              motivador.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="equipo-desarrolladores">
+      <h2 class="subtitle-miembros">Nuestros Colaboradores</h2>
 
       <div class="miembros-grid">
         <!-- Evelin -->
         <article class="miembro">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../assets/img/fotoEve.jpeg" class="img-fluid img-integrantes" alt="Foto de Evelin Checa">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title nombre-integrantes">Checa Evelin</h5>
-                  <p class="card-text text-integrantes">Soy Evelin Checa, desarrolladora web Frontend y Backend en
-                    Thinktopia desde
-                    abril de 2025.</p>
-                  <p class="card-text text-integrantes"> Con este proyecto, buscamos ofrecer a los alumnos un espacio de
-                    aprendizaje más motivador y enriquecedor,
-                    donde puedan expresarse libremente, compartir sus inquietudes e interactuar ágilmente con los
-                    docentes</p>
-                </div>
-              </div>
+          <div class="card">
+            <img src="../assets/img/fotoEve.jpeg" class="img-fluid img-integrantes" alt="Foto de Eve">
+            <div class="card-body">
+              <h5 class="card-title nombre-integrantes">Checa Evelin</h5>
+              <p class="card-text text-integrantes"> Soy Evelin Checa, desarrolladora web Frontend y Backend en
+                Thinktopia desde
+                abril de 2025.</p>
+              <p class="card-text text-integrantes"> Con este proyecto, buscamos ofrecer a los alumnos un espacio de
+                aprendizaje más motivador y enriquecedor,
+                donde puedan expresarse libremente, compartir sus inquietudes e interactuar ágilmente con los
+                docentes</p>
+            </div>
+            <div class="card-body">
+              <a href="../portfolios/html/" class="card-link">Ver Portafolio</a>
             </div>
           </div>
         </article>
 
         <article class="miembro">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../assets/img/profile_cesia.png" class="img-fluid img-integrantes" alt="Foto de Cesia">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title nombre-integrantes ">Cáceres Giménez Cesia Fiorella</h5>
+          <div class="card">
+            <img src="../assets/img/profile_cesia.png" class="img-fluid img-integrantes" alt="Foto de Cesia">
+            <div class="card-body">
+              <h5 class="card-title nombre-integrantes">Cáceres Giménez Cesia Fiorella</h5>
+              <p class="card-text text-integrantes"> Mi nombre es Cesia Cáceres y me desempeño como desarrolladora y
+                diseñadora en
+                este proyecto.</p>
+              <p class="card-text text-integrantes"> Participo en la construcción de la plataforma desde el diseño
+                de interfaces hasta la
+                implementación de funcionalidades, asegurando una experiencia visual atractiva y técnicamente sólida
+              </p>
+            </div>
 
-                  <p class="card-text text-integrantes"> Mi nombre es Cesia Cáceres y me desempeño como desarrolladora y
-                    diseñadora en
-                    este proyecto.</p>
-                  <p class="card-text text-integrantes"> Participo en la construcción de la plataforma desde el diseño
-                    de interfaces hasta la
-                    implementación de funcionalidades, asegurando una experiencia visual atractiva y técnicamente sólida
-                  </p>
-                </div>
-              </div>
+            <div class="card-body">
+              <a href="../portfolios/html/portfolio_cesia.html" class="card-link ">Ver Portafolio</a>
             </div>
           </div>
-        </article>
+      </div>
+      </article>
 
-        <!-- Milagros -->
-        <article class="miembro">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../assets/img/perfil_magui.png" class="img-fluid img-integrantes" alt="Foto de Milagros Cabrera">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title nombre-integrantes ">Cabrera Milagros Magaly</h5>
-                  <p class="card-text text-integrantes"> Hola,mi nombre es Milagros Cabrera, tengo 23 años y me apasiona
-                    el desarrollo de
-                    software. En este proyecto, me desempeño como desarrolladora, Scrum Master y colaboradora en el área
-                    de
-                    diseño. </p>
-                  <p class="card-text text-integrantes">Aporto desde la estructura técnica hasta los detalles visuales,
-                    buscando siempre crear
-                    experiencias funcionales, atractivas y accesibles.</p>
-                </div>
-              </div>
+      <!-- Milagros -->
+      <article class="miembro">
+        <div class="card">
+          <img src="../assets/img/perfil_magui.png" class="img-fluid img-integrantes" alt="Foto de Milagros Cabrera">
+          <div class="card-body">
+            <h5 class="card-title nombre-integrantes">Cabrera Milagros Magaly</h5>
+            <p class="card-text text-integrantes"> Hola,mi nombre es Milagros Cabrera, tengo 23 años y me apasiona
+              el desarrollo de
+              software. En este proyecto, me desempeño como desarrolladora, Scrum Master y colaboradora en el área
+              de
+              diseño. </p>
+            <p class="card-text text-integrantes">Aporto desde la estructura técnica hasta los detalles visuales,
+              buscando siempre crear
+              experiencias funcionales, atractivas y accesibles.</p>
+        
+
+          <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+        </div>
+          </div>
+      </article>
+
+      <!-- Francisco -->
+      <article class="miembro">
+        <div class="card">
+          <img src="../assets/img/img-fran.jpeg" class="img-fluid img-integrantes" alt="Foto de Francisco Toro">
+          <div class="card-body">
+            <h5 class="card-title nombre-integrantes ">Toro Goitea Francisco Nicolás</h5>
+            <p class="card-text text-integrantes"> Desarrollador Full-Stack. Mi motivación es aprender y crecer
+              con cada proyecto.
+              Disfruto aportar ideas y soluciones útiles al equipo. </p>
+            <p class="card-text text-integrantes"> Para agregar un poco mas sobre mí, me considero una
+              persona que siempre quiere dar lo mejor de si y que jamás quiere quedarse atrás. ¿Hobbies? Basket,
+              futbol
+              y algún que otro juegito como World of Warcraft</p>
+          
+
+          <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
             </div>
           </div>
-        </article>
+        </div>
+        </div>
 
-        <!-- Francisco -->
-        <article class="miembro">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../assets/img/img-fran.jpeg" class="img-fluid img-integrantes" alt="Foto de Francisco Toro">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title nombre-integrantes ">Toro Goitea Francisco Nicolás</h5>
-                  <p class="card-text text-integrantes"> Desarrollador Full-Stack. Mi motivación es aprender y crecer
-                    con cada proyecto.
-                    Disfruto aportar ideas y soluciones útiles al equipo. </p>
-                  <p class="card-text text-integrantes"> Para agregar un poco mas sobre mí, me considero una
-                    persona que siempre quiere dar lo mejor de si y que jamás quiere quedarse atrás. ¿Hobbies? Basket,
-                    futbol
-                    y algún que otro juegito como World of Warcraft</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
+      </article>
     </section>
   </main>
-   <!-- <footer class="Pie">
+
+  <footer class="Pie">
     <img class="logochico" src="./assets/img/logo_oscuro_horizontal_1.png.png" alt="">
     <p class="redes">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
     <p class="redes"><img src="./assets/icons/instagram.svg" alt=""> Thinktopia </p>
     <p class="redes"><img src="./assets/icons/facebook.svg" alt=""> Thinktopia </p>
-  </footer> -->
+  </footer>
+
   <!-- Bootsrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
