@@ -18,7 +18,7 @@ body {
   margin: 0 auto;
   justify-content: space-between;
 }
-.title-somos {
+.title {
   color: var(--secondary-color);
   text-align: center;
   font-weight: bold;
@@ -26,14 +26,94 @@ body {
   font-size: 1.9rem;
   font-family: var(--font-title-primary);
 }
-.text-intro {
+.text {
   text-align: center;
   justify-content: center;
   font-size: 1.4rem;
-  margin: 0 auto;
+  margin: 1.2rem auto;
   font-family: var(--font-paragraph);
 }
 
+.subtitle {
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: bold;
+  margin: 0.5em;
+  font-size: 1.8rem;
+  font-family: var(--font-title-primary);
+}
+.card {
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.title-card {
+  font-family: var(--font-title-primary);
+  font-weight: 600;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+.text-valores {
+  text-align: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 1.2rem auto;
+  font-family: var(--font-paragraph);
+}
+.lista-valores {
+  margin: 0 auto;
+  font-size: 1.3rem;
+  font-family: var(--font-title-secondary);
+  list-style: circle;
+}
+.team-card {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.team-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #007bff;
+}
+
+.team-nombre {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.rol {
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+.text-miembro {
+  font-size: 1.2rem;
+}
 .subtitle-miembros {
   color: var(--primary-color);
   font-size: 1.8rem;
@@ -73,25 +153,40 @@ body {
   text-align: left;
 }
 .img-integrantes {
-  width: auto;
-  height:30rem;
+  width:13rem;
+  height: 12rem;
+  margin-left: 10rem;
+  display: flex;
+  justify-content: center;
   object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--primary-color);
 }
-
+.button-portafolio{
+   background-color: var( --secondary-color);
+  color: var(--btn-primary-text);
+  font-family: var(--font-title-secondary);
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0.9em;
+   text-decoration: none;
+  border: transparent;
+  border-radius: 0.4em;
+}
 /*MEDIAS QUERIES */
 @media (min-width: 300px) and (max-width: 900px) {
-  .title-somos {
+  .titles {
     font-size: 1.7rem;
   }
-  .text-intro {
+  .text {
     font-size: 1.4rem;
   }
-  .subtitle-miembros {
+  .subtitle {
     font-size: 1.6rem;
   }
   .miembros-grid {
     display: grid;
-     grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
   }
   .nombre-integrantes {
@@ -101,8 +196,7 @@ body {
     font-size: 1.4rem;
   }
   .img-integrantes {
-  width: 100%;
-  height: auto;;
+justify-content: center;
+ margin-left: 0rem; 
   }
 }
-
