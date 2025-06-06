@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="../css/dashboard-tabs-titles.css" />
   <link rel="stylesheet" href="../css/components/dashboard-navbar-footer/navbar-dashboard.css" />
   <link rel="stylesheet" href="../css/components/dashboard-navbar-footer/footer-dashboard.css" />
-
+  <link rel="stylesheet" href="../css/components/_table.css">
 </head>
 
 <body>
@@ -38,9 +38,6 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link " href="dashboard.html">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Mis Cursos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="reportes.html">Reportes</a>
@@ -180,64 +177,67 @@
       </div>
     </div>
 
-    <section class="entregas-container">
-      <article class="entregas">
-        <table class="tabla-entregas">
-          <thead>
-            <tr>
-              <th>Alumno</th>
-              <th>Curso</th>
-              <th>Fecha de Entrega</th>
-              <th>Tipo</th>
-              <th>Estado</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr onclick="window.open('archivos/ana-cuestionario.pdf', '_blank')">
-              <td>Ana López</td>
-              <td>Primer Año</td>
-              <td>18/05/2025</td>
-              <td>Cuestionario</td>
-              <td>Calificado</td>
-              <td>
-                <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
-              </td>
-            </tr>
-            <tr onclick="window.open('archivos/ana-documento.pdf', '_blank')">
-              <td>Ana López</td>
-              <td>Primer Año</td>
-              <td>20/05/2025</td>
-              <td>Documento</td>
-              <td>Calificado</td>
-              <td>
-                <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
-              </td>
-            </tr>
-            <tr onclick="window.open('archivos/lucas-documento.pdf', '_blank')">
-              <td>Lucas Rivero</td>
-              <td>Tecer Año</td>
-              <td>20/05/2025</td>
-              <td>Documento</td>
-              <td>Calificado</td>
-              <td>
-                <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
-              </td>
-            </tr>
-            <tr onclick="window.open('archivos/maria-documento.pdf', '_blank')">
-              <td>María Torres</td>
-              <td>Tecer Año</td>
-              <td>20/05/2025</td>
-              <td>Documento</td>
-              <td>Pendiente</td>
-              <td>
-                <button class="btn-calificar" onclick="event.stopPropagation();">Calificar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
-    </section>
+<section class="table-container">
+  <article>
+    <div class="table-responsive">
+      <table class="tabla-genérica">
+        <thead>
+          <tr>
+            <th scope="col">Alumno</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Fecha de Entrega</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="window.open('archivos/ana-cuestionario.pdf', '_blank')">
+            <td>Ana López</td>
+            <td>Primer Año</td>
+            <td>18/05/2025</td>
+            <td>Cuestionario</td>
+            <td>Calificado</td>
+            <td>
+              <button type="button" class="edit-button" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+          <tr onclick="window.open('archivos/ana-documento.pdf', '_blank')">
+            <td>Ana López</td>
+            <td>Primer Año</td>
+            <td>20/05/2025</td>
+            <td>Documento</td>
+            <td>Calificado</td>
+            <td>
+              <button type="button" class="edit-button" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+          <tr onclick="window.open('archivos/lucas-documento.pdf', '_blank')">
+            <td>Lucas Rivero</td>
+            <td>Tercer Año</td>
+            <td>20/05/2025</td>
+            <td>Documento</td>
+            <td>Calificado</td>
+            <td>
+              <button type="button" class="edit-button" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+          <tr onclick="window.open('archivos/maria-documento.pdf', '_blank')">
+            <td>María Torres</td>
+            <td>Tercer Año</td>
+            <td>20/05/2025</td>
+            <td>Documento</td>
+            <td>Pendiente</td>
+            <td>
+              <button type="button" class="edit-button" onclick="event.stopPropagation();">Calificar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+
     <footer class="footer">
       <div class="container">
         <div class="row align-items-center">

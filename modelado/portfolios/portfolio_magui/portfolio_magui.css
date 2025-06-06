@@ -167,7 +167,11 @@ strong {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
+<<<<<<< HEAD
+  color: var(--secondary);
+=======
   color: #e913b3;
+>>>>>>> 4aba285db654960024640a1a58a3c25d8b5a1656
 }
 .text-proyectos {
   font-family: "Roboto", sans-serif;
