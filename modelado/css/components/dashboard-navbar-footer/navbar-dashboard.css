@@ -11,6 +11,7 @@
 
 .navbar-toggler {
   border: 2px solid rgb(212, 212, 212) !important;
+  margin-right: 1rem;
 }
 
 .navbar-toggler-icon {
@@ -26,6 +27,7 @@
   font-weight: 500;
   padding-bottom: 4px;
   letter-spacing: 0.0313rem;
+  padding: 0 0.5rem;
 }
 
 .nav-link::after {
