@@ -19,8 +19,9 @@
 .table-responsive {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Estilo del encabezado */
@@ -95,4 +96,22 @@
   background-color: var(--secondary-color);
   color: white;
   border-color: var(--secondary-color);
+}
+
+
+@media (max-width: 768px) {
+  .table-container {
+    padding: 1rem;
+  }
+
+  .tabla-genérica th,
+  .tabla-genérica td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .edit-button {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+  }
 }
