@@ -59,82 +59,91 @@
 
 
   </section>
-  <section class="card-container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="../assets/icons/seguimiento_icon.svg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h3 class="secondary">Seguimiento detallado del avance académico</h3>
-            <p class="card-text">Visualiza tus cursos, consulta tus calificaciones y sigue tu progreso académico.</p>
+  <div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="../assets/icons/seguimiento_icon.svg" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="titulo fs-4">Seguimiento detallado del avance académico</h5>
+          <p class="titulo fs-4">Visualiza tus cursos, consulta tus calificaciones y sigue tu progreso académico.</p>
+
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="../assets/icons/gamificacion_icon.svg" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="titulo fs-4">Tu agenda académica en un solo lugar</h5>
+          <p class="titulo fs-4">Revisa tus próximas tareas y eventos directamente desde tu calendario.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/icons/gamificacion_icon.svg" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="titulo fs-4">Sistema de logros y ranking estudiantil</h5>
+          <p class="titulo fs-4">Suma puntos al completar tareas y sube de artículo en el ranking general.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <section class="mission">
+
+    <article class="misiontexto ">
+      <h2>Nuestra Misión</h2>
+      <p>
+        En Thinktopia, creemos que aprender debería sentirse como explorar un mundo diseñado para crecer.<br><br>
+        Nuestra misión es construir un entorno educativo donde el pensamiento crítico, la creatividad y la
+        motivacion
+        convergen.<br><br>
+        Acompañamos a docentes y estudiantes con herramientas digitales claras, flexibles y significativas — y
+        usamos
+        sistemas de puntos, niveles e insignias para motivar y celebrar el aprendizaje de forma lúdica y
+        significativa.
+      </p>
+    </article>
+
+    <footer class="bg-thinktopia border-top py-3">
+      <div class="container-md">
+        <div class="row align-items-center text-center text-md-start">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <img class="img-fluid" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo"
+              style="max-height: 50px;">
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <p class="mb-0">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center justify-content-md-end gap-3">
+            <a href="#" class="text-decoration-none d-flex align-items-center">
+              <img src="../assets/icons/instagram.svg" alt="Instagram" style="height: 20px;" class="me-1">
+              Thinktopia
+            </a>
+            <a href="#" class="text-decoration-none d-flex align-items-center">
+              <img src="../assets/icons/facebook.svg" alt="Facebook" style="height: 20px;" class="me-1">
+              Thinktopia
+            </a>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card">
-          <img src="../assets/icons/calendario_icon.svg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h3 class="secondary">Tu agenda académica en un solo lugar</h3>
-            <p class="contenido">Revisa tus próximas tareas y eventos directamente desde tu calendario</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="../assets/icons/gamificacion_icon.svg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Sistema de logros y ranking estudiantil</h5>
-            <p class="card-text">Suma puntos al completar tareas y sube de articulo en el ranking general.</p>
+    </footer>
 
-          </div>
-        </div>
-      </div>
-
-    </div>
-    </div>
-    </div>
-
-    <section class="mission">
-
-      <article class="misiontexto">
-        <h2>Nuestra Misión</h2>
-        <p>
-          En Thinktopia, creemos que aprender debería sentirse como explorar un mundo diseñado para crecer.<br><br>
-          Nuestra misión es construir un entorno educativo donde el pensamiento crítico, la creatividad y la motivacion
-          convergen.<br><br>
-          Acompañamos a docentes y estudiantes con herramientas digitales claras, flexibles y significativas — y usamos
-          sistemas de puntos, niveles e insignias para motivar y celebrar el aprendizaje de forma lúdica y
-          significativa.
-        </p>
-      </article>
-
-      <footer class="bg-thinktopia border-top py-3">
-        <div class="container-md">
-          <div class="row align-items-center text-center text-md-start">
-            <div class="col-md-4 mb-3 mb-md-0">
-              <img class="img-fluid" src="../assets/img/logo_oscuro_horizontal_1.png.png" alt="Logo"
-                style="max-height: 50px;">
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-              <p class="mb-0">Thinktopia &copy; 2025 - Todos los derechos reservados</p>
-            </div>
-            <div class="col-md-4 d-flex justify-content-center justify-content-md-end gap-3">
-              <a href="#" class="text-decoration-none d-flex align-items-center">
-                <img src="../assets/icons/instagram.svg" alt="Instagram" style="height: 20px;" class="me-1">
-                Thinktopia
-              </a>
-              <a href="#" class="text-decoration-none d-flex align-items-center">
-                <img src="../assets/icons/facebook.svg" alt="Facebook" style="height: 20px;" class="me-1">
-                Thinktopia
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+      crossorigin="anonymous"></script>
 </body>
 
 
