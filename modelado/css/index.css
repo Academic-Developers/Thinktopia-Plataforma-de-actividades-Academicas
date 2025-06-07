@@ -6,6 +6,7 @@
   box-sizing: border-box;
 
 
+<<<<<<< HEAD
 }
 
 /* Carousel */
@@ -13,6 +14,8 @@
   height: 30rem;
   max-height: 30rem;
   object-fit: cover;
+=======
+>>>>>>> daf62a523e8558484b8a05be3ba4fbde3381a9c6
 }
 
 
@@ -74,7 +77,11 @@
              flex-direction: column; 
             margin-top: 4rem;  
             margin-bottom: 1rem;
+<<<<<<< HEAD
             }
+=======
+          }
+>>>>>>> daf62a523e8558484b8a05be3ba4fbde3381a9c6
    
    .mission h2{ color:white;
                 text-align: center;  
