@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
 }
 
 
@@ -64,7 +66,8 @@
              background-color:var(--secundary-color);
              flex-direction: column; 
             margin-top: 4rem;  
-            margin-bottom: 1rem;}
+            margin-bottom: 1rem;
+          }
    
    .mission h2{ color:white;
                 text-align: center;  
