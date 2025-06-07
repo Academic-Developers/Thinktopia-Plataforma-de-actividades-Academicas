@@ -15,6 +15,7 @@ body {
   flex-direction: column;
 }
 .container {
+  width: 100%;
   max-width: 75rem;
   margin: 0 auto;
   justify-content: space-between;
