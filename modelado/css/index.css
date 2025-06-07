@@ -4,6 +4,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
+}
+
+/* Carousel */
+.banner-img {
+  height: 30rem;
+  max-height: 30rem;
+  object-fit: cover;
 }
 
 
@@ -63,21 +72,19 @@
    .mission{ display:flex ;
              background-color:var(--secundary-color);
              flex-direction: column; 
-             text-align: center;
-             margin-top: 6rem;  
-             margin-bottom: 1rem;}
+            margin-top: 4rem;  
+            margin-bottom: 1rem;
+            }
    
    .mission h2{ color:white;
                 text-align: center;  
                 margin-bottom:1rem ; 
                 font-family: var(--font-title-primary);
-                font-size: 30px; ;    }        
+                font-size: 50px; ;    }        
 
    .misiontexto{font-family: var(--font-paragraph);
                 background:var(--primary-color);
                 color: white ; 
-                text-align: center;
-
                 padding:2rem;
                 width: 40% ;
                 font-size: 25px;   }
@@ -88,7 +95,7 @@
   justify-content:center ;
   width:100% ;
   flex-wrap: wrap;
-  background: 
+ background: 
   linear-gradient(to bottom, #6D98E3 20%, var(--background-color) 80%);
    
 
@@ -111,7 +118,7 @@
  }
  .card img{ 
 
-  width:30% ;
+  width:20% ;
   height: auto;
   margin-top: 2em;
   
@@ -134,6 +141,3 @@
   line-height:1.4;
 
 }
-
-
-       
