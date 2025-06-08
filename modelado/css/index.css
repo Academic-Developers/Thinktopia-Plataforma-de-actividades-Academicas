@@ -4,6 +4,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
+}
+
+/* Carousel */
+.banner-img {
+  height: 30rem;
+  max-height: 30rem;
+  object-fit: cover;
 }
 
 
@@ -64,7 +73,8 @@
              background-color:var(--secundary-color);
              flex-direction: column; 
             margin-top: 4rem;  
-            margin-bottom: 1rem;}
+            margin-bottom: 1rem;
+            }
    
    .mission h2{ color:white;
                 text-align: center;  
@@ -76,7 +86,7 @@
                 background:var(--primary-color);
                 color: white ; 
                 padding:2rem;
-                width: 40% ;
+                width: 100% ;
                 font-size: 25px;   }
 
 .card-container{ 
@@ -131,6 +141,3 @@
   line-height:1.4;
 
 }
-
-
-       

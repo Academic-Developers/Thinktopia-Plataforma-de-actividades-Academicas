@@ -43,14 +43,14 @@ footer {
 }
 
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .social-media {
     margin-right: 4rem;
   }
 }
 
-@media only screen and (min-width: 1000px) {
+@media (min-width: 1200px) {
   .social-media {
-    margin-left: 13rem;
+    margin-left: 21rem !important;
   }
 }

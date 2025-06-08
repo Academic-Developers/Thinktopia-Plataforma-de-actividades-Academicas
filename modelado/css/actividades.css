@@ -6,6 +6,13 @@
   box-sizing: border-box;
 }
 
+.main-container {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 section h1 {
     font-family: var(--font-title-primary);
     font-size: 2rem;
@@ -38,6 +45,7 @@ section h1 {
     justify-content: space-between;
     align-items: center;
     padding: 0rem 2rem;
+    overflow-x: hidden;
 }
 
 .filters {
@@ -107,52 +115,9 @@ section h1 {
     background-color: #f0f0f0;
 }
 
-.social-media {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem 0 0;
-  margin: 0;
-}
-
-.social-media a {
-  color: white;
-  text-decoration: none;
-  font-family: var(--font-title-secondary);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.social-media img {
-  width: 20px;
-  height: 20px;
-}
-
-          .container{ 
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding: 0rem 2rem;
-            gap:30rem; 
+/* Sección de actividades */
 
 
-
-                }
-
- .controls{ font-family:var( --font-title-primary);
-            font-weight: 600;
-            
-          }
-
-    
-
-
-    .actividad-container {
-  padding: 2rem 5rem 2rem;
-  padding-left: 5rem;
-}
 
 .tabla-actividad {
   width: 100%;
@@ -243,4 +208,42 @@ section h1 {
   text-align: center;
 }
 
-/* ==== FOOTER ==== */
+
+/* Responsive */
+
+@media (max-width: 767px) {
+
+  /* Sección de filtros */
+
+  .filters-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .dropdown {
+    padding: 0.5rem;
+  }
+
+  .dropdown summary {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.8rem 0.2rem 1rem;
+  }
+
+  .dropdown-menu {
+    min-width: 120px;
+  }
+
+  .dropdown-menu li a {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+
+
+}
