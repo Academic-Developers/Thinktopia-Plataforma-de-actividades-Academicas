@@ -23,7 +23,7 @@
   text-align: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
 }
 .contenido-hero {
   font-family:'Nunito', sans-serif;
@@ -65,9 +65,6 @@
   box-shadow: 0 4px 12px #00000014;
   align-items: center;
   text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   width: 30%;
   min-width:15.6rem;
   max-width:23.75rem;
@@ -93,7 +90,7 @@
 }
 .card p {
   font-family: 'Nunito', sans-serif;
-  font-size: 18px;
+  font-size: 1.2rem;
   color: #111827;
   line-height: 1.4;
 }
@@ -102,11 +99,11 @@
   text-align: center;
   margin-top:3rem; 
   font-family:'Poppins', sans-serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
 }
 .subtitle{
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   line-height: 1.6;
   font-style: italic;
 }
@@ -117,3 +114,47 @@
   line-height: 1.6;
 }
 
+@media (min-width: 250px) and (max-width: 900px) {
+  .title-principal{
+    font-size: 1.6rem;
+    margin:0.5rem; 
+  }
+  .subtitle{
+    font-size: 1.5rem;
+  }
+  .contenido-hero{
+    font-size: 1.2rem;
+    width: 90%;
+  }
+  .boton-hero{
+    font-size: 1rem;
+  }
+  .col{
+    padding:1.6rem 0; 
+  }
+  .card {
+    width: 100%;
+    min-width: 5rem;
+    max-width: 12rem; 
+  }
+  .title-secondary{
+    font-size: 1.2rem;
+  }
+  .font-title {
+    font-size: 1.3rem;
+  }
+  .text-content{
+    font-size: 1rem;
+  }
+  .mision-title {
+   font-size: 1.6rem; 
+  }
+  .mision-text{
+    margin-left: 0.7rem;
+    font-size: 1.2rem;
+  }
+  .subtitle{
+    margin-left: 0.7rem;
+    font-size: 1.2rem;
+  }
+ }
