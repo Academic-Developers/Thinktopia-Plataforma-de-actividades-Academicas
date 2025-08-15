@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
-.container{
- width: 100%;
+.container {
+  width: 100%;
   max-width: 75rem;
   margin: 0 auto;
   justify-content: space-between;
@@ -15,18 +15,18 @@
   object-fit: cover;
 }
 .hero {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 2.3rem;
 }
-.title-principal{
-  color:#6DB0E3;
+.title-principal {
+  color: #6db0e3;
   text-align: center;
   justify-content: center;
   font-weight: 600;
   font-size: 1.9rem;
 }
 .contenido-hero {
-  font-family:'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   color: #111827;
   text-align: center;
   width: 60%;
@@ -34,41 +34,41 @@
   font-size: 1.4rem;
 }
 .boton-hero {
-  background-color:  #1E3A8A;
+  background-color: #1e3a8a;
   padding: 0.78rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 1rem auto;
-  display:flex;
+  display: flex;
   color: white;
   font-weight: 400;
   font-size: 1.1rem;
 }
 .boton-hero:hover {
-  background-color: #6DB0E3;
+  background-color: #6db0e3;
 }
 
 .card-container {
   display: flex;
   gap: 1.5rem;
-  margin:0 auto;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
 }
 .card {
-  background-color: #F8FAFC;
+  background-color: #f8fafc;
   border-radius: 12px;
   box-shadow: 0 4px 12px #00000014;
   align-items: center;
   text-align: center;
   width: 30%;
-  min-width:15.6rem;
-  max-width:23.75rem;
-  aspect-ratio:380 / 450;
+  min-width: 15.6rem;
+  max-width: 23.75rem;
+  aspect-ratio: 380 / 450;
 }
 .card img {
   width: 20%;
@@ -78,83 +78,83 @@
 }
 
 .title-secondary {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 20px;
   margin-bottom: 0.5rem;
   color: #111827;
   font-weight: 600;
   padding-top: 1rem;
 }
-.font-title{
-  font-family: 'Poppins', sans-serif;
+.font-title {
+  font-family: "Poppins", sans-serif;
 }
 .card p {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 1.2rem;
   color: #111827;
   line-height: 1.4;
 }
 .mision-title {
-  color: #6DB0E3;
+  color: #6db0e3;
   text-align: center;
-  margin-top:3rem; 
-  font-family:'Poppins', sans-serif;
+  margin-top: 3rem;
+  font-family: "Poppins", sans-serif;
   font-size: 1.9rem;
 }
-.subtitle{
+.subtitle {
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 1.6;
   font-style: italic;
 }
-.mision-text{
-  font-family: 'Nunito', sans-serif;
+.mision-text {
+  font-family: "Nunito", sans-serif;
   font-size: 1.2rem;
   color: #111827;
   line-height: 1.6;
 }
 
 @media (min-width: 250px) and (max-width: 900px) {
-  .title-principal{
+  .title-principal {
     font-size: 1.6rem;
-    margin:0.5rem; 
+    margin: 0.5rem;
   }
-  .subtitle{
+  .subtitle {
     font-size: 1.5rem;
   }
-  .contenido-hero{
+  .contenido-hero {
     font-size: 1.2rem;
     width: 90%;
   }
-  .boton-hero{
+  .boton-hero {
     font-size: 1rem;
   }
-  .col{
-    padding:1.6rem 0; 
+  .col {
+    padding: 1.6rem;
   }
   .card {
     width: 100%;
     min-width: 5rem;
-    max-width: 12rem; 
+    max-width: 12rem;
   }
-  .title-secondary{
+  .title-secondary {
     font-size: 1.2rem;
   }
   .font-title {
     font-size: 1.3rem;
   }
-  .text-content{
+  .text-content {
     font-size: 1rem;
   }
   .mision-title {
-   font-size: 1.6rem; 
+    font-size: 1.6rem;
   }
-  .mision-text{
+  .mision-text {
     margin-left: 0.7rem;
     font-size: 1.2rem;
   }
-  .subtitle{
+  .subtitle {
     margin-left: 0.7rem;
     font-size: 1.2rem;
   }
- }
+}

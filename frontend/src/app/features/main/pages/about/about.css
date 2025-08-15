@@ -1,0 +1,202 @@
+body {
+  line-height: 1.6;
+}
+.quienes-somos {
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.title-somos {
+  color: #1e3a8a;
+  text-align: center;
+  font-weight: bold;
+  margin: 0.5em;
+  font-size: 1.9rem;
+  font-family: "Poppins", sans-serif;
+}
+.text{
+  text-align: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 1rem auto;
+  font-family: "Nunito", sans-serif;
+}
+.subtitle {
+  color: #6db0e3;
+  text-align: center;
+  font-weight: bold;
+  margin: 0.5em;
+  font-size: 1.8rem;
+  font-family: "Poppins", sans-serif;
+}
+.card{
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.icon {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+.title-card {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+.text-valores {
+  text-align: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 1.2rem auto;
+  font-family: "Nunito", sans-serif;
+}
+.lista-valores {
+  margin: 0 auto;
+  font-size: 1.3rem;
+  font-family: "Nunito", sans-serif;
+  list-style: circle;
+}
+.team-card {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.team-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+.team-nombre {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #007bff;
+}
+.rol {
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.text-miembro {
+  font-size: 1.1rem;
+}
+.subtitle-miembros {
+  color: #6db0e3;
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 1em;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+}
+.miembros-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+}
+.miembro {
+  background-color: #ffffff;
+  box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.miembro:hover {
+  transform: translateY(-0.3125rem);
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.12);
+}
+.nombre-integrantes {
+  color: #6db0e3;
+  font-size: 1.3rem;
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+.text-integrantes {
+  color: #111827;
+  font-size: 1.1rem;
+  font-family: "Poppins", sans-serif;
+  margin: 1em;
+}
+.img-integrantes {
+  width: 15rem;
+  height: 12rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+}
+.button-portafolio {
+  background-color: #1e3a8a;
+  color: white;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 0.9em;
+  text-decoration: none;
+  border: transparent;
+  border-radius: 0.4em;
+}
+/*MEDIAS QUERIES */
+@media (min-width: 250px) and (max-width: 850px) {
+  .titles {
+    font-size: 1.5rem;
+  }
+  .text {
+    font-size: 1.2rem;
+  }
+  .subtitle {
+    font-size: 1.4rem;
+  }
+  .miembros-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.5rem;
+  }
+  .nombre-integrantes {
+    font-size: 1.4rem;
+  }
+  .subtitle-miembros{
+    font-size: 1.4rem;
+  }
+  .text-integrantes {
+    font-size: 1rem;
+  }
+  .img-integrantes {
+    justify-content: center;
+    margin:0 auto;
+  }
+  .button-portafolio {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+}
+/* @media (min-width: 400px) and (max-width: 730px) {
+  .img-integrantes {
+    margin: 0 auto;
+  }
+}
+@media (min-width: 730px) and (max-width: 860px) {
+  .img-integrantes {
+    margin-left: 15rem;
+  }
+} */
+
