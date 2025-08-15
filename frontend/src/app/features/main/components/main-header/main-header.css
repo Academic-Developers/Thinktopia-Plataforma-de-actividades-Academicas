@@ -1,0 +1,19 @@
+.main-header {
+  background: #1976d2;
+  color: #fff;
+  padding: 1rem ;
+}
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: #90caf9;
+}
