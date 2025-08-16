@@ -1,13 +1,11 @@
 
+
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DashboardDocenteHeader } from '../../components/dashboard-docente-header/dashboard-docente-header';
-import { DashboardDocenteFooter } from '../../components/dashboard-docente-footer/dashboard-docente-footer';
+import {RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
