@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-entregas',
   imports: [],
   templateUrl: './entregas.html',
-  styleUrl: './entregas.css'
+  styleUrls: ['./entregas.css']
 })
 export class Entregas {
 
