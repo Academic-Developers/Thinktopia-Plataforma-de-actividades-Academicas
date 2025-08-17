@@ -1,0 +1,188 @@
+<main>
+    <section class="title">
+        <section class="title-icon">
+            <img src="/icons/check_cicle_icon.svg" alt="Check Circle Icon" width="50" height="50" />
+            <h1>Entregas</h1>
+        </section>
+    </section>
+    <!-- Versión de escritorio -->
+    <section class="filters-container justify-content-between align-items-center">
+        <div class="btn-group w-25">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filtrar por
+            </button>
+
+            <ul class="dropdown-menu w-100">
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="#">Curso</a>
+                    <ul class="dropdown-menu w-100">
+                        <li><a class="dropdown-item" href="#">1º Año</a></li>
+                        <li><a class="dropdown-item" href="#">2º Año</a></li>
+                        <li><a class="dropdown-item" href="#">3º Año</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu ">
+                    <a class="dropdown-item dropdown-toggle" href="#">Fecha de entrega</a>
+                    <ul class="dropdown-menu p-2">
+                        <li><input type="date" class="form-control form-control-sm" /></li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="#">Estado</a>
+                    <ul class="dropdown-menu w-100">
+                        <li><a class="dropdown-item" href="#">Pendiente</a></li>
+                        <li><a class="dropdown-item" href="#">Entregado</a></li>
+                        <li><a class="dropdown-item" href="#">Atrasado</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="#">Tipo</a>
+                    <ul class="dropdown-menu w-100">
+                        <li><a class="dropdown-item" href="#">Examen</a></li>
+                        <li><a class="dropdown-item" href="#">TP</a></li>
+                        <li><a class="dropdown-item" href="#">Otro</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+    </section>
+
+    <!-- Versión móvil -->
+    <div class="mobile-filters px-3">
+        <button class="btn btn-primary btn-outline-primary btn-filtros-custom w-100 mb-2" data-bs-toggle="collapse"
+            data-bs-target="#mobileFilters2" aria-expanded="false">
+            Mostrar filtros
+        </button>
+        <div class="collapse" id="mobileFilters2">
+            <div class="card card-body">
+
+                <!-- Curso -->
+                <div class="mb-3">
+                    <button class="btn btn-outline-secondary w-100 text-start" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#filterCurso" aria-expanded="false">
+                        Curso
+                    </button>
+                    <div class="collapse mt-2" id="filterCurso">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">1º Año</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">2º Año</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">3º Año</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Fecha de entrega -->
+                <div class="mb-3">
+                    <button class="btn btn-outline-secondary w-100 text-start" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#filterFecha" aria-expanded="false">
+                        Fecha de entrega
+                    </button>
+                    <div class="collapse mt-2" id="filterFecha">
+                        <input type="date" class="form-control form-control-sm" />
+                    </div>
+                </div>
+
+                <!-- Estado -->
+                <div class="mb-3">
+                    <button class="btn btn-outline-secondary w-100 text-start" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#filterEstado" aria-expanded="false">
+                        Estado
+                    </button>
+                    <div class="collapse mt-2" id="filterEstado">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Pendiente</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Entregado</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Atrasado</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tipo -->
+                <div class="mb-3">
+                    <button class="btn btn-outline-secondary w-100 text-start" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#filterTipo" aria-expanded="false">
+                        Tipo
+                    </button>
+                    <div class="collapse mt-2" id="filterTipo">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Examen</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">TP</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Otro</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <section class="table-container">
+        <article>
+            <div class="table-responsive">
+                <table class="tabla-genérica">
+                    <thead>
+                        <tr>
+                            <th scope="col">Alumno</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Fecha de Entrega</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="window.open('archivos/ana-cuestionario.pdf', '_blank')">
+                            <td>Ana López</td>
+                            <td>Primer Año</td>
+                            <td>18/05/2025</td>
+                            <td>Cuestionario</td>
+                            <td>Calificado</td>
+                            <td>
+                                <button type="button" class="edit-button"
+                                    onclick="event.stopPropagation();">Calificar</button>
+                            </td>
+                        </tr>
+                        <tr onclick="window.open('archivos/ana-documento.pdf', '_blank')">
+                            <td>Ana López</td>
+                            <td>Primer Año</td>
+                            <td>20/05/2025</td>
+                            <td>Documento</td>
+                            <td>Calificado</td>
+                            <td>
+                                <button type="button" class="edit-button"
+                                    onclick="event.stopPropagation();">Calificar</button>
+                            </td>
+                        </tr>
+                        <tr onclick="window.open('archivos/lucas-documento.pdf', '_blank')">
+                            <td>Lucas Rivero</td>
+                            <td>Tercer Año</td>
+                            <td>20/05/2025</td>
+                            <td>Documento</td>
+                            <td>Calificado</td>
+                            <td>
+                                <button type="button" class="edit-button"
+                                    onclick="event.stopPropagation();">Calificar</button>
+                            </td>
+                        </tr>
+                        <tr onclick="window.open('archivos/maria-documento.pdf', '_blank')">
+                            <td>María Torres</td>
+                            <td>Tercer Año</td>
+                            <td>20/05/2025</td>
+                            <td>Documento</td>
+                            <td>Pendiente</td>
+                            <td>
+                                <button type="button" class="edit-button"
+                                    onclick="event.stopPropagation();">Calificar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+    <!-- Bootsrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</main>

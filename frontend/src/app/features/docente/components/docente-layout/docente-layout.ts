@@ -5,7 +5,7 @@ import { DashboardDocenteFooter } from '../dashboard-docente-footer/dashboard-do
 
 @Component({
   selector: 'app-docente-layout',
-  imports: [ RouterOutlet ,DashboardDocenteHeader, DashboardDocenteFooter],
+  imports: [ RouterOutlet, DashboardDocenteHeader, DashboardDocenteFooter],
   templateUrl: './docente-layout.html',
   styleUrl: './docente-layout.css'
 })
