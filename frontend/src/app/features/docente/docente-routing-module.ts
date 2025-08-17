@@ -5,6 +5,7 @@ import { Actividades } from './pages/actividades/actividades';
 import { Asistencias } from './pages/asistencias/asistencias';
 import { Entregas } from './pages/entregas/entregas';
 import { Reportes } from './pages/reportes/reportes';
+import { Estadisticas } from './pages/estadisticas/estadisticas';
 import { GestionContenido } from './pages/gestion-contenido/gestion-contenido';
 import { DocenteLayout } from './components/docente-layout/docente-layout';
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'actividades', component:Actividades},
   { path: 'entregas', component:Entregas },
   { path: 'asistencias', component:Asistencias },
+  { path: 'estadisticas', component:Estadisticas },
   { path: 'reportes', component:Reportes },
   { path: 'gestion-contenido', component:GestionContenido },
   {path: '**', redirectTo: 'dashboard'} // En caso de que se ingrese una ruta invalida, quiero que me lleve a la pagina del dashboard.
