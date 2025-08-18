@@ -8,5 +8,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './main-header.css'
 })
 export class MainHeader {
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
 }

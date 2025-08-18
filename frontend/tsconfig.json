@@ -23,6 +23,10 @@
     "strictTemplates": true
   },
   "files": [],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "references": [
     {
       "path": "./tsconfig.app.json"
