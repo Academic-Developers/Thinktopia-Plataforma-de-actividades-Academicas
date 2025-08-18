@@ -1,8 +1,27 @@
-<header class="main-header">
-  <nav class="navbar">
-    <a routerLink="inicio" class="nav-link">Inicio</a>
-    <a routerLink="quienes-somos" class="nav-link">Quiénes somos</a>
-    <!-- Lleva / la ruta docente, ya que es una ruta absoluta desde la raiz, así logra llevarme al enrutado del modulo "docente"  -->
-    <a routerLink="/docente" class="nav-link">Dashboard Docente</a> 
+<header class="header">
+  <img class="logo" src="img/logo_oscuro_horizontal_1.png" alt="" />
+  <button class="hamburger" (click)="toggleMenu()" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="nav" [class.open]="menuOpen" >
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a routerLink="inicio" class="nav-link" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="quienes-somos" class="nav-link" routerLinkActive="active">¿Quienes somos?</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/auth/login" class="nav-link" routerLinkActive="active">Iniciar sesion</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/auth/register" class="nav-link" routerLinkActive="active">Registrarse</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/docente/dashboard" class="nav-link" routerLinkActive="active">Dashboard Docente</a>
+      </li>
+    </ul>
   </nav>
 </header>
