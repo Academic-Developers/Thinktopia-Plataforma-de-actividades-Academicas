@@ -12,27 +12,27 @@ body {
   justify-content: space-between;
 }
 .title-somos {
-  color: #1e3a8a;
+  color:var(--secondary-color); 
   text-align: center;
   font-weight: bold;
   margin: 0.5em;
   font-size: 1.9rem;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-title-primary);
 }
 .text{
   text-align: center;
   justify-content: center;
   font-size: 1.3rem;
   margin: 1rem auto;
-  font-family: "Nunito", sans-serif;
+  font-family: var(--font-paragraph);
 }
 .subtitle {
-  color: #6db0e3;
+  color: var(--primary-color);
   text-align: center;
   font-weight: bold;
   margin: 0.5em;
   font-size: 1.8rem;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-title-primary);
 }
 .card{
   border: 1px solid #e0e0e0;
@@ -49,7 +49,7 @@ body {
   margin-bottom: 1rem;
 }
 .title-card {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-title-primary);
   font-weight: 600;
   color: #007bff;
   font-size: 1.2rem;
@@ -59,13 +59,7 @@ body {
   justify-content: center;
   font-size: 1.2rem;
   margin: 1.2rem auto;
-  font-family: "Nunito", sans-serif;
-}
-.lista-valores {
-  margin: 0 auto;
-  font-size: 1.3rem;
-  font-family: "Nunito", sans-serif;
-  list-style: circle;
+  font-family: var(--font-paragraph);
 }
 .team-card {
   text-align: center;
@@ -75,7 +69,6 @@ body {
   background-color: #ffffff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .team-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -100,11 +93,11 @@ body {
   font-size: 1.1rem;
 }
 .subtitle-miembros {
-  color: #6db0e3;
+  color: var(--primary-color);
   font-size: 1.8rem;
   text-align: center;
   margin: 1em;
-  font-family: "Nunito", sans-serif;
+  font-family: var(--font-title-primary);
   font-weight: bold;
 }
 .miembros-grid {
@@ -123,19 +116,6 @@ body {
   transform: translateY(-0.3125rem);
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.12);
 }
-.nombre-integrantes {
-  color: #6db0e3;
-  font-size: 1.3rem;
-  font-family: "Nunito", sans-serif;
-  text-align: center;
-  font-weight: bold;
-}
-.text-integrantes {
-  color: #111827;
-  font-size: 1.1rem;
-  font-family: "Poppins", sans-serif;
-  margin: 1em;
-}
 .img-integrantes {
   width: 15rem;
   height: 12rem;
@@ -144,10 +124,24 @@ body {
   justify-content: center;
   object-fit: cover;
 }
+.nombre-integrantes {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  font-family: var(--font-paragraph);
+  text-align: center;
+  font-weight: bold;
+}
+.text-integrantes {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-family: var(--font-title-primary);
+  margin: 1em;
+}
+
 .button-portafolio {
-  background-color: #1e3a8a;
-  color: white;
-  font-family: "Nunito", sans-serif;
+  background-color: var(--secondary-color);
+  color: var( --btn-primary-text);
+  font-family: var(--font-paragraph);
   font-weight: 600;
   font-size: 1em;
   padding: 0.9em;

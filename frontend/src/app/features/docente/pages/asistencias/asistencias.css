@@ -1,0 +1,132 @@
+import 
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--font-nav);
+  color: var(--text-color);
+}
+
+main {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.tabla-asistencia{
+  margin: 0 auto;
+  max-width: 80rem;
+}
+.title-asistencia {
+  color: var(--secundary-color);
+  text-align: center;
+  font-weight: 600;
+  margin: 1em auto;
+  font-size: 1.9em;
+  font-family: var(--font-title-primary);
+}
+.asistencia-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-select {
+  width: 25%;
+  border-radius: 1px solid #ccc;
+  border-radius: 0.4em;
+  border: none;
+  font-family: var(--font-paragraph);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.filtro-text {
+  font-family: var(--font-paragraph);
+  font-size: 1.1rem;
+}
+.button-asistencia {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-family: var(--font-title-secondary);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.subtitle-asistencia {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 1em;
+  font-family: var(--font-title-secondary);
+  font-weight: bold;
+}
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+   overflow-x: scroll;
+  }
+
+.contenido {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
+.title-table {
+  font-weight: 700;
+  font-family: var(--font-title-primary);
+  user-select: none;
+  font-size: 1.2rem;
+  text-align: justify;
+}
+
+.text-table {
+  padding: 1rem;
+  font-family: var(--font-paragraph);
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: var(--font-paragraph);
+  color: var(--text-color);
+}
+/*MEDIAS QUERIES */
+ @media (min-width: 250px) and (max-width: 700px) {
+  .title-asistencia {
+    font-size: 1.7rem;
+  }
+  .asistencia {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-select {
+    width: 50%;
+  }
+  .filtro-text {
+    font-size: 1.2em;
+  }
+  .button-asistencia {
+    margin: 1.5rem;
+    font-size: 1.1rem;
+  }
+  .subtitle-asistencia {
+    font-size: 1.5em;
+  }
+  .title-table {
+    font-size: 1.3rem;
+  }
+  .text-table {
+    font-size: 1.2rem;
+  }
+}
+
+

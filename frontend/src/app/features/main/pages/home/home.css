@@ -3,38 +3,41 @@
   padding: 0;
   box-sizing: border-box;
 }
-.container {
-  width: 100%;
-  max-width: 75rem;
-  margin: 0 auto;
-  justify-content: space-between;
-}
 .banner-img {
   height: 30rem;
   max-height: 35rem;
   object-fit: cover;
 }
+.container {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  line-height: 1.6;
+  justify-content: space-between;
+}
 .hero {
-  font-family: "Poppins", sans-serif;
-  margin: 2.3rem;
+  font-family: var(--font-title-primary);
+  flex: 1;
+  margin-top: 3rem;
 }
 .title-principal {
-  color: #6db0e3;
+  color: var(--primary-color);
   text-align: center;
   justify-content: center;
   font-weight: 600;
+  margin-top: 1rem;
   font-size: 1.9rem;
 }
 .contenido-hero {
-  font-family: "Nunito", sans-serif;
-  color: #111827;
+  font-family: var(--font-paragraph);
+  color: var(--text-color);
   text-align: center;
   width: 60%;
-  margin: 0 auto;
+  margin: auto;
   font-size: 1.4rem;
 }
 .boton-hero {
-  background-color: #1e3a8a;
+  background-color: var(--secondary-color);
   padding: 0.78rem;
   border: none;
   border-radius: 0.5rem;
@@ -42,14 +45,13 @@
   transition: background-color 0.3s ease;
   margin: 1rem auto;
   display: flex;
-  color: white;
+  color:  var(--btn-primary-text);
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .boton-hero:hover {
-  background-color: #6db0e3;
+  background-color: var(--primary-color);
 }
-
 .card-container {
   display: flex;
   gap: 1.5rem;
@@ -58,6 +60,9 @@
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
+}
+.font-title {
+  font-family: var(--font-title-primary);
 }
 .card {
   background-color: #f8fafc;
@@ -74,44 +79,42 @@
   width: 20%;
   height: auto;
   object-fit: contain;
-  margin-top: 1.4rem;
+  margin-top: 0.5rem;
 }
-
 .title-secondary {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-title-primary);
   font-size: 20px;
   margin-bottom: 0.5rem;
-  color: #111827;
+  color: var(--text-color);
   font-weight: 600;
   padding-top: 1rem;
 }
-.font-title {
-  font-family: "Poppins", sans-serif;
-}
-.card p {
-  font-family: "Nunito", sans-serif;
+.card-text {
+  font-family: var(--font-paragraph);
   font-size: 1.2rem;
-  color: #111827;
+  color: var(--text-color);
   line-height: 1.4;
 }
-.mision-title {
-  color: #6db0e3;
+.mission{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-top: 3rem;
-  font-family: "Poppins", sans-serif;
+}
+.mision-title {
+  color: var(--primary-color);
+  text-align: center;
+  margin-top: 2rem;
+  justify-content: center;
+  font-family: var(--font-title-primary);
   font-size: 1.9rem;
 }
-.subtitle {
-  font-weight: 700;
-  font-size: 1.6rem;
-  line-height: 1.6;
-  font-style: italic;
-}
 .mision-text {
-  font-family: "Nunito", sans-serif;
+  font-family:var(--font-paragraph);
   font-size: 1.2rem;
-  color: #111827;
-  line-height: 1.6;
+  text-align: start;
+  padding:1rem; 
+  color: var(--text-color);
 }
 
 @media (min-width: 250px) and (max-width: 900px) {
@@ -153,8 +156,4 @@
     margin-left: 0.7rem;
     font-size: 1.2rem;
   }
-  .subtitle {
-    margin-left: 0.7rem;
-    font-size: 1.2rem;
-  }
-}
+} 
