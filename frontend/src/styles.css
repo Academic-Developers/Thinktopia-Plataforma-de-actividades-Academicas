@@ -23,7 +23,7 @@
 
     /* Botones */
     
-    --btn-primary-bg: var(--accent-color); /* Celeste mas fuerte para botones BACKGROUND*/
+    --btn-primary-bg: var(--accent-color); /* Celeste mas fuerte para botones*/
     --btn-primary-text: white;
     --btn-primary-hover: var(--secondary-color);
     --btn-secondary-bg: var(--primary-color);
