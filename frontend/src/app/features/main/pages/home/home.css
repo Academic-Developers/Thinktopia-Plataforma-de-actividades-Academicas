@@ -1,123 +1,220 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+/* Carousel Section */
+
+.carousel-inner {
+  height: 35rem; /* 35rem = 560px de alto (height)*/
 }
-.container {
-  width: 100%;
-  max-width: 75rem;
-  margin: 0 auto;
-  justify-content: space-between;
-}
+
 .banner-img {
-  height: 30rem;
-  max-height: 35rem;
-  object-fit: cover;
+  object-fit:cover !important;
+  width: 100%;
+  height: 35rem; /* 35rem = 560px de alto (height)*/
 }
+
+/* Hero Section */
 .hero {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-title-primary);
   margin: 2.3rem;
 }
 .title-principal {
-  color: #6db0e3;
+  color: var(--primary-color);
   text-align: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 1.9rem;
+  font-family: var(--font-title-primary);
+  font-weight: 700;
+  font-size: 2.2rem;
 }
 .contenido-hero {
-  font-family: "Nunito", sans-serif;
-  color: #111827;
+  font-family: var(--font-title-secondary);
+  color: var(--text-color-secondary);
   text-align: center;
   width: 60%;
   margin: 0 auto;
   font-size: 1.4rem;
 }
-.boton-hero {
-  background-color: #1e3a8a;
-  padding: 0.78rem;
+.boton-hero,
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: var(--btn-primary-text);
+  font-family: var(--font-title-primary);
+  font-weight: 600;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 2rem;
+  padding: 0.78rem 2rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.2s, transform 0.2s;
   margin: 1rem auto;
   display: flex;
-  color: white;
-  font-weight: 400;
+  justify-content: center;
   font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.08);
 }
-.boton-hero:hover {
-  background-color: #6db0e3;
+.boton-hero:hover,
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  transform: scale(1.05);
 }
 
+/* Card Section (Características) */
 .card-container {
-  display: flex;
-  gap: 1.5rem;
   margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-wrap: wrap;
+  padding-bottom: 2rem;
 }
-.card {
-  background-color: #f8fafc;
-  border-radius: 12px;
+
+.feature-card {
+  background-color: #fff;
+  border-radius: 1.25rem;
   box-shadow: 0 4px 12px #00000014;
-  align-items: center;
   text-align: center;
-  width: 30%;
+  width: 100%;
   min-width: 15.6rem;
   max-width: 23.75rem;
   aspect-ratio: 380 / 450;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  padding: 2rem 1.5rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+  border: none;
 }
-.card img {
-  width: 20%;
-  height: auto;
-  object-fit: contain;
-  margin-top: 1.4rem;
+.feature-card:hover {
+  box-shadow: 0 8px 32px rgba(30, 58, 138, 0.12);
+  transform: translateY(-8px) scale(1.03);
+}
+.icon-circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+.bg-secondary {
+  background-color: var(--secondary-color) !important;
+}
+.bg-accent {
+  background-color: var(--accent-color) !important;
+}
+.text-primary {
+  color: var(--primary-color) !important;
+}
+.text-secondary {
+  color: var(--secondary-color) !important;
+}
+.text-accent {
+  color: var(--accent-color) !important;
 }
 
 .title-secondary {
-  font-family: "Poppins", sans-serif;
-  font-size: 20px;
+  font-family: var(--font-title-primary);
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: #111827;
+  color: var(--text-color);
   font-weight: 600;
   padding-top: 1rem;
 }
 .font-title {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-title-primary);
 }
-.card p {
-  font-family: "Nunito", sans-serif;
-  font-size: 1.2rem;
-  color: #111827;
+.feature-card p {
+  font-family: var(--font-title-secondary);
+  font-size: 1.1rem;
+  color: var(--text-color-secondary);
   line-height: 1.4;
 }
-.mision-title {
-  color: #6db0e3;
-  text-align: center;
-  margin-top: 3rem;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.9rem;
+
+/* Testimonios */
+.testimonial-card {
+  border-radius: 1rem;
+  font-family: var(--font-title-secondary);
+  background: #fff;
+  box-shadow: 0 4px 12px #00000014;
+  padding: 2rem 1.5rem;
 }
-.subtitle {
-  font-weight: 700;
-  font-size: 1.6rem;
-  line-height: 1.6;
-  font-style: italic;
+.testimonial-card h3 {
+  font-family: var(--font-title-primary);
+  font-weight: 600;
 }
-.mision-text {
-  font-family: "Nunito", sans-serif;
-  font-size: 1.2rem;
-  color: #111827;
-  line-height: 1.6;
+.testimonial-card .fw-bold {
+  font-family: var(--font-title-primary);
+}
+.testimonial-card .text-muted {
+  color: var(--text-color-secondary) !important;
 }
 
-@media (min-width: 250px) and (max-width: 900px) {
+/* Sección: Final CTA (CTA Significa llamada a la acción. El objetivo es motivar a que el usuario se contacte con nosotros) */
+#final-cta h2 {
+  font-family: var(--font-title-primary);
+  font-weight: 700;
+}
+#final-cta p {
+  font-family: var(--font-title-secondary);
+}
+.btn-light {
+  background-color: #fff;
+  color: var(--primary-color);
+  font-family: var(--font-title-primary);
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+  border-radius: 2rem;
+  padding: 0.78rem 2rem;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.08);
+}
+.btn-light:hover {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-family: var(--font-title-primary);
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+  border-radius: 2rem;
+  padding: 0.78rem 2rem;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.08);
+}
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+ 
+   /* Carousel Section */
+   .carousel-inner {
+    height: 20rem; /* 20rem = 320px de alto (height)*/
+    }
+
+  .banner-img {
+    object-fit:cover !important;
+    width: 100%;
+    height: 20rem; /* 20rem = 320px de alto (height)*/
+    }
+
+  /* Cards */
+  .card,
+  .feature-card,
+  .testimonial-card {
+    min-width: 12rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
   .title-principal {
     font-size: 1.6rem;
-    margin: 0.5rem;
   }
   .subtitle {
     font-size: 1.5rem;
@@ -126,35 +223,34 @@
     font-size: 1.2rem;
     width: 90%;
   }
-  .boton-hero {
+  .boton-hero,
+  .btn-primary,
+  .btn-light,
+  .btn-secondary {
     font-size: 1rem;
-  }
-  .col {
-    padding: 1.6rem;
-  }
-  .card {
-    width: 100%;
-    min-width: 5rem;
-    max-width: 12rem;
+    padding: 0.6rem 1.2rem;
   }
   .title-secondary {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   .font-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   .text-content {
     font-size: 1rem;
   }
   .mision-title {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   .mision-text {
-    margin-left: 0.7rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .subtitle {
-    margin-left: 0.7rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+  .icon-circle {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
   }
 }

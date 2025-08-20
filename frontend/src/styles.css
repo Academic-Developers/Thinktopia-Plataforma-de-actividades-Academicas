@@ -9,7 +9,7 @@
 
     /* Fondos: para el fondo general de la página o secciones */
     --background-color:  #F3F4F6;  /* Fondo general del body, pagina: Gris muy claro, moderno */
-    --bg-secondary-color: #fff; /* Fondo secundario, para el container de 75rem, etc. */
+    --bg-secondary-color: #f9f0f0; /* Fondo secundario, para el container de 75rem, etc. */
 
     --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cosas (Formularios Login, Register, etc)*/
 
@@ -22,6 +22,7 @@
     --text-color-secondary: #6b7280; /* Gris medio */
 
     /* Botones */
+    
     --btn-primary-bg: var(--accent-color); /* Celeste mas fuerte para botones BACKGROUND*/
     --btn-primary-text: white;
     --btn-primary-hover: var(--secondary-color);
@@ -41,4 +42,26 @@
 
 body {
   background-color: var(--background-color); 
+}
+
+
+/* Clases para reutilizar. Le agrego el "n" al final para diferenciar que es NUESTRO. Ya que si usamos boostrap, hay clases como "bg-primary" y por ese motivo decidí agregar el n al ultimo para diferenciar estas clases que configuramos debajo. */
+
+.bg-primary-n {
+  background-color: var(--primary-color) !important;
+}
+.bg-secondary-n {
+  background-color: var(--secondary-color) !important;
+}
+.bg-accent-n {
+  background-color: var(--accent-color) !important;
+}
+.text-primary-n {
+  color: var(--primary-color) !important;
+}
+.text-secondary-n {
+  color: var(--secondary-color) !important;
+}
+.text-accent-n {
+  color: var(--accent-color) !important;
 }
