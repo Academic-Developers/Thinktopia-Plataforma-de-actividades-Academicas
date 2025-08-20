@@ -1,35 +1,67 @@
 
 
 :root {
+
+     /* Colores de marca: Identidad visual principal del proyecto (botones, encabezados, elementos destacados, etc.) Aclaración: No son lo mismo que los colores de fondo (background). */
     --primary-color: #6DB0E3; /* Celeste */
     --secondary-color: #1E3A8A; /* Azul oscuro */
-    --primary-color-hover: #1d4ed8; /* Azul mas fuerte */
-    --background-color: #E9EFFA;  /* Gris claro */
-    --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cositas (forms, etc)*/
+    --accent-color: #41a9e6;  /* Celeste mas oscuro para algunas cosas como botones */
 
-    /* Tipografia, fuentes */ 
+    /* Fondos: para el fondo general de la página o secciones */
+    --background-color:  #F3F4F6;  /* Fondo general del body, pagina: Gris muy claro, moderno */
+    --bg-secondary-color: #f9f0f0; /* Fondo secundario, para el container de 75rem, etc. */
+
+    --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cosas (Formularios Login, Register, etc)*/
+
+    /* Texto */ 
     --font-title-primary: 'Poppins', sans-serif;
     --font-title-secondary: 'Inter', sans-serif;
     --font-paragraph: 'Nunito', sans-serif;
     --font-nav: 'Poppins', sans-serif;
+    --text-color: #111827;  /* Gris oscuro */
+    --text-color-secondary: #6b7280; /* Gris medio */
 
-    /* Botones! Buttons */
-    --btn-primary-bg: #41a9e6; /* Celeste mas fuerte para botones BACKGROUND*/
+    /* Botones */
+    
+    --btn-primary-bg: var(--accent-color); /* Celeste mas fuerte para botones*/
     --btn-primary-text: white;
     --btn-primary-hover: var(--secondary-color);
     --btn-secondary-bg: var(--primary-color);
-    --btn-secondary-text: var(--color-white);
-    /* --btn-disabled-bg: #d1d5db;       
-    --btn-disabled-text: #9ca3af;  */
 
-    /* Text colores */
-      --text-color: #111827;  /* Gris oscuro */
-      --text-color-secondary: #6b7280; /* Gris medio */
-    
 }
 
- * {
+
+/* Reset */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Estilos globales */
+
+body {
+  background-color: var(--background-color); 
+}
+
+
+/* Clases para reutilizar. Le agrego el "n" al final para diferenciar que es NUESTRO. Ya que si usamos boostrap, hay clases como "bg-primary" y por ese motivo decidí agregar el n al ultimo para diferenciar estas clases que configuramos debajo. */
+
+.bg-primary-n {
+  background-color: var(--primary-color) !important;
+}
+.bg-secondary-n {
+  background-color: var(--secondary-color) !important;
+}
+.bg-accent-n {
+  background-color: var(--accent-color) !important;
+}
+.text-primary-n {
+  color: var(--primary-color) !important;
+}
+.text-secondary-n {
+  color: var(--secondary-color) !important;
+}
+.text-accent-n {
+  color: var(--accent-color) !important;
 }
