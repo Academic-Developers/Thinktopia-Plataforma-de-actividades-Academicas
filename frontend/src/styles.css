@@ -10,6 +10,7 @@
     /* Fondos: para el fondo general de la página o secciones */
     --background-color:  #F3F4F6;  /* Fondo general del body, pagina: Gris muy claro, moderno */
     --bg-secondary-color: #f9f0f0; /* Fondo secundario, para el container de 75rem, etc. */
+    --bg-card-color: #ffffff; /* Fondo de las tarjetas o cosas parecidas.*/
 
     --outer-background: linear-gradient(90deg,rgba(109, 176, 227, 1) 0%, rgba(76, 149, 214, 1) 16%, rgba(58, 114, 185, 1) 48%, rgba(30, 58, 138, 1) 99%); /* Gradiente de fondo, se aplica a algunas cosas (Formularios Login, Register, etc)*/
 
