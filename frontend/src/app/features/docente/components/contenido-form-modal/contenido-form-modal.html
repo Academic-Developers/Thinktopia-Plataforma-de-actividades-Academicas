@@ -1,0 +1,67 @@
+<div class="modal-backdrop" *ngIf="isOpen">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <form [formGroup]="contentForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Nuevo Contenido</h5>
+          <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="form-label">Título del Contenido</label>
+            <input type="text" id="title" class="form-control" formControlName="title"
+                   [ngClass]="{ 'is-invalid': contentForm.get('title')?.invalid && contentForm.get('title')?.touched }">
+            <div *ngIf="contentForm.get('title')?.invalid && contentForm.get('title')?.touched" class="invalid-feedback">
+              El título es requerido (mínimo 5 caracteres).
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="materia" class="form-label">Materia</label>
+              <select id="materia" class="form-select" formControlName="materia"
+                      [ngClass]="{ 'is-invalid': contentForm.get('materia')?.invalid && contentForm.get('materia')?.touched }">
+                <option value="" disabled>Seleccione una materia</option>
+                <option value="matematica">Matemática</option>
+                <option value="lengua">Lengua</option>
+              </select>
+              <div *ngIf="contentForm.get('materia')?.invalid && contentForm.get('materia')?.touched" class="invalid-feedback">
+                Debe seleccionar una materia.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="tema" class="form-label">Tema</label>
+              <input type="text" id="tema" class="form-control" formControlName="tema"
+                     [ngClass]="{ 'is-invalid': contentForm.get('tema')?.invalid && contentForm.get('tema')?.touched }">
+              <div *ngIf="contentForm.get('tema')?.invalid && contentForm.get('tema')?.touched" class="invalid-feedback">
+                El tema es requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea id="description" class="form-control" rows="3" formControlName="description"
+                      [ngClass]="{ 'is-invalid': contentForm.get('description')?.invalid && contentForm.get('description')?.touched }"></textarea>
+            <div *ngIf="contentForm.get('description')?.invalid && contentForm.get('description')?.touched" class="invalid-feedback">
+              La descripción es requerida (máximo 200 caracteres).
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="file" class="form-label">Archivo del Contenido</label>
+            <input type="file" id="file" class="form-control" (change)="onFileChange($event)"
+                   [ngClass]="{ 'is-invalid': contentForm.get('file')?.invalid && contentForm.get('file')?.touched }">
+            <div *ngIf="contentForm.get('file')?.invalid && contentForm.get('file')?.touched" class="invalid-feedback">
+              Debe adjuntar un archivo.
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="contentForm.invalid">Guardar Contenido</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
