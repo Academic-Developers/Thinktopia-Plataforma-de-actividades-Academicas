@@ -1,51 +1,51 @@
-import 
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background-color);
-  font-family: var(--font-nav);
-  color: var(--text-color);
-}
-
-main {
+.tabla-asistencias {
   width: 100%;
   max-width: 75rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  margin-bottom: 3rem;
+  padding: 1rem 0rem;
 }
-
 .tabla-asistencia{
   margin: 0 auto;
-  max-width: 80rem;
+  width: 100%;
+  max-width: 75rem;
 }
-.title-asistencia {
-  color: var(--secundary-color);
+.asistencia-title{
+  color: var(--color-secundary);
   text-align: center;
-  font-weight: 600;
-  margin: 1em auto;
   font-size: 1.9em;
   font-family: var(--font-title-primary);
 }
+
 .asistencia-container{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.form-select {
-  width: 25%;
-  border-radius: 1px solid #ccc;
-  border-radius: 0.4em;
-  border: none;
+.filter-section{
+   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.form-control, .form-select {
   font-family: var(--font-paragraph);
-  font-size: 1.1rem;
-  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  width: 25%;
+  padding: 0.5rem 0.75rem;
+  background-color: #fff;
+  color: var(--text-color);
+  transition: border-color 0.2s;
 }
 
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
 .filtro-text {
   font-family: var(--font-paragraph);
   font-size: 1.1rem;
@@ -55,14 +55,13 @@ main {
   color: var(--btn-primary-text);
   font-family: var(--font-title-secondary);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   padding: 0.6rem;
   border: none;
   border-radius: 0.5rem;
 }
-
 .subtitle-asistencia {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   font-size: 1.8rem;
   text-align: center;
   margin: 1em;
@@ -70,62 +69,81 @@ main {
   font-weight: bold;
 }
 
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.3);
-    border-radius: 8px;
-    overflow: hidden;
-   overflow-x: scroll;
-  }
-
-.contenido {
-  border-bottom: 1px solid #ddd;
-  transition: background-color 0.2s ease;
+/* ==== COMPONENTE TABLA ==== */
+.table-responsive {
+  border-radius: 10px;
+  overflow: auto;
+  width: 100%;
+  padding:1rem;
 }
-.title-table {
-  font-weight: 700;
+
+.table {
+  width: 100%;
+}
+
+.contenido{
+  background-color:var(--primary-color);
+  color: var(--bg-secondary-color);
   font-family: var(--font-title-primary);
-  user-select: none;
-  font-size: 1.2rem;
-  text-align: justify;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
-.text-table {
-  padding: 1rem;
-  font-family: var(--font-paragraph);
+.encabezado{
+  font-family: var(--font-title-secondary);
   font-size: 1.1rem;
-  font-weight: 500;
-  font-family: var(--font-paragraph);
+  font-weight: 700;
+}
+
+.table tbody tr {
+  background-color: var(--background-color);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.text{
   color: var(--text-color);
+  font-family: var(--font-paragraph);
+  font-size: 1.2rem;
+}
+.btn-primary {
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s ease;
+  margin: 0 auto;
+  color: white;
+  font-family: var(--font-title-primary);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-secondary-bg);
+  color: white;
+  border-color: var(--secondary-color);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+.centrar-boton {
+  display: flex;
+  justify-content: center;
 }
 /*MEDIAS QUERIES */
- @media (min-width: 250px) and (max-width: 700px) {
-  .title-asistencia {
-    font-size: 1.7rem;
-  }
-  .asistencia {
-    flex-direction: column;
-    align-items: center;
-  }
-  .form-select {
-    width: 50%;
-  }
-  .filtro-text {
-    font-size: 1.2em;
-  }
-  .button-asistencia {
-    margin: 1.5rem;
+@media (max-width: 768px) {
+  .contenido{
     font-size: 1.1rem;
   }
-  .subtitle-asistencia {
-    font-size: 1.5em;
+  .table td {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
   }
-  .title-table {
-    font-size: 1.3rem;
+  .text{
+    font-size: 1rem;
   }
-  .text-table {
-    font-size: 1.2rem;
+  .btn-primary {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
   }
 }
 
