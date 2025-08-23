@@ -3,7 +3,7 @@
 :root {
 
      /* Colores de marca: Identidad visual principal del proyecto (botones, encabezados, elementos destacados, etc.) Aclaración: No son lo mismo que los colores de fondo (background). */
-    --primary-color: #6DB0E3; /* Celeste */
+    --primary-color: #3794C7; /* Celeste */
     --secondary-color: #1E3A8A; /* Azul oscuro */
     --accent-color: #41a9e6;  /* Celeste mas oscuro para algunas cosas como botones */
 
