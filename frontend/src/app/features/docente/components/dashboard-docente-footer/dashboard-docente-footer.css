@@ -1,11 +1,28 @@
-.main-footer {
-  background: #222;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.95rem;
-  margin-top: 2rem;
-  position: fixed;
+
+.main-footer{
+  position: absolute;
   bottom: 0;
   width: 100%;
+  padding: 1rem;
+  background-color:var(--primary-color);
+  color: var(--btn-primary-text);
+  box-sizing: border-box;
+  
+}
+.logo-thinktopia {
+  max-width: 11.8rem;
+  height: auto;
+  flex-shrink: 0;
+  
+}
+.text-footer{
+  font-family:var(--font-title-primary); 
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+}
+.icons{
+  max-width: 10rem;
+  font-size: 1.1rem;
 }

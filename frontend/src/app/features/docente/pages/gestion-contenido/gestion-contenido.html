@@ -1,91 +1,81 @@
-<main class="container-fluid">
-  <section class="row my-4 align-items-center">
-    <div class="col-12 col-md-8">
-      <h1 class="dashboard-title">Gestión de Contenido</h1>
-    </div>
-    <div class="col-12 col-md-4 text-md-end">
-      <button class="btn btn-primary" id="btnAgregarContenido">
-        ➕ Agregar contenido
-      </button>
+<main class="container my-4 my-lg-5">
+  <!-- Encabezado de la sección -->
+  <header class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+    <h1 class="dashboard-title mb-3 mb-md-0">Gestión de Contenido</h1>
+    <button class="btn btn-primary d-flex align-items-center gap-2" (click)="openModal()">
+      <i class="fas fa-plus-circle"></i>
+      Agregar Contenido
+    </button>
+  </header>
+
+  <!-- Sección de Filtros -->
+  <section class="filters-section card card-body mb-4">
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+          <input type="text" class="form-control" placeholder="Buscar por título, tema o materia...">
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3">
+        <select class="form-select">
+          <option selected>Todas las materias</option>
+          <option value="matematica">Matemática</option>
+          <option value="lengua">Lengua</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-lg-3">
+        <select class="form-select">
+          <option selected>Todos los temas</option>
+          <option value="algebra">Álgebra</option>
+          <option value="gramatica">Gramática</option>
+        </select>
+      </div>
     </div>
   </section>
 
-  <section class="row my-4 filters-row">
-    <div class="col-12 col-md-4 mb-2 mb-md-0">
-      <input
-        type="text"
-        id="buscarContenido"
-        class="form-control"
-        placeholder="🔍 Buscar contenido por título, tema, materia..."
-      />
+  <!-- Grid de Contenido -->
+  <section class="row g-4">
+    <!-- Card de Contenido (Ejemplo 1) -->
+    <div class="col-md-6 col-lg-4">
+      <div class="content-card card h-100">
+        <div class="card-body d-flex flex-column">
+          <div class="mb-2">
+            <span class="badge bg-primary-n">Matemática</span>
+          </div>
+          <h5 class="card-title">Ejercicios de Álgebra</h5>
+          <p class="card-text flex-grow-1">Conjunto de ejercicios sobre ecuaciones de primer año para reforzar conceptos básicos.</p>
+          <div class="card-actions d-flex justify-content-end gap-2 mt-3">
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i> Editar</button>
+            <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-6 col-md-4">
-      <select class="form-select" id="filtroMateria">
-        <option value="">Todas las materias</option>
-        <option value="matematica">Matemática</option>
-        <option value="lengua">Lengua</option>
-        <!-- Más materias -->
-      </select>
-    </div>
-    <div class="col-6 col-md-4">
-      <select class="form-select" id="filtroTema">
-        <option value="">Todos los temas</option>
-        <option value="algebra">Álgebra</option>
-        <option value="gramatica">Gramática</option>
-        <!-- Más temas -->
-      </select>
-    </div>
-  </section>
 
-  <section class="row my-4">
-    <div class="card-container">
-      <div class="card-contenido">
-        <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
-        <p class="materia">Materia: Matemática</p>
-        <p class="descripcion">
-          Conjunto de ejercicios sobre ecuaciones de primer año.
-        </p>
-        <div class="acciones">
-          <button class="btn btn-warning btn-editar">✏️ Editar</button>
-          <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
-        </div>
-      </div>
-      <!-- Más cards aquí -->
-       <div class="card-contenido">
-        <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
-        <p class="materia">Materia: Matemática</p>
-        <p class="descripcion">
-          Conjunto de ejercicios sobre ecuaciones de primer año.
-        </p>
-        <div class="acciones">
-          <button class="btn btn-warning btn-editar">✏️ Editar</button>
-          <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
-        </div>
-      </div>
-      <!-- Otra card de prueba -->
-       <div class="card-contenido">
-        <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
-        <p class="materia">Materia: Matemática</p>
-        <p class="descripcion">
-          Conjunto de ejercicios sobre ecuaciones de primer año.
-        </p>
-        <div class="acciones">
-          <button class="btn btn-warning btn-editar">✏️ Editar</button>
-          <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
-        </div>
-      </div>
-      <!-- Otra card de prueba -->
-       <div class="card-contenido">
-        <h3 class="titulo-contenido">Ejercicios de Álgebra</h3>
-        <p class="materia">Materia: Matemática</p>
-        <p class="descripcion">
-          Conjunto de ejercicios sobre ecuaciones de primer año.
-        </p>
-        <div class="acciones">
-          <button class="btn btn-warning btn-editar">✏️ Editar</button>
-          <button class="btn btn-danger btn-eliminar">🗑️ Eliminar</button>
+    <!-- Card de Contenido (Ejemplo 2) -->
+    <div class="col-md-6 col-lg-4">
+      <div class="content-card card h-100">
+        <div class="card-body d-flex flex-column">
+          <div class="mb-2">
+            <span class="badge bg-secondary-n">Lengua</span>
+          </div>
+          <h5 class="card-title">Análisis de Sintaxis</h5>
+          <p class="card-text flex-grow-1">Guía práctica para identificar sujeto y predicado en oraciones complejas.</p>
+          <div class="card-actions d-flex justify-content-end gap-2 mt-3">
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i> Editar</button>
+            <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Las cartas que carge son como puse, de ejemplo. La idea es tener una carga dinamica mas adelante pero eso lo veremos en los siguientes Sprints -->
   </section>
 </main>
+
+<!-- Modal Component -->
+<app-contenido-form-modal 
+  [isOpen]="isModalOpen" 
+  (closeModal)="closeModal()">
+</app-contenido-form-modal>
