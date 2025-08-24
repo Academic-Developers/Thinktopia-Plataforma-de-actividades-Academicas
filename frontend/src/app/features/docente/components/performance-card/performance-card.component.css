@@ -1,0 +1,143 @@
+.rendimiento-card {
+	background: #FEFFFF;
+	border-radius: 1.2rem;
+	padding: 1.2rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.10), 0 1.5px 6px 0 rgba(44, 62, 80, 0.08);
+	transition: transform 0.32s cubic-bezier(.4,.2,.2,1), box-shadow 0.32s cubic-bezier(.4,.2,.2,1);
+	will-change: transform, box-shadow;
+	cursor: pointer;
+}
+
+.rendimiento-card:hover {
+	transform: translateY(-4px) scale(1.018);
+	box-shadow: 0 12px 32px 0 rgba(44, 62, 80, 0.13), 0 2px 8px 0 rgba(44, 62, 80, 0.10);
+	z-index: 2;
+}
+
+.rendimiento-card-header {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+}
+
+.avatar {
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	background: #f5f6fa;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #666;
+	font-size: 1.1rem;
+}
+
+.nombre {
+	font-weight: 600;
+	color: var(--text-color);
+	flex: 1;
+}
+
+.nota {
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 0.2rem 0.7rem;
+	border-radius: 0.5rem;
+	background: #f5f6fa;
+}
+
+.nota.excelente {
+	background: #e6f9f0;
+	color: #1dbf73;
+}
+
+.nota.bueno {
+	background: #e6f0fa;
+	color: #3498db;
+}
+
+.nota.atencion {
+	background: #fff6e0;
+	color: #e67e22;
+}
+
+.nota.riesgo {
+	background: #ffe5e5;
+	color: #e74c3c;
+}
+
+.rendimiento-card-badge {
+	font-size: 0.95rem;
+	font-weight: 600;
+	border-radius: 0.5rem;
+	padding: 0.2rem 0.7rem;
+	width: fit-content;
+}
+
+.rendimiento-card-badge.excelente {
+	background: #e6f9f0;
+	color: #1dbf73;
+}
+
+.rendimiento-card-badge.bueno {
+	background: #e6f0fa;
+	color: #3498db;
+}
+
+.rendimiento-card-badge.atencion {
+	background: #fff6e0;
+	color: #e67e22;
+}
+
+.rendimiento-card-badge.riesgo {
+	background: #ffe5e5;
+	color: #e74c3c;
+}
+
+.rendimiento-card-progreso {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	font-size: 0.98rem;
+}
+
+.progreso-bar {
+	flex: 1;
+	height: 8px;
+	background: #f5f6fa;
+	border-radius: 4px;
+	overflow: hidden;
+	margin: 0 0.5rem;
+	position: relative;
+}
+
+.progreso-bar > div {
+	height: 100%;
+	border-radius: 4px;
+}
+
+.progreso-bar.excelente > div {
+	background: #1dbf73;
+}
+
+.progreso-bar.bueno > div {
+	background: #3498db;
+}
+
+.progreso-bar.atencion > div {
+	background: #e67e22;
+}
+
+.progreso-bar.riesgo > div {
+	background: #e74c3c;
+}
+
+.progreso-valor {
+	min-width: 36px;
+	text-align: right;
+	font-weight: 600;
+}
