@@ -1,0 +1,105 @@
+<section class="table-container">
+    <article>
+        <div [class]="responsive ? 'table-responsive' : ''">
+            <table [class]="getTableClasses()">
+                <!-- Header -->
+                <thead>
+                    <tr>
+                        <th *ngFor="let column of columns" 
+                            [ngClass]="getColumnClass(column)"
+                            [style.width]="column.width"
+                            [attr.scope]="'col'"
+                            (click)="onSort(column)">
+                            {{ column.label }}
+                            <span *ngIf="column.sortable && sortable" 
+                                  class="sort-indicator"
+                                  [ngClass]="'sort-' + getSortIcon(column)">
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <!-- Body -->
+                <tbody *ngIf="!loading">
+                    <!-- Filas de datos -->
+                    <tr *ngFor="let row of data; let i = index"
+                        [ngClass]="getRowClass(row)"
+                        (click)="onRowClick(row, i)">
+                        
+                        <td *ngFor="let column of columns"
+                            [ngClass]="getCellClass(column, row[column.key])">
+                            
+                            <!-- Celda normal -->
+                            <ng-container *ngIf="column.type !== 'action'">
+                                <ng-container [ngSwitch]="column.type">
+                                    <!-- Estado con badge -->
+                                    <span *ngSwitchCase="'status'" 
+                                          class="badge"
+                                          [ngClass]="getStatusBadgeClass(row[column.key])">
+                                        {{ formatCellValue(column, row[column.key]) }}
+                                    </span>
+                                    
+                                    <!-- Fecha -->
+                                    <span *ngSwitchCase="'date'">
+                                        {{ formatCellValue(column, row[column.key]) }}
+                                    </span>
+                                    
+                                    <!-- Texto por defecto -->
+                                    <span *ngSwitchDefault>
+                                        {{ formatCellValue(column, row[column.key]) }}
+                                    </span>
+                                </ng-container>
+                            </ng-container>
+                            
+                            <!-- Celda de acciones -->
+                            <ng-container *ngIf="column.type === 'action'">
+                                <div class="action-buttons">
+                                    <ng-container *ngFor="let action of getActionsForRow(row)">
+                                        <button *ngIf="shouldShowAction(action, row)"
+                                                type="button"
+                                                [ngClass]="getActionVariantClass(action.variant)"
+                                                [title]="action.tooltip || action.label"
+                                                (click)="onActionClick(action.id, row, i, $event)">
+                                            
+                                            <img *ngIf="action.icon" 
+                                                 [src]="action.icon" 
+                                                 [alt]="action.label + ' Icon'"
+                                                 class="action-icon"
+                                                 width="16" 
+                                                 height="16" />
+                                            
+                                            <span>{{ action.label }}</span>
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+                        </td>
+                    </tr>
+
+                    <!-- Fila de estado vacío -->
+                    <tr *ngIf="data.length === 0" class="empty-row">
+                        <td [attr.colspan]="columns.length" class="text-center py-4">
+                            <div class="empty-state">
+                                <img src="/icons/list.svg" 
+                                     alt="Empty Icon" 
+                                     width="48" 
+                                     height="48" 
+                                     class="empty-icon" />
+                                <p class="empty-message">{{ emptyMessage }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+                <!-- Loading state -->
+                <tbody *ngIf="loading">
+                    <tr *ngFor="let item of [1,2,3,4,5]" class="loading-row">
+                        <td *ngFor="let column of columns" class="loading-cell">
+                            <div class="loading-skeleton"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </article>
+</section>

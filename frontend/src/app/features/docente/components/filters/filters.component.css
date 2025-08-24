@@ -1,0 +1,550 @@
+/* ==== ESTILOS DEL COMPONENTE FILTERS ==== */
+/* Archivo principal de estilos siguiendo mejores prácticas de CSS modular */
+
+/* ==== CONTENEDOR HOST DEL COMPONENTE ==== */
+:host {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: visible;
+	position: relative;
+	z-index: 1;
+	height: 4rem;
+	min-height: 4rem;
+}
+
+/* ==== CONTENEDOR DE FILTROS (BARRA PRINCIPAL) ==== */
+.filters-container {
+	display: flex;
+	gap: 1rem;
+	margin: 0;
+	padding: 0 2rem;
+	box-sizing: border-box;
+	background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
+	border: 1px solid rgba(229, 231, 235, 0.8);
+	border-radius: 16px;
+	box-shadow: 
+		0 4px 20px rgba(0, 0, 0, 0.08),
+		0 1px 6px rgba(0, 0, 0, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	min-height: 4rem;
+	height: 4rem;
+	position: relative;
+	width: 100%;
+	overflow: visible;
+}
+
+.filters-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 12px;
+	right: 12px;
+	height: 3px;
+	background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+	border-radius: 10px;
+	z-index: 1;
+}
+
+/* ==== INTEGRACIÓN CON CONTENEDOR PADRE ==== */
+.filters-and-actions-container .filters-container {
+	margin: 0;
+	flex: 1;
+	height: 4rem;
+	min-height: 4rem;
+	padding: 0 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	max-width: none;
+}
+
+/* ==== CENTRADO DEL HOST EN CONTENEDOR PADRE ==== */
+:host-context(.filters-and-actions-container) {
+	display: flex;
+	align-items: center;
+	height: 4rem;
+	min-height: 4rem;
+	margin: 0;
+}
+
+/* ==== ESTILOS PARA ELEMENTOS FUERA DEL COMPONENTE ==== */
+/* Usando ::ng-deep para afectar elementos padre que contienen este componente */
+:host ::ng-deep .filters-and-actions-container {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	height: 4rem;
+	min-height: 4rem;
+	width: 100%;
+	margin-bottom: 1.5rem;
+}
+
+:host ::ng-deep .filters-and-actions-container .action-buttons {
+	display: flex;
+	align-items: center;
+	height: 4rem;
+	min-height: 4rem;
+	flex-shrink: 0;
+}
+
+:host ::ng-deep .filters-and-actions-container .action-buttons .btn {
+	height: auto;
+	padding: 0.75rem 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	margin: 0;
+}
+
+:host ::ng-deep .filters-and-actions-container .btn {
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+}
+
+/* ==== DISTRIBUCIÓN UNIFORME DE FILTROS ==== */
+.filters-container .btn-group {
+	flex: 1;
+	min-width: 140px;
+	max-width: none;
+	margin: 0 0.5rem;
+	position: relative;
+	z-index: 100;
+}
+
+.filters-container .btn-group:first-child {
+	margin-left: 0;
+}
+
+.filters-container .btn-group:last-child {
+	margin-right: 0;
+}
+
+/* Para que todos los botones tengan el mismo tamaño y ocupen todo el espacio */
+.filters-container .btn-group .dropdown-toggle {
+	width: 100%;
+	min-width: 140px;
+	flex-grow: 1;
+	text-align: left;
+	font-weight: 600;
+	display: inline-block;
+	padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+	position: relative;
+}
+
+/* Asegurar que los filtros se distribuyan uniformemente */
+.filters-container > * {
+	flex: 1;
+}
+
+/* ==== BOTONES DROPDOWN PRINCIPALES ==== */
+.btn.dropdown-toggle,
+.btn-outline-secondary.dropdown-toggle,
+.btn.btn-outline-secondary {
+	font-weight: 600;
+	align-items: center;
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	border: 2px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 0.75rem 1rem;
+	font-size: 0.9rem;
+	color: #374151;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	box-shadow: 
+		0 1px 3px rgba(0, 0, 0, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	position: relative;
+	min-width: 10rem;
+}
+
+.btn.dropdown-toggle:hover,
+.btn-outline-secondary.dropdown-toggle:hover,
+.btn.btn-outline-secondary:hover {
+	border-color: var(--primary-color);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	box-shadow: 
+		0 4px 12px rgba(0, 0, 0, 0.1),
+		0 0 0 3px rgba(59, 130, 246, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	transform: translateY(-1px);
+	color: var(--primary-color);
+}
+
+.btn.dropdown-toggle:focus,
+.btn.dropdown-toggle.show,
+.btn-outline-secondary.dropdown-toggle:focus,
+.btn-outline-secondary.dropdown-toggle.show,
+.btn.btn-outline-secondary:focus,
+.btn.btn-outline-secondary.show {
+	outline: none;
+	border-color: var(--primary-color);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	box-shadow: 
+		0 4px 16px rgba(0, 0, 0, 0.12),
+		0 0 0 4px rgba(59, 130, 246, 0.15);
+	transform: translateY(-1px);
+	color: var(--primary-color);
+}
+
+/* ==== MENÚS DROPDOWN ==== */
+:host .filters-container .btn-group .dropdown-menu {
+	position: absolute;
+	top: calc(100% + 0.25rem);
+	left: 0;
+	z-index: 10000;
+	min-width: 100%;
+	width: 100%;
+	margin: 0;
+	background: #ffffff;
+	border: none;
+	border-radius: 12px;
+	box-shadow: 
+		0 20px 60px rgba(0, 0, 0, 0.15),
+		0 8px 30px rgba(0, 0, 0, 0.1),
+		0 4px 15px rgba(0, 0, 0, 0.08);
+	padding: 0.5rem 0;
+	max-height: 20rem;
+	overflow-y: auto;
+	transform: translateY(0);
+	animation: dropdownSlide 0.2s ease-out;
+}
+
+/* Animación suave para el dropdown */
+@keyframes dropdownSlide {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+:host .filters-container .btn-group .dropdown-menu::-webkit-scrollbar {
+	width: 6px;
+}
+
+:host .filters-container .btn-group .dropdown-menu::-webkit-scrollbar-track {
+	background: #f1f5f9;
+	border-radius: 3px;
+}
+
+:host .filters-container .btn-group .dropdown-menu::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 3px;
+}
+
+:host .filters-container .btn-group .dropdown-menu::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
+}
+
+/* Asegurar posicionamiento correcto del dropdown */
+:host .filters-container .btn-group {
+	position: relative;
+	z-index: 1;
+}
+
+/* ==== ITEMS DEL DROPDOWN ==== */
+:host .filters-container .btn-group .dropdown-menu .dropdown-item {
+	padding: 0.75rem 1rem;
+	color: #374151;
+	font-size: 0.9rem;
+	font-weight: 500;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	display: block;
+	transition: all 0.2s ease;
+	position: relative;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+:host .filters-container .btn-group .dropdown-menu .dropdown-item:hover {
+	background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	color: var(--primary-color);
+	transform: translateX(2px);
+}
+
+:host .filters-container .btn-group .dropdown-menu .dropdown-item:active {
+	background: var(--primary-color);
+	color: white;
+}
+
+/* ==== INDICADOR VISUAL DE SELECCIÓN ==== */
+:host .filters-container .btn-group .dropdown-menu .dropdown-item.active {
+	background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+	color: var(--primary-color);
+	position: relative;
+	font-weight: 600;
+}
+
+:host .filters-container .btn-group .dropdown-menu .dropdown-item.active::after {
+	content: '✓';
+	color: #2563eb;
+	font-weight: 600;
+	float: right;
+}
+
+/* ==== INPUTS DE FECHA EN DROPDOWN ==== */
+:host .filters-container .btn-group .dropdown-menu .p-3 {
+	padding: 1rem;
+}
+
+:host .filters-container .btn-group .dropdown-menu .form-control {
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	padding: 0.75rem;
+	font-size: 0.875rem;
+	width: 100%;
+	background-color: #ffffff;
+	transition: all 0.2s ease;
+}
+
+:host .filters-container .btn-group .dropdown-menu .form-control:focus {
+	border-color: var(--primary-color);
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+	outline: none;
+}
+
+:host .filters-container .btn-group .dropdown-menu .form-label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #4b5563;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+/* ==== FLECHA PERSONALIZADA DEL DROPDOWN ==== */
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+.dropdown-toggle {
+	background-image: url('/icons/chevron-compact-down.svg');
+	background-repeat: no-repeat;
+	background-position: calc(100% - 0.75rem) center;
+	background-size: 14px 14px;
+}
+
+/* ==== MEJORAS ADICIONALES PARA DROPDOWNS ==== */
+/* Asegurar que el dropdown tenga el comportamiento correcto */
+:host .filters-container .btn-group .dropdown-menu.show {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+	z-index: 9999;
+	position: absolute;
+	top: calc(100% + 0.25rem);
+	left: 0;
+	transform: none;
+	will-change: auto;
+}
+
+/* Mejorar el estado activo del botón dropdown */
+:host .filters-container .btn-group .dropdown-toggle.show,
+:host .filters-container .btn-group .dropdown-toggle:focus {
+	box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+/* Forzar que todos los contenedores permitan overflow */
+:host .filters-and-actions-container,
+:host .filters-and-actions-container *,
+:host app-filters,
+:host app-filters * {
+	overflow: visible;
+}
+
+/* Prevenir que Bootstrap mueva el dropdown */
+:host .filters-container .btn-group .dropdown-menu[data-bs-popper] {
+	position: absolute;
+	top: calc(100% + 0.25rem);
+	left: 0;
+	transform: none;
+	margin: 0;
+}
+
+/* ==== RESPONSIVE DESIGN ==== */
+
+/* ==== VISIBILIDAD POR DISPOSITIVO ==== */
+/* Desktop y Tablet grande: Mostrar filtros normales, ocultar versión móvil */
+.filters-container {
+	display: flex;
+}
+
+.mobile-filters {
+	display: none;
+}
+
+/* Tablet pequeño y móvil: Ocultar filtros normales, mostrar versión móvil */
+@media (max-width: 991.98px) {
+	.filters-container {
+		display: none !important;
+	}
+	
+	.mobile-filters {
+		display: block !important;
+		margin: 0 0 1rem 0;
+		padding: 0;
+	}
+}
+
+/* ==== ESTILOS RESPONSIVE PARA DESKTOP ==== */
+@media (max-width: 1200px) and (min-width: 992px) {
+	.filters-container {
+		gap: 0.875rem;
+		padding: 1.25rem 1.5rem;
+	}
+	
+	.btn.dropdown-toggle,
+	.btn-outline-secondary.dropdown-toggle,
+	.btn.btn-outline-secondary {
+		padding: 0.65rem 0.9rem;
+		font-size: 0.85rem;
+		min-width: 120px;
+	}
+	
+	.filters-container .btn-group .dropdown-toggle {
+		padding: 0.65rem 2rem 0.65rem 1rem;
+	}
+}
+
+/* ==== ESTILOS RESPONSIVE PARA MÓVIL ==== */
+@media (max-width: 991.98px) {
+	/* Botón principal para mostrar filtros */
+	.mobile-filters .btn-filtros-custom {
+		border: 2px solid var(--primary-color);
+		color: var(--primary-color);
+		background-color: transparent;
+		font-weight: 600;
+		padding: 0.75rem 1rem;
+		border-radius: 12px;
+		transition: all 0.3s ease;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+	
+	.mobile-filters .btn-filtros-custom:hover,
+	.mobile-filters .btn-filtros-custom:focus {
+		background-color: var(--primary-color);
+		color: white;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	}
+	
+	/* Card contenedor de filtros móviles */
+	.mobile-filters .card {
+		border: 1px solid #e5e7eb;
+		border-radius: 12px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		margin-top: 0.5rem;
+		overflow: hidden;
+	}
+	
+	.mobile-filters .card-body {
+		padding: 1rem;
+		background-color: #fafbfc;
+	}
+	
+	/* Botones de filtro en móvil */
+	.mobile-filters .btn-outline-secondary {
+		border: 1px solid #d1d5db;
+		color: #374151;
+		background-color: #f9fafb;
+		font-weight: 500;
+		padding: 0.75rem 1rem;
+		border-radius: 8px;
+		transition: all 0.2s ease;
+	}
+	
+	.mobile-filters .btn-outline-secondary:hover {
+		background-color: #f3f4f6;
+		border-color: var(--primary-color);
+		color: var(--primary-color);
+	}
+	
+	/* Lista de opciones en móvil */
+	.mobile-filters .list-group-item {
+		border: none;
+		padding: 0.5rem 0;
+		background-color: transparent;
+	}
+	
+	.mobile-filters .list-group-item a {
+		color: #374151;
+		text-decoration: none;
+		font-weight: 500;
+		padding: 0.5rem 0.75rem;
+		border-radius: 6px;
+		display: block;
+		transition: all 0.2s ease;
+	}
+	
+	.mobile-filters .list-group-item a:hover {
+		background-color: #f3f4f6;
+		color: var(--primary-color);
+		transform: translateX(4px);
+	}
+	
+	/* Inputs de fecha en móvil */
+	.mobile-filters .form-control {
+		border: 1px solid #d1d5db;
+		border-radius: 8px;
+		padding: 0.75rem;
+		font-size: 0.9rem;
+		transition: all 0.2s ease;
+		background-color: #ffffff;
+	}
+	
+	.mobile-filters .form-control:focus {
+		border-color: var(--primary-color);
+		box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+		outline: none;
+	}
+	
+	/* Labels en móvil */
+	.mobile-filters .form-label {
+		font-weight: 600;
+		color: #374151;
+		margin-bottom: 0.5rem;
+		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.mobile-filters .btn-filtros-custom {
+		font-size: 0.9rem;
+		padding: 0.875rem 1rem;
+	}
+	
+	.mobile-filters .card-body {
+		padding: 0.875rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.mobile-filters .btn-filtros-custom {
+		font-size: 0.85rem;
+		padding: 1rem;
+	}
+	
+	.mobile-filters .card-body {
+		padding: 0.75rem;
+	}
+	
+	.mobile-filters .btn-outline-secondary {
+		font-size: 0.85rem;
+		padding: 0.75rem 0.875rem;
+	}
+}
