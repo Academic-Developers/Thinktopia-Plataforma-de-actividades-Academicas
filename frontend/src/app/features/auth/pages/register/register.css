@@ -30,7 +30,8 @@
   width: 100%;
   max-width: 35rem;
   min-height: 24rem;
-  max-height: 35rem;
+  max-height: 50rem;
+  overflow-y: auto;
   
 }
 
