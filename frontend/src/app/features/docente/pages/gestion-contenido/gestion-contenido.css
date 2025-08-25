@@ -6,7 +6,7 @@
 /* Título del Dashboard */
 .dashboard-title {
   font-family: var(--font-title-primary);
-  color: var(--secondary-color);
+  color: var(--text-color);
   font-size: 2.2rem;
   font-weight: 600;
 }

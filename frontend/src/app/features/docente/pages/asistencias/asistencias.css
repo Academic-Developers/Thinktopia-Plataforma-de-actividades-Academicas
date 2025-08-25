@@ -61,7 +61,7 @@
   border-radius: 0.5rem;
 }
 .subtitle-asistencia {
-  color: var(--secondary-color);
+  color: var(--text-color);
   font-size: 1.8rem;
   text-align: center;
   margin: 1em;
@@ -72,13 +72,15 @@
 /* ==== COMPONENTE TABLA ==== */
 .table-responsive {
   border-radius: 10px;
-  overflow: auto;
+  margin-top: 5rem;
   width: 100%;
   padding:1rem;
+  overflow-y: auto;
 }
 
 .table {
   width: 100%;
+  overflow-y: auto;
 }
 
 .contenido{

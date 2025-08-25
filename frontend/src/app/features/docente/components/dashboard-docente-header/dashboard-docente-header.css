@@ -1,3 +1,4 @@
+
 header {
   background-color: var(--primary-color);
   display: flex;
@@ -13,14 +14,23 @@ header {
 }
 
 .logo {
-  width: 10rem;
+ width: 10rem;
   height: auto;
   transition: transform 0.2s;
   cursor: pointer;
   order: 2; /* Para controlar el orden en mobile */
 }
+
 .logo:hover {
   transform: scale(1.05);
+}
+
+.nav-link-logo {
+  width: 10rem;
+  height: auto;
+  transition: transform 0.2s;
+  cursor: pointer;
+  order: 2; /* Para controlar el orden en mobile */
 }
 
 .hamburger {
@@ -73,14 +83,13 @@ header {
   font-family: var(--font-nav);
   text-decoration: none;
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   font-weight: 500;
   padding: 0.5em 1.2em;
   border-radius: 0.375em;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   display: inline-block;
 }
-
 
 .nav-link:hover,
 .nav-link:focus {
