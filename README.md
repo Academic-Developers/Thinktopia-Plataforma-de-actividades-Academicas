@@ -50,8 +50,8 @@ El propósito principal del sistema es facilitar la organización de actividades
 | Nombre | Rol | Responsabilidades | Contacto |
 |---------|-----|---------------------|----------|
 | Cáceres Giménez Cesia Fiorella | Desarrollador | Gestión, análisis, diseño, testing | cesiaf.gimenez@gmail.com |
-| Francisco Nicolas Toro Goitea | Desarrollador | Gestión, análisis, diseño, testing | torofrancisco13@gmail.com |
-| Milagros Magaly Cabrera | Scrum | Gestión,desarrollo, análisis, diseño,testing | milagrosmagalycabrera@gmail.com |
+| Francisco Nicolas Toro Goitea | Desarrollador | Gestión, análisis, diseño, testing  | torofrancisco13@gmail.com |
+| Milagros Magaly Cabrera | Scrum | Gestión,desarrollo, análisis, diseño              | milagrosmagalycabrera@gmail.com |
 
 
 ---
@@ -59,12 +59,11 @@ El propósito principal del sistema es facilitar la organización de actividades
 ## Requisitos Previos
 - Navegador web moderno (Chrome, Firefox, Edge)
 - Conexión a Internet
-
----
 ________________________________________
 ## Notas adicionales
 
 •	Este proyecto se desarrolla bajo una metodología ágil, con énfasis en la flexibilidad y en las necesidades del usuario final.
+
 •	La interfaz inicial tendrá accesibilidad limitada, priorizando funcionalidades clave en etapas tempranas.
 ________________________________________
 ## Licencia
