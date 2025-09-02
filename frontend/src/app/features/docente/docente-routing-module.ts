@@ -8,7 +8,7 @@ import { Reportes } from './pages/reportes/reportes';
 import { Estadisticas } from './pages/estadisticas/estadisticas';
 import { GestionContenido } from './pages/gestion-contenido/gestion-contenido';
 import { DocenteLayout } from './components/docente-layout/docente-layout';
-
+ 
 export const routes: Routes = [
   {path: '', component:DocenteLayout, children: [
   { path: 'dashboard', component:Dashboard },
