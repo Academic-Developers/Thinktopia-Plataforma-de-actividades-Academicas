@@ -12,50 +12,12 @@ body {
 	font-family: var(--font-paragraph);
 }
 
-/* ==== SECCIÓN DE TÍTULO ==== */
-.title,
+/* ==== SECCIÓN CONTAINERS ==== */
 .section-container {
 	max-width: 75rem;
 	margin: 0 auto;
-	padding: 2rem 1rem 1rem;
+	padding: 2rem 1rem 0.5rem; 
 	box-sizing: border-box;
-}
-.title-icon {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	margin-bottom: 2rem;
-	flex-wrap: nowrap;
-	overflow: hidden;
-	min-width: 0;
-}
-.title-icon img {
-	width: 40px;
-	height: 40px;
-	flex-shrink: 0;
-	transition: transform 0.3s ease;
-}
-.title-icon img:hover {
-	transform: rotate(-10deg) scale(1.1);
-}
-.title-icon h1 {
-	font-size: 2rem;
-	font-weight: bold;
-	color: var(--text-color);
-	font-family: var(--font-title-primary);
-	margin: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	min-width: 0;
-	flex-grow: 1;
-	line-height: 1.2;
-	padding-bottom: 2px;
-}
-.secondary-title {
-	font-size: 2rem;
-	font-family: var(--font-title-primary);
-	color: var(--text-primary);
 }
 
 /* ==== SECCIÓN DE FILTROS ==== */
@@ -123,21 +85,29 @@ body {
 	padding: 2rem 5rem 2rem 5rem;
 }
 
+.secondary-title {
+	color: #888;
+	font-family: var(--font-title-primary);
+	font-size: 1rem;
+	margin: 0 0 1.5rem 0;
+}
+
+
 /* ==== COMPONENTE CARDS DE REPORTES ==== */
 .reports-container {
 	max-width: 75rem;
 	margin: 0 auto;
-	padding: 2rem 1rem;
+	padding: 0 1rem 4rem;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 2rem;
+	gap: 1.5rem;
 }
 .custom-card {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	background-color: var(--background-color);
-	padding: 1rem;
+	padding: 1.5rem;
 	border-radius: 8px;
 	box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.10), 0 1.5px 6px 0 rgba(44, 62, 80, 0.08);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -164,7 +134,7 @@ body {
 }
 .card-content {
 	flex: 1;
-	padding: 0 1rem;
+	padding: 0 1.5rem;
 }
 .card-title {
 	margin: 0;
@@ -234,23 +204,26 @@ body {
 		padding: 1rem;
 	}
 	.reports-container {
-		padding: 1rem;
+		padding: 0 1rem 3rem;
 	}
 	.card-title {
 		-webkit-line-clamp: unset;
+		line-clamp: unset;
 		white-space: normal;
 	}
 }
 @media (max-width: 576px) {
-	.title-icon h1 {
-		font-size: 1.3rem;
-	}
-	.title-icon img {
-		width: 32px;
-		height: 32px;
-	}
 	.secondary-title {
 		font-size: 1.4rem;
+	}
+	.section-container {
+		padding: 1.5rem 1rem 0.5rem;
+	}
+	.filters-and-actions-container {
+		padding: 0 1rem 1.5rem 1rem;
+	}
+	.reports-container {
+		padding: 0 1rem 2rem;
 	}
 	.filters-container {
 		flex-direction: column;
@@ -297,4 +270,234 @@ footer {
 }
 .footer-text p {
 	margin: 0.5rem 0;
+}
+
+/* ==== CONTENEDOR DE FILTROS Y ACCIONES ==== */
+.filters-and-actions-container {
+	display: flex;
+	gap: 1rem;
+	width: 75rem;
+	margin: 0 auto;
+	padding: 0 1rem 0.5rem 1rem; 
+	align-items: center;
+	justify-content: center;
+}
+
+.filters-and-actions-container .filters-container {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0.625rem 1.25rem;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	height: 3.75rem;
+	min-height: 3.75rem;
+}
+
+/* ==== CLASES DE ANCHO PARA FILTROS ==== */
+.w-25 {
+	width: 25%;
+	min-width: 120px;
+}
+
+.w-40 {
+	width: 40%;
+	min-width: 160px;
+}
+
+/* ==== ESTILOS PARA DROPDOWNS DENTRO DEL FILTRO ==== */
+.filters-container .btn-group {
+	position: relative;
+	margin-right: 0.25rem;
+}
+
+.filters-container .btn-outline-secondary {
+	border: none;
+	color: #374151;
+	background-color: #ffffff;
+	border-radius: 8px;
+	padding: 0.625rem 0.75rem;
+	font-weight: 700;
+	font-size: 0.875rem;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	min-width: auto;
+	max-width: max-content;
+	white-space: nowrap;
+	flex-shrink: 0;
+	height: auto;
+}
+
+.filters-container .btn-outline-secondary:hover {
+	background-color: #f9fafb;
+	color: #374151;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters-container .dropdown-toggle {
+	text-align: left;
+	font-weight: 700;
+	display: inline-block;
+	padding: 0.625rem 2rem 0.625rem 0.75rem;
+}
+
+/* Personalización de la flecha del dropdown */
+.filters-container .dropdown-toggle::after {
+	display: none !important;
+}
+
+.filters-container .dropdown-toggle {
+	background-image: url('/icons/chevron-compact-down.svg');
+	background-repeat: no-repeat;
+	background-position: calc(100% - 0.5rem) center;
+	background-size: 14px 14px;
+}
+
+/* ==== MENÚ DESPLEGABLE ==== */
+.filters-container .dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	min-width: 200px;
+	margin: 0.25rem 0 0;
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+	padding: 0.5rem 0;
+}
+
+.filters-container .dropdown-menu .dropdown-item {
+	padding: 0.75rem 1rem;
+	color: #374151;
+	font-size: 0.875rem;
+	font-weight: 700;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+	position: relative;
+	overflow: hidden;
+}
+
+.filters-container .dropdown-menu .dropdown-item:hover {
+	background-color: #f3f4f6;
+	color: #1f2937;
+}
+
+.action-buttons {
+	display: flex;
+	gap: 0.5rem;
+	flex-shrink: 0;
+	align-items: center;
+	margin-top: 0;
+}
+
+.action-buttons .btn-primary {
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	border-radius: 8px;
+	padding: 0.625rem 1.25rem;
+	font-weight: 500;
+	font-size: 0.875rem;
+	white-space: nowrap;
+	transition: all 0.2s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 3.75rem;
+}
+
+.action-buttons .btn-primary:hover {
+	background-color: #2563eb;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	transform: translateY(-1px);
+}
+
+/* ==== BOTÓN MEJORADO CON EFECTO BRILLANTE ==== */
+.btn-enhanced {
+	background: linear-gradient(135deg, var(--primary-color) 0%, #4a90e2 100%) !important;
+	color: white !important;
+	font-family: var(--font-title-primary) !important;
+	font-weight: 600 !important;
+	font-size: 1rem !important;
+	padding: 0.875rem 1.75rem !important;
+	border: none !important;
+	border-radius: 12px !important;
+	box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	white-space: nowrap !important;
+	position: relative !important;
+	overflow: hidden !important;
+	height: auto !important;
+}
+
+.btn-enhanced::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+	transition: left 0.5s;
+}
+
+.btn-enhanced:hover::before {
+	left: 100%;
+}
+
+.btn-enhanced:hover {
+	transform: translateY(-2px) !important;
+	box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4) !important;
+	background: linear-gradient(135deg, #0056b3 0%, #357abd 100%) !important;
+}
+
+.btn-enhanced:active {
+	transform: translateY(0) !important;
+	box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+}
+
+.btn-enhanced .btn-icon {
+	width: 18px;
+	height: 18px;
+	filter: brightness(0) invert(1);
+}
+
+/* ==== MEDIA QUERIES PARA FILTROS Y ACCIONES ==== */
+@media (max-width: 1024px) {
+	.filters-and-actions-container {
+		display: none !important;
+	}
+}
+
+@media (min-width: 1025px) {
+	.filters-and-actions-container {
+		display: flex !important;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.filters-and-actions-container {
+		display: none;
+	}
 }
