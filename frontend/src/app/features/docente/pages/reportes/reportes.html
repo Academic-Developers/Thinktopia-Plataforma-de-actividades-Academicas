@@ -1,80 +1,23 @@
 <main>
-    <section class="title">
-        <section class="title-icon">
-            <img src="/icons/pencil.svg" alt="Pencil Icon" width="50" height="50" />
-            <h1>Reportes</h1>
-        </section>
-    </section>
-    <!-- Versión de escritorio -->
-    <section class="filters-container justify-content-between align-items-center px-4">
-        <div class="btn-group w-25">
-            <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Filtrar por categoría
+    <app-page-title 
+        iconSrc="/icons/pencil.svg" 
+        iconAlt="Pencil Icon" 
+        title="Reportes">
+    </app-page-title>
+    
+    <div class="filters-and-actions-container">
+        <app-filters 
+            [filters]="filterConfigs"
+            [showMobileVersion]="true"
+            mobileCollapseId="reportesFilters"
+            (filterChange)="onFilterChange($event)"
+            (buttonClick)="onFilterButtonClick($event)">
+        </app-filters>
+        
+        <div class="action-buttons">
+            <button type="button" class="btn btn-primary btn-enhanced" (click)="onGenerateReportClick()">
+                Generar
             </button>
-
-            <ul class="dropdown-menu w-100">
-                <li><a class="dropdown-item" href="#">Arte digital</a></li>
-                <li><a class="dropdown-item" href="#">Software</a></li>
-                <li><a class="dropdown-item" href="#">Ciencia de datos</a></li>
-            </ul>
-        </div>
-
-        <div class="btn-group w-25">
-            <button class="btn btn-outline-secondary btn-sm dropdown-toggle w-100" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Filtrar por Periodo
-            </button>
-            <ul class="dropdown-menu w-100">
-                <li><a class="dropdown-item" href="#">Primer Periodo</a></li>
-                <li><a class="dropdown-item" href="#">Segundo Periodo</a></li>
-            </ul>
-        </div>
-
-        <button class="btn btn-primary btn-sm h-100">
-            Generar
-        </button>
-    </section>
-
-    <!-- Versión móvil -->
-    <div class="mobile-filters px-3">
-        <button class="btn btn-primary btn-outline-primary btn-filtros-custom w-100 mb-2" data-bs-toggle="collapse"
-            data-bs-target="#mobileFilters" aria-expanded="false">
-            Mostrar filtros
-        </button>
-        <div class="collapse" id="mobileFilters">
-            <div class="card card-body">
-                <!-- Categoría -->
-                <div class="mb-3">
-                    <button class="btn btn-outline-secondary w-100 text-start" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#filterCategoria" aria-expanded="false">
-                        Categoría
-                    </button>
-                    <div class="collapse mt-2" id="filterCategoria">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Arte digital</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Software</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Ciencia de datos</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Periodo -->
-                <div class="mb-3">
-                    <button class="btn btn-outline-secondary w-100 text-start" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#filterPeriodo" aria-expanded="false">
-                        Periodo
-                    </button>
-                    <div class="collapse mt-2" id="filterPeriodo">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Primer Periodo</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Segundo Periodo</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="btn btn-primary w-100">
-                    Generar
-                </button>
-            </div>
         </div>
     </div>
 

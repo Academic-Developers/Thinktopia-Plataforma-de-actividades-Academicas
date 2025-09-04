@@ -1,0 +1,120 @@
+.alerta-requerida {
+	display: flex;
+	align-items: center;
+	border-radius: 0.5rem;
+	padding: 1.2rem 2rem;
+	margin: 0 auto 2.5rem auto;
+	min-height: 100px;
+	max-width: 75rem;
+	box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.10), 0 1.5px 6px 0 rgba(44, 62, 80, 0.08);
+	gap: 1.2rem;
+}
+
+/* Diferentes tipos de alerta */
+.alerta-danger {
+	background: linear-gradient(90deg, #FDE9E9 60%, #FEF0E2 100%);
+}
+
+.alerta-warning {
+	background: linear-gradient(90deg, #FFF8E1 60%, #FFFBF0 100%);
+}
+
+.alerta-info {
+	background: linear-gradient(90deg, #E3F2FD 60%, #F0F9FF 100%);
+}
+
+.alerta-success {
+	background: linear-gradient(90deg, #E8F5E8 60%, #F0FFF0 100%);
+}
+
+.alerta-icono {
+	font-size: 2rem;
+	margin-right: 0.7rem;
+}
+
+.alerta-texto {
+	flex: 1;
+	font-size: 1.1rem;
+}
+
+/* Estilos específicos para cada tipo */
+.alerta-danger .alerta-texto {
+	color: #D16361;
+}
+
+.alerta-warning .alerta-texto {
+	color: #E67E22;
+}
+
+.alerta-info .alerta-texto {
+	color: #3498DB;
+}
+
+.alerta-success .alerta-texto {
+	color: #27AE60;
+}
+
+/* Botones */
+.btn {
+	border: none;
+	color: #fff;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1.2rem;
+	font-weight: 600;
+	font-size: 1rem;
+	margin-left: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.btn-danger {
+	background: #ED4141;
+}
+
+.btn-danger:hover {
+	background: #D73527;
+	transform: translateY(-1px);
+}
+
+.btn-warning {
+	background: #F39C12;
+}
+
+.btn-warning:hover {
+	background: #E67E22;
+	transform: translateY(-1px);
+}
+
+.btn-info {
+	background: #3498DB;
+}
+
+.btn-info:hover {
+	background: #2980B9;
+	transform: translateY(-1px);
+}
+
+.btn-success {
+	background: #27AE60;
+}
+
+.btn-success:hover {
+	background: #229954;
+	transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.alerta-requerida {
+		flex-direction: column;
+		text-align: center;
+		gap: 1rem;
+		padding: 1rem;
+	}
+	
+	.btn {
+		margin-left: 0;
+		margin-top: 0.5rem;
+		width: 100%;
+	}
+}

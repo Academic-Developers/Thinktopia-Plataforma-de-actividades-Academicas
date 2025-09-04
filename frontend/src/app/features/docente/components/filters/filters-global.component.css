@@ -1,0 +1,375 @@
+/* ==== ESTILOS GLOBALES PARA EL COMPONENTE DE FILTROS ==== */
+/* Archivo separado siguiendo mejores prácticas de organización de CSS */
+
+/* ==== CONTENEDOR PRINCIPAL HOST ==== */
+:host {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/* ==== CONTENEDOR DE FILTROS (BARRA PRINCIPAL) ==== */
+.filters-container {
+	display: flex;
+	gap: 1rem;
+	margin: 0 0 1.5rem 0;
+	padding: 1.5rem 2rem;
+	box-sizing: border-box;
+	background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
+	border: 1px solid rgba(229, 231, 235, 0.8);
+	border-radius: 16px;
+	box-shadow: 
+		0 4px 20px rgba(0, 0, 0, 0.08),
+		0 1px 6px rgba(0, 0, 0, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	min-height: 4rem;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+.filters-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+	border-radius: 16px 16px 0 0;
+}
+
+/* ==== INTEGRACIÓN CON CONTENEDOR DE ACCIONES ==== */
+/* Estilos para cuando el componente está dentro de filters-and-actions-container */
+
+/* Clase wrapper que se aplicará globalmente */
+:global(.filters-and-actions-container) {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	width: 100%;
+}
+
+:global(.filters-and-actions-container) .filters-container {
+	margin: 0;
+	flex: 1;
+	height: auto;
+	min-height: 4rem;
+	padding: 1.25rem 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	max-width: none;
+}
+
+:global(.filters-and-actions-container) :global(.action-buttons) {
+	flex-shrink: 0;
+}
+
+/* ==== DISTRIBUCIÓN UNIFORME DE FILTROS ==== */
+.filters-container .btn-group {
+	flex: 1;
+	min-width: 140px;
+	max-width: none;
+	margin: 0 0.5rem;
+}
+
+.filters-container .btn-group:first-child {
+	margin-left: 0;
+}
+
+.filters-container .btn-group:last-child {
+	margin-right: 0;
+}
+
+/* Para que todos los botones tengan el mismo tamaño y ocupen todo el espacio */
+.filters-container .btn-group .dropdown-toggle {
+	width: 100%;
+	min-width: 140px;
+	flex-grow: 1;
+}
+
+/* Asegurar que los filtros se distribuyan uniformemente */
+.filters-container > * {
+	flex: 1;
+}
+
+/* ==== BOTONES DROPDOWN PRINCIPALES ==== */
+.filters-container .btn.dropdown-toggle,
+.filters-container .btn-outline-secondary.dropdown-toggle,
+.filters-container .btn.btn-outline-secondary {
+	font-weight: 600;
+	align-items: center;
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	border: 2px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 0.75rem 1rem;
+	font-size: 0.9rem;
+	color: #374151;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	box-shadow: 
+		0 1px 3px rgba(0, 0, 0, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	position: relative;
+	min-width: 10rem;
+}
+
+.filters-container .btn.dropdown-toggle:hover,
+.filters-container .btn-outline-secondary.dropdown-toggle:hover,
+.filters-container .btn.btn-outline-secondary:hover {
+	border-color: var(--primary-color);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	box-shadow: 
+		0 4px 12px rgba(0, 0, 0, 0.1),
+		0 0 0 3px rgba(59, 130, 246, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	transform: translateY(-1px);
+	color: var(--primary-color);
+}
+
+.filters-container .btn.dropdown-toggle:focus,
+.filters-container .btn.dropdown-toggle.show,
+.filters-container .btn-outline-secondary.dropdown-toggle:focus,
+.filters-container .btn-outline-secondary.dropdown-toggle.show,
+.filters-container .btn.btn-outline-secondary:focus,
+.filters-container .btn.btn-outline-secondary.show {
+	outline: none;
+	border-color: var(--primary-color);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	box-shadow: 
+		0 4px 16px rgba(0, 0, 0, 0.12),
+		0 0 0 4px rgba(59, 130, 246, 0.15);
+	transform: translateY(-1px);
+	color: var(--primary-color);
+}
+
+/* ==== MENÚS DROPDOWN ==== */
+.filters-container .dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	min-width: 12rem;
+	margin: 0.5rem 0 0;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	box-shadow: 
+		0 20px 50px rgba(0, 0, 0, 0.15),
+		0 8px 25px rgba(0, 0, 0, 0.1),
+		0 4px 10px rgba(0, 0, 0, 0.05);
+	padding: 0.5rem 0;
+	backdrop-filter: blur(10px);
+	border-top: 3px solid var(--primary-color);
+	max-height: 16rem;
+	overflow-y: auto;
+}
+
+.filters-container .dropdown-menu::-webkit-scrollbar {
+	width: 6px;
+}
+
+.filters-container .dropdown-menu::-webkit-scrollbar-track {
+	background: #f1f5f9;
+	border-radius: 3px;
+}
+
+.filters-container .dropdown-menu::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 3px;
+}
+
+.filters-container .dropdown-menu::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
+}
+
+/* ==== ITEMS DEL DROPDOWN ==== */
+.filters-container .dropdown-menu .dropdown-item,
+.filters-container .dropdown-item {
+	padding: 0.875rem 1.25rem;
+	color: #374151;
+	font-size: 0.9rem;
+	font-weight: 500;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid #f3f4f6;
+	letter-spacing: 0.3px;
+	text-decoration: none;
+}
+
+.filters-container .dropdown-menu .dropdown-item:last-child,
+.filters-container .dropdown-item:last-child {
+	border-bottom: none;
+	border-radius: 0 0 12px 12px;
+}
+
+.filters-container .dropdown-menu .dropdown-item:first-child,
+.filters-container .dropdown-item:first-child {
+	border-radius: 12px 12px 0 0;
+}
+
+/* Efecto de deslizamiento suave al hacer hover */
+.filters-container .dropdown-menu .dropdown-item::before,
+.filters-container .dropdown-item::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.08), transparent);
+	transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.filters-container .dropdown-menu .dropdown-item:hover::before,
+.filters-container .dropdown-item:hover::before {
+	left: 100%;
+}
+
+.filters-container .dropdown-menu .dropdown-item:hover,
+.filters-container .dropdown-item:hover {
+	background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	color: var(--primary-color);
+	padding-left: 1.5rem;
+	transform: translateX(4px);
+}
+
+/* ==== INDICADOR VISUAL DE SELECCIÓN ==== */
+.filters-container .dropdown-menu .dropdown-item.active,
+.filters-container .dropdown-menu .dropdown-item:active,
+.filters-container .dropdown-item.active,
+.filters-container .dropdown-item:active {
+	background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+	color: var(--primary-color);
+	position: relative;
+	font-weight: 600;
+}
+
+.filters-container .dropdown-menu .dropdown-item.active::after {
+	content: '✓';
+	color: #2563eb;
+	font-weight: 600;
+	margin-left: auto;
+}
+
+/* ==== INPUTS DE FECHA ==== */
+.filters-container .dropdown-menu .form-control {
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	padding: 0.5rem;
+	font-size: 0.875rem;
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.filters-container .dropdown-menu .form-control:focus {
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+	outline: none;
+}
+
+.filters-container .dropdown-menu .form-label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #4b5563;
+	margin-bottom: 0.625rem;
+	letter-spacing: 0.3px;
+	text-transform: uppercase;
+}
+
+.filters-container .form-control,
+.filters-container .form-control-sm {
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+	border: 2px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 0.75rem 1rem;
+	font-size: 0.9rem;
+	color: #374151;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	box-shadow: 
+		0 1px 3px rgba(0, 0, 0, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.filters-container .form-control:hover,
+.filters-container .form-control-sm:hover {
+	border-color: var(--primary-color);
+	box-shadow: 
+		0 4px 12px rgba(0, 0, 0, 0.1),
+		0 0 0 3px rgba(59, 130, 246, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	transform: translateY(-1px);
+}
+
+.filters-container .form-control:focus,
+.filters-container .form-control-sm:focus {
+	outline: none;
+	border-color: var(--primary-color);
+	box-shadow: 
+		0 4px 16px rgba(0, 0, 0, 0.12),
+		0 0 0 4px rgba(59, 130, 246, 0.15);
+	transform: translateY(-1px);
+}
+
+/* ==== FLECHA PERSONALIZADA DEL DROPDOWN ==== */
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+.dropdown-toggle {
+	background-image: url('/icons/chevron-compact-down.svg');
+	background-repeat: no-repeat;
+	background-position: calc(100% - 0.5rem) center;
+	background-size: 14px 14px;
+}
+
+/* ==== RESPONSIVE DESIGN ==== */
+@media (max-width: 768px) {
+	.filters-container {
+		gap: 1rem;
+		padding: 1.25rem 1rem;
+		justify-content: center !important;
+		border-radius: 12px;
+	}
+	
+	.filters-container .btn.dropdown-toggle,
+	.filters-container .btn-outline-secondary.dropdown-toggle,
+	.filters-container .btn.btn-outline-secondary,
+	.filters-container .form-control {
+		min-width: 140px;
+		padding: 0.7rem 1rem;
+		font-size: 0.85rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.filters-container {
+		gap: 0.875rem;
+		flex-direction: column;
+		max-height: none;
+		min-height: auto;
+		justify-content: center !important;
+		padding: 1rem;
+		border-radius: 12px;
+	}
+	
+	.filters-container .btn-outline-secondary,
+	.filters-container .btn-group .dropdown-toggle {
+		min-width: 200px;
+		width: 200px;
+	}
+}

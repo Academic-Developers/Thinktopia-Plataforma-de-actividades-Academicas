@@ -1,0 +1,43 @@
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal-content {
+  background-color: var(--bg-card-color);
+  border-radius: 0.75rem;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+}
+
+.modal-header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-title {
+  font-family: var(--font-title-primary);
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.modal-footer {
+  border-top: 1px solid #e5e7eb;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
