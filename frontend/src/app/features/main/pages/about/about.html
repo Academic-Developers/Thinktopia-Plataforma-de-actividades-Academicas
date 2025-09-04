@@ -1,5 +1,4 @@
-   <main class="quienes-somos container">
-  <!-- Sección Principal (Introducción) -->
+<main class="quienes-somos container">
   <header class="text-center py-5">
     <h1 class="display-4 fw-bold title-principal">Thinktopia</h1>
     <p class="lead subtitle-principal col-lg-8 mx-auto">
@@ -9,162 +8,86 @@
     </p>
   </header>
 
-  <!-- Sección Misión y Visión -->
+
   <section id="mision-vision" class="py-5">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <img src="gif/gif-goal.gif" class="img-fluid rounded-3 shadow" alt="Imagen representativa de la misión y visión">
+        <img src="gif/gif-goal.gif" class="img-fluid rounded-3 shadow"
+          alt="Imagen representativa de la misión y visión">
       </div>
       <div class="col-md-6 mt-4 mt-md-0">
         <h2 class="fw-bold mb-3 section-title">Nuestra Misión</h2>
         <p class="text-muted section-text">
           Brindar una educación integral, inclusiva y centrada en el desarrollo del pensamiento digital y humano,
-          empoderando a cada estudiante a través del conocimiento y la tecnología. Con más de 5 años de trayectoria 
+          empoderando a cada estudiante a través del conocimiento y la tecnología. Con más de 5 años de trayectoria
           acompañando a escuelas, institutos y centros de formación en toda Latinoamérica.
         </p>
       </div>
     </div>
   </section>
-  
+
   <!-- Sección de Valores -->
   <section id="valores" class="py-5 bg-light-custom rounded-3">
     <div class="container text-center">
       <h2 class="fw-bold mb-5 section-title">Nuestros Valores</h2>
       <div class="row">
-        <!-- Valor 1: Innovación -->
+        @for(valor of valores; track valor) {
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="p-4 valor-card">
-            <svg class="section-icon mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.311a12.06 12.06 0 0 0-4.5 0m3.75 2.311a12.06 12.06 0 0 1-4.5 0M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z" />
-            </svg>
-            <h5 class="fw-semibold valor-title">Creatividad - Innovación</h5>
-            <p class="text-muted small valor-text">Apostamos por soluciones nuevas y creativas para transformar la educación.</p>
+            <img src="{{valor.icon}}" alt="{{valor.titulo}}" class="valor-icon mb-3">
+            <h5 class="fw-semibold valor-title">{{valor.titulo}}</h5>
+            <p class="text-muted small valor-text">{{valor.descripcion}}</p>
           </div>
         </div>
-        <!-- Valor 2: Colaboración -->
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="p-4 valor-card">
-            <svg class="section-icon mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.962a3.75 3.75 0 1 0-7.5 0v.038" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" />
-            </svg>
-            <h5 class="fw-semibold valor-title">Inclusión y Respeto</h5>
-            <p class="text-muted small valor-text">Pensamos en todos los estudiantes, sin distinción, fomentando el respeto mutuo.</p>
-          </div>
-        </div>
-        <!-- Valor 3: Calidad -->
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="p-4 valor-card">
-            <svg class="section-icon mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            <h5 class="fw-semibold valor-title">Aprendizaje Continuo</h5>
-            <p class="text-muted small valor-text">Estamos en constante actualización y mejora continua.</p>
-          </div>
-        </div>
-        <!-- Valor 4: Usabilidad -->
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="p-4 valor-card">
-            <svg class="section-icon mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.17 48.17 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-            </svg>
-            <h5 class="fw-semibold valor-title">Trabajo Colaborativo</h5>
-            <p class="text-muted small valor-text">Creemos en el poder de los equipos diversos y la colaboración.</p>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </section>
 
-  <!-- Sección Equipo Principal -->
   <section class="equipo py-5">
     <h2 class="section-title text-center mb-3">Nuestro Equipo</h2>
     <p class="text-center section-text mb-5">Un equipo comprometido con transformar la educación digital.</p>
 
     <div class="row g-4 justify-content-center">
+      @for(equipo of equipo_principal; track equipo) {
       <div class="col-md-6 col-lg-3">
         <div class="team-card h-100 text-center">
-          <img src="icons/miembro2.svg" alt="Foto de Martin" class="team-photo">
-          <div class="team-nombre">Martín López</div>
-          <div class="rol">Coordinador de Tecnología</div>
-          <p class="text-miembro">Impulsa soluciones educativas innovadoras y escalables, alineadas con los desafíos actuales del aprendizaje digital.</p>
+          <img src="{{equipo.img}}" alt="{{equipo.nombre}}" class="team-photo">
+          <div class="team-nombre">{{equipo.nombre}}</div>
+          <div class="rol">{{equipo.cargo}}</div>
+          <p class="text-miembro">{{equipo.descripcion}}</p>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="team-card h-100 text-center">
-          <img src="icons/miembro1.svg" alt="Foto de Valentina" class="team-photo">
-          <div class="team-nombre">Valentina Suárez</div>
-          <div class="rol">Directora General</div>
-          <p class="text-miembro">Impulsa la visión educativa y tecnológica de Thinktopia con liderazgo y pasión.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="team-card h-100 text-center">
-          <img src="icons/miembro2.svg" alt="Foto de Tomás" class="team-photo">
-          <div class="team-nombre">Tomás Rivera</div>
-          <div class="rol">Soporte y Formación</div>
-          <p class="text-miembro">Acompaña a docentes e instituciones en el uso eficaz de la plataforma.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="team-card h-100 text-center">
-          <img src="icons/miembro1.svg" alt="Foto de Lucia" class="team-photo">
-          <div class="team-nombre">Lucía Herrera</div>
-          <div class="rol">Facilitadora Pedagógica</div>
-          <p class="text-miembro">Integra enfoques didácticos modernos para fomentar un aprendizaje significativo y motivador.</p>
-        </div>
-      </div>
+      }
     </div>
   </section>
 
-  <!-- Sección de Integrantes del Equipo de Desarrollo -->
   <section id="equipo-desarrollo" class="py-5">
     <div class="container">
       <h2 class="section-title text-center mb-5">Conoce a Nuestro Equipo de Desarrollo</h2>
       <div class="row justify-content-center">
-        <!-- Tarjeta 1 -->
+        @for(equipo of equipo_desarrollo; track equipo) {
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100 text-center border-0 shadow-sm team-card-dev">
             <div class="card-body p-4">
-              <img src="img/profile_cesia.png" alt="Avatar de Cesia Fiorella Cáceres Giménez" class="rounded-circle mb-3 team-photo-dev">
-              <h5 class="card-title fw-bold dev-name">Cáceres Giménez Cesia Fiorella</h5>
-              <p class="text-primary fw-semibold dev-role">Desarrolladora y Diseñadora</p>
-              <p class="card-text text-muted small dev-description">Me desempeño como desarrolladora y diseñadora en este proyecto. Participo en la construcción de la plataforma desde el diseño de interfaces hasta la implementación de funcionalidades.</p>
-              <a href="../portfolios/portfolio_cesia/portfolio_cesia.html" class="btn btn-outline-primary btn-sm mt-2">Ver Portafolio</a>
+              <img src="{{equipo.img}}" alt="Avatar de {{equipo.nombre}}" class="rounded-circle mb-3 team-photo-dev">
+              <h5 class="card-title fw-bold dev-name">{{equipo.nombre}}</h5>
+              <p class="text-primary fw-semibold dev-role">{{equipo.rol}}</p>
+              <p class="card-text text-muted small dev-description">{{equipo.descripcion}}</p>
+              @if (equipo.tipo === 'local' || equipo.tipo === 'externo') {
+              <a [href]="equipo.link_portfolio" target="_blank">Ver Portfolio</a>
+              }
+              @else if (equipo.tipo === 'interno') {
+              <a [routerLink]="equipo.link_portfolio">Ver Portfolio</a>
+              }
             </div>
           </div>
         </div>
-        <!-- Tarjeta 2 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 text-center border-0 shadow-sm team-card-dev">
-            <div class="card-body p-4">
-              <img src="img/img-fran.jpeg" alt="Avatar de Francisco Nicolas Toro Goitea" class="rounded-circle mb-3 team-photo-dev">
-              <h5 class="card-title fw-bold dev-name">Toro Goitea Francisco Nicolás</h5>
-              <p class="text-primary fw-semibold dev-role">Desarrollador Full-Stack</p>
-              <p class="card-text text-muted small dev-description">En este proyecto participo desde las etapas de modelado, diseño hasta la implementación de las funcionalidades del sistema.</p>
-              <a href="https://portafolio-francisco-toro.vercel.app/" class="btn btn-outline-primary btn-sm mt-2" target="_blank">Ver Portafolio</a>
-            </div>
-          </div>
-        </div>
-        <!-- Tarjeta 3 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 text-center border-0 shadow-sm team-card-dev">
-            <div class="card-body p-4">
-              <img src="img/perfil_magui.webp" alt="Avatar de Cabrera Milagros Magaly" class="rounded-circle mb-3 team-photo-dev">
-              <h5 class="card-title fw-bold dev-name">Cabrera Milagros Magaly</h5>
-              <p class="text-primary fw-semibold dev-role">Desarrolladora - Scrum Master</p>
-              <p class="card-text text-muted small dev-description"> Me desempeño como desarrolladora, Scrum Master y colaboradora en el área de diseño. Aporto desde la estructura técnica hasta los detalles visuales e implementación.</p>
-              <a href="https://cabreramilagros-miportfolio.netlify.app/" class="btn btn-outline-primary btn-sm mt-2" target="_blank">Ver Portafolio</a>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </section>
-  
+
   <!-- Nuestra Historia y Metodología -->
   <section id="historia-metodologia" class="py-5 bg-light-custom rounded-3">
     <div class="container">
@@ -172,16 +95,17 @@
         <div class="col-lg-6 mb-4 mb-lg-0">
           <h3 class="fw-bold mb-3 section-title">Nuestra Historia</h3>
           <p class="section-text">
-            Thinktopia nació de la unión de tres estudiantes apasionados por resolver problemas reales a través del software. 
-            Nuestra plataforma es el resultado de nuestra propia experiencia en el ámbito académico, buscando crear la 
+            Thinktopia nació de la unión de tres estudiantes apasionados por resolver problemas reales a través del
+            software.
+            Nuestra plataforma es el resultado de nuestra propia experiencia en el ámbito académico, buscando crear la
             herramienta que siempre quisimos tener para organizar y potenciar el aprendizaje.
           </p>
         </div>
         <div class="col-lg-6">
           <h3 class="fw-bold mb-3 section-title">Nuestra Metodología</h3>
           <p class="section-text">
-            Combinamos la estructura del estándar <strong>IEEE 830</strong> con la flexibilidad de las 
-            <strong>metodologías ágiles</strong>. Este enfoque nos permite ser ordenados y, al mismo tiempo, 
+            Combinamos la estructura del estándar <strong>IEEE 830</strong> con la flexibilidad de las
+            <strong>metodologías ágiles</strong>. Este enfoque nos permite ser ordenados y, al mismo tiempo,
             adaptarnos rápidamente para construir un producto centrado en las necesidades de nuestros usuarios.
           </p>
         </div>
