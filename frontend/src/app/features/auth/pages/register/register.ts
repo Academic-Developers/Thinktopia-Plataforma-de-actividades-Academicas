@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
+import { AuthService } from '../../../../services/auth-service';
 
 
 @Component({
@@ -10,23 +11,34 @@ import { RouterModule } from '@angular/router';
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
+
 export class Register {
       registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
-    }, { validators: this.passwordMatchValidator });
+    });
   }
 
-  passwordMatchValidator(form: FormGroup) {
-    return form.get('password')?.value === form.get('confirmPassword')?.value
-      ? null : { mismatch: true };
+onSubmit():void {
+  console.log('Formulario enviado', this.registerForm.value); 
+
+  if (this.registerForm.invalid) {
+    console.log('Formulario inválido');
+    return; 
   }
 
-  onSubmit(): void {
+  const { email, password } = this.registerForm.value;
 
-  }
-}
+  this.authService.register({email,password }).subscribe({
+    next: (response) => {
+      console.log('Registracion exitosa', response);
+      this.router.navigate(['auth/login']);
+    },
+    error: (error) => {
+      console.error('Registracion fallida', error);
+    },
+  });
+}}
