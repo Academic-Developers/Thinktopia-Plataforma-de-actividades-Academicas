@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "eve.holt@reqres.in",
+      "role": "docente"
+    },
+    {
+      "id": "721a",
+      "email": "janet.weaver@reqres.in",
+      "role": "docente"
+    }
+  ],
+  "materias": [],
+  "user_materia": [],
+  "actividades": [],
+  "materiales": [],
+  "entregas": []
+}
