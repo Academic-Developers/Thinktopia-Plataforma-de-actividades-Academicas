@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common'; // <-- Recomendado importar si uso @ngif en html, etc.
 import {
   ReactiveFormsModule,
@@ -6,8 +6,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../../services/auth-service';
+import { RouterModule,Router} from '@angular/router';
+import { AuthService } from '../../../../services/auth/auth-service';
+import { Subscription } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -17,39 +19,34 @@ import { AuthService } from '../../../../services/auth-service';
 })
 export class Login {
   loginForm: FormGroup;
+  errorMessage:string | null = null;
+  private authSubscription: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router:Router 
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  onSubmit() {
-    this.authService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        console.log('Ingreso exitoso', response);
-
-        const email = this.loginForm.value.email;
-        let role = 'alumno';
-
-        if (email.includes('docente')) {
-          role = 'docente';
-        }
-
-        if (role === 'docente') {
-          this.router.navigate(['docente/dashboard']);
-        } else {
-          this.router.navigate(['alumno/dashboard']);
-        }
+  onSubmit() :void {
+    this.errorMessage = null;
+    if (this.loginForm.valid) {
+      this.authSubscription = this.authService.login(this.loginForm.value).subscribe({
+      next: (user) => {
+        if (!user) {
+          this.errorMessage = 'Credenciales inválidas o usuario no encontrado.';
+          console.log("Ingreso fallido")}
       },
-      error: (error) => {
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage =  'Ocurrió un error inesperado. Por favor, intente más tarde.';
         console.error('Ingreso fallido', error);
       },
     });
   }
+}
 }
