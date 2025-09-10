@@ -1,42 +1,254 @@
 <main>
-    <app-page-title 
-        iconSrc="/icons/pencil.svg" 
-        iconAlt="Logo" 
-        title="Actividades">
-    </app-page-title>
-    
-    <div class="filters-and-actions-container">
-        <app-filters 
-            [filters]="filterConfigs"
-            [showMobileVersion]="true"
-            mobileCollapseId="actividadesFilters"
-            (filterChange)="onFilterChange($event)"
-            (buttonClick)="onFilterButtonClick($event)">
-        </app-filters>
-        
-        <div class="action-buttons">
-            <button class="btn btn-primary btn-enhanced"
-                    type="button"
-                    (click)="onCreateActivityClick()">
-                Crear actividad
-            </button>
+    <div class="actividades-container">
+        <!-- Header con título e icono -->
+        <div class="title">
+            <div class="title-icon">
+                <img src="/icons/bi-pencil.svg" alt="Icono de Actividades" />
+                <h1>Gestión de Actividades</h1>
+            </div>
         </div>
+
+        <!-- Campo de búsqueda manual -->
+        <div class="search-section">
+            <div class="search-input-group">
+                <input 
+                    type="text" 
+                    class="form-control"
+                    placeholder="Buscar por título o descripción..."
+                    (input)="aplicarFiltroTexto($any($event.target).value)">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <div class="filters-and-actions-container">
+            <app-filters 
+                [filters]="filterConfigs" 
+                [showMobileVersion]="true" 
+                mobileCollapseId="actividadesFilters"
+                (filterChange)="onFilterChange($event)" 
+                (buttonClick)="onFilterButtonClick($event)">
+            </app-filters>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary btn-enhanced" type="button" (click)="onCreateActivityClick()">
+                    <i class="fas fa-plus btn-icon"></i>
+                    Crear actividad
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading state y datos reactivos -->
+        <div *ngIf="loading$ | async" class="loading-container">
+            <div class="spinner"></div>
+            <p>Cargando actividades...</p>
+        </div>
+
+        <section class="table-container" *ngIf="!(loading$ | async)">
+            <!-- Datos reactivos en lugar de tableData estático -->
+            <div *ngIf="actividadesFiltradas$ | async as actividades">
+                <app-generic-table 
+                    [columns]="tableColumns" 
+                    [data]="actividades"
+                    [actions]="tableActions" 
+                    [striped]="true"
+                    [hover]="true" 
+                    [loading]="false" 
+                    tableClasses="tabla-genérica"
+                    emptyMessage="No hay actividades disponibles" 
+                    (sort)="onTableSort($event)"
+                    (rowClick)="onTableRowClick($event)" 
+                    (actionClick)="onTableAction($event)">
+                </app-generic-table>
+            </div>
+        </section>
+
+        <!-- Modal para crear actividades -->
+        <div *ngIf="showCreateModal$ | async" class="modal-overlay" (click)="cerrarModal()">
+            <div class="modal-container" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>Crear Nueva Actividad</h3>
+                    <button type="button" class="btn-close" (click)="cerrarModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form [formGroup]="actividadForm" (ngSubmit)="crearActividad()">
+                    <div class="modal-body">
+                        <!-- Título -->
+                        <div class="form-group">
+                            <label for="titulo">Título *</label>
+                            <input 
+                                id="titulo"
+                                type="text" 
+                                class="form-control"
+                                [class.is-invalid]="isFieldInvalid('titulo')"
+                                formControlName="titulo"
+                                placeholder="Ingrese el título de la actividad">
+                            <div *ngIf="isFieldInvalid('titulo')" class="invalid-feedback">
+                                {{getFieldError('titulo')}}
+                            </div>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="form-group">
+                            <label for="descripcion">Descripción *</label>
+                            <textarea 
+                                id="descripcion"
+                                class="form-control"
+                                [class.is-invalid]="isFieldInvalid('descripcion')"
+                                formControlName="descripcion"
+                                rows="4"
+                                placeholder="Describa los objetivos y requisitos de la actividad">
+                            </textarea>
+                            <div *ngIf="isFieldInvalid('descripcion')" class="invalid-feedback">
+                                {{getFieldError('descripcion')}}
+                            </div>
+                        </div>
+
+                        <!-- Materia -->
+                        <div class="form-group">
+                            <label for="materia">Materia *</label>
+                            <select 
+                                id="materia"
+                                class="form-control"
+                                [class.is-invalid]="isFieldInvalid('materia_id')"
+                                formControlName="materia_id">
+                                <option value="">Seleccione una materia</option>
+                                <option *ngFor="let materia of materias" [value]="materia.id">
+                                    {{materia.codigo}} - {{materia.nombre}}
+                                </option>
+                            </select>
+                            <div *ngIf="isFieldInvalid('materia_id')" class="invalid-feedback">
+                                {{getFieldError('materia_id')}}
+                            </div>
+                        </div>
+
+                        <!-- Tipo y Fecha -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="tipo">Tipo *</label>
+                                <select 
+                                    id="tipo"
+                                    class="form-control"
+                                    [class.is-invalid]="isFieldInvalid('tipo')"
+                                    formControlName="tipo">
+                                    <option value="">Seleccione un tipo</option>
+                                    <option *ngFor="let tipo of tiposActividad" [value]="tipo">
+                                        {{tipo}}
+                                    </option>
+                                </select>
+                                <div *ngIf="isFieldInvalid('tipo')" class="invalid-feedback">
+                                    {{getFieldError('tipo')}}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="fechaLimite">Fecha Límite *</label>
+                                <input 
+                                    id="fechaLimite"
+                                    type="datetime-local" 
+                                    class="form-control"
+                                    [class.is-invalid]="isFieldInvalid('fechaLimite')"
+                                    formControlName="fechaLimite">
+                                <div *ngIf="isFieldInvalid('fechaLimite')" class="invalid-feedback">
+                                    {{getFieldError('fechaLimite')}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Puntos -->
+                        <div class="form-group">
+                            <label for="puntos">Puntos *</label>
+                            <input 
+                                id="puntos"
+                                type="number" 
+                                class="form-control"
+                                [class.is-invalid]="isFieldInvalid('puntos')"
+                                formControlName="puntos"
+                                min="1"
+                                max="100"
+                                placeholder="Puntos de la actividad (1-100)">
+                            <div *ngIf="isFieldInvalid('puntos')" class="invalid-feedback">
+                                {{getFieldError('puntos')}}
+                            </div>
+                        </div>
+
+                        <!-- Adjuntar Archivos -->
+                        <div class="form-group">
+                            <label for="archivos">Archivos Adjuntos (Opcional)</label>
+                            <div class="file-upload-container">
+                                <input 
+                                    id="archivos"
+                                    type="file" 
+                                    class="file-input"
+                                    multiple
+                                    accept=".pdf,.doc,.docx,.txt,.zip,.rar,.jpg,.jpeg,.png"
+                                    (change)="onFileSelected($event)"
+                                    #fileInput>
+                                
+                                <div class="file-upload-area" (click)="fileInput.click()" 
+                                     [class.drag-over]="isDragOver"
+                                     (dragover)="onDragOver($event)"
+                                     (dragleave)="onDragLeave($event)"
+                                     (drop)="onFileDrop($event)">
+                                    <div class="file-upload-content">
+                                        <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+                                        <p class="file-upload-text">
+                                            Haz clic para seleccionar archivos o arrástralos aquí
+                                        </p>
+                                        <p class="file-upload-hint">
+                                            Formatos permitidos: PDF, DOC, DOCX, TXT, ZIP, RAR, JPG, PNG
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Lista de archivos seleccionados -->
+                                <div *ngIf="archivosSeleccionados.length > 0" class="selected-files">
+                                    <h5>Archivos seleccionados:</h5>
+                                    <div *ngFor="let archivo of archivosSeleccionados; let i = index" 
+                                         class="file-item">
+                                        <div class="file-info">
+                                            <i class="fas fa-file file-icon"></i>
+                                            <span class="file-name">{{archivo.name}}</span>
+                                            <span class="file-size">({{formatFileSize(archivo.size)}})</span>
+                                        </div>
+                                        <button type="button" 
+                                                class="btn-remove-file" 
+                                                (click)="removeFile(i)"
+                                                title="Eliminar archivo">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary"
+                            (click)="cerrarModal()">
+                            Cancelar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-enhanced"
+                            [disabled]="actividadForm.invalid || (loading$ | async)">
+                            <span *ngIf="loading$ | async">
+                                <i class="fas fa-spinner fa-spin btn-icon"></i>
+                                Creando...
+                            </span>
+                            <span *ngIf="!(loading$ | async)">
+                                <i class="fas fa-save btn-icon"></i>
+                                Crear Actividad
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
-    
-    <section class="table-container">
-        <app-generic-table
-            [columns]="tableColumns"
-            [data]="tableData"
-            [actions]="tableActions"
-            [striped]="true"
-            [hover]="true"
-            [loading]="false"
-            tableClasses="tabla-genérica"
-            emptyMessage="No hay actividades disponibles"
-            (sort)="onTableSort($event)"
-            (rowClick)="onTableRowClick($event)"
-            (actionClick)="onTableAction($event)">
-        </app-generic-table>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </main>
