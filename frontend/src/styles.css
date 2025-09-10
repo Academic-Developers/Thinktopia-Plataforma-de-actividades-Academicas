@@ -70,3 +70,60 @@ main {
 .text-accent-n {
   color: var(--accent-color) !important;
 }
+
+
+/* Clases para títulos del Dashboard Docente */
+.title {
+	max-width: 75rem;
+	margin: 0 auto;
+	padding: 3rem 1rem 2.5rem;
+	box-sizing: border-box;
+}
+
+.title-icon {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 3rem;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	min-width: 0;
+}
+
+.title-icon img {
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	transition: transform 0.3s ease;
+}
+
+.title-icon img:hover {
+	transform: rotate(-10deg) scale(1.1);
+}
+
+.title-icon h1 {
+	text-overflow: ellipsis;
+	min-width: 0;
+	flex-grow: 1;
+	line-height: 1.2;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.title {
+		padding: 2rem 0.5rem 1.5rem;
+	}
+	
+	.title-icon {
+		margin-bottom: 2rem;
+	}
+	
+	.title-icon h1 {
+		font-size: 1.5rem;
+	}
+	
+	.title-icon img {
+		width: 35px;
+		height: 35px;
+	}
+}
