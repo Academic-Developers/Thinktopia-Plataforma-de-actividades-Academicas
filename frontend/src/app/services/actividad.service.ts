@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, map, catchError, of, tap, switchMap } from 'rxjs';
+import { Actividad, CreateActividadRequest, UpdateActividadRequest } from '../models/actividad.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ActividadService {
-    private apiUrl = 'http://localhost:3000';
+    private apiUrl = environment.urlJsonServer;
 
     // BehaviorSubject para estado reactivo
-    private actividadesSubject = new BehaviorSubject<any[]>([]);
+    private actividadesSubject = new BehaviorSubject<Actividad[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
 
     // Observables públicos
@@ -19,17 +21,19 @@ export class ActividadService {
     constructor(private http: HttpClient) { }
 
     // Obtener todas las actividades
-    obtenerActividades(): Observable<any[]> {
+    obtenerActividades(): Observable<Actividad[]> {
+        console.log('🔄 Iniciando obtenerActividades() - URL:', `${this.apiUrl}/actividades`);
         this.loadingSubject.next(true);
 
-        return this.http.get<any[]>(`${this.apiUrl}/actividades`).pipe(
+        return this.http.get<Actividad[]>(`${this.apiUrl}/actividades`).pipe(
             tap(actividades => {
+                console.log('✅ Actividades obtenidas:', actividades);
                 // Actualizar el BehaviorSubject con los datos obtenidos
                 this.actividadesSubject.next(actividades);
                 this.loadingSubject.next(false);
             }),
             catchError(error => {
-                console.error('Error al obtener actividades:', error);
+                console.error('❌ Error al obtener actividades:', error);
                 this.loadingSubject.next(false);
                 return of([]); // Retornar array vacío en caso de error
             })
@@ -104,10 +108,10 @@ export class ActividadService {
     }
 
     // Crear nueva actividad
-    crearActividad(actividad: any): Observable<any> {
+    crearActividad(actividad: CreateActividadRequest): Observable<Actividad> {
         this.loadingSubject.next(true);
 
-        return this.http.post<any>(`${this.apiUrl}/actividades`, actividad).pipe(
+        return this.http.post<Actividad>(`${this.apiUrl}/actividades`, actividad).pipe(
             tap(nuevaActividad => {
                 // Actualizar el estado local agregando la nueva actividad
                 const actividadesActuales = this.actividadesSubject.value;
