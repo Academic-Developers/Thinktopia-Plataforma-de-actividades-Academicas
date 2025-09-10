@@ -1,0 +1,340 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "username": "profesor1",
+      "password": "123456",
+      "rol": "docente",
+      "nombre": "Dr. Juan Pérez",
+      "email": "juan.perez@universidad.edu",
+      "telefono": "+1-555-0101",
+      "departamento": "Ciencias de la Computación"
+    },
+    {
+      "id": 2,
+      "username": "profesor2",
+      "password": "123456",
+      "rol": "docente",
+      "nombre": "Dra. Ana García",
+      "email": "ana.garcia@universidad.edu",
+      "telefono": "+1-555-0102",
+      "departamento": "Matemáticas"
+    },
+    {
+      "id": 3,
+      "username": "alumno1",
+      "password": "123456",
+      "rol": "alumno",
+      "nombre": "María Rodríguez",
+      "email": "maria.rodriguez@estudiantes.edu",
+      "telefono": "+1-555-0201",
+      "carrera": "Ingeniería en Sistemas",
+      "semestre": 4
+    },
+    {
+      "id": 4,
+      "username": "alumno2",
+      "password": "123456",
+      "rol": "alumno",
+      "nombre": "Carlos López",
+      "email": "carlos.lopez@estudiantes.edu",
+      "telefono": "+1-555-0202",
+      "carrera": "Ingeniería en Sistemas",
+      "semestre": 4
+    },
+    {
+      "id": 5,
+      "username": "alumno3",
+      "password": "123456",
+      "rol": "alumno",
+      "nombre": "Laura Martínez",
+      "email": "laura.martinez@estudiantes.edu",
+      "telefono": "+1-555-0203",
+      "carrera": "Ingeniería en Sistemas",
+      "semestre": 4
+    },
+    {
+      "id": 6,
+      "username": "alumno4",
+      "password": "123456",
+      "rol": "alumno",
+      "nombre": "Diego Hernández",
+      "email": "diego.hernandez@estudiantes.edu",
+      "telefono": "+1-555-0204",
+      "carrera": "Ingeniería en Sistemas",
+      "semestre": 4
+    }
+  ],
+  "materias": [
+    {
+      "id": 1,
+      "nombre": "Programación II",
+      "codigo": "PROG-II-2025",
+      "descripcion": "Programación orientada a objetos y frameworks modernos",
+      "creditos": 4,
+      "docente_id": 1,
+      "alumnos_ids": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "semestre": "2025-1",
+      "horario": "Lunes y Miércoles 14:00-16:00",
+      "aula": "Lab-A201"
+    },
+    {
+      "id": 2,
+      "nombre": "Estructuras de Datos",
+      "codigo": "EST-DAT-2025",
+      "descripcion": "Algoritmos y estructuras de datos fundamentales",
+      "creditos": 3,
+      "docente_id": 1,
+      "alumnos_ids": [
+        3,
+        4,
+        5
+      ],
+      "semestre": "2025-1",
+      "horario": "Martes y Jueves 10:00-12:00",
+      "aula": "Aula-B301"
+    },
+    {
+      "id": 3,
+      "nombre": "Cálculo II",
+      "codigo": "CALC-II-2025",
+      "descripcion": "Cálculo integral y series infinitas",
+      "creditos": 4,
+      "docente_id": 2,
+      "alumnos_ids": [
+        3,
+        4,
+        6
+      ],
+      "semestre": "2025-1",
+      "horario": "Lunes, Miércoles y Viernes 08:00-09:30",
+      "aula": "Aula-C101"
+    }
+  ],
+  "actividades": [
+    {
+      "id": 1,
+      "titulo": "Proyecto Final de Angular",
+      "descripcion": "Desarrollar una SPA completa usando Angular.",
+      "fechaCreacion": "2025-07-15T09:00:00",
+      "fechaLimite": "2025-09-15T23:59:59",
+      "estado": "Inactiva",
+      "tipo": "Proyecto",
+      "materia_id": 1,
+      "docente_id": 1,
+      "puntos": 100,
+      "instrucciones": "El proyecto debe incluir routing, servicios, y componentes reutilizables"
+    },
+    {
+      "id": 2,
+      "titulo": "Cuestionario de Angular Services",
+      "descripcion": "Evaluación sobre servicios e inyección de dependencias",
+      "fechaLimite": "2025-09-20T18:00:00",
+      "fechaCreacion": "2025-09-10T09:00:00",
+      "estado": "Activa",
+      "tipo": "Cuestionario",
+      "materia_id": 1,
+      "docente_id": 1,
+      "puntos": 50,
+      "instrucciones": "Cuestionario de 20 preguntas sobre servicios en Angular"
+    },
+    {
+      "id": 3,
+      "titulo": "Examen Final de Programación",
+      "descripcion": "Examen final que cubre todos los temas del curso.",
+      "fechaLimite": "2025-12-20T15:00:00",
+      "fechaCreacion": "2025-12-01T10:00:00",
+      "estado": "Completada",
+      "tipo": "Examen",
+      "materia_id": 1,
+      "docente_id": 1,
+      "puntos": 100,
+      "instrucciones": "Examen presencial de 3 horas de duración"
+    },
+    {
+      "id": 4,
+      "titulo": "Implementación de Árbol Binario",
+      "descripcion": "Implementar un árbol binario de búsqueda en Java",
+      "fechaCreacion": "2025-09-01T10:00:00",
+      "fechaLimite": "2025-09-25T23:59:59",
+      "estado": "Activa",
+      "tipo": "Tarea",
+      "materia_id": 2,
+      "docente_id": 1,
+      "puntos": 75,
+      "instrucciones": "Implementar todas las operaciones básicas: insertar, buscar, eliminar"
+    },
+    {
+      "id": 5,
+      "titulo": "Quiz de Integrales",
+      "descripcion": "Evaluación sobre técnicas de integración",
+      "fechaCreacion": "2025-09-05T08:00:00",
+      "fechaLimite": "2025-09-18T10:00:00",
+      "estado": "Activa",
+      "tipo": "Quiz",
+      "materia_id": 3,
+      "docente_id": 2,
+      "puntos": 30,
+      "instrucciones": "Quiz de 15 problemas de integración"
+    },
+    {
+      "id": "df80",
+      "titulo": "Examen Final de Estructuras de Datos",
+      "descripcion": "Examen final que cubre todos los temas del curso.",
+      "tipo": "Examen",
+      "fechaLimite": "2025-09-20T21:59",
+      "puntos": 50,
+      "materia_id": 1,
+      "docente_id": 1,
+      "fechaCreacion": "2025-09-09T01:00:04.560Z",
+      "estado": "Activa"
+    }
+  ],
+  "entregas": [
+    {
+      "id": 1,
+      "actividad_id": 1,
+      "alumno_id": 3,
+      "fechaEntrega": "2025-09-10T22:30:00",
+      "archivo": "proyecto_final_angular.zip",
+      "comentarios": "Entrega del proyecto final de Angular completo.",
+      "estado": "Entregada",
+      "calificacion": null,
+      "comentarios_docente": null,
+      "fecha_calificacion": null
+    },
+    {
+      "id": 2,
+      "actividad_id": 2,
+      "alumno_id": 3,
+      "fechaEntrega": "2025-09-12T17:45:00",
+      "archivo": null,
+      "comentarios": "Entrega del cuestionario sobre Angular Services.",
+      "estado": "Calificada",
+      "calificacion": 95,
+      "comentarios_docente": "Excelente trabajo en el cuestionario",
+      "fecha_calificacion": "2025-09-16T10:00:00"
+    },
+    {
+      "id": 3,
+      "actividad_id": 4,
+      "alumno_id": 3,
+      "fechaEntrega": "2025-09-24T20:15:00",
+      "archivo": "arbol_binario.java",
+      "comentarios": "Implementación completa del árbol binario de búsqueda.",
+      "estado": "Entregada",
+      "calificacion": null,
+      "comentarios_docente": null,
+      "fecha_calificacion": null
+    },
+    {
+      "id": 4,
+      "actividad_id": 2,
+      "alumno_id": 4,
+      "fechaEntrega": "2025-09-19T16:30:00",
+      "archivo": null,
+      "comentarios": "Cuestionario completado.",
+      "estado": "Calificada",
+      "calificacion": 85,
+      "comentarios_docente": "Buen trabajo, pero falta profundizar en algunos conceptos",
+      "fecha_calificacion": "2025-09-21T11:00:00"
+    },
+    {
+      "id": 5,
+      "actividad_id": 5,
+      "alumno_id": 4,
+      "fechaEntrega": "2025-09-17T09:45:00",
+      "archivo": null,
+      "comentarios": "Quiz de integrales completado.",
+      "estado": "Calificada",
+      "calificacion": 28,
+      "comentarios_docente": "Muy buen dominio de las técnicas de integración",
+      "fecha_calificacion": "2025-09-18T14:00:00"
+    }
+  ],
+  "calificaciones": [
+    {
+      "id": 1,
+      "alumno_id": 3,
+      "actividad_id": 2,
+      "materia_id": 1,
+      "nota": 95,
+      "nota_maxima": 100,
+      "porcentaje": 95,
+      "comentarios_docente": "Excelente trabajo en el cuestionario",
+      "fecha_calificacion": "2025-09-16T10:00:00",
+      "fecha_publicacion": "2025-09-16T14:00:00"
+    },
+    {
+      "id": 2,
+      "alumno_id": 4,
+      "actividad_id": 2,
+      "materia_id": 1,
+      "nota": 85,
+      "nota_maxima": 100,
+      "porcentaje": 85,
+      "comentarios_docente": "Buen trabajo, pero falta profundizar en algunos conceptos",
+      "fecha_calificacion": "2025-09-21T11:00:00",
+      "fecha_publicacion": "2025-09-21T15:00:00"
+    },
+    {
+      "id": 3,
+      "alumno_id": 4,
+      "actividad_id": 5,
+      "materia_id": 3,
+      "nota": 28,
+      "nota_maxima": 30,
+      "porcentaje": 93.33,
+      "comentarios_docente": "Muy buen dominio de las técnicas de integración",
+      "fecha_calificacion": "2025-09-18T14:00:00",
+      "fecha_publicacion": "2025-09-18T16:00:00"
+    },
+    {
+      "id": 4,
+      "alumno_id": 5,
+      "actividad_id": 2,
+      "materia_id": 1,
+      "nota": 78,
+      "nota_maxima": 100,
+      "porcentaje": 78,
+      "comentarios_docente": "Trabajo aceptable, revisar conceptos de inyección de dependencias",
+      "fecha_calificacion": "2025-09-22T09:30:00",
+      "fecha_publicacion": "2025-09-22T13:00:00"
+    }
+  ],
+  "asignaciones": [
+    {
+      "id": 1,
+      "actividad_id": 1,
+      "alumno_id": 3,
+      "fecha_asignacion": "2025-07-15T09:00:00",
+      "estado": "Asignada"
+    },
+    {
+      "id": 2,
+      "actividad_id": 1,
+      "alumno_id": 4,
+      "fecha_asignacion": "2025-07-15T09:00:00",
+      "estado": "Asignada"
+    },
+    {
+      "id": 3,
+      "actividad_id": 2,
+      "alumno_id": 3,
+      "fecha_asignacion": "2025-09-10T09:00:00",
+      "estado": "Completada"
+    },
+    {
+      "id": 4,
+      "actividad_id": 2,
+      "alumno_id": 4,
+      "fecha_asignacion": "2025-09-10T09:00:00",
+      "estado": "Completada"
+    }
+  ]
+}
