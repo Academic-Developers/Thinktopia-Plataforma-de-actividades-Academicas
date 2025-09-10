@@ -263,6 +263,15 @@ export class GenericTableComponent {
     const status = value.toString().toLowerCase();
     
     switch (status) {
+      // Estados de actividades con clases específicas
+      case 'activa':
+        return 'badge activa-status';
+      case 'inactiva':
+        return 'badge inactiva-status';
+      case 'completada':
+        return 'badge completada-status';
+      
+      // Estados generales (para otros componentes)
       case 'calificado':
       case 'entregado':
       case 'completado':

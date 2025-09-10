@@ -216,6 +216,13 @@
   letter-spacing: 0.3px;
   box-sizing: border-box;
   flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .badge-primary {
@@ -226,26 +233,26 @@
 
 .badge-secondary {
   background-color: #F1F5F9; 
-  color: #475569; 
-  border: 1px solid #E2E8F0;
+  color: #d69f9f; 
+  border: 1px solid #CBD5E1;
 }
 
 .badge-success {
-  background-color: #ECFDF5; 
-  color: #65da72; 
-  border: 1px solid #BBF7D0;
+  background-color: #DCFCE7; 
+  color: #166534; 
+  border: 1px solid #86EFAC;
 }
 
 .badge-warning {
-  background-color: #FFFBEB; 
-  color: #f0b878; 
-  border: 1px solid #FED7AA;
+  background-color: #FEF3C7; 
+  color: #D97706; 
+  border: 1px solid #FCD34D;
 }
 
 .badge-danger {
-  background-color: #FEF2F2; 
-  color: #fc9696;
-  border: 1px solid #FECACA;
+  background-color: #FEE2E2; 
+  color: #DC2626;
+  border: 1px solid #FCA5A5;
 }
 
 /* ==== BADGES ADICIONALES ESPECÍFICOS DEL PROYECTO ==== */
@@ -253,6 +260,56 @@
   background-color: #F0F9FF; 
   color: #0284C7;
   border: 1px solid #BAE6FD;
+}
+
+/* ==== BADGES ESPECÍFICOS PARA ESTADOS DE ACTIVIDADES ==== */
+/* Activa - Verde pastel para indicar que está activa y disponible */
+.badge.activa-status {
+  background-color: #f9fad1; 
+  color: #969405;
+  border: 1px solid #f2f3a7;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.15);
+}
+
+/* Inactiva - Amarillo pastel para indicar pausa o inactividad */
+.badge.inactiva-status {
+  background-color: #fec7c7; 
+  color: #D97706;
+  border: 1px solid #fd8a8a;
+  box-shadow: 0 2px 4px rgba(217, 119, 6, 0.15);
+}
+
+/* Completada - Azul pastel para indicar que está terminada exitosamente */
+.badge.completada-status {
+  background-color: #bef8d9; 
+  color: #1dd85e;
+  border: 1px solid #93fdb3;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.15);
+}
+
+/* ==== EFECTOS HOVER PARA BADGES DE ACTIVIDADES ==== */
+.badge.activa-status:hover {
+  background-color: #f2f3a7;
+  border-color: #e8ea85;
+  color: #7d7b04;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(149, 148, 5, 0.25);
+}
+
+.badge.inactiva-status:hover {
+  background-color: #fd8a8a;
+  border-color: #fc6565;
+  color: #c4590c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(217, 119, 6, 0.25);
+}
+
+.badge.completada-status:hover {
+  background-color: #93fdb3;
+  border-color: #6bfc97;
+  color: #189a4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(29, 216, 94, 0.25);
 }
 
 .badge-dark {
