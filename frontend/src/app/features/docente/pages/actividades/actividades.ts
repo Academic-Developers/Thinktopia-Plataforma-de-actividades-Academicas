@@ -5,6 +5,7 @@ import { Subject, BehaviorSubject, combineLatest, takeUntil, map } from 'rxjs';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
 import { ActividadService } from '../../../../services/actividad.service';
 import { FilterConfig, FiltersComponent } from '../../components/filters/filters.component';
+import { Actividad, CreateActividadRequest } from '../../../../models/actividad.interface';
 
 @Component({
   selector: 'app-actividades',
@@ -17,7 +18,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   // Observables reactivos
-  actividades$ = new BehaviorSubject<any[]>([]);
+  actividades$ = new BehaviorSubject<Actividad[]>([]);
   loading$ = new BehaviorSubject<boolean>(false);
 
   // Filtros reactivos
@@ -35,13 +36,13 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     this.filtroMateria$
   ]).pipe(
     map(([actividades, texto, estado, tipo, materia]) => {
-      // ✅ Validar que actividades existe y es array
+      // Validar que actividades existe y es array
       if (!actividades || !Array.isArray(actividades)) {
         return [];
       }
 
       return actividades.filter(actividad => {
-        // ✅ Validar propiedades antes de usar toLowerCase()
+        // Validar propiedades antes de usar toLowerCase()
         const tituloSafe = actividad?.titulo || '';
         const descripcionSafe = actividad?.descripcion || '';
 
@@ -81,7 +82,6 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   ];
 
   // Configuración de tabla
-  // ✅ SOLUCIÓN 1: Quitar 'as const' y usar tipos explícitos
   tableColumns: any[] = [
     { key: 'titulo', label: 'Título', type: 'text' },
     { key: 'descripcion', label: 'Descripción', type: 'text' },
@@ -190,19 +190,20 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  // ✅ Método para configurar observables después de la inicialización
+  // Método para configurar observables después de la inicialización
   private setupObservables(): void {
     // Conectar con los observables del servicio
     this.actividadService.actividades$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(actividades => {
+      .subscribe((actividades: Actividad[]) => {
+        console.log('Actividades recibidas en componente:', actividades);
         this.actividades$.next(actividades);
         this.tableData = actividades; // Para compatibilidad con HTML actual
       });
 
     this.actividadService.loading$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(loading => {
+      .subscribe((loading: boolean) => {
         this.loading$.next(loading);
       });
   }
@@ -220,17 +221,18 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   private cargarActividades(): void {
-    // ✅ Simplificado - el servicio maneja el loading state
+    console.log('🎬 Iniciando carga de actividades...');
+    // El servicio maneja el loading state
     this.actividadService.obtenerActividades()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        error: (error) => {
-          console.error('Error al cargar actividades:', error);
+        error: (error: Error) => {
+          console.error('❌ Error al cargar actividades:', error);
         }
       });
   }
 
-  // ✅ Método para manejar cambios de filtros desde app-filters
+  // Método para manejar cambios de filtros desde app-filters
   onFilterChange(filterEvent: { filterId: string, value: any }): void {
     switch (filterEvent.filterId) {
       case 'texto':
@@ -251,7 +253,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   formatearPuntos(puntos: number): string {
     return `${puntos} pts`;
   }
-  // ✅ Método para manejar clicks de botones en filtros
+  // Método para manejar clicks de botones en filtros
   onFilterButtonClick(buttonEvent: { filterId: string }): void {
     if (buttonEvent.filterId === 'limpiar') {
       this.limpiarFiltros();
@@ -263,14 +265,14 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ✅ Método para el botón duplicado de crear actividad
+  // Método para el botón duplicado de crear actividad
   onCreateActivityClick(): void {
     this.abrirModalCrear();
   }
 
   // Métodos de filtrado
   aplicarFiltroTexto(texto: string): void {
-    this.filtroTexto$.next(texto || ''); // ✅ Validar null/undefined
+    this.filtroTexto$.next(texto || ''); // Validar null/undefined
   }
 
   aplicarFiltroEstado(estado: string): void {
@@ -297,7 +299,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   abrirModalCrear(): void {
     this.showCreateModal$.next(true);
     this.actividadForm.reset();
-    // ✅ Restaurar valores por defecto después del reset
+    // Restaurar valores por defecto después del reset
     this.actividadForm.patchValue({
       puntos: 100,
       materia_id: 1,
@@ -333,12 +335,11 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       this.actividadService.crearActividad(nuevaActividad)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: (actividad) => {
+          next: (actividad: Actividad) => {
             console.log('Actividad creada:', actividad);
             this.cerrarModal();
-            // ✅ No necesitas manejar loading aquí, el servicio lo hace
           },
-          error: (error) => {
+          error: (error: Error) => {
             console.error('Error al crear actividad:', error);
           }
         });
@@ -347,7 +348,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ✅ Método helper separado para mejor legibilidad
+  // Método helper separado para mejor legibilidad
   private marcarCamposComoTocados(): void {
     Object.keys(this.actividadForm.controls).forEach(key => {
       const control = this.actividadForm.get(key);
@@ -357,7 +358,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Métodos para manejar eventos de tabla
+  // Métodos para manejar eventos de tabla
   onTableSort(sortEvent: any): void {
     console.log('Sort event:', sortEvent);
     // Implementar lógica de ordenamiento si es necesario
@@ -392,7 +393,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
 
   private verActividad(actividad: any): void {
     console.log('Ver actividad:', actividad);
-    // TAREA: Implementar vista detallada si es necesario
+    // Implementar vista detallada si es necesario
   }
 
   private editarActividad(actividad: any): void {
@@ -418,9 +419,8 @@ export class ActividadesComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             console.log('Actividad eliminada exitosamente');
-            // ✅ No necesitas recargar, el servicio actualiza reactivamente
           },
-          error: (error) => {
+          error: (error: Error) => {
             console.error('Error al eliminar:', error);
           }
         });
@@ -434,7 +434,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   get fechaLimite() { return this.actividadForm.get('fechaLimite'); }
   get puntos() { return this.actividadForm.get('puntos'); }
 
-  // ✅ Helper methods para el template
+  // Helper methods para el template
   isFieldInvalid(fieldName: string): boolean {
     const field = this.actividadForm.get(fieldName);
     return !!(field && field.invalid && (field.dirty || field.touched));
