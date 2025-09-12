@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { ActividadesComponent } from './pages/actividades/actividades';
 import { Asistencias } from './pages/asistencias/asistencias';
-import { Entregas } from './pages/entregas/entregas';
+import { EntregasComponent } from './pages/entregas/entregas';
 import { Reportes } from './pages/reportes/reportes';
 import { Estadisticas } from './pages/estadisticas/estadisticas';
 import { GestionContenido } from './pages/gestion-contenido/gestion-contenido';
@@ -13,7 +13,7 @@ export const routes: Routes = [
   {path: '', component:DocenteLayout, children: [
   { path: 'dashboard', component:Dashboard },
   { path: 'actividades', component:ActividadesComponent},
-  { path: 'entregas', component:Entregas },
+  { path: 'entregas', component:EntregasComponent },
   { path: 'asistencias', component:Asistencias },
   { path: 'estadisticas', component:Estadisticas },
   { path: 'reportes', component:Reportes },
