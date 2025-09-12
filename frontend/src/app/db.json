@@ -1,0 +1,86 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "eve.holt@reqres.in",
+      "role": "docente"
+    },
+    {
+      "id": 2,
+      "email": "janet.weaver@reqres.in",
+      "role": "alumno"
+    }
+  ],
+  "materias": [
+    {
+      "id": 1,
+      "nombre": "Programación I",
+      "codigo": "PROG1"
+    },
+    {
+      "id": 2,
+      "nombre": "Base de Datos",
+      "codigo": "BD1"
+    },
+    {
+      "id": 3,
+      "nombre": "Sistemas Operativos",
+      "codigo": "SO1"
+    },
+    {
+      "id": 4,
+      "nombre": "Redes de Computadoras",
+      "codigo": "RED1"
+    },
+    {
+      "id": 5,
+      "nombre": "Algoritmos y Estructuras de Datos",
+      "codigo": "AED1"
+    },
+    {
+      "id": 6,
+      "nombre": "Ingeniería de Software",
+      "codigo": "IS1"
+    }
+  ],
+  "user_materia": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "materia_id": 1
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "materia_id": 4
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "materia_id": 6
+    },
+    {
+      "id": 4,
+      "user_id": 2,
+      "materia_id": 1
+    },
+    {
+      "id": 5,
+      "user_id": 2,
+      "materia_id": 3
+    },
+    {
+      "id": 6,
+      "user_id": 2,
+      "materia_id": 2
+    },
+    {
+      "id": 7,
+      "user_id": 2,
+      "materia_id": 5
+    }
+  ],
+  "actividades": [],
+  "materiales": [],
+  "entregas": []
+}

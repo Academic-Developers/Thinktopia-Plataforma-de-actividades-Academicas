@@ -4,10 +4,10 @@
     </section>
     
     <div class="materias-container">
-        <div class="row gy-4 ">
+        <div class="row gy-4">
             @for (materia of materias; track materia.id) {
                 <div class="col-12 col-md-4">
-                    <!-- <a [routerLink]="['/alumno/materias', materia.id]" class="card-link"> -->
+                    <!-- <a [routerLink]="['/docente/materias', materia.id]" class="card-link"> -->
                         <div class="custom-card">
                             <div class="card-content">
                                 <h3 class="card-title">{{ materia.nombre }}</h3>

@@ -32,13 +32,12 @@ body {
 	background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
 	border-top: 5px solid var(--primary-color); 
 	height: 20dvh;
+	margin:1rem;
 	border-radius: 16px;
 	box-shadow: 
 		0 10px 40px rgba(0, 0, 0, 0.08),
 		0 4px 12px rgba(0, 0, 0, 0.05),
 		inset 0 1px 0 rgba(255, 255, 255, 0.9); 
-	margin: 1rem;
-
 }
 .custom-card {
 	flex-wrap: nowrap;

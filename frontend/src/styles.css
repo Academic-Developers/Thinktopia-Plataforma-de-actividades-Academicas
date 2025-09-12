@@ -45,10 +45,7 @@ body  {
   background-color: var(--background-color); 
 }
 
-main {
-  /* height: 100vh !important; */
-  
-}
+
 
 /* Clases para reutilizar. Le agrego el "n" al final para diferenciar que es NUESTRO. Ya que si usamos boostrap, hay clases como "bg-primary" y por ese motivo decidí agregar el n al ultimo para diferenciar estas clases que configuramos debajo. */
 
