@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, map, catchError, of, tap, switchMap } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, catchError, tap, switchMap } from 'rxjs/operators';
 import { Actividad, CreateActividadRequest, UpdateActividadRequest } from '../models/actividad.interface';
 import { environment } from '../../environments/environment';
 
@@ -40,7 +41,7 @@ export class ActividadService {
         );
     }
 
-    // Obtener actividades por docente
+    // Obtener actividades por docente (para vista docente)
     obtenerActividadesPorDocente(docenteId: number): Observable<any[]> {
         this.loadingSubject.next(true);
 
@@ -179,14 +180,14 @@ export class ActividadService {
         );
     }
 
-    // Asignar actividad a estudiantes
-    asignarActividad(actividadId: number, estudiantesIds: number[]): Observable<any> {
+    // Asignar actividad a materias
+    asignarActividad(actividadId: number, materiasIds: number[]): Observable<any> {
         this.loadingSubject.next(true);
 
         // Crear múltiples asignaciones
-        const asignaciones = estudiantesIds.map(estudianteId => ({
+        const asignaciones = materiasIds.map(materiaId => ({
             actividad_id: actividadId,
-            alumno_id: estudianteId,
+            materia_id: materiaId,
             fecha_asignacion: new Date().toISOString()
         }));
 
