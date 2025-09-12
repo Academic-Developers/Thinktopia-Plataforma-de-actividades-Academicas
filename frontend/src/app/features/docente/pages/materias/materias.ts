@@ -7,12 +7,13 @@ import { User } from '../../../../models/auth-models/auth-models';
 import { Materia } from '../../../../models/materias-models/materias-models';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-materias',
+  standalone: true,
   imports: [CommonModule,RouterModule],
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css'
+  templateUrl: './materias.html',
+  styleUrls: ['./materias.css'],
 })
-export class Dashboard  implements OnInit {
+export class Materias implements OnInit {
   loggedInUser: User | null = null;
   materias: Materia[] = [];
 
@@ -22,23 +23,21 @@ export class Dashboard  implements OnInit {
   ) {}
 
     ngOnInit(): void {
-    // 1. Obtiene el usuario logueado del servicio de autenticación
     this.loggedInUser = this.authService.getLoggedInUser();
-    console.log('👤 Alumno logueado en Materias:', this.loggedInUser);
+    console.log('👤 Usuario logueado en Materias:', this.loggedInUser);
 
     if (this.loggedInUser) {
-      // 2. Llama al servicio de materias con el ID del usuario
       this.materiaService.getMaterias(Number(this.loggedInUser.id)).subscribe({
         next: (materias) => {
           this.materias = materias;
-          console.log('📚 Materias del alumno cargadas en el componente:', this.materias);
+          console.log('📚 Materias cargadas en el componente:', this.materias);
         },
         error: (err) => {
-          console.error('❌ Error al cargar las materias del alumno:', err);
+          console.error('❌ Error al cargar las materias:', err);
         },
       });
     } else {
-      console.warn('⚠️ No hay usuario logueado, no se pueden cargar materias del alumno');
+      console.warn('⚠️ No hay usuario logueado, no se pueden cargar materias');
     }
   }
 }
