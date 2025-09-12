@@ -104,7 +104,7 @@
             <h3 class="h4 fw-semibold font-poppins text-primary mb-3">{{testimonial.perfil}}</h3>
             <p class="text-secondary mb-4">{{testimonial.texto}}</p>
             <div class="d-flex align-items-center">
-              <img [src]="testimonial.img" alt="Avatar de docente" class="rounded-circle">
+              <img [src]="testimonial.img" alt="{{testimonial.nombre}}" class="rounded-circle">
               <div class="ms-3">
                 <p class="fw-bold mb-0">{{testimonial.nombre}}</p>
                 <p class="text-muted mb-0">{{testimonial.cargo}}</p>
@@ -133,3 +133,4 @@
       </div>
     </div>
   </section>
+  
