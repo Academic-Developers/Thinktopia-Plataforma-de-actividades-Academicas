@@ -1,6 +1,6 @@
 
 .main-footer{
-  margin-top: 20rem;
+  margin-top: 10rem;
   width: 100%;
   padding: 1rem;
   background-color:var(--primary-color);
@@ -27,8 +27,3 @@
   font-size: 1.1rem;
 }
 
-@media (max-width: 768px) {
-  /* .main-footer {
-    margin-top: 5rem;
-  } */
-}
