@@ -20,7 +20,27 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   // Observables reactivos
   actividades$ = new BehaviorSubject<Actividad[]>([]);
   loading$ = new BehaviorSubject<boolean>(false);
+  // Estados de UI reactivos
+  showCreateModal$ = new BehaviorSubject<boolean>(false);
 
+  // Formulario reactivo para crear actividades
+  actividadForm!: FormGroup;
+
+  // Manejo de archivos
+  archivosSeleccionados: File[] = [];
+  isDragOver = false;
+  maxFileSize = 10 * 1024 * 1024; // 10MB
+  allowedFileTypes = [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'text/plain',
+    'application/zip',
+    'application/x-rar-compressed',
+    'image/jpeg',
+    'image/jpg',
+    'image/png'
+  ];
   // Filtros reactivos
   filtroTexto$ = new BehaviorSubject<string>('');
   filtroEstado$ = new BehaviorSubject<string>('');
@@ -59,27 +79,6 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     })
   );
 
-  // Estados de UI reactivos
-  showCreateModal$ = new BehaviorSubject<boolean>(false);
-
-  // Formulario reactivo para crear actividades
-  actividadForm!: FormGroup;
-
-  // Manejo de archivos
-  archivosSeleccionados: File[] = [];
-  isDragOver = false;
-  maxFileSize = 10 * 1024 * 1024; // 10MB
-  allowedFileTypes = [
-    'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'text/plain',
-    'application/zip',
-    'application/x-rar-compressed',
-    'image/jpeg',
-    'image/jpg',
-    'image/png'
-  ];
 
   // Configuración de tabla
   tableColumns: any[] = [
@@ -119,8 +118,8 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   // Opciones para filtros
   tiposActividad = ['Proyecto', 'Quiz', 'Tarea', 'Examen'];
   estadosActividad = ['Activa', 'Inactiva', 'Completada'];
-  
-  // Lista de materias (en una implementación real, esto vendría del servicio)
+
+  // Lista de materias (ESTOS DATOS VIENEN DEL SERVICIO/IMPLEMENTAR LUEGO DE LA CREACIÓN DEL SERVICIO DE MATERIAS)
   materias = [
     { id: 1, nombre: 'Programación II', codigo: 'PROG-II-2025' },
     { id: 2, nombre: 'Estructuras de Datos', codigo: 'EST-DAT-2025' },
@@ -136,9 +135,9 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       placeholder: 'Todas las materias',
       options: [
         { value: '', label: 'Todas las materias' },
-        ...this.materias.map(materia => ({ 
-          value: materia.id.toString(), 
-          label: `${materia.codigo} - ${materia.nombre}` 
+        ...this.materias.map(materia => ({
+          value: materia.id.toString(),
+          label: `${materia.codigo} - ${materia.nombre}`
         }))
       ]
     },
@@ -326,7 +325,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
           tamaño: file.size,
           tipo: file.type,
           // En una implementación real, aquí tendrías la URL del archivo subido
-          url: `uploads/${file.name}` 
+          url: `uploads/${file.name}`
         }))
       };
 
@@ -361,12 +360,12 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   // Métodos para manejar eventos de tabla
   onTableSort(sortEvent: any): void {
     console.log('Sort event:', sortEvent);
-    // Implementar lógica de ordenamiento si es necesario
+    // Implementación de lógica de ordenamiento
   }
 
   onTableRowClick(rowEvent: any): void {
     console.log('Row clicked:', rowEvent);
-    // Implementar lógica de click en fila si es necesario
+    // Implementación de lógica de click en fila
   }
 
   // Manejar acciones de tabla
@@ -441,7 +440,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   // ===== MÉTODOS PARA MANEJO DE ARCHIVOS =====
-  
+
   onFileSelected(event: any): void {
     const files = event.target.files;
     if (files && files.length > 0) {
@@ -465,7 +464,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     event.preventDefault();
     event.stopPropagation();
     this.isDragOver = false;
-    
+
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       this.processFiles(Array.from(files));
@@ -487,7 +486,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       }
 
       // Verificar si el archivo ya está seleccionado
-      const exists = this.archivosSeleccionados.some(f => 
+      const exists = this.archivosSeleccionados.some(f =>
         f.name === file.name && f.size === file.size
       );
 
@@ -503,11 +502,11 @@ export class ActividadesComponent implements OnInit, OnDestroy {
 
   formatFileSize(bytes: number): string {
     if (bytes === 0) return '0 Bytes';
-    
+
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
@@ -538,7 +537,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       if (fieldName === 'puntos' && field.errors['required']) {
         return 'Los puntos son requeridos';
       }
-      
+
       // Mensajes genéricos
       if (field.errors['required']) return `${fieldName} es requerido`;
       if (field.errors['minlength']) return `${fieldName} debe tener al menos ${field.errors['minlength'].requiredLength} caracteres`;

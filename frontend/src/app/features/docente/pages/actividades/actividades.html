@@ -44,7 +44,7 @@
         </div>
 
         <section class="table-container" *ngIf="!(loading$ | async)">
-            <!-- Datos reactivos en lugar de tableData estático -->
+            <!-- Datos reactivos -->
             <div *ngIf="actividadesFiltradas$ | async as actividades">
                 <app-generic-table 
                     [columns]="tableColumns" 
