@@ -8,16 +8,6 @@
     {
       "id": 2,
       "email": "janet.weaver@reqres.in",
-      "role": "docente"
-    },
-    {
-      "id": 3,
-      "email": "george.bluth@reqres.in",
-      "role": "alumno"
-    }, 
-    {
-      "id": 4,
-      "email": "mailen.lawson@reqres.in",
       "role": "alumno"
     }
   ],

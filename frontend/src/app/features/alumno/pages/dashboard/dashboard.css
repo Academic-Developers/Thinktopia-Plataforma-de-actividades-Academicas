@@ -9,8 +9,6 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--font-paragraph);
-  max-width: 75rem;
-  margin: 0 auto;
 }
 
  .title-element {
@@ -74,7 +72,7 @@ body {
 	color: var(--text-color);
 }
 
-.card-link {
+/* .card-link {
 	text-decoration: none;
 }
 
@@ -88,4 +86,4 @@ body {
 
 .card-link .custom-card:active {
 	transform: translateY(-2px);
-}
+} */

@@ -30,14 +30,14 @@ export class Materias implements OnInit {
       this.materiaService.getMaterias(Number(this.loggedInUser.id)).subscribe({
         next: (materias) => {
           this.materias = materias;
-          console.log('📚 Materias cargadas en el componente:', this.materias);
+          console.log(' Materias cargadas en el componente:', this.materias);
         },
         error: (err) => {
-          console.error('❌ Error al cargar las materias:', err);
+          console.error(' Error al cargar las materias:', err);
         },
       });
     } else {
-      console.warn('⚠️ No hay usuario logueado, no se pueden cargar materias');
+      console.warn(' No hay usuario logueado, no se pueden cargar materias');
     }
   }
 }

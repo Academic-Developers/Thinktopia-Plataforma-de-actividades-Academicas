@@ -7,14 +7,14 @@
         <div class="row gy-4">
             @for (materia of materias; track materia.id) {
                 <div class="col-12 col-md-4">
-                    <a [routerLink]="['/docente/materias', materia.id]" class="card-link">
+                    <!-- <a [routerLink]="['/docente/materias', materia.id]" class="card-link"> -->
                         <div class="custom-card">
                             <div class="card-content">
                                 <h3 class="card-title">{{ materia.nombre }}</h3>
                                 <p class="card-value">Código: {{ materia.codigo }}</p>
                             </div>
                         </div>
-                    </a>
+                    <!-- </a> -->
                 </div>
             } @empty {
                 <p class="text-secondary fs-3 text-center font-poppins">No tienes materias asignadas.</p>
