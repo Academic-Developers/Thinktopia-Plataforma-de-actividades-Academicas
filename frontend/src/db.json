@@ -67,37 +67,50 @@
   ],
   "materias": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Programación II",
       "codigo": "PROG-II-2025",
       "descripcion": "Programación orientada a objetos y frameworks modernos",
       "creditos": 4,
       "docente_id": "1",
-      "alumnos_ids": ["3", "4", "5", "6"],
+      "alumnos_ids": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
       "semestre": "2025-1",
       "horario": "Lunes y Miércoles 14:00-16:00",
       "aula": "Lab-A201"
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Estructuras de Datos",
       "codigo": "EST-DAT-2025",
       "descripcion": "Algoritmos y estructuras de datos fundamentales",
       "creditos": 3,
       "docente_id": "1",
-      "alumnos_ids": ["3", "4", "5"],
+      "alumnos_ids": [
+        "3",
+        "4",
+        "5"
+      ],
       "semestre": "2025-1",
       "horario": "Martes y Jueves 10:00-12:00",
       "aula": "Aula-B301"
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Cálculo II",
       "codigo": "CALC-II-2025",
       "descripcion": "Cálculo integral y series infinitas",
       "creditos": 4,
       "docente_id": "721a",
-      "alumnos_ids": ["3", "4", "6"],
+      "alumnos_ids": [
+        "3",
+        "4",
+        "6"
+      ],
       "semestre": "2025-1",
       "horario": "Lunes, Miércoles y Viernes 08:00-09:30",
       "aula": "Aula-C101"
@@ -105,91 +118,91 @@
   ],
   "user_materia": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": "1",
       "materia_id": 1,
       "tipo": "docente",
       "fecha_asignacion": "2025-01-15T08:00:00"
     },
     {
-      "id": 2,
+      "id": "2",
       "user_id": "1",
       "materia_id": 2,
       "tipo": "docente",
       "fecha_asignacion": "2025-01-15T08:00:00"
     },
     {
-      "id": 3,
+      "id": "3",
       "user_id": "721a",
       "materia_id": 3,
       "tipo": "docente",
       "fecha_asignacion": "2025-01-15T08:00:00"
     },
     {
-      "id": 4,
+      "id": "4",
       "user_id": "3",
       "materia_id": 1,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 5,
+      "id": "5",
       "user_id": "3",
       "materia_id": 2,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 6,
+      "id": "6",
       "user_id": "3",
       "materia_id": 3,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 7,
+      "id": "7",
       "user_id": "4",
       "materia_id": 1,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 8,
+      "id": "8",
       "user_id": "4",
       "materia_id": 2,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 9,
+      "id": "9",
       "user_id": "4",
       "materia_id": 3,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 10,
+      "id": "10",
       "user_id": "5",
       "materia_id": 1,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 11,
+      "id": "11",
       "user_id": "5",
       "materia_id": 2,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 12,
+      "id": "12",
       "user_id": "6",
       "materia_id": 1,
       "tipo": "alumno",
       "fecha_asignacion": "2025-02-01T09:00:00"
     },
     {
-      "id": 13,
+      "id": "13",
       "user_id": "6",
       "materia_id": 3,
       "tipo": "alumno",
@@ -198,7 +211,7 @@
   ],
   "actividades": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Proyecto Final de Angular",
       "descripcion": "Desarrollar una SPA completa usando Angular.",
       "fechaCreacion": "2025-07-15T09:00:00",
@@ -211,7 +224,7 @@
       "instrucciones": "El proyecto debe incluir routing, servicios, y componentes reutilizables"
     },
     {
-      "id": 2,
+      "id": "2",
       "titulo": "Cuestionario de Angular Services",
       "descripcion": "Evaluación sobre servicios e inyección de dependencias",
       "fechaLimite": "2025-09-20T18:00:00",
@@ -224,7 +237,7 @@
       "instrucciones": "Cuestionario de 20 preguntas sobre servicios en Angular"
     },
     {
-      "id": 3,
+      "id": "3",
       "titulo": "Examen Final de Programación",
       "descripcion": "Examen final que cubre todos los temas del curso.",
       "fechaLimite": "2025-12-20T15:00:00",
@@ -237,7 +250,7 @@
       "instrucciones": "Examen presencial de 3 horas de duración"
     },
     {
-      "id": 4,
+      "id": "4",
       "titulo": "Implementación de Árbol Binario",
       "descripcion": "Implementar un árbol binario de búsqueda en Java",
       "fechaCreacion": "2025-09-01T10:00:00",
@@ -250,7 +263,7 @@
       "instrucciones": "Implementar todas las operaciones básicas: insertar, buscar, eliminar"
     },
     {
-      "id": 5,
+      "id": "5",
       "titulo": "Quiz de Integrales",
       "descripcion": "Evaluación sobre técnicas de integración",
       "fechaCreacion": "2025-09-05T08:00:00",
@@ -280,21 +293,24 @@
     {
       "id": 1,
       "actividad_id": 1,
+      "materia_id": 1,
       "alumno_id": "3",
       "fechaEntrega": "2025-09-10T22:30:00",
-      "archivo": "proyecto_final_angular.zip",
-      "comentarios": "Entrega del proyecto final de Angular completo.",
-      "estado": "Entregada",
-      "calificacion": null,
-      "comentarios_docente": null,
-      "fecha_calificacion": null
+      "fecha_entrega": "2025-09-10T22:30:00",
+      "archivo_url": "proyecto_final_angular.zip",
+      "comentarios_estudiante": "Entrega del proyecto final de Angular completo.",
+      "estado": "Calificada",
+      "calificacion": 70,
+      "comentarios_docente": "Buen trabajo, María. Has cumplido con la entrega y la estructura general del proyecto está bien planteada. Sin embargo, aún necesitas hacer algunos ajustes, especialmente en la organización de componentes y en la optimización del código. Te recomiendo revisar la consistencia en el uso de estilos y validar mejor los formularios. Con estas mejoras, tu proyecto alcanzará un nivel más sólido.",
+      "fecha_calificacion": "2025-09-12T14:30:00"
     },
     {
-      "id": 2,
+      "id": "2",
       "actividad_id": 2,
+      "materia_id": 1,
       "alumno_id": "3",
       "fechaEntrega": "2025-09-12T17:45:00",
-      "archivo": null,
+      "rchivo_url": null,
       "comentarios": "Entrega del cuestionario sobre Angular Services.",
       "estado": "Calificada",
       "calificacion": 95,
@@ -302,11 +318,14 @@
       "fecha_calificacion": "2025-09-16T10:00:00"
     },
     {
-      "id": 3,
+      "id": "3",
       "actividad_id": 4,
+      "materia_id": 2,
       "alumno_id": "3",
       "fechaEntrega": "2025-09-24T20:15:00",
-      "archivo": "arbol_binario.java",
+      "fecha_entrega": "2025-09-24T20:15:00",
+      "rchivo_url": "arbol_binario.java",
+      "rchivo_url_url": "arbol_binario.java",
       "comentarios": "Implementación completa del árbol binario de búsqueda.",
       "estado": "Entregada",
       "calificacion": null,
@@ -314,11 +333,14 @@
       "fecha_calificacion": null
     },
     {
-      "id": 4,
+      "id": "4",
       "actividad_id": 2,
+      "materia_id": 1,
       "alumno_id": "4",
       "fechaEntrega": "2025-09-19T16:30:00",
-      "archivo": null,
+      "fecha_entrega": "2025-09-19T16:30:00",
+      "rchivo_url": null,
+      "rchivo_url_url": null,
       "comentarios": "Cuestionario completado.",
       "estado": "Calificada",
       "calificacion": 85,
@@ -326,11 +348,14 @@
       "fecha_calificacion": "2025-09-21T11:00:00"
     },
     {
-      "id": 5,
+      "id": "5",
       "actividad_id": 5,
+      "materia_id": 3,
       "alumno_id": "4",
       "fechaEntrega": "2025-09-17T09:45:00",
-      "archivo": null,
+      "fecha_entrega": "2025-09-17T09:45:00",
+      "rchivo_url": null,
+      "rchivo_url_url": null,
       "comentarios": "Quiz de integrales completado.",
       "estado": "Calificada",
       "calificacion": 28,
