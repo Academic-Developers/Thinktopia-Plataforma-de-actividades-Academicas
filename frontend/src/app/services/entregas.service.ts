@@ -85,7 +85,7 @@ export class EntregasService {
     console.log('Iniciando actualizarEntregaPorEstudiante() - Datos:', entrega);
     this.loadingSubject.next(true);
 
-    return this.http.put<Entrega>(`${this.apiUrl}/entregas/${entrega.id}`, entrega).pipe(
+    return this.http.patch<Entrega>(`${this.apiUrl}/entregas/${entrega.id}`, entrega).pipe(
       tap(entregaActualizada => {
         console.log('✅ Entrega actualizada por estudiante:', entregaActualizada);
 
@@ -116,7 +116,7 @@ export class EntregasService {
     console.log('Iniciando actualizarEntregaPorDocente() - Datos:', entrega);
     this.loadingSubject.next(true);
 
-    return this.http.put<Entrega>(`${this.apiUrl}/entregas/${entrega.id}`, entrega).pipe(
+    return this.http.patch<Entrega>(`${this.apiUrl}/entregas/${entrega.id}`, entrega).pipe(
       tap(entregaActualizada => {
         console.log('✅ Entrega actualizada por docente:', entregaActualizada);
 
