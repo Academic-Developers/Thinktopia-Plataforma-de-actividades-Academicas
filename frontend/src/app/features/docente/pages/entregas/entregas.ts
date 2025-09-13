@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, BehaviorSubject, combineLatest, takeUntil, map } from 'rxjs';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
+import { AuthService } from '../../../../services/auth/auth-service';
 import { FilterConfig, FiltersComponent } from '../../components/filters/filters.component';
 import { EntregasService } from '../../../../services/entregas.service';
 import { ActividadService } from '../../../../services/actividad.service';
 import { MateriaService } from '../../../../services/materia/materia.service';
-import { Entrega } from '../../../../models/entregas.interface';
-import { Actividad } from '../../../../models/actividad.interface';
+import { Entrega } from '../../../../models/entregas-models/entregas.interface';
+import { Actividad } from '../../../../models/actividad-models/actividad.interface';
 import { TableColumn, TableRow, TableAction } from '../../components/generic-table/generic-table.component';
 
 /**
@@ -48,26 +49,73 @@ export class EntregasComponent implements OnInit, OnDestroy {
   filtroMateria$ = new BehaviorSubject<string>('');
 
   // Entregas filtradas reactivamente
+  // Filtro por Materia, Actividad, Estado y búsqueda por texto (en título de actividad, materia o estudiante)
+  filtroTexto$ = new BehaviorSubject<string>('');
+
   entregasFiltradas$ = combineLatest([
     this.entregas$,
     this.filtroActividad$,
     this.filtroEstado$,
-    this.filtroMateria$
+    this.filtroMateria$,
+    this.filtroTexto$
   ]).pipe(
-    map(([entregas, actividad, estado, materia]) => {
+    map(([entregas, actividad, estado, materia, texto]) => {
       if (!entregas || !Array.isArray(entregas)) {
         return [];
       }
 
-      return entregas.filter(entrega => {
-        const coincideActividad = actividad === '' || entrega.actividad_id?.toString() === actividad;
-        const coincideEstado = estado === '' || entrega.estado === estado;
-        const coincideMateria = materia === '' || entrega.materia_id?.toString() === materia;
+      const textoLower = (texto || '').toLowerCase();
 
-        return coincideActividad && coincideEstado && coincideMateria;
+      return entregas.filter(entrega => {
+        // Filtros por dropdown
+        const coincideActividad = actividad === '' || entrega.actividad_id === Number(actividad);
+        const coincideEstado = estado === '' || entrega.estado === estado;
+        const coincideMateria = materia === '' || entrega.materia_id === Number(materia);
+
+        // Filtro por texto (en actividad_titulo, materia_nombre, estudiante_nombre)
+        const actividadTitulo = (entrega.actividad_titulo || '').toLowerCase();
+        const materiaNombre = (entrega.materia_nombre || '').toLowerCase();
+        const estudianteNombre = (entrega.estudiante_nombre || '').toLowerCase();
+
+        const coincideTexto =
+          textoLower === '' ||
+          actividadTitulo.includes(textoLower) ||
+          materiaNombre.includes(textoLower) ||
+          estudianteNombre.includes(textoLower);
+
+        return coincideActividad && coincideEstado && coincideMateria && coincideTexto;
       });
     })
   );
+
+  // Configuración de tabla
+  tableColumns: any[] = [
+    { key: 'estudiante_nombre', label: 'Estudiante', type: 'text' },
+    { key: 'actividad_titulo', label: 'Actividad', type: 'text' },
+    { key: 'materia_nombre', label: 'Materia', type: 'text' },
+    { key: 'fechaEntrega', label: 'Fecha Entrega', type: 'date' },
+    { key: 'estado', label: 'Estado', type: 'status' },
+    { key: 'acciones', label: 'Acciones', type: 'action', sortable: false, width: '15%', align: 'center' }
+  ];
+
+  tableActions: any[] = [
+    {
+      id: 'view',
+      label: '',
+      type: 'button',
+      buttonClass: 'btn-primary',
+      icon: '/icons/bi-eye.svg',
+      tooltip: 'Ver entrega'
+    },
+    {
+      id: 'grade',
+      label: '',
+      type: 'button',
+      buttonClass: 'btn-success',
+      icon: '/icons/check.svg',
+      tooltip: 'Calificar entrega'
+    }
+  ];
 
   // Estados de entrega posibles (ESTO DEBE MANEJARSE DINÁMICAMENTE, NO HARD-CODED)
   estadosEntrega = ['Pendiente', 'Entregada', 'Calificada', 'Atrasada'];
@@ -76,9 +124,9 @@ export class EntregasComponent implements OnInit, OnDestroy {
   materias: any[] = [];
 
   // Lista de estudiantes (se llenará dinámicamente desde el backend)
-  estudiantes: { id: string, nombre: string }[] = [];
+  estudiantes: { id: number, nombre: string }[] = [];
 
-  // Configuración de filtros (se llenarán dinámicamente)
+  // Configuración de filtros para el componente app-filters
   filterConfigs: FilterConfig[] = [
     {
       id: 'actividad',
@@ -119,98 +167,47 @@ export class EntregasComponent implements OnInit, OnDestroy {
   // Datos de tabla
   tableData: any[] = [];
 
-  // Configuración de tabla
-  tableColumns: any[] = [
-    { key: 'estudiante_nombre', label: 'Estudiante', type: 'text' },
-    { key: 'actividad_titulo', label: 'Actividad', type: 'text' },
-    { key: 'materia_nombre', label: 'Materia', type: 'text' },
-    { key: 'fechaEntrega', label: 'Fecha Entrega', type: 'date' },
-    { key: 'estado', label: 'Estado', type: 'status' },
-    { key: 'acciones', label: 'Acciones', type: 'action', sortable: false, width: '15%', align: 'center' }
-  ];
 
-  tableActions: any[] = [
-    {
-      id: 'view',
-      label: '',
-      type: 'button',
-      buttonClass: 'btn-primary',
-      icon: '/icons/bi-eye.svg',
-      tooltip: 'Ver entrega'
-    },
-    {
-      id: 'grade',
-      label: '',
-      type: 'button',
-      buttonClass: 'btn-success',
-      icon: '/icons/check.svg',
-      tooltip: 'Calificar entrega'
-    }
-  ];
 
   // Constuctor
   constructor(
     private entregasService: EntregasService,
     private actividadService: ActividadService,
     private materiaService: MateriaService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) {
     this.initializeForm();
     this.setupObservables();
-    // Cargar materias dinámicamente
-    this.materiaService.getAllMaterias().subscribe({
-      next: (materias: any[]) => {
-        this.materias = materias;
-        // Actualizar opciones del filtro de materias
-        this.filterConfigs = this.filterConfigs.map(config => {
-          if (config.id === 'materia') {
-            return {
-              ...config,
-              options: [
-                { value: '', label: 'Todas las materias' },
-                ...materias.map(materia => ({
-                  value: materia.id.toString(),
-                  label: `${materia.codigo || ''} - ${materia.nombre}`
-                }))
-              ]
-            };
-          }
-          return config;
-        });
-      },
-      error: (err: any) => {
-        console.error('Error al cargar materias:', err);
-      }
-    });
-
-    /*       --- DESCOMENTAR CUANDO HAYA LOGIN ---
-      import { AuthService } from 'ruta/al/auth-service';
-      inyectar en constructor: private authService: AuthService
-      const userId = this.authService.getCurrentUserId();
-      this.materiaService.getMaterias(userId).subscribe({
+    // Cargar solo las materias asignadas al docente logueado y poblar el filtro correctamente
+    const user = this.authService.getLoggedInUser();
+    if (user && user.role === 'docente') {
+      this.materiaService.getMaterias(user.id).subscribe({
         next: (materias: any[]) => {
           this.materias = materias;
-          this.filterConfigs = this.filterConfigs.map(config => {
+          // Actualizar opciones del filtro de materias
+          // Forzar cambio de referencia para que Angular detecte el cambio
+          this.filterConfigs = [...this.filterConfigs.map(config => {
             if (config.id === 'materia') {
               return {
                 ...config,
                 options: [
                   { value: '', label: 'Todas las materias' },
                   ...materias.map(materia => ({
-                    value: materia.id.toString(),
+                    value: materia.id,
                     label: `${materia.codigo ? materia.codigo + ' - ' : ''}${materia.nombre}`
                   }))
                 ]
               };
             }
             return config;
-          });
+          })];
         },
         error: (err: any) => {
           console.error('Error al cargar materias:', err);
         }
       });
-      --- FIN DESCOMENTAR --- */
+    }
   }
 
   ngOnInit(): void {
@@ -224,60 +221,35 @@ export class EntregasComponent implements OnInit, OnDestroy {
 
   //Método para configurar observables después de la inicialización
   private setupObservables(): void {
+    // Conectar con los observables del servicio
+    this.entregasService.entregas$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((entregas: Entrega[]) => {
+        console.log('Entregas recibidas en componente:', entregas);
+        this.entregas$.next(entregas);
+      });
+
+    // Suscribirse a las entregas filtradas para actualizar la tabla
+    this.entregasFiltradas$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((entregasFiltradas: Entrega[]) => {
+        // Mapear para compatibilidad con la tabla genérica
+        this.tableData = entregasFiltradas.map(e => ({
+          ...e,
+          estudiante: e.estudiante_nombre,
+          actividad: e.actividad_titulo,
+          materia: e.materia_nombre
+        }));
+      });
+
     // Configurar loading state
     this.entregasService.loading$
       .pipe(takeUntil(this.destroy$))
       .subscribe((loading: boolean) => {
         this.loading$.next(loading);
       });
-
-    // Combinar actividades y entregas para transformar los datos
-    // Cargar usuarios (estudiantes) desde el backend
-    this.entregasService.obtenerUsuarios().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (usuarios: any[]) => {
-        // Solo alumnos
-        this.estudiantes = usuarios.filter(u => u.role === 'alumno').map(u => ({ id: u.id.toString(), nombre: u.nombre || u.email || `Estudiante ${u.id}` }));
-        // Ahora sí, combinar actividades y entregas
-        combineLatest([
-          this.actividadService.actividades$,
-          this.entregasService.entregas$
-        ]).pipe(takeUntil(this.destroy$))
-          .subscribe(([actividades, entregas]) => {
-            // Transformar entregas agregando nombres de actividad, materia y estudiante
-            const entregasConNombres = entregas.map(entrega => {
-              // Buscar actividad por ID (convertir a string para comparación)
-              const actividad = actividades.find(act => act.id.toString() === entrega.actividad_id?.toString());
-              // Buscar estudiante por ID
-              const estudiante = this.estudiantes.find(est => est.id === entrega.alumno_id?.toString());
-              // Obtener nombre de materia basado en materia_id
-              let materiaNombre = 'Materia desconocida';
-              switch (entrega.materia_id) {
-                case 1:
-                  materiaNombre = 'Programación II';
-                  break;
-                case 2:
-                  materiaNombre = 'Estructuras de Datos';
-                  break;
-                case 3:
-                  materiaNombre = 'Cálculo II';
-                  break;
-              }
-              return {
-                ...entrega,
-                actividad_titulo: actividad?.titulo || `Actividad ${entrega.actividad_id}`,
-                materia_nombre: materiaNombre,
-                estudiante_nombre: estudiante?.nombre || `Estudiante ${entrega.alumno_id}`
-              };
-            });
-            this.entregas$.next(entregasConNombres);
-            this.tableData = entregasConNombres;
-          });
-      },
-      error: (err) => {
-        console.error('Error al cargar usuarios:', err);
-      }
-    });
   }
+
 
   private initializeForm(): void {
     this.gradeForm = this.fb.group({
@@ -287,30 +259,37 @@ export class EntregasComponent implements OnInit, OnDestroy {
   }
 
   private cargarDatos(): void {
-    console.log('Iniciando carga de entregas...');
+    console.log('🎬 Iniciando carga de entregas...');
+    const user = this.authService.getLoggedInUser();
+    if (!user || user.role !== 'docente') {
+      console.error('❌ No hay docente Logueado');
+      this.entregas$.next([]);
+      return;
+    }
 
     // Cargar actividades para los filtros
-    this.actividadService.obtenerActividades()
+    this.actividadService.obtenerActividadesDeMateriasDelDocente(user.id)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (actividades: Actividad[]) => {
-          this.actividades$.next(actividades);
-          this.actualizarOpcionesActividades(actividades);
-        },
         error: (error: Error) => {
           console.error('❌ Error al cargar actividades:', error);
         }
       });
 
-    // Cargar entregas
-    this.entregasService.obtenerEntregas()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        error: (error: Error) => {
-          console.error('❌ Error al cargar entregas:', error);
-        }
-      });
+    // Cargar entregas de las materias del docente
+    if (this.entregasService.obtenerEntregasDeMateriasDelDocente) {
+      this.entregasService.obtenerEntregasDeMateriasDelDocente(user.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          error: (error: Error) => {
+            console.error('❌ Error al cargar entregas:', error);
+          }
+        });
+    } else {
+      console.warn('El método obtenerEntregasDeMateriasDelDocente no está implementado en entregasService.');
+    }
   }
+
   private actualizarOpcionesActividades(actividades: Actividad[]): void {
     // Actualizar las opciones del filtro de actividades dinámicamente
     this.filterConfigs = this.filterConfigs.map(config => {
@@ -320,7 +299,7 @@ export class EntregasComponent implements OnInit, OnDestroy {
           options: [
             { value: '', label: 'Todas las actividades' },
             ...actividades.map(actividad => ({
-              value: actividad.id.toString(),
+              value: actividad.id,
               label: actividad.titulo
             }))
           ]
@@ -333,6 +312,9 @@ export class EntregasComponent implements OnInit, OnDestroy {
   // Método para manejar cambios de filtros desde app-filters
   onFilterChange(filterEvent: { filterId: string, value: any }): void {
     switch (filterEvent.filterId) {
+      case 'texto':
+        this.aplicarFiltroTexto(filterEvent.value);
+        break;
       case 'actividad':
         this.aplicarFiltroActividad(filterEvent.value);
         break;
@@ -340,7 +322,7 @@ export class EntregasComponent implements OnInit, OnDestroy {
         this.aplicarFiltroEstado(filterEvent.value);
         break;
       case 'materia':
-        this.aplicarFiltroMateria(filterEvent.value);
+        this.filtroMateria(filterEvent.value);
         break;
     }
   }
@@ -358,6 +340,10 @@ export class EntregasComponent implements OnInit, OnDestroy {
   }
 
   // Métodos de filtrado
+  aplicarFiltroTexto(texto: string): void {
+    this.filtroTexto$.next(texto || ''); // Validar null/undefined
+  }
+
   aplicarFiltroActividad(actividad: string): void {
     this.filtroActividad$.next(actividad || '');
   }
@@ -366,7 +352,7 @@ export class EntregasComponent implements OnInit, OnDestroy {
     this.filtroEstado$.next(estado || '');
   }
 
-  aplicarFiltroMateria(materia: string): void {
+  filtroMateria(materia: string): void {
     this.filtroMateria$.next(materia || '');
   }
 
@@ -405,6 +391,8 @@ export class EntregasComponent implements OnInit, OnDestroy {
       default:
         console.warn('Acción no reconocida:', event.action);
     }
+    // Log para ver el estado de la tabla tras una acción
+    console.log('[LOG] tableData tras acción:', this.tableData);
   }
 
   private verEntrega(entrega: any): void {
