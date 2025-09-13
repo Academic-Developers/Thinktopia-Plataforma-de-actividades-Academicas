@@ -1,9 +1,10 @@
 
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of, forkJoin } from 'rxjs';
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
-import { Entrega, CreateEntregaRequest, UpdateEntregaDocenteRequest, UpdateEntregaEstudianteRequest } from '../models/entregas.interface';
+import { Entrega, CreateEntregaRequest, UpdateEntregaDocenteRequest, UpdateEntregaEstudianteRequest } from '../models/entregas-models/entregas.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -175,6 +176,71 @@ export class EntregasService {
   limpiarEstado(): void {
     this.entregasSubject.next([]);
     this.loadingSubject.next(false);
+  }
+
+  /**
+   * Obtiene todas las entregas de las materias asignadas a un docente
+   * @param docenteId ID del docente logueado
+   * @returns Observable<Entrega[]>
+   */
+  obtenerEntregasDeMateriasDelDocente(docenteId: number): Observable<Entrega[]> {
+    this.loadingSubject.next(true);
+    const urlUserMaterias = `${this.apiUrl}user_materia?user_id=${docenteId}`;
+    return this.http.get<any[]>(urlUserMaterias).pipe(
+      switchMap((userMaterias: any[]) => {
+        const materiaIds: number[] = userMaterias.map((um: any) => um.materia_id);
+  // console.log('[LOG] materiaIds para docente:', materiaIds);
+        if (materiaIds.length === 0) {
+          this.loadingSubject.next(false);
+          this.entregasSubject.next([]);
+          return of([]);
+        }
+        // Obtener todas las entregas de las materias
+        const entregasRequests = materiaIds.map((materiaId: number) => {
+          const entregasUrl = `${this.apiUrl}entregas?materia_id=${materiaId}`;
+          return this.http.get<Entrega[]>(entregasUrl);
+        });
+        // También obtener usuarios, actividades y materias para enriquecer los datos
+        const usuarios$ = this.http.get<any[]>(`${this.apiUrl}users`);
+        const actividades$ = this.http.get<any[]>(`${this.apiUrl}actividades`);
+        const materias$ = this.http.get<any[]>(`${this.apiUrl}materias`);
+        return forkJoin([
+          forkJoin(entregasRequests).pipe(map((resultados: Entrega[][]) => resultados.flat())),
+          usuarios$,
+          actividades$,
+          materias$
+        ]).pipe(
+          map(([entregas, usuarios, actividades, materias]) => {
+            // Enriquecer entregas, asegurando que los IDs sean comparados como números
+            return entregas.map((entrega: any) => {
+              const alumnoId = Number(entrega.alumno_id);
+              const actividadId = Number(entrega.actividad_id);
+              const materiaId = Number(entrega.materia_id);
+              const estudiante = usuarios.find((u: any) => Number(u.id) === alumnoId);
+              const actividad = actividades.find((a: any) => Number(a.id) === actividadId);
+              const materia = materias.find((m: any) => Number(m.id) === materiaId);
+              return {
+                ...entrega,
+                estudiante_nombre: estudiante ? estudiante.nombre : '',
+                actividad_titulo: actividad ? actividad.titulo : '',
+                materia_nombre: materia ? materia.nombre : '',
+                fechaEntrega: entrega.fechaEntrega || entrega.fecha_entrega || entrega.fechaEntrega // compatibilidad
+              };
+            });
+          }),
+          tap((entregas: Entrega[]) => {
+            this.entregasSubject.next(entregas);
+            this.loadingSubject.next(false);
+          })
+        );
+      }),
+      catchError(error => {
+        console.error('Error al obtener entregas de materias del docente:', error);
+        this.loadingSubject.next(false);
+        this.entregasSubject.next([]);
+        return of([]);
+      })
+    );
   }
 }
 

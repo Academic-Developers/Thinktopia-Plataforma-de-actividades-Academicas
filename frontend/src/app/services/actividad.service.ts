@@ -1,15 +1,16 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of, forkJoin } from 'rxjs';
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
-import { Actividad, CreateActividadRequest, UpdateActividadRequest } from '../models/actividad.interface';
+import { Actividad, CreateActividadRequest, UpdateActividadRequest } from '../models/actividad-models/actividad.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ActividadService {
-    private apiUrl = environment.urlJsonServer;
+    private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
 
     // BehaviorSubject para estado reactivo
     private actividadesSubject = new BehaviorSubject<Actividad[]>([]);
@@ -102,6 +103,42 @@ export class ActividadService {
             }),
             catchError(error => {
                 console.error('Error al obtener actividades por materia:', error);
+                this.loadingSubject.next(false);
+                return of([]);
+            })
+        );
+    }
+
+    /**
+     * Obtiene todas las actividades de las materias asignadas a un docente
+     * @param docenteId ID del docente logueado
+     * @returns Observable<Actividad[]>
+     */
+    obtenerActividadesDeMateriasDelDocente(docenteId: number): Observable<Actividad[]> {
+        this.loadingSubject.next(true);
+        const url = `${this.apiUrl}user_materia?user_id=${docenteId}`;
+        return this.http.get<any[]>(url).pipe(
+            switchMap((userMaterias: any[]) => {
+                const materiaIds: number[] = userMaterias.map((um: any) => um.materia_id);
+                if (materiaIds.length === 0) {
+                    this.loadingSubject.next(false);
+                    return of([]);
+                }
+                // Para cada materia, obtener las actividades
+                const actividadesRequests = materiaIds.map((materiaId: number) => {
+                    const actividadesUrl = `${this.apiUrl}actividades?materia_id=${materiaId}`;
+                    return this.http.get<Actividad[]>(actividadesUrl);
+                });
+                return forkJoin(actividadesRequests).pipe(
+                    map((resultados: Actividad[][]) => resultados.flat()),
+                    tap((actividades: Actividad[]) => {
+                        this.actividadesSubject.next(actividades);
+                        this.loadingSubject.next(false);
+                    })
+                );
+            }),
+            catchError(error => {
+                console.error('Error al obtener actividades de materias del docente:', error);
                 this.loadingSubject.next(false);
                 return of([]);
             })

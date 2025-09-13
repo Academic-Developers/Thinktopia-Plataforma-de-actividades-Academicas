@@ -38,18 +38,24 @@ export class AuthService {
 
   private setLoggedInUser(user: User): void {
     this.loggedInUserSubject.next(user);
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+    }
   }
 
   private clearLoggedInUser(): void {
     this.loggedInUserSubject.next(null);
-    localStorage.removeItem('loggedInUser');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('loggedInUser');
+    }
   }
 
   private loadUserFromLocalStorage(): void {
-    const userJson = localStorage.getItem('loggedInUser');
-    if (userJson) {
-      this.loggedInUserSubject.next(JSON.parse(userJson));
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const userJson = localStorage.getItem('loggedInUser');
+      if (userJson) {
+        this.loggedInUserSubject.next(JSON.parse(userJson));
+      }
     }
   }
 
