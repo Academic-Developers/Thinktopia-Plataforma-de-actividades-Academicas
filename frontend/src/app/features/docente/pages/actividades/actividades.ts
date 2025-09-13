@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, BehaviorSubject, combineLatest, takeUntil, map } from 'rxjs';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
+// import { AuthService } from 'ruta/al/auth-service';
 import { ActividadService } from '../../../../services/actividad.service';
+import { MateriaService } from '../../../../services/materia/materia.service';
 import { FilterConfig, FiltersComponent } from '../../components/filters/filters.component';
 import { Actividad, CreateActividadRequest } from '../../../../models/actividad.interface';
 
@@ -115,16 +117,12 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   ];
 
 
-  // Opciones para filtros
+  // Opciones para filtros (ESTO DEBE MANEJARSE DINÁMICAMENTE, NO HARD-CODED)
   tiposActividad = ['Proyecto', 'Quiz', 'Tarea', 'Examen'];
   estadosActividad = ['Activa', 'Inactiva', 'Completada'];
 
-  // Lista de materias (ESTOS DATOS VIENEN DEL SERVICIO/IMPLEMENTAR LUEGO DE LA CREACIÓN DEL SERVICIO DE MATERIAS)
-  materias = [
-    { id: 1, nombre: 'Programación II', codigo: 'PROG-II-2025' },
-    { id: 2, nombre: 'Estructuras de Datos', codigo: 'EST-DAT-2025' },
-    { id: 3, nombre: 'Cálculo II', codigo: 'CALC-II-2025' }
-  ];
+  // Lista de materias (se cargará dinámicamente desde el servicio)
+  materias: any[] = [];
 
   // Configuración de filtros para el componente app-filters
   filterConfigs: FilterConfig[] = [
@@ -134,11 +132,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       label: 'Materia',
       placeholder: 'Todas las materias',
       options: [
-        { value: '', label: 'Todas las materias' },
-        ...this.materias.map(materia => ({
-          value: materia.id.toString(),
-          label: `${materia.codigo} - ${materia.nombre}`
-        }))
+        { value: '', label: 'Todas las materias' }
       ]
     },
     {
@@ -174,10 +168,67 @@ export class ActividadesComponent implements OnInit, OnDestroy {
 
   constructor(
     private actividadService: ActividadService,
+    private materiaService: MateriaService,
     private fb: FormBuilder
+    //   private authService: AuthService
   ) {
     this.initializeForm();
     this.setupObservables();
+
+    /*   --- DESCOMENTAR CUANDO HAYA LOGIN ---
+      import { AuthService } from 'ruta/al/auth-service';
+      inyectar en constructor: private authService: AuthService
+      const userId = this.authService.getCurrentUserId();
+      this.materiaService.getMaterias(userId).subscribe({
+        next: (materias: any[]) => {
+          this.materias = materias;
+          this.filterConfigs = this.filterConfigs.map(config => {
+            if (config.id === 'materia') {
+              return {
+                ...config,
+                options: [
+                  { value: '', label: 'Todas las materias' },
+                  ...materias.map(materia => ({
+                    value: materia.id.toString(),
+                    label: `${materia.codigo ? materia.codigo + ' - ' : ''}${materia.nombre}`
+                  }))
+                ]
+              };
+            }
+            return config;
+          });
+        },
+        error: (err: any) => {
+          console.error('Error al cargar materias:', err);
+        }
+      });
+      --- FIN DESCOMENTAR --- */
+
+    // Cargar materias dinámicamente y poblar el filtro correctamente
+    this.materiaService.getAllMaterias().subscribe({
+      next: (materias: any[]) => {
+        this.materias = materias;
+        // Actualizar opciones del filtro de materias
+        this.filterConfigs = this.filterConfigs.map(config => {
+          if (config.id === 'materia') {
+            return {
+              ...config,
+              options: [
+                { value: '', label: 'Todas las materias' },
+                ...materias.map(materia => ({
+                  value: materia.id.toString(),
+                  label: `${materia.codigo ? materia.codigo + ' - ' : ''}${materia.nombre}`
+                }))
+              ]
+            };
+          }
+          return config;
+        });
+      },
+      error: (err: any) => {
+        console.error('Error al cargar materias:', err);
+      }
+    });
   }
 
   ngOnInit(): void {

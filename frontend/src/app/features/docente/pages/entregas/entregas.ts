@@ -6,6 +6,7 @@ import { GenericTableComponent } from '../../components/generic-table/generic-ta
 import { FilterConfig, FiltersComponent } from '../../components/filters/filters.component';
 import { EntregasService } from '../../../../services/entregas.service';
 import { ActividadService } from '../../../../services/actividad.service';
+import { MateriaService } from '../../../../services/materia/materia.service';
 import { Entrega } from '../../../../models/entregas.interface';
 import { Actividad } from '../../../../models/actividad.interface';
 import { TableColumn, TableRow, TableAction } from '../../components/generic-table/generic-table.component';
@@ -68,21 +69,14 @@ export class EntregasComponent implements OnInit, OnDestroy {
     })
   );
 
-  // Estados de entrega posibles
+  // Estados de entrega posibles (ESTO DEBE MANEJARSE DINÁMICAMENTE, NO HARD-CODED)
   estadosEntrega = ['Pendiente', 'Entregada', 'Calificada', 'Atrasada'];
 
-  // Lista de materias (igual que en actividades TAMBIÉN DEBE VENIR DEL SERVICIO MATERIAS CUANDO SE IMPLEMENTE)
-  materias = [
-    { id: 1, nombre: 'Programación II', codigo: 'PROG-II-2025' },
-    { id: 2, nombre: 'Estructuras de Datos', codigo: 'EST-DAT-2025' },
-    { id: 3, nombre: 'Cálculo II', codigo: 'CALC-II-2025' }
-  ];
+  // Lista de materias (se cargará dinámicamente desde el servicio)
+  materias: any[] = [];
 
-  // Lista de estudiantes (basada en db.json)
-  estudiantes = [
-    { id: "3", nombre: "María Rodríguez" },
-    { id: "4", nombre: "Carlos López" }
-  ];
+  // Lista de estudiantes (se llenará dinámicamente desde el backend)
+  estudiantes: { id: string, nombre: string }[] = [];
 
   // Configuración de filtros (se llenarán dinámicamente)
   filterConfigs: FilterConfig[] = [
@@ -101,11 +95,7 @@ export class EntregasComponent implements OnInit, OnDestroy {
       label: 'Materia',
       placeholder: 'Todas las materias',
       options: [
-        { value: '', label: 'Todas las materias' },
-        ...this.materias.map(materia => ({
-          value: materia.id.toString(),
-          label: `${materia.codigo} - ${materia.nombre}`
-        }))
+        { value: '', label: 'Todas las materias' }
       ]
     },
     {
@@ -162,11 +152,65 @@ export class EntregasComponent implements OnInit, OnDestroy {
   constructor(
     private entregasService: EntregasService,
     private actividadService: ActividadService,
+    private materiaService: MateriaService,
     private fb: FormBuilder
   ) {
-    // Inicializar formulario reactivo
-    this.initializeForm()
-    this.setupObservables()
+    this.initializeForm();
+    this.setupObservables();
+    // Cargar materias dinámicamente
+    this.materiaService.getAllMaterias().subscribe({
+      next: (materias: any[]) => {
+        this.materias = materias;
+        // Actualizar opciones del filtro de materias
+        this.filterConfigs = this.filterConfigs.map(config => {
+          if (config.id === 'materia') {
+            return {
+              ...config,
+              options: [
+                { value: '', label: 'Todas las materias' },
+                ...materias.map(materia => ({
+                  value: materia.id.toString(),
+                  label: `${materia.codigo || ''} - ${materia.nombre}`
+                }))
+              ]
+            };
+          }
+          return config;
+        });
+      },
+      error: (err: any) => {
+        console.error('Error al cargar materias:', err);
+      }
+    });
+
+    /*       --- DESCOMENTAR CUANDO HAYA LOGIN ---
+      import { AuthService } from 'ruta/al/auth-service';
+      inyectar en constructor: private authService: AuthService
+      const userId = this.authService.getCurrentUserId();
+      this.materiaService.getMaterias(userId).subscribe({
+        next: (materias: any[]) => {
+          this.materias = materias;
+          this.filterConfigs = this.filterConfigs.map(config => {
+            if (config.id === 'materia') {
+              return {
+                ...config,
+                options: [
+                  { value: '', label: 'Todas las materias' },
+                  ...materias.map(materia => ({
+                    value: materia.id.toString(),
+                    label: `${materia.codigo ? materia.codigo + ' - ' : ''}${materia.nombre}`
+                  }))
+                ]
+              };
+            }
+            return config;
+          });
+        },
+        error: (err: any) => {
+          console.error('Error al cargar materias:', err);
+        }
+      });
+      --- FIN DESCOMENTAR --- */
   }
 
   ngOnInit(): void {
@@ -188,49 +232,51 @@ export class EntregasComponent implements OnInit, OnDestroy {
       });
 
     // Combinar actividades y entregas para transformar los datos
-    combineLatest([
-      this.actividadService.actividades$,
-      this.entregasService.entregas$
-    ]).pipe(takeUntil(this.destroy$))
-      .subscribe(([actividades, entregas]) => {
-        console.log('Actividades y entregas recibidas:', { actividades, entregas });
-
-        // Transformar entregas agregando nombres de actividad, materia y estudiante
-        const entregasConNombres = entregas.map(entrega => {
-          // Buscar actividad por ID (convertir a string para comparación)
-          const actividad = actividades.find(act => act.id.toString() === entrega.actividad_id?.toString());
-          
-          console.log(`🔍 Buscando actividad ${entrega.actividad_id}:`, actividad);
-
-          // Buscar estudiante por ID
-          const estudiante = this.estudiantes.find(est => est.id === entrega.alumno_id?.toString());
-
-          // Obtener nombre de materia basado en materia_id
-          let materiaNombre = 'Materia desconocida';
-          switch (entrega.materia_id) {
-            case 1:
-              materiaNombre = 'Programación II';
-              break;
-            case 2:
-              materiaNombre = 'Estructuras de Datos';
-              break;
-            case 3:
-              materiaNombre = 'Cálculo II';
-              break;
-          }
-
-          return {
-            ...entrega,
-            actividad_titulo: actividad?.titulo || `Actividad ${entrega.actividad_id}`,
-            materia_nombre: materiaNombre,
-            estudiante_nombre: estudiante?.nombre || `Estudiante ${entrega.alumno_id}`
-          };
-        });
-
-        console.log('Entregas transformadas:', entregasConNombres);
-        this.entregas$.next(entregasConNombres);
-        this.tableData = entregasConNombres;
-      });
+    // Cargar usuarios (estudiantes) desde el backend
+    this.entregasService.obtenerUsuarios().pipe(takeUntil(this.destroy$)).subscribe({
+      next: (usuarios: any[]) => {
+        // Solo alumnos
+        this.estudiantes = usuarios.filter(u => u.role === 'alumno').map(u => ({ id: u.id.toString(), nombre: u.nombre || u.email || `Estudiante ${u.id}` }));
+        // Ahora sí, combinar actividades y entregas
+        combineLatest([
+          this.actividadService.actividades$,
+          this.entregasService.entregas$
+        ]).pipe(takeUntil(this.destroy$))
+          .subscribe(([actividades, entregas]) => {
+            // Transformar entregas agregando nombres de actividad, materia y estudiante
+            const entregasConNombres = entregas.map(entrega => {
+              // Buscar actividad por ID (convertir a string para comparación)
+              const actividad = actividades.find(act => act.id.toString() === entrega.actividad_id?.toString());
+              // Buscar estudiante por ID
+              const estudiante = this.estudiantes.find(est => est.id === entrega.alumno_id?.toString());
+              // Obtener nombre de materia basado en materia_id
+              let materiaNombre = 'Materia desconocida';
+              switch (entrega.materia_id) {
+                case 1:
+                  materiaNombre = 'Programación II';
+                  break;
+                case 2:
+                  materiaNombre = 'Estructuras de Datos';
+                  break;
+                case 3:
+                  materiaNombre = 'Cálculo II';
+                  break;
+              }
+              return {
+                ...entrega,
+                actividad_titulo: actividad?.titulo || `Actividad ${entrega.actividad_id}`,
+                materia_nombre: materiaNombre,
+                estudiante_nombre: estudiante?.nombre || `Estudiante ${entrega.alumno_id}`
+              };
+            });
+            this.entregas$.next(entregasConNombres);
+            this.tableData = entregasConNombres;
+          });
+      },
+      error: (err) => {
+        console.error('Error al cargar usuarios:', err);
+      }
+    });
   }
 
   private initializeForm(): void {
