@@ -10,9 +10,9 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class MateriaService {
-  private apiUrl = environment.urlJsonServer; 
+  private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMaterias(UserId: number): Observable<Materia[]> {
     console.log('🔎 Buscando materias para el usuario con ID:', UserId);
@@ -58,5 +58,9 @@ export class MateriaService {
         return throwError(() => new Error('Could not load subject details.'));
       })
     );
+  }
+
+  getAllMaterias(): Observable<Materia[]> {
+    return this.http.get<Materia[]>(`${this.apiUrl}materias`);
   }
 }
