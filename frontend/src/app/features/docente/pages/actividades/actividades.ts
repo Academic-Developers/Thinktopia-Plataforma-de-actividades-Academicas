@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, BehaviorSubject, combineLatest, takeUntil, map } from 'rxjs';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
-// import { AuthService } from 'ruta/al/auth-service';
+import { AuthService } from '../../../../services/auth/auth-service';
 import { ActividadService } from '../../../../services/actividad.service';
 import { MateriaService } from '../../../../services/materia/materia.service';
 import { FilterConfig, FiltersComponent } from '../../components/filters/filters.component';
-import { Actividad, CreateActividadRequest } from '../../../../models/actividad.interface';
+import { Actividad, CreateActividadRequest } from '../../../../models/actividad-models/actividad.interface';
 
 @Component({
   selector: 'app-actividades',
@@ -74,7 +74,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
 
         const coincideEstado = estado === '' || actividad?.estado === estado;
         const coincideTipo = tipo === '' || actividad?.tipo === tipo;
-        const coincideMateria = materia === '' || actividad?.materia_id?.toString() === materia;
+        const coincideMateria = materia === '' || actividad?.materia_id === Number(materia);
 
         return coincideTexto && coincideEstado && coincideTipo && coincideMateria;
       });
@@ -131,7 +131,9 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       type: 'dropdown',
       label: 'Materia',
       placeholder: 'Todas las materias',
+      // Las opciones se sobreescriben dinámicamente en el constructor según las materias asignadas al docente
       options: [
+        // El value debe ser string vacío por el tipo, pero se sobreescribe dinámicamente en el constructor
         { value: '', label: 'Todas las materias' }
       ]
     },
@@ -163,72 +165,47 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     }
   ];
 
-  // Datos de tabla (por compatibilidad con el HTML actual)
+  // Datos de tabla
   tableData: any[] = [];
 
   constructor(
     private actividadService: ActividadService,
     private materiaService: MateriaService,
-    private fb: FormBuilder
-    //   private authService: AuthService
+    private fb: FormBuilder,
+    private authService: AuthService
   ) {
     this.initializeForm();
     this.setupObservables();
 
-    /*   --- DESCOMENTAR CUANDO HAYA LOGIN ---
-      import { AuthService } from 'ruta/al/auth-service';
-      inyectar en constructor: private authService: AuthService
-      const userId = this.authService.getCurrentUserId();
-      this.materiaService.getMaterias(userId).subscribe({
+    // Cargar solo las materias asignadas al docente logueado y poblar el filtro correctamente
+    const user = this.authService.getLoggedInUser();
+    if (user && user.role === 'docente') {
+      this.materiaService.getMaterias(user.id).subscribe({
         next: (materias: any[]) => {
           this.materias = materias;
-          this.filterConfigs = this.filterConfigs.map(config => {
+          // Actualizar opciones del filtro de materias
+          // Forzar cambio de referencia para que Angular detecte el cambio
+          this.filterConfigs = [...this.filterConfigs.map(config => {
             if (config.id === 'materia') {
               return {
                 ...config,
                 options: [
                   { value: '', label: 'Todas las materias' },
                   ...materias.map(materia => ({
-                    value: materia.id.toString(),
+                    value: materia.id,
                     label: `${materia.codigo ? materia.codigo + ' - ' : ''}${materia.nombre}`
                   }))
                 ]
               };
             }
             return config;
-          });
+          })];
         },
         error: (err: any) => {
           console.error('Error al cargar materias:', err);
         }
       });
-      --- FIN DESCOMENTAR --- */
-
-    // Cargar materias dinámicamente y poblar el filtro correctamente
-    this.materiaService.getAllMaterias().subscribe({
-      next: (materias: any[]) => {
-        this.materias = materias;
-        // Actualizar opciones del filtro de materias
-        this.filterConfigs = this.filterConfigs.map(config => {
-          if (config.id === 'materia') {
-            return {
-              ...config,
-              options: [
-                { value: '', label: 'Todas las materias' },
-                ...materias.map(materia => ({
-                  value: materia.id.toString(),
-                  label: `${materia.codigo ? materia.codigo + ' - ' : ''}${materia.nombre}`
-                }))
-              ]
-            };
-          }
-          return config;
-        });
-      },
-      error: (err: any) => {
-        console.error('Error al cargar materias:', err);
-      }
-    });
+    }
   }
 
   ngOnInit(): void {
@@ -271,9 +248,14 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   private cargarActividades(): void {
-    console.log('🎬 Iniciando carga de actividades...');
-    // El servicio maneja el loading state
-    this.actividadService.obtenerActividades()
+    console.log('🎬 Iniciando carga de actividades solo de materias del docente logueado...');
+    const user = this.authService.getLoggedInUser();
+    if (!user || user.role !== 'docente') {
+      console.warn('No hay docente logueado.');
+      this.actividades$.next([]);
+      return;
+    }
+    this.actividadService.obtenerActividadesDeMateriasDelDocente(user.id)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         error: (error: Error) => {
