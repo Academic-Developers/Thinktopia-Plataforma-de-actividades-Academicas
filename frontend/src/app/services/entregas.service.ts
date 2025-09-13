@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
@@ -162,6 +163,12 @@ export class EntregasService {
   // Método para refrescar datos (útil para actualizaciones)
   refrescarEntregas(): void {
     this.obtenerEntregas().subscribe();
+  }
+
+
+  // Obtener todos los usuarios (alumnos y docentes)
+  obtenerUsuarios() {
+    return this.http.get<any[]>(`${this.apiUrl}/users`);
   }
 
   // Limpiar estado (útil para logout)
