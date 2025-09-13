@@ -3,12 +3,26 @@
     {
       "id": 1,
       "email": "eve.holt@reqres.in",
-      "role": "docente"
+      "role": "docente",
+      "nombre": "Dr. Juan Pérez"
     },
     {
       "id": 2,
       "email": "janet.weaver@reqres.in",
-      "role": "alumno"
+      "role": "alumno",
+      "nombre": "María Rodríguez"
+    },
+    {
+      "id": 3,
+      "email": "carlos.lopez@estudiantes.edu",
+      "role": "alumno",
+      "nombre": "Carlos López"
+    },
+    {
+      "id": 4,
+      "email": "ana.garcia@reqres.in",
+      "role": "docente",
+      "nombre": "Dra. Ana García"
     }
   ],
   "materias": [
@@ -204,7 +218,7 @@
       "id": 4,
       "actividad_id": "2",
       "materia_id": 1,
-      "alumno_id": "1",
+      "alumno_id": "3",
       "fechaEntrega": "2025-09-19T16:30:00",
       "archivo_url": null,
       "comentarios_estudiante": "Cuestionario completado.",
@@ -217,7 +231,7 @@
       "id": 5,
       "actividad_id": "5",
       "materia_id": 3,
-      "alumno_id": "1",
+      "alumno_id": "3",
       "fechaEntrega": "2025-09-17T09:45:00",
       "archivo_url": null,
       "comentarios_estudiante": "Quiz de integrales completado.",
