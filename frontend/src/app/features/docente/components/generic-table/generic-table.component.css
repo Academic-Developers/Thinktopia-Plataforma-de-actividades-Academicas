@@ -419,6 +419,22 @@
   object-fit: contain;
 }
 
+/* Icon-only, transparent action button */
+.btn-icon-only {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.25rem !important;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icon-only:hover {
+  background: rgba(0,0,0,0.04) !important;
+  border-radius: 6px;
+}
+
 /* ==== ESTADO VACÍO ==== */
 .empty-row td {
   border-bottom: none;

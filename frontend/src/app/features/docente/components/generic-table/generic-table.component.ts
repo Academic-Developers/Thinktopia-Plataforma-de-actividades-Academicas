@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf, NgForOf, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 /**
  * Configuración de columna para la tabla genérica
@@ -54,7 +54,17 @@ export interface TableEvent {
 @Component({
   selector: 'app-generic-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    // Common directives and utilities
+    CommonModule,
+    // Explicit structural/attribute directives to satisfy language service
+    NgIf,
+    NgForOf,
+    NgClass,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault
+  ],
   templateUrl: './generic-table.component.html',
   styleUrls: ['./generic-table.component.css']
 })
