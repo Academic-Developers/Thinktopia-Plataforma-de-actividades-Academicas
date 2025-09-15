@@ -24,6 +24,12 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   loading$ = new BehaviorSubject<boolean>(false);
   // Estados de UI reactivos
   showCreateModal$ = new BehaviorSubject<boolean>(false);
+  showViewModal$ = new BehaviorSubject<boolean>(false);
+  selectedActividadForView$ = new BehaviorSubject<Actividad | null>(null);
+
+  // Estado de edición
+  editingActividadId: number | null = null;
+  private actividadOriginalParaEdicion: Actividad | null = null;
 
   // Formulario reactivo para crear actividades
   actividadForm!: FormGroup;
@@ -337,6 +343,9 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       materia_id: 1,
       docente_id: 1
     });
+    // Asegurar que sea modo creación
+    this.editingActividadId = null;
+    this.actividadOriginalParaEdicion = null;
   }
 
   cerrarModal(): void {
@@ -345,36 +354,60 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     this.resetFileSelection(); // Limpiar archivos seleccionados
   }
 
-  // Crear nueva actividad
+  // Crear o actualizar actividad según el modo
   crearActividad(): void {
     if (this.actividadForm.valid) {
-      const nuevaActividad = {
-        ...this.actividadForm.value,
-        fechaCreacion: new Date().toISOString(),
-        estado: 'Activa',
-        // Información de archivos adjuntos
-        archivos_adjuntos: this.archivosSeleccionados.map(file => ({
-          nombre: file.name,
-          tamaño: file.size,
-          tipo: file.type,
-          // En una implementación real, aquí tendrías la URL del archivo subido
-          url: `uploads/${file.name}`
-        }))
-      };
+      if (this.editingActividadId && this.actividadOriginalParaEdicion) {
+        // Modo edición: combinar original con cambios del formulario
+        const actividadActualizada: Actividad = {
+          ...this.actividadOriginalParaEdicion,
+          ...this.actividadForm.value
+        };
 
-      console.log('Creando actividad con archivos:', nuevaActividad);
+        console.log('Actualizando actividad:', actividadActualizada);
+        this.actividadService.actualizarActividad(this.editingActividadId, actividadActualizada)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: () => {
+              console.log('Actividad actualizada');
+              this.cerrarModal();
+              this.editingActividadId = null;
+              this.actividadOriginalParaEdicion = null;
+            },
+            error: (error: Error) => {
+              console.error('Error al actualizar actividad:', error);
+            }
+          });
+      } else {
+        // Modo creación
+        const nuevaActividad = {
+          ...this.actividadForm.value,
+          fechaCreacion: new Date().toISOString(),
+          estado: 'Activa',
+          // Información de archivos adjuntos
+          archivos_adjuntos: this.archivosSeleccionados.map(file => ({
+            nombre: file.name,
+            tamaño: file.size,
+            tipo: file.type,
+            // En una implementación real, aquí tendrías la URL del archivo subido
+            url: `uploads/${file.name}`
+          }))
+        };
 
-      this.actividadService.crearActividad(nuevaActividad)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (actividad: Actividad) => {
-            console.log('Actividad creada:', actividad);
-            this.cerrarModal();
-          },
-          error: (error: Error) => {
-            console.error('Error al crear actividad:', error);
-          }
-        });
+        console.log('Creando actividad con archivos:', nuevaActividad);
+
+        this.actividadService.crearActividad(nuevaActividad)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: (actividad: Actividad) => {
+              console.log('Actividad creada:', actividad);
+              this.cerrarModal();
+            },
+            error: (error: Error) => {
+              console.error('Error al crear actividad:', error);
+            }
+          });
+      }
     } else {
       this.marcarCamposComoTocados();
     }
@@ -397,8 +430,8 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   onTableRowClick(rowEvent: any): void {
-    console.log('Row clicked:', rowEvent);
-    // Implementación de lógica de click en fila
+    if (!rowEvent) return;
+    this.verActividad(rowEvent);
   }
 
   // Manejar acciones de tabla
@@ -424,8 +457,9 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   private verActividad(actividad: any): void {
-    console.log('Ver actividad:', actividad);
-    // Implementar vista detallada si es necesario
+    if (!actividad) return;
+    this.selectedActividadForView$.next(actividad);
+    this.showViewModal$.next(true);
   }
 
   private editarActividad(actividad: any): void {
@@ -435,7 +469,17 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     }
 
     console.log('Editar actividad:', actividad);
-    this.actividadForm.patchValue(actividad);
+    this.editingActividadId = actividad.id;
+    this.actividadOriginalParaEdicion = actividad;
+    this.actividadForm.patchValue({
+      titulo: actividad.titulo,
+      descripcion: actividad.descripcion,
+      tipo: actividad.tipo,
+      materia_id: actividad.materia_id,
+      fechaLimite: actividad.fechaLimite,
+      puntos: actividad.puntos,
+      docente_id: actividad.docente_id
+    });
     this.showCreateModal$.next(true);
   }
 
@@ -457,6 +501,45 @@ export class ActividadesComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+
+  // ===== Modal Ver Actividad =====
+  cerrarModalVer(): void {
+    this.showViewModal$.next(false);
+    this.selectedActividadForView$.next(null);
+  }
+
+  editarDesdeVer(): void {
+    const act = this.selectedActividadForView$.value;
+    if (!act) return;
+    this.cerrarModalVer();
+    this.editarActividad(act);
+  }
+
+  eliminarDesdeVer(): void {
+    const act = this.selectedActividadForView$.value;
+    if (!act) return;
+    if (!act.id || !act.titulo) return;
+    if (confirm(`¿Estás seguro de eliminar la actividad "${act.titulo}"?`)) {
+      this.actividadService.eliminarActividad(act.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: () => {
+            console.log('Actividad eliminada exitosamente');
+            this.cerrarModalVer();
+          },
+          error: (error: Error) => {
+            console.error('Error al eliminar:', error);
+          }
+        });
+    }
+  }
+
+  getMateriaNombre(materiaId: number | undefined | null): string {
+    if (!materiaId) return '';
+    const mat = this.materias.find(m => m.id === materiaId);
+    if (!mat) return '';
+    return `${mat.codigo ? mat.codigo + ' - ' : ''}${mat.nombre}`;
   }
 
   // Getters para validaciones en template

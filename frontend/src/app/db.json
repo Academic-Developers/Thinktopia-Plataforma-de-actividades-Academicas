@@ -167,7 +167,7 @@
     },
     {
       "id": "a83a",
-      "titulo": "Modelado de Casos de Uso para un Sistema de Reservas de Vuelos",
+      "titulo": "Modelado de Casos de Uso para un Sistema de Reservas de Vuelos (Argentina)",
       "descripcion": "Los estudiantes deberán diseñar los casos de uso principales para un sistema de reservas de vuelos en línea. La actividad incluye identificar a los actores, redactar las descripciones narrativas de al menos tres casos de uso clave (por ejemplo: registrar usuario, buscar vuelos y realizar reserva), y representar la relación entre ellos mediante un diagrama UML. El entregable deberá incluir tanto el diagrama como la documentación de cada caso de uso.",
       "tipo": "Tarea",
       "materia_id": 1,
@@ -194,9 +194,9 @@
       "materia_id": 1,
       "alumno_id": 2,
       "fechaEntrega": "2025-09-10T22:30:00",
-      "archivo_url": "proyecto_final_angular.zip",
+      "archivo_url": "Angular - SPA.pdf",
       "comentarios_estudiante": "Entrega del proyecto final de Angular completo.",
-      "estado": "Calificada",
+      "estado": "Entregada",
       "calificacion": 70,
       "comentarios_docente": "Buen trabajo, has cumplido con la entrega y la estructura general del proyecto está bien planteada. Sin embargo, aún necesitas hacer algunos ajustes, especialmente en la organización de componentes y en la optimización del código. Te recomiendo revisar la consistencia en el uso de estilos y validar mejor los formularios. Con estas mejoras, tu proyecto alcanzará un nivel más sólido.",
       "fecha_calificacion": "2025-09-12T14:30:00"
@@ -269,13 +269,13 @@
       "id": "fe2a",
       "actividad_id": "a83a",
       "alumno_id": "2",
-      "archivo_url": "Angular - Programación Reactiva.pdf",
+      "archivo_url": "Revista Editorial de Negocios en Estilo Moderno Modular Verde Oscuro Verde Blanco (1).pdf",
       "comentarios_estudiante": "",
-      "estado": "Entregada",
+      "estado": "Calificada",
       "fecha_entrega": "2025-09-15T00:18:35.706Z",
       "materia_id": 1,
-      "calificacion": null,
-      "comentarios_docente": null
+      "calificacion": 0,
+      "comentarios_docente": "Documento equivocado enteregado"
     }
   ]
 }

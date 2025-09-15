@@ -174,15 +174,34 @@ export class EntregasAlumnoComponent implements OnInit, OnDestroy {
   // --- Edición ---
   showEditModal$ = new BehaviorSubject<boolean>(false);
   selectedEntregaForEdit: Entrega | null = null;
+  isEditMode = false;
 
   editarEntrega(entrega: Entrega): void {
     this.selectedEntregaForEdit = entrega;
-    // Aquí puedes inicializar el formulario de edición con los datos de la entrega
+    this.isEditMode = true;
+    // Prefijar valores necesarios para que el form sea válido en modo edición
+    this.entregaForm.patchValue({
+      materia_id: entrega.materia_id,
+      actividad_id: entrega.actividad_id,
+      comentarios: entrega.comentarios_estudiante || ''
+    });
+    // En edición el archivo NO es obligatorio
+    const archivoCtrl = this.entregaForm.get('archivo');
+    archivoCtrl?.clearValidators();
+    archivoCtrl?.updateValueAndValidity();
+    this.archivoPreview = null;
     this.showEditModal$.next(true);
   }
   cerrarModalEdit(): void {
     this.showEditModal$.next(false);
     this.selectedEntregaForEdit = null;
+    this.isEditMode = false;
+    // Restaurar validación de archivo requerida para creación
+    const archivoCtrl = this.entregaForm.get('archivo');
+    archivoCtrl?.setValidators([Validators.required]);
+    archivoCtrl?.updateValueAndValidity();
+    this.entregaForm.reset();
+    this.archivoPreview = null;
   }
 
   constructor(
@@ -382,12 +401,49 @@ export class EntregasAlumnoComponent implements OnInit, OnDestroy {
   }
 
   enviarEntrega(): void {
+    const user = this.authService.getLoggedInUser();
+    if (!user) return;
+
+    if (this.isEditMode) {
+      if (!this.selectedEntregaForEdit) return;
+      if (this.entregaForm.invalid) {
+        this.marcarCamposComoTocados();
+        return;
+      }
+
+      // Construir payload de actualización (solo campos editables por estudiante)
+      const payload: any = {
+        id: this.selectedEntregaForEdit.id,
+        estado: 'Entregada' as const
+      };
+      if (this.archivoPreview) {
+        payload.archivo_url = this.archivoPreview.name;
+      }
+      if (typeof this.entregaForm.value.comentarios === 'string') {
+        payload.comentarios_estudiante = this.entregaForm.value.comentarios;
+      }
+
+      this.loading$.next(true);
+      this.entregasService.actualizarEntregaPorEstudiante(payload).subscribe({
+        next: () => {
+          this.loading$.next(false);
+          this.cerrarModalEdit();
+          this.entregasService.refrescarEntregas();
+          alert('Entrega actualizada correctamente.');
+        },
+        error: () => {
+          this.loading$.next(false);
+          alert('Error al actualizar la entrega.');
+        }
+      });
+      return;
+    }
+
+    // Flujo de creación
     if (this.entregaForm.invalid) {
       this.marcarCamposComoTocados();
       return;
     }
-    const user = this.authService.getLoggedInUser();
-    if (!user) return;
     const actividadId = this.entregaForm.value.actividad_id; // puede ser string o number
     // Validar fecha límite (simulado)
     const actividad = this.actividadesDisponibles$.value.find(a => String(a.id) === String(actividadId));
@@ -414,7 +470,6 @@ export class EntregasAlumnoComponent implements OnInit, OnDestroy {
         this.loading$.next(false);
         this.cerrarModalEntrega();
         this.entregasService.refrescarEntregas();
-        // Confirmación visual (puedes mejorar con un toast)
         alert('Entrega enviada correctamente.');
       },
       error: () => {
