@@ -103,7 +103,7 @@ export class EntregasComponent implements OnInit, OnDestroy {
       id: 'view',
       label: '',
       type: 'button',
-      buttonClass: 'btn-primary',
+      buttonClass: 'btn-icon-only',
       icon: '/icons/bi-eye.svg',
       tooltip: 'Ver entrega'
     },
@@ -111,7 +111,7 @@ export class EntregasComponent implements OnInit, OnDestroy {
       id: 'grade',
       label: '',
       type: 'button',
-      buttonClass: 'btn-success',
+      buttonClass: 'btn-icon-only',
       icon: '/icons/check.svg',
       tooltip: 'Calificar entrega'
     }
