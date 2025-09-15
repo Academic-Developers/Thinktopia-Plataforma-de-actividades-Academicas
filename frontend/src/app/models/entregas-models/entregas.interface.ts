@@ -1,8 +1,8 @@
 export interface Entrega {
     id: number;
-    actividad_id: number;
-    alumno_id: number;
-    materia_id: number;
+    actividad_id: string | number;
+    alumno_id: string | number;
+    materia_id: string | number;
     archivo_url: string;
     fecha_entrega: string;
     estado: 'Pendiente' | 'Entregada' | 'Calificada' | 'Atrasada';
@@ -18,8 +18,8 @@ export interface Entrega {
 }
 
 export interface CreateEntregaRequest {
-    actividad_id: number;
-    alumno_id: number;
+    actividad_id: string | number;
+    alumno_id: string | number;
     archivo_url: string;
 }
 
