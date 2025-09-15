@@ -8,9 +8,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './dashboard-docente-header.css'
 })
 export class DashboardDocenteHeader {
-  menuOpen = false;
-  
+  menuOpen = false; 
     toggleMenu() {
-      this.menuOpen = !this.menuOpen;
-    }
+    this.menuOpen = !this.menuOpen;
+  }
 }

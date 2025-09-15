@@ -1,5 +1,4 @@
 <div class="login-container">
-
   <a routerLink="/main/inicio" class="logo">
     <img src="img/logo_oscuro_horizontal_1.png" alt="Thinktopia Logo" />
   </a>
@@ -8,6 +7,7 @@
     <h2 class="form-title">Iniciar sesión</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
       <div class="form-group">
         <label for="email" class="form-label">Correo electrónico</label>
         <div class="input-group">
@@ -22,15 +22,13 @@
             formControlName="email"
           />
         </div>
-        <div
-          *ngIf="
-            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
-          "
-          class="text-danger"
-        >
-          Email inválido
-        </div>
+
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <div class="text-danger">Email inválido</div>
+        }
       </div>
+
+      <!-- Password -->
       <div class="form-group">
         <label for="password" class="form-label">Contraseña</label>
         <div class="input-group">
@@ -50,26 +48,22 @@
             <i class="fas fa-eye-slash"></i>
           </button>
         </div>
-        <div
-          *ngIf="
-            loginForm.get('password')?.invalid &&
-            loginForm.get('password')?.touched
-          "
-          class="text-danger"
-        >
-          Contraseña requerida
-        </div>
+
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="text-danger">Contraseña requerida</div>
+        }
       </div>
+
       <button class="btn-primary" type="submit" [disabled]="loginForm.invalid">
         Iniciar sesión
       </button>
     </form>
+
     <div class="form-link-container">
       <a routerLink="/recuperar" class="form-link">Recuperar contraseña</a>
-      <a routerLink="/auth/register" class="form-link"
-        >¿No tienes una cuenta?</a
-      >
+      <a routerLink="/auth/register" class="form-link">
+        ¿No tienes una cuenta?
+      </a>
     </div>
   </div>
-  
 </div>

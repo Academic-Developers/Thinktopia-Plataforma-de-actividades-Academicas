@@ -54,7 +54,7 @@
             </a>
           </div>
         </div>
-        <!-- Imagen destacada -->
+
         <div class="col-12 col-md-6 text-center">
           <img src="gif/gif-nerd-home.gif"
                alt="Ilustración de estudiantes y docentes interactuando con la plataforma Thinktopia"
@@ -64,7 +64,6 @@
     </div>
   </section>
 
-  <!-- ===== SECCIÓN CARACTERÍSTICAS Y BENEFICIOS ===== -->
   <section id="features" class="py-5 bg-white">
     <div class="container">
       <div class="text-center mb-5">
@@ -74,52 +73,21 @@
         </p>
       </div>
       <div class="row gy-4">
-        <!-- Característica 1 -->
+      @for (feature of features; track feature) {
         <div class="col-12 col-md-4">
           <div class="feature-card card h-100 text-center p-4 shadow-sm border-0">
-            <div class="icon-circle bg-primary text-white mx-auto mb-4 d-flex align-items-center justify-content-center">
-              <!-- Ícono de Calendario (SVG) -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+            <div class="icon-circle text-white mx-auto mb-4 d-flex align-items-center justify-content-center">
+              <img [src]="feature.icon" alt="Icono de {{feature.titulo}}" class="icon-img"/>
             </div>
-            <h3 class="h5 fw-semibold font-poppins mb-3">Gestión Sencilla</h3>
-            <p class="text-secondary">Organiza tareas, clases y asistencias en un solo lugar. Ahorra tiempo y enfócate en lo que más importa: enseñar.</p>
+            <h3 class="h5 fw-semibold font-poppins mb-3">{{feature.titulo}}</h3>
+            <p class="text-secondary">{{feature.descripcion}}</p>
           </div>
         </div>
-        <!-- Característica 2 -->
-        <div class="col-12 col-md-4">
-          <div class="feature-card card h-100 text-center p-4 shadow-sm border-0">
-            <div class="icon-circle bg-accent text-white mx-auto mb-4 d-flex align-items-center justify-content-center">
-              <!-- Ícono de Trofeo (SVG) -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l7 3-7 4v6z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h3 class="h5 fw-semibold font-poppins mb-3">Aprendizaje Gamificado</h3>
-            <p class="text-secondary">Motiva a tus alumnos con puntos, logros y rankings. Convierte el aprendizaje en una aventura emocionante.</p>
-          </div>
-        </div>
-        <!-- Característica 3 -->
-        <div class="col-12 col-md-4">
-          <div class="feature-card card h-100 text-center p-4 shadow-sm border-0">
-            <div class="icon-circle bg-secondary text-white mx-auto mb-4 d-flex align-items-center justify-content-center">
-              <!-- Ícono de Gráfico (SVG) -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            </div>
-            <h3 class="h5 fw-semibold font-poppins mb-3">Progreso Visual</h3>
-            <p class="text-secondary">Monitorea el avance académico con mapas visuales y reportes claros. Identifica fortalezas y áreas de mejora al instante.</p>
-          </div>
-        </div>
+      }
       </div>
     </div>
   </section>
 
-  <!-- ===== SECCIÓN TESTIMONIOS ===== -->
   <section id="testimonials" class="bg-light py-5">
     <div class="container">
       <div class="text-center mb-5">
@@ -128,40 +96,27 @@
           Thinktopia se adapta a las necesidades de docentes y estudiantes por igual.
         </p>
       </div>
+
       <div class="row gy-4 align-items-center">
-        <!-- Docente -->
+      @for (testimonial of testimonials; track testimonial) {
         <div class="col-12 col-md-6">
           <div class="card p-4 rounded-lg shadow-lg border-0 h-100">
-            <h3 class="h4 fw-semibold font-poppins text-primary mb-3">Para Docentes</h3>
-            <p class="text-secondary mb-4">"Con Thinktopia, simplifico la calificación, el seguimiento de asistencias y la comunicación con mis alumnos. La gamificación ha aumentado la participación en clase de forma increíble. ¡Es mi asistente digital perfecto!"</p>
+            <h3 class="h4 fw-semibold font-poppins text-primary mb-3">{{testimonial.perfil}}</h3>
+            <p class="text-secondary mb-4">{{testimonial.texto}}</p>
             <div class="d-flex align-items-center">
-              <img src="https://placehold.co/50x50/0052CC/FFFFFF?text=P" alt="Avatar de docente" class="rounded-circle">
+              <img [src]="testimonial.img" alt="Avatar de docente" class="rounded-circle">
               <div class="ms-3">
-                <p class="fw-bold mb-0">Prof. Ana Torres</p>
-                <p class="text-muted mb-0">Maestra de Ciencias</p>
+                <p class="fw-bold mb-0">{{testimonial.nombre}}</p>
+                <p class="text-muted mb-0">{{testimonial.cargo}}</p>
               </div>
             </div>
           </div>
         </div>
-        <!-- Alumno -->
-        <div class="col-12 col-md-6">
-          <div class="card p-4 rounded-lg shadow-lg border-0 h-100">
-            <h3 class="h4 fw-semibold font-poppins text-accent mb-3">Para Alumnos</h3>
-            <p class="text-secondary mb-4">"¡Me encanta ganar puntos y medallas por hacer mis tareas! Puedo ver mis logros, mi progreso en un mapa y competir sanamente con mis compañeros en el ranking. Estudiar ahora es mucho más divertido."</p>
-            <div class="d-flex align-items-center">
-              <img src="https://placehold.co/50x50/36B37E/FFFFFF?text=E" alt="Avatar de estudiante" class="rounded-circle">
-              <div class="ms-3">
-                <p class="fw-bold mb-0">Elena Gómez</p>
-                <p class="text-muted mb-0">Estudiante de 8º Grado</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      }
       </div>
     </div>
   </section>
 
-  <!-- ===== SECCIÓN FINAL CTA ===== -->
   <section id="final-cta" class="bg-primary text-white py-5">
     <div class="container text-center py-5">
       <h2 class="h2 fw-bold  mb-3">¿Listo para un nuevo nivel de educación?</h2>
@@ -174,7 +129,7 @@
         </a>
         <a routerLink="/main/quienes-somos" class="btn btn-secondary text-white fw-bold py-3 px-5 rounded-pill w-100 w-sm-auto shadow-sm">
           Quiero saber mas
-        </a>
+        </a>x
       </div>
     </div>
   </section>

@@ -1,0 +1,29 @@
+<header class="dashboard-header">
+    <a routerLink="/main/inicio" class="nav-link-logo">
+    <img class="logo" src="img/logo_oscuro_horizontal_1.png" alt="" />
+  </a>
+
+    <button class="hamburger" (click)="toggleMenu()" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="nav justify-content-center" [class.open]="menuOpen" aria-label="Navegación del dashboard">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a routerLink="dashboard" class="nav-link" routerLinkActive="active">Dashboard</a>
+      </li>
+      
+      <li class="nav-item">
+        <a routerLink="actividades" class="nav-link" routerLinkActive="active">Mis Actividades</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="entregas" class="nav-link" routerLinkActive="active">Entregas</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="material-estudio" class="nav-link" routerLinkActive="active">Material de Estudio</a>
+      </li>
+    </ul>
+  </nav>
+</header>
