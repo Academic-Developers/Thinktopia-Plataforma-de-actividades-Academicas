@@ -69,11 +69,11 @@ body  {
 }
 
 
-/* Clases para títulos del Dashboard Docente */
+/* Clases para títulos del Dashboard*/
 .title {
 	max-width: 75rem;
 	margin: 0 auto;
-	padding: 3rem 1rem 2.5rem;
+	padding: 3rem 1rem 0rem;
 	box-sizing: border-box;
 }
 
