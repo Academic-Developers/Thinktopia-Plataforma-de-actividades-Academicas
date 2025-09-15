@@ -81,6 +81,15 @@
     }
   ],
   "actividades": [],
-  "materiales": [],
+  "material-estudio": [
+    {
+      "id": 1,
+      "materia_id": 1,
+      "titulo": "Guía de ejercicios",
+      "descripcion": "Ejercicios para la clase 1",
+      "url": "/public/materiales/guia-ejercicios.pdf",
+      "autor_id": 1
+    }
+  ],
   "entregas": []
 }
