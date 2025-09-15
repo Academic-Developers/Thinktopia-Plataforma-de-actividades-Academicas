@@ -1,0 +1,16 @@
+@startuml
+
+title Diagrama de Clases - Thinktopia (Resumido)
+
+' ========================
+' Clases principales
+' ========================
+class User {
+  +id: int
+  +username: str
+  +email: str
+  +password: str
+  +first_name: str
+  +last_name: str
+}
+ 
