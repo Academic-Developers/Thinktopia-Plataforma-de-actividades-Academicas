@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
     providedIn: 'root'
 })
 export class ActividadService {
+    // Base API URL always ending with a single slash
     private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
 
     // BehaviorSubject para estado reactivo
@@ -24,10 +25,10 @@ export class ActividadService {
 
     // Obtener todas las actividades
     obtenerActividades(): Observable<Actividad[]> {
-        console.log('🔄 Iniciando obtenerActividades() - URL:', `${this.apiUrl}/actividades`);
+        console.log('🔄 Iniciando obtenerActividades() - URL:', `${this.apiUrl}actividades`);
         this.loadingSubject.next(true);
 
-        return this.http.get<Actividad[]>(`${this.apiUrl}/actividades`).pipe(
+        return this.http.get<Actividad[]>(`${this.apiUrl}actividades`).pipe(
             tap(actividades => {
                 console.log('✅ Actividades obtenidas:', actividades);
                 // Actualizar el BehaviorSubject con los datos obtenidos
@@ -46,7 +47,7 @@ export class ActividadService {
     obtenerActividadesPorDocente(docenteId: number): Observable<any[]> {
         this.loadingSubject.next(true);
 
-        return this.http.get<any[]>(`${this.apiUrl}/actividades?docente_id=${docenteId}`).pipe(
+        return this.http.get<any[]>(`${this.apiUrl}actividades?docente_id=${docenteId}`).pipe(
             tap(actividades => {
                 this.actividadesSubject.next(actividades);
                 this.loadingSubject.next(false);
@@ -64,10 +65,10 @@ export class ActividadService {
         this.loadingSubject.next(true);
 
         // Primero obtener asignaciones del estudiante, luego las actividades
-        return this.http.get<any[]>(`${this.apiUrl}/asignaciones?alumno_id=${estudianteId}`).pipe(
+        return this.http.get<any[]>(`${this.apiUrl}asignaciones?alumno_id=${estudianteId}`).pipe(
             map(asignaciones => asignaciones.map(a => a.actividad_id)),
             switchMap(actividadIds =>
-                this.http.get<any[]>(`${this.apiUrl}/actividades`).pipe(
+                this.http.get<any[]>(`${this.apiUrl}actividades`).pipe(
                     map(actividades => actividades.filter(act => actividadIds.includes(act.id)))
                 )
             ),
@@ -87,7 +88,12 @@ export class ActividadService {
     obtenerActividadesPorMateria(materiaId: number, estudianteId?: number): Observable<any[]> {
         this.loadingSubject.next(true);
 
-        let url = `${this.apiUrl}/actividades?materia_id=${materiaId}`;
+        // Si es para estudiante, prefiltrar por estado=Activa en el query
+        let url = `${this.apiUrl}actividades?materia_id=${materiaId}`;
+        if (estudianteId) {
+            url += `&estado=Activa`;
+        }
+        console.log('📡 obtenerActividadesPorMateria URL:', url, 'estudianteId:', estudianteId);
 
         return this.http.get<any[]>(url).pipe(
             map(actividades => {
@@ -99,6 +105,7 @@ export class ActividadService {
                 return actividades;
             }),
             tap(actividades => {
+                console.log('📦 Actividades por materia recibidas:', actividades);
                 this.loadingSubject.next(false);
             }),
             catchError(error => {
@@ -149,7 +156,7 @@ export class ActividadService {
     crearActividad(actividad: CreateActividadRequest): Observable<Actividad> {
         this.loadingSubject.next(true);
 
-        return this.http.post<Actividad>(`${this.apiUrl}/actividades`, actividad).pipe(
+        return this.http.post<Actividad>(`${this.apiUrl}actividades`, actividad).pipe(
             tap(nuevaActividad => {
                 // Actualizar el estado local agregando la nueva actividad
                 const actividadesActuales = this.actividadesSubject.value;
@@ -168,7 +175,7 @@ export class ActividadService {
     actualizarActividad(id: number, actividad: any): Observable<any> {
         this.loadingSubject.next(true);
 
-        return this.http.put<any>(`${this.apiUrl}/actividades/${id}`, actividad).pipe(
+        return this.http.put<any>(`${this.apiUrl}actividades/${id}`, actividad).pipe(
             tap(actividadActualizada => {
                 // Actualizar el estado local
                 const actividadesActuales = this.actividadesSubject.value;
@@ -191,7 +198,7 @@ export class ActividadService {
     eliminarActividad(id: number): Observable<any> {
         this.loadingSubject.next(true);
 
-        return this.http.delete(`${this.apiUrl}/actividades/${id}`).pipe(
+        return this.http.delete(`${this.apiUrl}actividades/${id}`).pipe(
             tap(() => {
                 // Actualizar el estado local eliminando la actividad
                 const actividadesActuales = this.actividadesSubject.value;
@@ -209,7 +216,7 @@ export class ActividadService {
 
     // Obtener actividad por ID
     obtenerActividadPorId(id: number): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}/actividades/${id}`).pipe(
+        return this.http.get<any>(`${this.apiUrl}actividades/${id}`).pipe(
             catchError(error => {
                 console.error('Error al obtener actividad:', error);
                 return of(null);
@@ -230,7 +237,7 @@ export class ActividadService {
 
         // Enviar todas las asignaciones
         const requests = asignaciones.map(asignacion =>
-            this.http.post(`${this.apiUrl}/asignaciones`, asignacion)
+            this.http.post(`${this.apiUrl}asignaciones`, asignacion)
         );
 
         // Usar forkJoin para esperar que todas las requests terminen
