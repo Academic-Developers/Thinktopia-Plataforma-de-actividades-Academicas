@@ -1,0 +1,24 @@
+<main>
+    <section class="title">
+        <h1 class="title-element">Mis Materias</h1>
+    </section>
+    
+    <div class="materias-container">
+        <div class="row gy-4 ">
+            @for (materia of materias; track materia.id) {
+                <div class="col-12 col-md-4">
+                    <!-- <a [routerLink]="['/alumno/materias', materia.id]" class="card-link"> -->
+                        <div class="custom-card">
+                            <div class="card-content">
+                                <h3 class="card-title">{{ materia.nombre }}</h3>
+                                <p class="card-value">Código: {{ materia.codigo }}</p>
+                            </div>
+                        </div>
+                    <!-- </a> -->
+                </div>
+            } @empty {
+                <p class="text-secondary fs-3 text-center font-poppins">No tienes materias asignadas.</p>
+            }
+        </div>
+    </div>
+</main>

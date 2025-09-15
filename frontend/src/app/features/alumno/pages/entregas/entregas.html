@@ -1,0 +1,388 @@
+<main>
+
+    <div class="entregas-container">
+
+        <!-- Header con título e icono  -->
+        <div class="title">
+            <div class="title-icon">
+                <img src="/icons/check_cicle_icon.svg" alt="Icono de Entregas" />
+                <h1>Mis Entregas</h1>
+            </div>
+        </div>
+
+        <!-- Campo de búsqueda manual  -->
+        <div class="search-section">
+            <div class="search-input-group">
+                <input type="text" class="form-control" placeholder="Buscar por título o descripción..."
+                    (input)="aplicarFiltroTexto($any($event.target).value)">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <!-- Filtros de materias y actividades -->
+        <div class="filters-and-actions-container">
+            <app-filters [filters]="filterConfigs" [showMobileVersion]="true" mobileCollapseId="entregasFilters"
+                (filterChange)="onFilterChange($event)" (buttonClick)="onFilterButtonClick($event)">
+            </app-filters>
+            <div class="action-buttons">
+                <button class="btn btn-enhanced" (click)="abrirModalEntrega()">
+                    <i class="fas fa-upload"></i> Nueva Entrega
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading state y datos reactivos -->
+        <div *ngIf="loading$ | async" class="loading-container">
+            <div class="spinner"></div>
+            <p>Cargando entregas...</p>
+        </div>
+
+        <section class="table-container" *ngIf="!(loading$ | async)">
+            <div *ngIf="entregasFiltradas$ | async as entregas">
+                <app-generic-table [columns]="tableColumns" [data]="entregas" [actions]="tableActions" [striped]="true"
+                    [hover]="true" [loading]="false" tableClasses="tabla-genérica"
+                    emptyMessage="No hay entregas disponibles" (sort)="onTableSort($event)"
+                    (rowClick)="onTableRowClick($event)" (actionClick)="onTableAction($event)">
+                </app-generic-table>
+            </div>
+        </section>
+
+        <!-- Modal de Retroalimentación (estilo docente) -->
+        <div *ngIf="showFeedbackModal$ | async" class="modal-overlay" (click)="cerrarModalFeedback()">
+            <div class="modal-container" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>
+                        <i class="fas fa-comment-dots"></i>
+                        Retroalimentación del Docente
+                    </h3>
+                    <button type="button" class="btn-close" (click)="cerrarModalFeedback()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" *ngIf="selectedEntregaForFeedback">
+                    <div class="info-section">
+                        <h4>
+                            <i class="fas fa-tasks"></i>
+                            Actividad
+                        </h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Actividad:</span>
+                                <span class="value">{{ selectedEntregaForFeedback.actividad_titulo }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <h4>
+                            <i class="fas fa-star"></i>
+                            Calificación
+                        </h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Nota:</span>
+                                <span class="value grade">{{ selectedEntregaForFeedback.calificacion ?? 'Sin calificar'
+                                    }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <h4>
+                            <i class="fas fa-comment"></i>
+                            Comentarios del Docente
+                        </h4>
+                        <div class="comment-box">
+                            {{ selectedEntregaForFeedback.comentarios_docente || 'Sin comentarios' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" (click)="cerrarModalFeedback()">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal de Edición de Entrega (estilo docente) -->
+        <div *ngIf="showEditModal$ | async" class="modal-overlay" (click)="cerrarModalEdit()">
+            <div class="modal-container" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>
+                        <i class="fas fa-edit"></i>
+                        Editar Entrega
+                    </h3>
+                    <button type="button" class="btn-close" (click)="cerrarModalEdit()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form [formGroup]="entregaForm" (ngSubmit)="enviarEntrega()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Actividad</label>
+                            <input type="text" class="form-control" [value]="selectedEntregaForEdit?.actividad_titulo"
+                                disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Archivo</label>
+                            <input type="file" class="form-control" (change)="onArchivoSeleccionado($event)" />
+                            <span *ngIf="archivoPreview">{{ archivoPreview.name }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentarios</label>
+                            <textarea class="form-control" formControlName="comentarios"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="entregaForm.invalid">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <button type="button" class="btn btn-secondary" (click)="cerrarModalEdit()">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal para ver la entrega/actividad (estilo docente) -->
+        <div *ngIf="showViewModal$ | async" class="modal-overlay" (click)="cerrarModalVer()">
+            <div class="modal-container modal-view" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>
+                        <i class="fas fa-eye"></i>
+                        Detalles de la Entrega
+                    </h3>
+                    <button type="button" class="btn-close" (click)="cerrarModalVer()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" *ngIf="selectedEntregaForView">
+                    <!-- Información del estudiante -->
+                    <div class="info-section">
+                        <h4>
+                            <i class="fas fa-user"></i>
+                            Información del Estudiante
+                        </h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Estudiante:</span>
+                                <span class="value">{{ selectedEntregaForView.estudiante_nombre || '-' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Información de la entrega -->
+                    <div class="info-section">
+                        <h4>
+                            <i class="fas fa-tasks"></i>
+                            Información de la Entrega
+                        </h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Actividad:</span>
+                                <span class="value">{{ selectedEntregaForView.actividad_titulo }}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Materia:</span>
+                                <span class="value">{{ selectedEntregaForView.materia_nombre }}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Fecha de Entrega:</span>
+                                <span class="value">{{ selectedEntregaForView.fechaEntrega | date:'dd/MM/yyyy HH:mm'
+                                    }}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Estado:</span>
+                                <span class="value badge" [ngClass]="{
+                                    'badge-success': selectedEntregaForView.estado === 'Calificada',
+                                    'badge-info': selectedEntregaForView.estado === 'Entregada',
+                                    'badge-warning': selectedEntregaForView.estado === 'Pendiente',
+                                    'badge-danger': selectedEntregaForView.estado === 'Atrasada'
+                                }">
+                                    {{ selectedEntregaForView.estado }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Archivo entregado -->
+                    <div class="info-section" *ngIf="selectedEntregaForView.archivo_url">
+                        <h4>
+                            <i class="fas fa-file"></i>
+                            Archivo Entregado
+                        </h4>
+                        <div class="file-info">
+                            <i class="fas fa-download"></i>
+                            <span class="file-name">{{ selectedEntregaForView.archivo_url }}</span>
+                            <a [href]="selectedEntregaForView.archivo_url" target="_blank"
+                                class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-download"></i>
+                                Descargar
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Comentarios del estudiante -->
+                    <div class="info-section" *ngIf="selectedEntregaForView.comentarios_estudiante">
+                        <h4>
+                            <i class="fas fa-comment"></i>
+                            Comentarios del Estudiante
+                        </h4>
+                        <div class="comment-box">
+                            {{ selectedEntregaForView.comentarios_estudiante }}
+                        </div>
+                    </div>
+                    <!-- Calificación (si existe) -->
+                    <div class="info-section" *ngIf="selectedEntregaForView.calificacion !== null">
+                        <h4>
+                            <i class="fas fa-star"></i>
+                            Calificación
+                        </h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Nota:</span>
+                                <span class="value grade">{{ selectedEntregaForView.calificacion }}/100</span>
+                            </div>
+                        </div>
+                        <!-- Comentarios del docente -->
+                        <div *ngIf="selectedEntregaForView.comentarios_docente" style="margin-top: 1rem;">
+                            <h5
+                                style="margin: 0 0 0.75rem 0; color: var(--text-color); font-family: var(--font-title-secondary); font-size: 1rem; font-weight: 600;">
+                                <i class="fas fa-comment-dots"
+                                    style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                                Comentarios del Docente:
+                            </h5>
+                            <div class="comment-box">
+                                {{ selectedEntregaForView.comentarios_docente }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="cerrarModalVer()">
+                        <i class="fas fa-times"></i>
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Nueva Entrega (estética docente, drag-and-drop) -->
+        <div *ngIf="showEntregaModal$ | async" class="modal-overlay" (click)="cerrarModalEntrega()">
+            <div class="modal-container" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>
+                        <i class="fas fa-upload"></i>
+                        Nueva Entrega
+                    </h3>
+                    <button type="button" class="btn-close" (click)="cerrarModalEntrega()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form [formGroup]="entregaForm" (ngSubmit)="enviarEntrega()">
+                    <div class="modal-body">
+                        <!-- Materia -->
+                        <div class="form-group">
+                            <label for="materia_id">Materia *</label>
+                            <select id="materia_id" class="form-control"
+                                [class.is-invalid]="isFieldInvalid('materia_id')"
+                                formControlName="materia_id" (change)="onMateriaChange($event)">
+                                <option value="">Selecciona una materia</option>
+                                <option *ngFor="let mat of materias$ | async" [value]="mat.id">
+                                    {{ mat.codigo ? mat.codigo + ' - ' : ''}}{{ mat.nombre }}
+                                </option>
+                            </select>
+                            <div *ngIf="isFieldInvalid('materia_id')" class="invalid-feedback">
+                                {{ getFieldError('materia_id') }}
+                            </div>
+                        </div>
+                        <!-- Actividad (dependiente de Materia) -->
+                        <div class="form-group">
+                            <label for="actividad_id">Actividad *</label>
+                            <select id="actividad_id" class="form-control"
+                                [class.is-invalid]="isFieldInvalid('actividad_id')"
+                                formControlName="actividad_id" [disabled]="!(actividadesDisponibles$ | async)?.length">
+                                <option value="">Selecciona una actividad</option>
+                                <option *ngFor="let act of actividadesDisponibles$ | async" [value]="act.id">
+                                    {{ act.titulo }}
+                                </option>
+                            </select>
+                            <small *ngIf="(actividadesDisponibles$ | async)?.length === 0 && entregaForm.value.materia_id"
+                                class="text-muted" style="display:block;margin-top:6px;">
+                                No hay actividades disponibles para la materia seleccionada.
+                            </small>
+                            <div *ngIf="isFieldInvalid('actividad_id')" class="invalid-feedback">
+                                {{ getFieldError('actividad_id') }}
+                            </div>
+                        </div>
+
+                        <!-- Archivo (drag-and-drop) -->
+                        <div class="form-group">
+                            <label for="archivo">Archivo *</label>
+                            <div class="file-upload-container">
+                                <input id="archivo" type="file" class="file-input"
+                                    (change)="onArchivoSeleccionado($event)" #fileInput />
+                                <div class="file-upload-area" (click)="fileInput.click()" [class.drag-over]="isDragOver"
+                                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+                                    (drop)="onFileDrop($event)">
+                                    <div class="file-upload-content">
+                                        <i class="fas fa-cloud-upload-alt file-upload-icon"
+                                            style="font-size:2.5rem;color:var(--primary-color);"></i>
+                                        <div style="font-weight:600;font-size:1.05rem;margin:0.5rem 0 0.25rem 0;">Haz
+                                            clic para seleccionar archivos o arrástralos aquí</div>
+                                        <div style="font-size:0.95rem;color:var(--text-color-secondary);">Formatos
+                                            permitidos: PDF, DOC, DOCX, JPG, PNG</div>
+                                    </div>
+                                </div>
+                                <div *ngIf="archivoPreview" class="selected-files">
+                                    <h5>Archivos seleccionados:</h5>
+                                    <div class="file-info">
+                                        <i class="fas fa-file file-icon"></i>
+                                        <span class="file-name">{{ archivoPreview.name }}</span>
+                                        <span class="file-size">({{ archivoPreview.size / 1024 | number:'1.0-2' }}
+                                            KB)</span>
+                                        <button type="button" class="btn-remove-file"
+                                            (click)="archivoPreview = null; entregaForm.get('archivo')?.setValue(null)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="isFieldInvalid('archivo')" class="invalid-feedback">
+                                {{ getFieldError('archivo') }}
+                            </div>
+                        </div>
+
+                        <!-- Comentarios -->
+                        <div class="form-group">
+                            <label for="comentarios">Comentarios</label>
+                            <textarea id="comentarios" class="form-control"
+                                [class.is-invalid]="isFieldInvalid('comentarios')" formControlName="comentarios"
+                                rows="3"></textarea>
+                            <div *ngIf="isFieldInvalid('comentarios')" class="invalid-feedback">
+                                {{ getFieldError('comentarios') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="cerrarModalEntrega()">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-enhanced"
+                            [disabled]="entregaForm.invalid || (loading$ | async)">
+                            <span *ngIf="loading$ | async">
+                                <i class="fas fa-spinner fa-spin btn-icon"></i>
+                                Enviando...
+                            </span>
+                            <span *ngIf="!(loading$ | async)">
+                                <i class="fas fa-paper-plane btn-icon"></i>
+                                Enviar Entrega
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+</main>

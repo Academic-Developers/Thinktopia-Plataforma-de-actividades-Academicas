@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
-import { Actividades } from './pages/actividades/actividades';
-import { Asistencias } from './pages/asistencias/asistencias';
-import { Entregas } from './pages/entregas/entregas';
-import { Reportes } from './pages/reportes/reportes';
-import { Estadisticas } from './pages/estadisticas/estadisticas';
-import { GestionContenido } from './pages/gestion-contenido/gestion-contenido';
+import { Materias } from './pages/materias/materias';
+import { ActividadesComponent } from './pages/actividades/actividades';
+import { EntregasComponent } from './pages/entregas/entregas';
+import { MaterialEstudioDocente } from './pages/material-estudio-docente/material-estudio-docente';
 import { DocenteLayout } from './components/docente-layout/docente-layout';
-
+ 
 export const routes: Routes = [
   {path: '', component:DocenteLayout, children: [
   { path: 'dashboard', component:Dashboard },
-  { path: 'actividades', component:Actividades},
-  { path: 'entregas', component:Entregas },
-  { path: 'asistencias', component:Asistencias },
-  { path: 'estadisticas', component:Estadisticas },
-  { path: 'reportes', component:Reportes },
-  { path: 'gestion-contenido', component:GestionContenido },
+  { path: 'materias', component:Materias},
+  { path: 'actividades', component:ActividadesComponent},
+  { path: 'entregas', component:EntregasComponent },
+  { path: 'material-estudio', component:MaterialEstudioDocente },
   {path: '**', redirectTo: 'dashboard'} // En caso de que se ingrese una ruta invalida, quiero que me lleve a la pagina del dashboard.
     ]
   }
