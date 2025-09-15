@@ -6,7 +6,7 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
  */
 export interface FilterOption {
   label: string;
-  value: string;
+  value: string | number;
   children?: FilterOption[];
 }
 

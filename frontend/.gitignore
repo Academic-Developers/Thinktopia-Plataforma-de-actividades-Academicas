@@ -41,4 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/environments/
+# Environment configs (do not commit local env files)
+environments/

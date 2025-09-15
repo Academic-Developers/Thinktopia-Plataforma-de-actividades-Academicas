@@ -4,15 +4,15 @@ import { Observable, forkJoin, of, throwError } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { User } from '../../models/auth-models/auth-models';
 import { Materia, UserMateria } from '../../models/materias-models/materias-models';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
-  private apiUrl = environment.urlJsonServer; 
+  private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMaterias(UserId: number): Observable<Materia[]> {
     console.log('🔎 Buscando materias para el usuario con ID:', UserId);
@@ -58,5 +58,9 @@ export class MateriaService {
         return throwError(() => new Error('No se pudieron cargar los detalles del asunto.'));
       })
     );
+  }
+
+  getAllMaterias(): Observable<Materia[]> {
+    return this.http.get<Materia[]>(`${this.apiUrl}materias`);
   }
 }

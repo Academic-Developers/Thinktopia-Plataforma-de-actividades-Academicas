@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
+    "serve:ssr:frontend": "node dist/frontend/server/server.mjs",
+    "json-server": "json-server --watch src/db.json --port 3000"
   },
   "prettier": {
     "overrides": [
@@ -52,3 +53,4 @@
     "typescript": "~5.8.2"
   }
 }
+
