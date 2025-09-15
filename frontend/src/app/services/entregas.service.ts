@@ -11,7 +11,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EntregasService {
-  private apiUrl = environment.urlJsonServer;
+  // Base API URL always ending with a single slash
+  private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
 
   // BehaviorSubject para estado reactivo
   private entregasSubject = new BehaviorSubject<Entrega[]>([]);
@@ -29,14 +30,14 @@ export class EntregasService {
 
   // Obtener todas las entregas
   obtenerEntregas(): Observable<Entrega[]> {
-    console.log('🔄 Iniciando obtenerEntregas() - URL:', `${this.apiUrl}/entregas`);
+    console.log('🔄 Iniciando obtenerEntregas() - URL:', `${this.apiUrl}entregas`);
     this.loadingSubject.next(true);
 
-    return this.http.get<Entrega[]>(`${this.apiUrl}/entregas`).pipe(
+    return this.http.get<Entrega[]>(`${this.apiUrl}entregas`).pipe(
       tap(entregas => {
         console.log('✅ Entregas obtenidas:', entregas);
-        // Actualizar el BehaviorSubject con los datos obtenidos
-        this.entregasSubject.next(entregas);
+        // Actualizar el BehaviorSubject con los datos obtenidos (únicos por id)
+        this.entregasSubject.next(this.uniqueById(entregas));
         this.loadingSubject.next(false);
       }),
       catchError(error => {
@@ -60,17 +61,74 @@ export class EntregasService {
   // MÉTODOS PARA ESTUDIANTE
   // ========================================
 
+  /**
+ * Obtiene todas las entregas de las materias asignadas a un alumno
+ * @param alumnoId ID del alumno logueado
+ * @returns Observable<Entrega[]>
+ */
+  obtenerEntregasDeMateriasDelAlumno(alumnoId: number): Observable<Entrega[]> {
+    this.loadingSubject.next(true);
+    const urlUserMaterias = `${this.apiUrl}user_materia?user_id=${alumnoId}`;
+    return this.http.get<any[]>(urlUserMaterias).pipe(
+      switchMap((userMaterias: any[]) => {
+        const materiaIds: number[] = userMaterias.map((um: any) => um.materia_id);
+        if (materiaIds.length === 0) {
+          this.loadingSubject.next(false);
+          this.entregasSubject.next([]);
+          return of([]);
+        }
+        // Obtener todas las entregas de las materias SOLO del alumno
+        const entregasRequests = materiaIds.map((materiaId: number) => {
+          const entregasUrl = `${this.apiUrl}entregas?materia_id=${materiaId}&alumno_id=${alumnoId}`;
+          return this.http.get<Entrega[]>(entregasUrl);
+        });
+        // También obtener actividades, materias y usuarios para enriquecer los datos
+        const actividades$ = this.http.get<any[]>(`${this.apiUrl}actividades`);
+        const materias$ = this.http.get<any[]>(`${this.apiUrl}materias`);
+        const usuarios$ = this.http.get<any[]>(`${this.apiUrl}users`);
+        return forkJoin([
+          forkJoin(entregasRequests).pipe(map((resultados: Entrega[][]) => this.uniqueById(resultados.flat()))),
+          actividades$,
+          materias$,
+          usuarios$
+        ]).pipe(
+          map(([entregas, actividades, materias, usuarios]) => {
+            const reconciliadas = this.reconciliarEntregas(entregas, actividades, materias);
+            return reconciliadas.map((entrega: any) => {
+              const alumnoKey = String(entrega.alumno_id);
+              const user = (usuarios || []).find((u: any) => String(u.id) === alumnoKey);
+              return {
+                ...entrega,
+                estudiante_nombre: user ? user.nombre : ''
+              } as Entrega;
+            });
+          }),
+          tap((entregas: Entrega[]) => {
+            this.entregasSubject.next(entregas);
+            this.loadingSubject.next(false);
+          })
+        );
+      }),
+      catchError(error => {
+        console.error('Error al obtener entregas de materias del alumno:', error);
+        this.loadingSubject.next(false);
+        this.entregasSubject.next([]);
+        return of([]);
+      })
+    );
+  }
+
   crearEntrega(entrega: CreateEntregaRequest): Observable<Entrega> {
     console.log('Iniciando crearEntrega() - Datos:', entrega);
     this.loadingSubject.next(true);
 
-    return this.http.post<Entrega>(`${this.apiUrl}/entregas`, entrega).pipe(
+    return this.http.post<Entrega>(`${this.apiUrl}entregas`, entrega).pipe(
       tap(nuevaEntrega => {
         console.log('✅ Entrega creada:', nuevaEntrega);
 
         // Actualizar el BehaviorSubject con la nueva entrega
-        const entregasActuales = this.entregasSubject.value;
-        this.entregasSubject.next([...entregasActuales, nuevaEntrega]);
+        const entregasActuales = this.uniqueById(this.entregasSubject.value);
+        this.entregasSubject.next(this.uniqueById([...entregasActuales, nuevaEntrega]));
 
         this.loadingSubject.next(false);
       }),
@@ -87,7 +145,7 @@ export class EntregasService {
     console.log('Iniciando actualizarEntregaPorEstudiante() - Datos:', entrega);
     this.loadingSubject.next(true);
 
-    return this.http.patch<Entrega>(`${this.apiUrl}/entregas/${entrega.id}`, entrega).pipe(
+    return this.http.patch<Entrega>(`${this.apiUrl}entregas/${entrega.id}`, entrega).pipe(
       tap(entregaActualizada => {
         console.log('✅ Entrega actualizada por estudiante:', entregaActualizada);
 
@@ -97,7 +155,7 @@ export class EntregasService {
 
         if (index !== -1) {
           entregasActuales[index] = entregaActualizada;
-          this.entregasSubject.next([...entregasActuales]);
+          this.entregasSubject.next(this.uniqueById([...entregasActuales]));
         }
 
         this.loadingSubject.next(false);
@@ -118,7 +176,7 @@ export class EntregasService {
     console.log('Iniciando actualizarEntregaPorDocente() - Datos:', entrega);
     this.loadingSubject.next(true);
 
-    return this.http.patch<Entrega>(`${this.apiUrl}/entregas/${entrega.id}`, entrega).pipe(
+    return this.http.patch<Entrega>(`${this.apiUrl}entregas/${entrega.id}`, entrega).pipe(
       tap(entregaActualizada => {
         console.log('✅ Entrega actualizada por docente:', entregaActualizada);
 
@@ -127,7 +185,7 @@ export class EntregasService {
         const index = entregasActuales.findIndex(e => e.id === entregaActualizada.id);
         if (index !== -1) {
           entregasActuales[index] = entregaActualizada;
-          this.entregasSubject.next([...entregasActuales]);
+          this.entregasSubject.next(this.uniqueById([...entregasActuales]));
         }
 
         this.loadingSubject.next(false);
@@ -144,7 +202,7 @@ export class EntregasService {
     console.log('Obteniendo entregas de actividad:', actividadId);
     this.loadingSubject.next(true);
 
-    return this.http.get<Entrega[]>(`${this.apiUrl}/entregas?actividad_id=${actividadId}`).pipe(
+    return this.http.get<Entrega[]>(`${this.apiUrl}entregas?actividad_id=${actividadId}`).pipe(
       tap(entregas => {
         console.log('✅ Entregas de actividad obtenidas:', entregas);
         this.loadingSubject.next(false);
@@ -169,7 +227,7 @@ export class EntregasService {
 
   // Obtener todos los usuarios (alumnos y docentes)
   obtenerUsuarios() {
-    return this.http.get<any[]>(`${this.apiUrl}/users`);
+  return this.http.get<any[]>(`${this.apiUrl}users`);
   }
 
   // Limpiar estado (útil para logout)
@@ -185,11 +243,11 @@ export class EntregasService {
    */
   obtenerEntregasDeMateriasDelDocente(docenteId: number): Observable<Entrega[]> {
     this.loadingSubject.next(true);
-    const urlUserMaterias = `${this.apiUrl}user_materia?user_id=${docenteId}`;
+  const urlUserMaterias = `${this.apiUrl}user_materia?user_id=${docenteId}`;
     return this.http.get<any[]>(urlUserMaterias).pipe(
       switchMap((userMaterias: any[]) => {
         const materiaIds: number[] = userMaterias.map((um: any) => um.materia_id);
-  // console.log('[LOG] materiaIds para docente:', materiaIds);
+        // console.log('[LOG] materiaIds para docente:', materiaIds);
         if (materiaIds.length === 0) {
           this.loadingSubject.next(false);
           this.entregasSubject.next([]);
@@ -205,31 +263,24 @@ export class EntregasService {
         const actividades$ = this.http.get<any[]>(`${this.apiUrl}actividades`);
         const materias$ = this.http.get<any[]>(`${this.apiUrl}materias`);
         return forkJoin([
-          forkJoin(entregasRequests).pipe(map((resultados: Entrega[][]) => resultados.flat())),
+          forkJoin(entregasRequests).pipe(map((resultados: Entrega[][]) => this.uniqueById(resultados.flat()))),
           usuarios$,
           actividades$,
           materias$
         ]).pipe(
           map(([entregas, usuarios, actividades, materias]) => {
-            // Enriquecer entregas, asegurando que los IDs sean comparados como números
-            return entregas.map((entrega: any) => {
+            const reconciliadas = this.reconciliarEntregas(entregas, actividades, materias);
+            return reconciliadas.map((entrega: any) => {
               const alumnoId = Number(entrega.alumno_id);
-              const actividadId = Number(entrega.actividad_id);
-              const materiaId = Number(entrega.materia_id);
               const estudiante = usuarios.find((u: any) => Number(u.id) === alumnoId);
-              const actividad = actividades.find((a: any) => Number(a.id) === actividadId);
-              const materia = materias.find((m: any) => Number(m.id) === materiaId);
               return {
                 ...entrega,
-                estudiante_nombre: estudiante ? estudiante.nombre : '',
-                actividad_titulo: actividad ? actividad.titulo : '',
-                materia_nombre: materia ? materia.nombre : '',
-                fechaEntrega: entrega.fechaEntrega || entrega.fecha_entrega || entrega.fechaEntrega // compatibilidad
+                estudiante_nombre: estudiante ? estudiante.nombre : ''
               };
             });
           }),
           tap((entregas: Entrega[]) => {
-            this.entregasSubject.next(entregas);
+            this.entregasSubject.next(this.uniqueById(entregas));
             this.loadingSubject.next(false);
           })
         );
@@ -241,6 +292,39 @@ export class EntregasService {
         return of([]);
       })
     );
+  }
+
+  // Corrige materia_id en base a la actividad y enriquece campos para la UI
+  private reconciliarEntregas(entregas: any[], actividades: any[], materias: any[]): Entrega[] {
+    return this.uniqueById(entregas || []).map((entrega: any) => {
+      const actIdKey = String(entrega.actividad_id);
+      const actividad = (actividades || []).find((a: any) => String(a.id) === actIdKey);
+      // Resolver materia_id confiando en la actividad cuando sea posible
+      let materiaIdResolved = actividad ? actividad.materia_id : entrega.materia_id;
+      const materiaKey = String(materiaIdResolved);
+      const materia = (materias || []).find((m: any) => String(m.id) === materiaKey);
+      return {
+        ...entrega,
+        materia_id: materiaIdResolved,
+        actividad_titulo: actividad ? actividad.titulo : '',
+        materia_nombre: materia ? materia.nombre : '',
+        fechaEntrega: entrega.fechaEntrega || entrega.fecha_entrega || entrega.fechaEntrega
+      } as Entrega;
+    });
+  }
+
+  // Asegura unicidad por id (evita duplicados en la UI)
+  private uniqueById<T extends { id?: any }>(items: T[]): T[] {
+    const seen = new Set<string>();
+    const result: T[] = [];
+    for (const item of items || []) {
+      const key = typeof item?.id !== 'undefined' ? String(item.id) : '';
+      if (key !== '' && !seen.has(key)) {
+        seen.add(key);
+        result.push(item);
+      }
+    }
+    return result;
   }
 }
 
