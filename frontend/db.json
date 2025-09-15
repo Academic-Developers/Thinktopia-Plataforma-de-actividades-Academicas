@@ -277,5 +277,15 @@
       "calificacion": 0,
       "comentarios_docente": "Documento equivocado enteregado"
     }
+  ],
+  "material-estudio": [
+    {
+      "id": 1,
+      "materia_id": 1,
+      "titulo": "Guía de ejercicios",
+      "descripcion": "Ejercicios para la clase 1",
+      "url": "/public/materiales/guia-ejercicios.pdf",
+      "autor_id": 1
+    }
   ]
 }
