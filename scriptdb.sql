@@ -11,7 +11,6 @@
 -- Creamos una versión simplificada para las relaciones de negocio.
 CREATE TABLE "usuario" (
     "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR(150) NOT NULL UNIQUE,
     "email" VARCHAR(254) NOT NULL UNIQUE,
     "role" VARCHAR(20) NOT NULL -- Campo para simular el rol (docente, alumno)
 );
