@@ -1,83 +1,83 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "eve.holt@reqres.in",
       "role": "docente"
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "janet.weaver@reqres.in",
       "role": "alumno"
     }
   ],
   "materias": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Programación I",
       "codigo": "PROG1"
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Base de Datos",
       "codigo": "BD1"
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Sistemas Operativos",
       "codigo": "SO1"
     },
     {
-      "id": 4,
+      "id": "4",
       "nombre": "Redes de Computadoras",
       "codigo": "RED1"
     },
     {
-      "id": 5,
+      "id": "5",
       "nombre": "Algoritmos y Estructuras de Datos",
       "codigo": "AED1"
     },
     {
-      "id": 6,
+      "id": "6",
       "nombre": "Ingeniería de Software",
       "codigo": "IS1"
     }
   ],
   "user_materia": [
     {
-      "id": 1,
-      "user_id": 1,
-      "materia_id": 1
+      "id": "1",
+      "user_id": "1",
+      "materia_id": "1"
     },
     {
-      "id": 2,
-      "user_id": 2,
-      "materia_id": 4
+      "id": "2",
+      "user_id": "2",
+      "materia_id": "4"
     },
     {
-      "id": 3,
-      "user_id": 1,
-      "materia_id": 6
+      "id": "3",
+      "user_id": "1",
+      "materia_id": "6"
     },
     {
-      "id": 4,
-      "user_id": 2,
-      "materia_id": 1
+      "id": "4",
+      "user_id": "2",
+      "materia_id": "1"
     },
     {
-      "id": 5,
-      "user_id": 2,
-      "materia_id": 3
+      "id": "5",
+      "user_id": "2",
+      "materia_id": "3"
     },
     {
-      "id": 6,
-      "user_id": 2,
-      "materia_id": 2
+      "id": "6",
+      "user_id": "2",
+      "materia_id": "2"
     },
     {
-      "id": 7,
-      "user_id": 2,
-      "materia_id": 5
+      "id": "7",
+      "user_id": "2",
+      "materia_id": "5"
     }
   ],
   "actividades": [
@@ -89,8 +89,8 @@
       "fechaLimite": "2025-09-15T23:59:59",
       "estado": "Inactiva",
       "tipo": "Proyecto",
-      "materia_id": 1,
-      "docente_id": 1,
+      "materia_id": "1",
+      "docente_id": "1",
       "puntos": 100,
       "instrucciones": "El proyecto debe incluir routing, servicios, y componentes reutilizables"
     },
@@ -102,8 +102,8 @@
       "fechaCreacion": "2025-09-10T09:00:00",
       "estado": "Activa",
       "tipo": "Cuestionario",
-      "materia_id": 1,
-      "docente_id": 1,
+      "materia_id": "1",
+      "docente_id": "1",
       "puntos": 50,
       "instrucciones": "Cuestionario de 20 preguntas sobre servicios en Angular"
     },
@@ -115,8 +115,8 @@
       "fechaCreacion": "2025-12-01T10:00:00",
       "estado": "Completada",
       "tipo": "Examen",
-      "materia_id": 1,
-      "docente_id": 1,
+      "materia_id": "1",
+      "docente_id": "1",
       "puntos": 100,
       "instrucciones": "Examen presencial de 3 horas de duración"
     },
@@ -128,8 +128,8 @@
       "fechaLimite": "2025-09-25T23:59:59",
       "estado": "Activa",
       "tipo": "Tarea",
-      "materia_id": 4,
-      "docente_id": 3,
+      "materia_id": "4",
+      "docente_id": "3",
       "puntos": 75,
       "instrucciones": "Implementar todas las operaciones básicas: insertar, buscar, eliminar"
     },
@@ -141,8 +141,8 @@
       "fechaLimite": "2025-09-18T10:00:00",
       "estado": "Activa",
       "tipo": "Quiz",
-      "materia_id": 2,
-      "docente_id": 2,
+      "materia_id": "2",
+      "docente_id": "2",
       "puntos": 30,
       "instrucciones": "Quiz de 15 problemas de integración"
     },
@@ -153,8 +153,8 @@
       "tipo": "Examen",
       "fechaLimite": "2025-09-20T21:59",
       "puntos": 50,
-      "materia_id": 1,
-      "docente_id": 4,
+      "materia_id": "1",
+      "docente_id": "4",
       "fechaCreacion": "2025-09-09T01:00:04.560Z",
       "estado": "Activa"
     },
@@ -163,10 +163,10 @@
       "titulo": "Modelado de Casos de Uso para un Sistema de Reservas de Vuelos (Argentina)",
       "descripcion": "Los estudiantes deberán diseñar los casos de uso principales para un sistema de reservas de vuelos en línea. La actividad incluye identificar a los actores, redactar las descripciones narrativas de al menos tres casos de uso clave (por ejemplo: registrar usuario, buscar vuelos y realizar reserva), y representar la relación entre ellos mediante un diagrama UML. El entregable deberá incluir tanto el diagrama como la documentación de cada caso de uso.",
       "tipo": "Tarea",
-      "materia_id": 1,
+      "materia_id": "1",
       "fechaLimite": "2025-09-30T20:51",
       "puntos": 80,
-      "docente_id": 1,
+      "docente_id": "1",
       "fechaCreacion": "2025-09-14T23:51:32.283Z",
       "estado": "Activa",
       "archivos_adjuntos": [
@@ -182,9 +182,9 @@
   "entregas": [
     {
       "id": "1",
-      "actividad_id": 1,
-      "materia_id": 1,
-      "alumno_id": 2,
+      "actividad_id": "1",
+      "materia_id": "1",
+      "alumno_id": "2",
       "fechaEntrega": "2025-09-10T22:30:00",
       "archivo_url": "Angular - SPA.pdf",
       "comentarios_estudiante": "Entrega del proyecto final de Angular completo.",
@@ -195,9 +195,9 @@
     },
     {
       "id": "2",
-      "actividad_id": 2,
-      "materia_id": 1,
-      "alumno_id": 2,
+      "actividad_id": "2",
+      "materia_id": "1",
+      "alumno_id": "2",
       "fechaEntrega": "2025-09-12T17:45:00",
       "archivo_url": null,
       "comentarios_estudiante": "Entrega del cuestionario sobre Angular Services.",
@@ -208,9 +208,9 @@
     },
     {
       "id": "3",
-      "actividad_id": 4,
-      "materia_id": 4,
-      "alumno_id": 2,
+      "actividad_id": "4",
+      "materia_id": "4",
+      "alumno_id": "2",
       "fechaEntrega": "2025-09-24T20:15:00",
       "archivo_url": "arbol_binario.java",
       "comentarios_estudiante": "Implementación completa del árbol binario de búsqueda.",
@@ -221,9 +221,9 @@
     },
     {
       "id": "4",
-      "actividad_id": 2,
-      "materia_id": 1,
-      "alumno_id": 2,
+      "actividad_id": "2",
+      "materia_id": "1",
+      "alumno_id": "2",
       "fechaEntrega": "2025-09-19T16:30:00",
       "archivo_url": null,
       "comentarios_estudiante": "Cuestionario completado.",
@@ -234,9 +234,9 @@
     },
     {
       "id": "5",
-      "actividad_id": 5,
-      "materia_id": 6,
-      "alumno_id": 2,
+      "actividad_id": "5",
+      "materia_id": "6",
+      "alumno_id": "2",
       "fechaEntrega": "2025-09-17T09:45:00",
       "archivo_url": null,
       "comentarios_estudiante": "Quiz de integrales completado.",
@@ -247,13 +247,13 @@
     },
     {
       "id": "bd3f",
-      "actividad_id": 5,
+      "actividad_id": "5",
       "alumno_id": "2",
       "archivo_url": "MoW - Hunter Reference Sheets.pdf",
       "comentarios_estudiante": "",
       "estado": "Entregada",
       "fecha_entrega": "2025-09-14T23:25:36.175Z",
-      "materia_id": 2,
+      "materia_id": "2",
       "calificacion": null,
       "comentarios_docente": null
     },
@@ -265,19 +265,19 @@
       "comentarios_estudiante": "",
       "estado": "Calificada",
       "fecha_entrega": "2025-09-15T00:18:35.706Z",
-      "materia_id": 1,
+      "materia_id": "1",
       "calificacion": 0,
       "comentarios_docente": "Documento equivocado enteregado"
     }
   ],
   "material-estudio": [
     {
-      "id": 1,
-      "materia_id": 1,
+      "id": "1",
+      "materia_id": "1",
       "titulo": "Guía de ejercicios",
       "descripcion": "Ejercicios para la clase 1",
       "url": "/public/materiales/guia-ejercicios.pdf",
-      "autor_id": 1
+      "autor_id": "1"
     }
   ]
 }
