@@ -9,6 +9,11 @@
       "id": "2",
       "email": "janet.weaver@reqres.in",
       "role": "alumno"
+    },
+    {
+      "id": "ea0d",
+      "email": "janet.weaver@reqres.in",
+      "role": "alumno"
     }
   ],
   "materias": [
