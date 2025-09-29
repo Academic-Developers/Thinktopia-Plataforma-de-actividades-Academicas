@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Usuario
 
+# Serializador para vista-endpoint de Registro
 class UsuarioRegistroSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8) #Acepta Password pero no lo muestra en el Request HTTP del front por seguridad.
 
