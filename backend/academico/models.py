@@ -45,3 +45,4 @@ class Materia(models.Model):
         """Representación en cadena de la materia"""
         return f"{self.nombre} - {self.codigo} "
 
+
