@@ -24,5 +24,5 @@ urlpatterns = [
     path('api/auth/', include('users.urls')),
      # 2. Rutas de la Lógica de Negocio
     # Todo lo que esté en academico/urls.py será prefijado con 'api/'
-    # path('api/', include('academico.urls')), 
+    path('api/', include('academico.urls')), 
 ]
