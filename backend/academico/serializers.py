@@ -12,7 +12,7 @@ class MateriaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Materia
-        fields = ['id', 'nombre', 'codigo', 'descripcion','created_at', 'updated_at']
+        fields = ['id', 'nombre', 'codigo', 'descripcion','created_at', 'updated_at', "usuarios"]
         read_only_fields = ['id', 'created_at', 'updated_at']
 
     def create(self, validated_data):
