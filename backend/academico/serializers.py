@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Materia
+from .models import Materia, MaterialEstudio
 
 class MateriaSerializer(serializers.ModelSerializer):
     """Serializer para el modelo Materia, el cual define como se veran los datos al enviarlos y como validarlos cuando los reciben.
@@ -32,4 +32,13 @@ class MateriaSerializer(serializers.ModelSerializer):
         return materia
     
 
-    
+# Serializador para MaterialEstudio
+class MaterialEstudioSerializer(serializers.ModelSerializer):
+    """
+    Serializador para el modelo MaterialEstudio.
+    Convierte instancias del modelo en JSON y valida datos de entrada.
+    """
+    class Meta:
+        model = MaterialEstudio
+        fields = ['id', 'titulo', 'descripcion', 'archivo', 'materia', 'autor', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at'] # Esto significa que no se devuelven en la respuesta al cliente
