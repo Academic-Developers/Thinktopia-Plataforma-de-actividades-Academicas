@@ -1,115 +1,114 @@
-<main class="quienes-somos container">
-  <header class="text-center py-5">
-    <h1 class="display-4 fw-bold title-principal">Thinktopia</h1>
-    <p class="lead subtitle-principal col-lg-8 mx-auto">
-      En Thinktopia, creemos que la educación debe ser una experiencia significativa, creativa y transformadora.
-      Desde nuestra fundación en 2020 en Villa Aurora, Córdoba, trabajamos para reinventar la forma en que las
-      instituciones educativas gestionan su día a día, fusionando pedagogía moderna con tecnología intuitiva.
-    </p>
-  </header>
-
-
-  <section id="mision-vision" class="py-5">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <img src="gif/gif-goal.gif" class="img-fluid rounded-3 shadow"
-          alt="Imagen representativa de la misión y visión">
-      </div>
-      <div class="col-md-6 mt-4 mt-md-0">
-        <h2 class="fw-bold mb-3 section-title">Nuestra Misión</h2>
-        <p class="text-muted section-text">
-          Brindar una educación integral, inclusiva y centrada en el desarrollo del pensamiento digital y humano,
-          empoderando a cada estudiante a través del conocimiento y la tecnología. Con más de 5 años de trayectoria
-          acompañando a escuelas, institutos y centros de formación en toda Latinoamérica.
+ <main class="quienes-somos container">
+    <header class="text-center py-5">
+        <h1 class="display-4 fw-bold title-principal">Thinktopia</h1>
+        <p class="lead subtitle-principal col-lg-8 mx-auto">
+            En Thinktopia, creemos que la educación debe ser una experiencia significativa, creativa y transformadora.
+            Desde nuestra fundación en 2020 en Villa Aurora, Córdoba, trabajamos para reinventar la forma en que las
+            instituciones educativas gestionan su día a día, fusionando pedagogía moderna con tecnología intuitiva.
         </p>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Sección de Valores -->
-  <section id="valores" class="py-5 bg-light-custom rounded-3">
-    <div class="container text-center">
-      <h2 class="fw-bold mb-5 section-title">Nuestros Valores</h2>
-      <div class="row">
-        @for(valor of valores; track valor) {
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="p-4 valor-card">
-            <img src="{{valor.icon}}" alt="{{valor.titulo}}" class="valor-icon mb-3">
-            <h5 class="fw-semibold valor-title">{{valor.titulo}}</h5>
-            <p class="text-muted small valor-text">{{valor.descripcion}}</p>
-          </div>
-        </div>
-        }
-      </div>
-    </div>
-  </section>
 
-  <section class="equipo py-5">
-    <h2 class="section-title text-center mb-3">Nuestro Equipo</h2>
-    <p class="text-center section-text mb-5">Un equipo comprometido con transformar la educación digital.</p>
-
-    <div class="row g-4 justify-content-center">
-      @for(equipo of equipo_principal; track equipo) {
-      <div class="col-md-6 col-lg-3">
-        <div class="team-card h-100 text-center">
-          <img src="{{equipo.img}}" alt="{{equipo.nombre}}" class="team-photo">
-          <div class="team-nombre">{{equipo.nombre}}</div>
-          <div class="rol">{{equipo.cargo}}</div>
-          <p class="text-miembro">{{equipo.descripcion}}</p>
-        </div>
-      </div>
-      }
-    </div>
-  </section>
-
-  <section id="equipo-desarrollo" class="py-5">
-    <div class="container">
-      <h2 class="section-title text-center mb-5">Conoce a Nuestro Equipo de Desarrollo</h2>
-      <div class="row justify-content-center">
-        @for(equipo of equipo_desarrollo; track equipo) {
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 text-center border-0 shadow-sm team-card-dev">
-            <div class="card-body p-4">
-              <img src="{{equipo.img}}" alt="Avatar de {{equipo.nombre}}" class="rounded-circle mb-3 team-photo-dev">
-              <h5 class="card-title fw-bold dev-name">{{equipo.nombre}}</h5>
-              <p class="text-primary fw-semibold dev-role">{{equipo.rol}}</p>
-              <p class="card-text text-muted small dev-description">{{equipo.descripcion}}</p>
-              @if (equipo.tipo === 'local' || equipo.tipo === 'externo') {
-              <a [href]="equipo.link_portfolio" target="_blank">Ver Portfolio</a>
-              }
-              @else if (equipo.tipo === 'interno') {
-              <a [routerLink]="equipo.link_portfolio">Ver Portfolio</a>
-              }
+    <section id="mision-vision" class="py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="gif/gif-goal.gif" class="img-fluid rounded-3 shadow"
+                    alt="Imagen representativa de la misión y visión">
             </div>
-          </div>
+            <div class="col-md-6 mt-4 mt-md-0">
+                <h2 class="fw-bold mb-3 section-title">Nuestra Misión</h2>
+                <p class="text-muted section-text">
+                    Brindar una educación integral, inclusiva y centrada en el desarrollo del pensamiento digital y humano,
+                    empoderando a cada estudiante a través del conocimiento y la tecnología. Con más de 5 años de trayectoria
+                    acompañando a escuelas, institutos y centros de formación en toda Latinoamérica.
+                </p>
+            </div>
         </div>
-        }
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Nuestra Historia y Metodología -->
-  <section id="historia-metodologia" class="py-5 bg-light-custom rounded-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <h3 class="fw-bold mb-3 section-title">Nuestra Historia</h3>
-          <p class="section-text">
-            Thinktopia nació de la unión de tres estudiantes apasionados por resolver problemas reales a través del
-            software.
-            Nuestra plataforma es el resultado de nuestra propia experiencia en el ámbito académico, buscando crear la
-            herramienta que siempre quisimos tener para organizar y potenciar el aprendizaje.
-          </p>
+    <section id="valores" class="py-5 bg-light-custom rounded-3">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5 section-title">Nuestros Valores</h2>
+            <div class="row">
+                @for(valor of valores; track valor) {
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="p-4 valor-card">
+                        <img src="{{valor.icon}}" alt="{{valor.titulo}}" class="valor-icon mb-3">
+                        <h5 class="fw-semibold valor-title">{{valor.titulo}}</h5>
+                        <p class="text-muted small valor-text">{{valor.descripcion}}</p>
+                    </div>
+                </div>
+                }
+            </div>
         </div>
-        <div class="col-lg-6">
-          <h3 class="fw-bold mb-3 section-title">Nuestra Metodología</h3>
-          <p class="section-text">
-            Combinamos la estructura del estándar <strong>IEEE 830</strong> con la flexibilidad de las
-            <strong>metodologías ágiles</strong>. Este enfoque nos permite ser ordenados y, al mismo tiempo,
-            adaptarnos rápidamente para construir un producto centrado en las necesidades de nuestros usuarios.
-          </p>
+    </section>
+
+    <section class="equipo py-5">
+        <h2 class="section-title text-center mb-3">Nuestro Equipo</h2>
+        <p class="text-center section-text mb-5">Un equipo comprometido con transformar la educación digital.</p>
+
+        <div class="row g-4 justify-content-center">
+            @for(equipo of equipoPrincipal; track equipo) {
+            <div class="col-md-6 col-lg-3">
+                <div class="team-card h-100 text-center">
+                    <img src="{{equipo.img}}" alt="{{equipo.nombre}}" class="team-photo">
+                    <div class="team-nombre">{{equipo.nombre}}</div>
+                    <div class="rol">{{equipo.cargo}}</div>
+                    <p class="text-miembro">{{equipo.descripcion}}</p>
+                </div>
+            </div>
+            }
         </div>
-      </div>
-    </div>
-  </section>
-</main>
+    </section>
+
+    <section id="equipo-desarrollo" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Conoce a Nuestro Equipo de Desarrollo</h2>
+            <div class="row justify-content-center">
+                @for(equipo of equipoDesarrollo; track equipo) {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 text-center border-0 shadow-sm team-card-dev">
+                        <div class="card-body p-4">
+                            <img src="{{equipo.img}}" alt="Avatar de {{equipo.nombre}}"
+                                class="rounded-circle mb-3 team-photo-dev">
+                            <h5 class="card-title fw-bold dev-name">{{equipo.nombre}}</h5>
+                            <p class="text-primary fw-semibold dev-role">{{equipo.rol}}</p>
+                            <p class="card-text text-muted small dev-description">{{equipo.descripcion}}</p>
+                            @if (equipo.tipo === 'local' || equipo.tipo === 'externo') {
+                                <a [href]="equipo.link_portfolio" target="_blank">Ver Portfolio</a>
+                            }
+                            @else if (equipo.tipo === 'interno') {
+                                <a [routerLink]="equipo.link_portfolio">Ver Portfolio</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="historia-metodologia" class="py-5 bg-light-custom rounded-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h3 class="fw-bold mb-3 section-title">Nuestra Historia</h3>
+                    <p class="section-text">
+                        Thinktopia nació de la unión de tres estudiantes apasionados por resolver problemas reales a través del
+                        software.
+                        Nuestra plataforma es el resultado de nuestra propia experiencia en el ámbito académico, buscando crear la
+                        herramienta que siempre quisimos tener para organizar y potenciar el aprendizaje.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="fw-bold mb-3 section-title">Nuestra Metodología</h3>
+                    <p class="section-text">
+                        Combinamos la estructura del estándar <strong>IEEE 830</strong> con la flexibilidad de las
+                        <strong>metodologías ágiles</strong>. Este enfoque nos permite ser ordenados y, al mismo tiempo,
+                        adaptarnos rápidamente para construir un producto centrado en las necesidades de nuestros usuarios.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> 
