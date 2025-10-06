@@ -46,3 +46,46 @@ class Materia(models.Model):
         return f"{self.nombre} - {self.codigo} "
 
 
+# Material de Estudio
+
+class MaterialEstudio(models.Model):
+    """
+    Modelo que representa un material de estudio asociado a una materia.
+    """
+    titulo = models.CharField(
+        max_length=255,
+        help_text="Título del material de estudio (ej: Guía de ejercicios, Presentación)."
+    )
+    descripcion = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Descripción opcional del material de estudio."
+    )
+    archivo = models.FileField(
+        upload_to='materiales_estudio/',
+        blank=True,
+        null=True,
+        help_text="Archivo adjunto del material de estudio."
+    )
+    materia = models.ForeignKey(
+        'Materia',
+        on_delete=models.CASCADE,
+        related_name='materiales',
+        help_text="Materia a la que pertenece este material de estudio."
+    )
+    autor = models.ForeignKey(
+        Usuario,
+        on_delete=models.CASCADE,
+        related_name='materiales_creados',
+        help_text="Docente que creó este material de estudio."
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Material de Estudio"
+        verbose_name_plural = "Materiales de Estudio"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.titulo} - {self.materia.nombre}"
