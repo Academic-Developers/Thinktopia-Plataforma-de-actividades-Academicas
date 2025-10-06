@@ -2,9 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .models import Materia
-from .serializers import MateriaSerializer
+from .models import Materia, MaterialEstudio
+from .serializers import MateriaSerializer, MaterialEstudioSerializer
 # No necesitamos importar Usuario aquí, ya que el filtro lo hace el ORM
+
+
+# Vistas - Views para el modelo "Materia"
 
 # --- VISTA 1: COLECCIÓN (LISTAR y CREAR) ---
 
@@ -15,7 +18,7 @@ class MateriaListCreateAPIView(APIView):
     """
 
     def get(self, request):
-        # CLAVE: FILTRO OBLIGATORIO DE SIMPLICIDAD
+    
         user_id = request.query_params.get('user_id')
 
         if not user_id:
@@ -46,8 +49,7 @@ class MateriaListCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
 # --- VISTA 2: DETALLE (LEER, ACTUALIZAR, ELIMINAR) ---
 
 class MateriaDetailAPIView(APIView):
@@ -88,4 +90,85 @@ class MateriaDetailAPIView(APIView):
         # ELIMINACIÓN
         materia = self.get_object(pk)
         materia.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+# Material de Estudio Vistas:
+
+# --- VISTA 1: COLECCIÓN (LISTAR y CREAR) ---
+
+class MaterialEstudioListCreateAPIView(APIView):
+    """
+    LISTAR (GET): Materiales de estudio, OBLIGATORIAMENTE filtrados por 'materia_id'.
+    CREAR (POST): Crea un nuevo material de estudio (usado por Docentes).
+    """
+
+    def get(self, request):
+        """
+        Maneja solicitudes GET. Requiere el parámetro 'materia_id' para filtrar.
+        """
+        materia_id = request.query_params.get('materia_id')
+
+        if not materia_id:
+            # Forzamos el filtro por Materia ID
+            return Response(
+                {"detail": "Filtro obligatorio: Debe enviar el 'materia_id' para listar el material de estudio."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            # Filtra el material de estudio asociado a esa Materia ID
+            materiales = MaterialEstudio.objects.filter(materia_id=materia_id)
+            serializer = MaterialEstudioSerializer(materiales, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+    def post(self, request):
+        """
+        Maneja solicitudes POST para crear un nuevo material de estudio.
+        El serializador validará que 'materia' y 'autor' sean válidos (Foreign Keys).
+        """
+        serializer = MaterialEstudioSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# --- VISTA 2: DETALLE (LEER, ACTUALIZAR, ELIMINAR) ---
+# Esta vista sigue siendo correcta, ya que opera sobre el ID único (pk) del Material.
+
+class MaterialEstudioDetailAPIView(APIView):
+    """
+    GESTIÓN DETALLADA: GET (detalle), PUT (actualizar) y DELETE (eliminar) por PK de MaterialEstudio.
+    """
+
+    def get_object(self, pk):
+        """
+        Recupera un objeto MaterialEstudio por su ID o lanza un error 404.
+        """
+        return get_object_or_404(MaterialEstudio, pk=pk)
+
+    def get(self, request, pk):
+        material = self.get_object(pk)
+        serializer = MaterialEstudioSerializer(material)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        material = self.get_object(pk)
+        # Usamos partial=True para permitir que la actualización omita campos si es necesario
+        serializer = MaterialEstudioSerializer(material, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        material = self.get_object(pk)
+        material.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
