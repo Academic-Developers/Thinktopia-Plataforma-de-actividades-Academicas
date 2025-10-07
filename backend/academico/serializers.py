@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Materia, MaterialEstudio
+from .models import Materia, MaterialEstudio, Actividad
 
 class MateriaSerializer(serializers.ModelSerializer):
     """Serializer para el modelo Materia, el cual define como se veran los datos al enviarlos y como validarlos cuando los reciben.
@@ -18,7 +18,6 @@ class MateriaSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Crea una nueva instancia de Materia con los datos validados.
         """
-     
        # Saca los IDs antes de crear la Materia
         usuarios_ids = validated_data.pop('usuarios', []) 
         
@@ -42,3 +41,15 @@ class MaterialEstudioSerializer(serializers.ModelSerializer):
         model = MaterialEstudio
         fields = ['id', 'titulo', 'descripcion', 'archivo', 'materia', 'autor', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at'] # Esto significa que no se devuelven en la respuesta al cliente
+
+
+# Serializador para Actividad
+class ActividadSerializer(serializers.ModelSerializer):
+    """
+    Serializador para el modelo Actividad.
+    Convierte instancias del modelo en JSON y valida datos de entrada.
+    """
+    class Meta:
+        model = Actividad
+        fields = ['id', 'titulo', 'descripcion', 'tipo', 'archivo', 'fecha_limite', 'materia', 'docente', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at']

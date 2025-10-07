@@ -1,7 +1,6 @@
 from django.db import models
 from users.models import Usuario
 
-
 class Materia(models.Model):
     """
     Modelo que representa una Materia/Asignatura en el sistema académico.
@@ -21,7 +20,6 @@ class Materia(models.Model):
         null=True,
         help_text="Descripción detallada de la materia"
     )
-    
     # RELACIÓN MANY-TO-MANY CON USUARIO
     # Una materia puede tener múltiples usuarios (docentes + alumnos)
     # Un usuario puede estar en múltiples materias
@@ -31,7 +29,6 @@ class Materia(models.Model):
         blank=True,
         help_text="Usuarios (docentes y alumnos) asociados a esta materia"
     )
-    
     # Campos de auditoría
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -47,7 +44,6 @@ class Materia(models.Model):
 
 
 # Material de Estudio
-
 class MaterialEstudio(models.Model):
     """
     Modelo que representa un material de estudio asociado a una materia.
@@ -89,3 +85,55 @@ class MaterialEstudio(models.Model):
 
     def __str__(self):
         return f"{self.titulo} - {self.materia.nombre}"
+
+class Actividad(models.Model):
+    """
+    Modelo que representa una actividad académica asociada a una materia.
+    """
+    titulo = models.CharField(
+        max_length=255,
+        help_text="Título de la actividad (ej: Trabajo práctico, Examen parcial)."
+    )
+    descripcion = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Descripción opcional de la actividad."
+    )
+    tipo = models.CharField(
+        max_length=50,
+        help_text="Tipo de actividad (ej: Práctico, Teórico, Evaluación)."
+    )
+    archivo = models.FileField(
+        upload_to='actividades/',
+        blank=True,
+        null=True,
+        help_text="Archivo adjunto relacionado con la actividad."
+    )
+    fecha_limite = models.DateTimeField(
+        blank=True,
+        null=True,
+        help_text="Fecha límite para completar la actividad."
+    )
+    materia = models.ForeignKey(
+        'Materia',
+        on_delete=models.CASCADE,
+        related_name='actividades',
+        help_text="Materia a la que pertenece esta actividad."
+    )
+    docente = models.ForeignKey(
+        Usuario,
+        on_delete=models.CASCADE,
+        related_name='actividades_creadas',
+        help_text="Docente que creó esta actividad."
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Actividad"
+        verbose_name_plural = "Actividades"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.titulo} - {self.materia.nombre}"
+
