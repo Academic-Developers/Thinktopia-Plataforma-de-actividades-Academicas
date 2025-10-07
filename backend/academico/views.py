@@ -2,10 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .models import Materia, MaterialEstudio
-from .serializers import MateriaSerializer, MaterialEstudioSerializer
-# No necesitamos importar Usuario aquí, ya que el filtro lo hace el ORM
-
+from .models import Materia, MaterialEstudio, Actividad
+from .serializers import MateriaSerializer, MaterialEstudioSerializer, ActividadSerializer
 
 # Vistas - Views para el modelo "Materia"
 
@@ -51,7 +49,6 @@ class MateriaListCreateAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 # --- VISTA 2: DETALLE (LEER, ACTUALIZAR, ELIMINAR) ---
-
 class MateriaDetailAPIView(APIView):
     """
     GESTIÓN DETALLADA: GET (detalle), PUT (actualizar) y DELETE (eliminar) por PK de Materia.
@@ -74,7 +71,6 @@ class MateriaDetailAPIView(APIView):
         usuarios_ids = request.data.pop('usuarios', None)
         
         serializer = MateriaSerializer(materia, data=request.data, partial=True) # Usamos partial=True para PUT si no queremos que falle por campos de solo lectura
-        
         if serializer.is_valid():
             materia = serializer.save()
             
@@ -93,11 +89,9 @@ class MateriaDetailAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
 # Material de Estudio Vistas:
 
 # --- VISTA 1: COLECCIÓN (LISTAR y CREAR) ---
-
 class MaterialEstudioListCreateAPIView(APIView):
     """
     LISTAR (GET): Materiales de estudio, OBLIGATORIAMENTE filtrados por 'materia_id'.
@@ -172,3 +166,85 @@ class MaterialEstudioDetailAPIView(APIView):
         material = self.get_object(pk)
         material.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# Vistas para el modelo "Actividad"
+
+# --- VISTA 1: COLECCIÓN (LISTAR y CREAR) ---
+class ActividadListCreateAPIView(APIView):
+    """
+    LISTAR (GET): Actividades de una materia, filtradas por materia_id.
+    CREAR (POST): Crea una nueva actividad (usada por Docentes).
+    """
+
+    def get(self, request):
+        user_id = request.query_params.get('user_id')
+        materia_id = request.query_params.get('materia_id')
+
+        if not user_id or not materia_id:
+            return Response(
+                {"detail": "Filtro obligatorio: Debe enviar el 'materia_id' y 'user_id' para listar actividades."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        try:
+               # 2. VERIFICACIÓN DE SEGURIDAD (¿El usuario pertenece a esa materia?)
+            # El usuario debe estar en el campo ManyToManyField 'usuarios' de la Materia
+            es_usuario_asignado = Materia.objects.filter(
+                usuarios__id=user_id, 
+                id=materia_id
+            ).exists()
+
+            if not es_usuario_asignado:
+                 return Response(
+                    {"detail": "Acceso Prohibido. El usuario no está asignado a esta materia."},
+                    status=status.HTTP_403_FORBIDDEN # 403 indica que no tiene permiso
+                )
+            
+             # 3. FILTRADO DE DATOS (Si la seguridad es OK)
+            actividades = Actividad.objects.filter(materia_id=materia_id, user_id=user_id)
+            serializer = ActividadSerializer(actividades, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+    def post(self, request):
+        serializer = ActividadSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# --- VISTA 2: DETALLE (LEER, ACTUALIZAR, ELIMINAR) ---
+class ActividadDetailAPIView(APIView):
+    """
+    GESTIÓN DETALLADA: GET (detalle), PUT (actualizar) y DELETE (eliminar) por PK de Actividad.
+    """
+
+    def get_object(self, pk):
+        """
+        Recupera un objeto Actividad por su ID o lanza un error 404.
+        """
+        return get_object_or_404(Actividad, pk=pk)
+
+    def get(self, request, pk):
+        actividad = self.get_object(pk)
+        serializer = ActividadSerializer(actividad)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        actividad = self.get_object(pk)
+        serializer = ActividadSerializer(actividad, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        actividad = self.get_object(pk)
+        actividad.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+

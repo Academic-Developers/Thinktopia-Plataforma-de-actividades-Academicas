@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import MateriaListCreateAPIView, MateriaDetailAPIView, MaterialEstudioDetailAPIView, MaterialEstudioListCreateAPIView
+from .views import ActividadListCreateAPIView, ActividadDetailAPIView
 
 urlpatterns = [
     # Endpoints para materias
@@ -15,4 +16,7 @@ urlpatterns = [
     path('materialestudio/', MaterialEstudioListCreateAPIView.as_view(), name='materiales_list_create'),
     path('materialestudio/<int:pk>/', MaterialEstudioDetailAPIView.as_view(), name='materiales_detail'),
 
+    # Endpoints para actividades
+    path('actividades/', ActividadListCreateAPIView.as_view(), name='actividad-list-create'),
+    path('actividades/<int:pk>/', ActividadDetailAPIView.as_view(), name='actividad-detail'),
 ]
