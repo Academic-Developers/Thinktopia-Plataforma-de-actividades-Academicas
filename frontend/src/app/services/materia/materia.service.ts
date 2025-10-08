@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of, throwError } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
-import { User } from '../../models/auth-models/auth-models';
+import { User } from '../../models/auth-models/auth-interface';
 import { Materia, UserMateria } from '../../models/materias-models/materias-models';
 import { environment } from '../../../environments/environment';
 
@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class MateriaService {
-  private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
+  private apiUrl = null
 
   constructor(private http: HttpClient) { }
 

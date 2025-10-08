@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../services/auth/auth-service';
 import { MateriaService } from '../../../../services/materia/materia.service';
-import { User } from '../../../../models/auth-models/auth-models';
+import { User } from '../../../../models/auth-models/auth-interface';
 import { Materia } from '../../../../models/materias-models/materias-models';
 
 @Component({
@@ -23,7 +23,7 @@ export class Materias implements OnInit {
   ) {}
 
     ngOnInit(): void {
-    this.loggedInUser = this.authService.getLoggedInUser();
+    this.loggedInUser = this.authService.getCurrentUser();
     console.log('👤 Usuario logueado en Materias:', this.loggedInUser);
 
     if (this.loggedInUser) {
