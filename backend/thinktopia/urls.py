@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings # Necesario para leer MEDIA_URL
+from django.conf.urls.static import static # Necesario para servir archivos
 
 urlpatterns = [
     path('admin/', admin.site.urls), #opcional 
@@ -26,3 +28,8 @@ urlpatterns = [
     # Todo lo que esté en academico/urls.py será prefijado con 'api/'
     path('api/', include('academico.urls')), 
 ]
+
+# **MANDATORIO PARA ENTORNOS DE DESARROLLO**
+# Esto le dice a Django que sirva los archivos de MEDIA_ROOT bajo la ruta MEDIA_URL
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

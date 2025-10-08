@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os 
 from pathlib import Path
 import environ
-import os 
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# # Definimos la base del proyecto - Build paths inside the project like this: BASE_DIR / 'subdir'. 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Inicializa django-environ
@@ -23,6 +23,18 @@ env = environ.Env()
 
 # Lee el archivo .env
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+
+# ----------------------------------------------------
+# CONFIGURACIÓN DE ARCHIVOS DE MEDIOS (MEDIA FILES)
+# ----------------------------------------------------
+# URL base para los archivos subidos por los usuarios (ej: /media/uploads/mi_archivo.pdf)
+MEDIA_URL = '/media/'
+
+# Directorio donde Django almacenará esos archivos
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
