@@ -1,6 +1,5 @@
+
 export const environment = {
-  production: false,
-  urlReqres: 'https://reqres.in/api/',
-  urlJsonServer: 'http://localhost:3000/',
-  apiKey: 'reqres-free-v1'
+  apiUrl: "http://localhost:8000/api",
+  jsonServerUrl: "http://localhost:3000",
 };

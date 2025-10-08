@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class ActividadService {
     // Base API URL always ending with a single slash
-    private apiUrl = environment.urlJsonServer.endsWith('/') ? environment.urlJsonServer : environment.urlJsonServer + '/';
+    private apiUrl = null
 
     // BehaviorSubject para estado reactivo
     private actividadesSubject = new BehaviorSubject<Actividad[]>([]);

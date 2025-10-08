@@ -13,7 +13,7 @@ import {
   providedIn: 'root'  // Singleton disponible en toda la app
 })
 export class AboutService {
-  private apiUrl = environment.urlJsonServer;
+  private apiUrl = null;
 
 
   constructor(private http: HttpClient) {}
