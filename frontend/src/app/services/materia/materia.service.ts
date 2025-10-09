@@ -1,66 +1,105 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, of, throwError } from 'rxjs';
-import { map, switchMap, catchError, tap } from 'rxjs/operators';
-import { User } from '../../models/auth-models/auth-interface';
-import { Materia, UserMateria } from '../../models/materias-models/materias-models';
-import { environment } from '../../../environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth-service';
+import { Materia, MateriasResponse } from '../../models/materias-models/materias-models';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
-  private apiUrl = null
+  private readonly apiUrl = `${environment.apiUrl}academico/materias/`;
+  private readonly SELECTED_MATERIA_KEY = 'selected_materia_id';
 
-  constructor(private http: HttpClient) { }
+  // Estado reactivo de la materia seleccionada
+  private selectedMateriaSubject = new BehaviorSubject<number | null>(this.getSelectedMateriaFromStorage());
+  public selectedMateria$ = this.selectedMateriaSubject.asObservable();
 
-  getMaterias(UserId: number): Observable<Materia[]> {
-    console.log('🔎 Buscando materias para el usuario con ID:', UserId);
-    const url = `${this.apiUrl}user_materia?user_id=${UserId}`;
-    console.log('📡 URL de request user_materia:', url);
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-    return this.http.get<UserMateria[]>(url).pipe(
-      tap(res => console.log('Respuesta de user_materia:', res)),
+  // Obtener materias del usuario autenticado
+  getMaterias(): Observable<Materia[]> {
+    const userId = this.authService.getCurrentUserId();
 
-      switchMap(userMaterias => {
-        if (userMaterias.length === 0) {
-          console.log('El usuario no tiene materias asignadas');
-          return of([]);
-        }
-        console.log('UserMaterias encontrados:', userMaterias);
+    if (!userId || userId <= 0) {
+      return throwError(() => new Error('Usuario no autenticado. Inicie sesión.'));
+    }
 
-        const materiaRequests = userMaterias.map(um => {
-          const materiaUrl = `${this.apiUrl}materias/${um.materia_id}`;
-          console.log('Buscando materia:', materiaUrl);
-          return this.http.get<Materia>(materiaUrl).pipe(
-            tap(m => console.log('Materia obtenida:', m))
-          );
-        });
+    const params = new HttpParams().set('user_id', userId.toString());
 
-        return forkJoin(materiaRequests);
+    return this.http.get<MateriasResponse>(this.apiUrl, { params }).pipe(
+      map((response: MateriasResponse) => response.results),
+      tap((materias: Materia[]) => {
+        console.log(`Materias obtenidas: ${materias.length}`);
       }),
-
-      catchError(err => {
-        console.error('Error en getMaterias:', err);
-        return throwError(() => new Error('Could not load subjects.'));
+      catchError((error) => {
+        let errorMessage = 'Error al obtener materias';
+        if (error.status === 401) errorMessage = 'No autorizado';
+        else if (error.status === 403) errorMessage = 'Sin permisos';
+        else if (error.status === 500) errorMessage = 'Error del servidor';
+        return throwError(() => new Error(errorMessage));
       })
     );
   }
 
-  getMateriaById(id: number): Observable<Materia> {
-    const url = `${this.apiUrl}materias/${id}`;
-    console.log('Solicitando las materias por id:', url);
+  // Obtener materia específica por ID
+  getMateriaById(materiaId: number): Observable<Materia> {
+    const userId = this.authService.getCurrentUserId();
 
-    return this.http.get<Materia>(url).pipe(
-      tap(m => console.log('Materia obtenida por ID:', m)),
-      catchError(err => {
-        console.error(`Error al obtener el asunto con ID ${id}:`, err);
-        return throwError(() => new Error('No se pudieron cargar los detalles del asunto.'));
+    if (!userId) {
+      return throwError(() => new Error('Usuario no autenticado'));
+    }
+
+    const params = new HttpParams()
+      .set('user_id', userId.toString())
+      .set('materia_id', materiaId.toString());
+
+    const url = `${this.apiUrl}${materiaId}/`;
+
+    return this.http.get<Materia>(url, { params }).pipe(
+      tap((materia: Materia) => {
+        console.log(`Materia obtenida: ${materia.nombre}`);
+      }),
+      catchError((error) => {
+        let errorMessage = `Error al obtener materia ${materiaId}`;
+        if (error.status === 404) {
+          errorMessage = 'Materia no encontrada';
+        }
+        return throwError(() => new Error(errorMessage));
       })
     );
   }
 
-  getAllMaterias(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(`${this.apiUrl}materias`);
+  // Seleccionar una materia y guardar en localStorage
+  selectMateria(materiaId: number): void {
+    localStorage.setItem(this.SELECTED_MATERIA_KEY, materiaId.toString());
+    this.selectedMateriaSubject.next(materiaId);
+    console.log(`Materia seleccionada: ${materiaId}`);
+  }
+
+  // Obtener ID de la materia seleccionada actualmente
+  getSelectedMateriaId(): number | null {
+    const materiaId = localStorage.getItem(this.SELECTED_MATERIA_KEY);
+    return materiaId ? parseInt(materiaId, 10) : null;
+  }
+
+  // Limpiar selección de materia
+  clearSelectedMateria(): void {
+    localStorage.removeItem(this.SELECTED_MATERIA_KEY);
+    this.selectedMateriaSubject.next(null);
+    console.log('Selección de materia limpiada');
+  }
+
+  // Obtener materia seleccionada desde localStorage al inicializar
+  private getSelectedMateriaFromStorage(): number | null {
+    const materiaId = localStorage.getItem(this.SELECTED_MATERIA_KEY);
+    return materiaId ? parseInt(materiaId, 10) : null;
+  }
+
+  // Verificar si hay una materia seleccionada
+  hasSelectedMateria(): boolean {
+    return this.getSelectedMateriaId() !== null;
   }
 }

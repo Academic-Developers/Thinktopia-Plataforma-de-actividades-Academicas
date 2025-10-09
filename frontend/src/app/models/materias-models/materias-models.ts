@@ -2,10 +2,10 @@ export interface Materia {
   id: number;
   nombre: string;
   codigo: string;
+  descripcion: string;
 }
 
-export interface UserMateria {
-  id: number;
-  user_id: number;
-  materia_id: number;
+export interface MateriasResponse {
+  count: number;         // Total de materias disponibles
+  results: Materia[]; 
 }
