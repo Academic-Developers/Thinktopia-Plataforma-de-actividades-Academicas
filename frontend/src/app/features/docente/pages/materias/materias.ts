@@ -1,43 +1,117 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../../services/auth/auth-service';
+import { RouterModule, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MateriaService } from '../../../../services/materia/materia.service';
-import { User } from '../../../../models/auth-models/auth-interface';
 import { Materia } from '../../../../models/materias-models/materias-models';
 
 @Component({
-  selector: 'app-materias',
+  selector: 'app-materia',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './materias.html',
-  styleUrls: ['./materias.css'],
+  styleUrl: './materias.css'
 })
-export class Materias implements OnInit {
-  loggedInUser: User | null = null;
+export class MateriaComponent implements OnInit, OnDestroy {
+  
+  // Estado del componente
   materias: Materia[] = [];
+  materiaSeleccionada: Materia | null = null;
+  loading: boolean = false;
+  error: string | null = null;
+  
+  // Gestión de suscripciones
+  private subscription = new Subscription();
 
   constructor(
-    private authService: AuthService,
-    private materiaService: MateriaService, private router: Router
+    private materiaService: MateriaService,
+    private router: Router
   ) {}
 
-    ngOnInit(): void {
-    this.loggedInUser = this.authService.getCurrentUser();
-    console.log('👤 Usuario logueado en Materias:', this.loggedInUser);
+  ngOnInit(): void {
+    this.cargarMaterias();
+    this.escucharMateriaSeleccionada();
+  }
 
-    if (this.loggedInUser) {
-      this.materiaService.getMaterias(Number(this.loggedInUser.id)).subscribe({
-        next: (materias) => {
-          this.materias = materias;
-          console.log(' Materias cargadas en el componente:', this.materias);
-        },
-        error: (err) => {
-          console.error(' Error al cargar las materias:', err);
-        },
-      });
+  // Cargar lista de materias del usuario
+  public cargarMaterias(): void {
+    this.loading = true;
+    this.error = null;
+
+    const materiasSubscription = this.materiaService.getMaterias().subscribe({
+      next: (materias: Materia[]) => {
+        this.materias = materias;
+        this.loading = false;
+        console.log(`Materias cargadas: ${materias.length}`);
+      },
+      error: (error: Error) => {
+        this.error = error.message;
+        this.loading = false;
+        this.materias = [];
+        console.error('Error cargando materias:', error);
+      }
+    });
+
+    this.subscription.add(materiasSubscription);
+  }
+
+  // Escuchar cambios en la materia seleccionada
+  private escucharMateriaSeleccionada(): void {
+    const seleccionSubscription = this.materiaService.selectedMateria$.subscribe({
+      next: (materiaId: number | null) => {
+        if (materiaId) {
+          this.materiaSeleccionada = this.materias.find(m => m.id === materiaId) || null;
+          console.log(`Materia seleccionada actualizada: ${this.materiaSeleccionada?.nombre}`);
+        } else {
+          this.materiaSeleccionada = null;
+        }
+      }
+    });
+
+    this.subscription.add(seleccionSubscription);
+  }
+
+  // Método para seleccionar una materia
+  seleccionarMateria(materia: Materia): void {
+    this.materiaService.selectMateria(materia.id);
+    console.log(`Usuario seleccionó: ${materia.nombre}`);
+  }
+
+  // Navegar a actividades de la materia seleccionada
+  verActividades(): void {
+    if (this.materiaSeleccionada) {
+      this.router.navigate(['/docente/actividades']);
+      console.log(`Navegando a actividades de: ${this.materiaSeleccionada.nombre}`);
     } else {
-      console.warn(' No hay usuario logueado, no se pueden cargar materias');
+      this.error = 'Selecciona una materia primero';
     }
+  }
+
+  // Navegar a materiales de la materia seleccionada
+  verMateriales(): void {
+    if (this.materiaSeleccionada) {
+      this.router.navigate(['/docente/materiales']);
+      console.log(`Navegando a materiales de: ${this.materiaSeleccionada.nombre}`);
+    } else {
+      this.error = 'Selecciona una materia primero';
+    }
+  }
+
+  // Limpiar selección actual
+  limpiarSeleccion(): void {
+    this.materiaService.clearSelectedMateria();
+    this.error = null;
+    console.log('Selección limpiada');
+  }
+
+  // Verificar si una materia está seleccionada
+  esMateriaSeleccionada(materia: Materia): boolean {
+    return this.materiaSeleccionada?.id === materia.id;
+  }
+
+  // Cleanup al destruir componente
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    console.log('Suscripciones del componente limpiadas');
   }
 }

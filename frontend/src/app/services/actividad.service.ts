@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of, forkJoin } from 'rxjs';
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
 import { Actividad, CreateActividadRequest, UpdateActividadRequest } from '../models/actividad-models/actividad.interface';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'

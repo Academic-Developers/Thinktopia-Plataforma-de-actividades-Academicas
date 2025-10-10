@@ -30,7 +30,7 @@ export class MateriaService {
     const params = new HttpParams().set('user_id', userId.toString());
 
     return this.http.get<MateriasResponse>(this.apiUrl, { params }).pipe(
-      map((response: MateriasResponse) => response.results),
+      map((response: MateriasResponse) => response.resultados),
       tap((materias: Materia[]) => {
         console.log(`Materias obtenidas: ${materias.length}`);
       }),

@@ -6,6 +6,6 @@ export interface Materia {
 }
 
 export interface MateriasResponse {
-  count: number;         // Total de materias disponibles
-  results: Materia[]; 
+  cantidad: number;         // Total de materias disponibles
+  resultados: Materia[];
 }
