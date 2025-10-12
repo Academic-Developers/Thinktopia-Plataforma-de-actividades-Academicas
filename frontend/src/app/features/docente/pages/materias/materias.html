@@ -1,24 +1,115 @@
-<main>
-    <section class="title">
-        <h1 class="title-element">Mis Materias</h1>
-    </section>
-    
-    <div class="materias-container">
-        <div class="row gy-4">
-            @for (materia of materias; track materia.id) {
-                <div class="col-12 col-md-4">
-                    <!-- <a [routerLink]="['/docente/materias', materia.id]" class="card-link"> -->
-                        <div class="custom-card">
-                            <div class="card-content">
-                                <h3 class="card-title">{{ materia.nombre }}</h3>
-                                <p class="card-value">Código: {{ materia.codigo }}</p>
-                            </div>
-                        </div>
-                    <!-- </a> -->
-                </div>
-            } @empty {
-                <p class="text-secondary fs-3 text-center font-poppins">No tienes materias asignadas.</p>
-            }
-        </div>
+<main class="container">
+  <header class="mb-4">
+    <h1 class="display-5 fw-bold">Mis Materias</h1>
+    <p class="lead">Selecciona una materia para gestionar sus actividades y materiales</p>
+  </header>
+
+  @if (loading) {
+    <div class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando materias...</span>
+      </div>
+      <p class="mt-2">Cargando tus materias...</p>
     </div>
+  }
+
+  @if (error && !loading) {
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Error</h4>
+      <p>{{ error }}</p>
+      <button class="btn btn-outline-danger" (click)="cargarMaterias()">
+        Reintentar
+      </button>
+    </div>
+  }
+
+  @if (!loading && !error && materias.length > 0) {
+    <div class="row">
+      <!-- Grid de materias -->
+      <div class="col-lg-8">
+        <div class="row">
+          @for (materia of materias; track materia.id) {
+            <div class="col-md-6 mb-3">
+              <div 
+                class="card materia-card h-100"
+                [class.selected]="esMateriaSeleccionada(materia)"
+                (click)="seleccionarMateria(materia)">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">{{ materia.nombre }}</h5>
+                    @if (esMateriaSeleccionada(materia)) {
+                      <span class="badge bg-primary">Seleccionada</span>
+                    }
+                  </div>
+                  
+                  <p class="text-muted mb-2">
+                    <strong>Código:</strong> {{ materia.codigo }}
+                  </p>
+
+                  @if (materia.descripcion) {
+                    <p class="card-text small">{{ materia.descripcion }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Panel de acciones -->
+      <div class="col-lg-4">
+        <div class="card position-sticky" style="top: 2rem;">
+          <div class="card-header">
+            <h2 class="mb-0">Panel de Gestión</h2>
+          </div>
+          <div class="card-body">
+            @if (materiaSeleccionada) {
+              <div class="mb-3">
+                <h6 class="text-primary">Materia Seleccionada:</h6>
+                <p class="fw-bold mb-1">{{ materiaSeleccionada.nombre }}</p>
+                <small class="text-muted">{{ materiaSeleccionada.codigo }}</small>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button 
+                  class="btn btn-primary" 
+                  (click)="verActividades()">
+                  Ver Actividades
+                </button>
+                
+                <button 
+                  class="btn btn-success" 
+                  (click)="verMateriales()">
+                  Ver Material de Estudio
+                </button>
+                
+                <button 
+                  class="btn btn-outline-secondary" 
+                  (click)="limpiarSeleccion()">
+                  Limpiar Selección
+                </button>
+              </div>
+            } @else {
+              <div class="text-center text-muted">
+                <p>Selecciona una materia para ver las opciones disponibles</p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (!loading && !error && materias.length === 0) {
+    <div class="text-center mt-5">
+      <div class="mb-4">
+        <i class="bi bi-book display-1 text-muted"></i>
+      </div>
+      <h3 class="text-muted">No tienes materias asignadas</h3>
+      <p class="text-muted">Contacta al administrador para que te asigne materias.</p>
+      <button class="btn btn-primary" (click)="cargarMaterias()">
+        Recargar
+      </button>
+    </div>
+  }
 </main>

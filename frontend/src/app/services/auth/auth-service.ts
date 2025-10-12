@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { User, LoginRequest, LoginResponse } from '../../models/auth-models/auth-interface';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'  // Hace que este servicio esté disponible en toda la aplicación

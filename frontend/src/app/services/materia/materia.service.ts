@@ -1,66 +1,96 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, of, throwError } from 'rxjs';
-import { map, switchMap, catchError, tap } from 'rxjs/operators';
-import { User } from '../../models/auth-models/auth-interface';
-import { Materia, UserMateria } from '../../models/materias-models/materias-models';
-import { environment } from '../../../environments/environment';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
+import { Materia } from '../../models/materias-models/materia.interface';
+import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
-  private apiUrl = null
+  private apiUrl = environment.apiUrl;
+  
+  // Estado reactivo de materias
+  private materiasSubject = new BehaviorSubject<Materia[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  private selectedMateriaSubject = new BehaviorSubject<Materia | null>(null);
 
-  constructor(private http: HttpClient) { }
+  // Observables públicos
+  public materias$ = this.materiasSubject.asObservable();
+  public loading$ = this.loadingSubject.asObservable();
+  public selectedMateria$ = this.selectedMateriaSubject.asObservable();
 
-  getMaterias(UserId: number): Observable<Materia[]> {
-    console.log('🔎 Buscando materias para el usuario con ID:', UserId);
-    const url = `${this.apiUrl}user_materia?user_id=${UserId}`;
-    console.log('📡 URL de request user_materia:', url);
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    this.loadSelectedMateriaFromStorage();
+  }
 
-    return this.http.get<UserMateria[]>(url).pipe(
-      tap(res => console.log('Respuesta de user_materia:', res)),
+  // Cargar materia seleccionada desde localStorage
+  private loadSelectedMateriaFromStorage(): void {
+    try {
+      const stored = localStorage.getItem('selectedMateria');
+      if (stored) {
+        const materia: Materia = JSON.parse(stored);
+        this.selectedMateriaSubject.next(materia);
+      }
+    } catch (error) {
+      console.warn('Error al cargar materia desde localStorage:', error);
+      localStorage.removeItem('selectedMateria');
+    }
+  }
 
-      switchMap(userMaterias => {
-        if (userMaterias.length === 0) {
-          console.log('El usuario no tiene materias asignadas');
-          return of([]);
-        }
-        console.log('UserMaterias encontrados:', userMaterias);
+  // Obtener materias del usuario actual
+  obtenerMaterias(): Observable<Materia[]> {
+    const userId = this.authService.getCurrentUserId();
+    
+    if (!userId) {
+      console.error('Usuario no autenticado');
+      return of([]);
+    }
 
-        const materiaRequests = userMaterias.map(um => {
-          const materiaUrl = `${this.apiUrl}materias/${um.materia_id}`;
-          console.log('Buscando materia:', materiaUrl);
-          return this.http.get<Materia>(materiaUrl).pipe(
-            tap(m => console.log('Materia obtenida:', m))
-          );
-        });
+    this.loadingSubject.next(true);
+    const url = `${this.apiUrl}materias/?user_id=${userId}`;
 
-        return forkJoin(materiaRequests);
+    return this.http.get<any>(url).pipe(
+      map(response => response.results || response),
+      tap(materias => {
+        this.materiasSubject.next(materias);
+        this.loadingSubject.next(false);
       }),
-
-      catchError(err => {
-        console.error('Error en getMaterias:', err);
-        return throwError(() => new Error('Could not load subjects.'));
+      catchError(error => {
+        console.error('Error al obtener materias:', error);
+        this.loadingSubject.next(false);
+        return of([]);
       })
     );
   }
 
-  getMateriaById(id: number): Observable<Materia> {
-    const url = `${this.apiUrl}materias/${id}`;
-    console.log('Solicitando las materias por id:', url);
-
-    return this.http.get<Materia>(url).pipe(
-      tap(m => console.log('Materia obtenida por ID:', m)),
-      catchError(err => {
-        console.error(`Error al obtener el asunto con ID ${id}:`, err);
-        return throwError(() => new Error('No se pudieron cargar los detalles del asunto.'));
-      })
-    );
+  // Seleccionar materia y guardar en localStorage
+  seleccionarMateria(materia: Materia): void {
+    this.selectedMateriaSubject.next(materia);
+    localStorage.setItem('selectedMateria', JSON.stringify(materia));
   }
 
-  getAllMaterias(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(`${this.apiUrl}materias`);
+  // Limpiar selección
+  limpiarSeleccion(): void {
+    this.selectedMateriaSubject.next(null);
+    localStorage.removeItem('selectedMateria');
+  }
+
+  // Obtener materia seleccionada (síncrono)
+  getMateriaSeleccionada(): Materia | null {
+    return this.selectedMateriaSubject.value;
+  }
+
+  // Limpiar estado (para logout)
+  limpiarEstado(): void {
+    this.materiasSubject.next([]);
+    this.selectedMateriaSubject.next(null);
+    this.loadingSubject.next(false);
+    localStorage.removeItem('selectedMateria');
   }
 }

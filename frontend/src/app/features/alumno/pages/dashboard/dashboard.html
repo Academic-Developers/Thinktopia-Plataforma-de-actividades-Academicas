@@ -1,24 +1,39 @@
-<main>
+
+<!-- <main>
     <section class="title">
         <h1 class="title-element">Mis Materias</h1>
+
+        <header class="row mb-4">
+            <div class="col-md-8">
+                <h1 class="display-5 fw-bold">Dashboard del Estudiante</h1>
+                @if (loggedInUser) {
+                <p class="lead">Bienvenido, {{ loggedInUser.nombre}}</p>
+                }
+            </div>
+            <div class="col-md-4 text-end">
+                <button class="btn btn-outline-danger" (click)="cerrarSesion()">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </header>
     </section>
-    
+
     <div class="materias-container">
         <div class="row gy-4 ">
             @for (materia of materias; track materia.id) {
-                <div class="col-12 col-md-4">
-                    <!-- <a [routerLink]="['/alumno/materias', materia.id]" class="card-link"> -->
-                        <div class="custom-card">
-                            <div class="card-content">
-                                <h3 class="card-title">{{ materia.nombre }}</h3>
-                                <p class="card-value">Código: {{ materia.codigo }}</p>
-                            </div>
-                        </div>
-                    <!-- </a> -->
+            <div class="col-12 col-md-4">
+                <!-- <a [routerLink]="['/alumno/materias', materia.id]" class="card-link"> -->
+                <!-- <div class="custom-card">
+                    <div class="card-content">
+                        <h3 class="card-title">{{ materia.nombre }}</h3>
+                        <p class="card-value">Código: {{ materia.codigo }}</p>
+                    </div>
                 </div>
+                <!-- </a> -->
+            <!-- </div>
             } @empty {
-                <p class="text-secondary fs-3 text-center font-poppins">No tienes materias asignadas.</p>
+            <p class="text-secondary fs-3 text-center font-poppins">No tienes materias asignadas.</p>
             }
         </div>
     </div>
-</main>
+</main> --> 
