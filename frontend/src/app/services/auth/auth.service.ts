@@ -45,7 +45,7 @@ export class AuthService {
   login(credentials: LoginRequest): Observable<User | null> {
     console.log('🔄 Iniciando login para:', credentials.email);
     
-    return this.http.post<LoginResponse>(`${this.apiUrl}/auth/login/`, credentials)
+    return this.http.post<LoginResponse>(`${this.apiUrl}auth/login/`, credentials)
       .pipe(
         map((response: LoginResponse) => ({
           id: response.id,
