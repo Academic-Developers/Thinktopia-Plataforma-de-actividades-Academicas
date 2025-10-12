@@ -1,82 +1,96 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
-import { AuthService } from '../auth/auth-service';
-import { Materia, MateriasResponse } from '../../models/materias-models/materias-models';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
+import { Materia } from '../../models/materias-models/materia.interface';
+import { AuthService } from '../auth/auth.service';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
-  private readonly apiUrl = `${environment.apiUrl}materias/`;
+  private apiUrl = environment.apiUrl;
+  
+  // Estado reactivo de materias
+  private materiasSubject = new BehaviorSubject<Materia[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  private selectedMateriaSubject = new BehaviorSubject<Materia | null>(null);
+
+  // Observables públicos
+  public materias$ = this.materiasSubject.asObservable();
+  public loading$ = this.loadingSubject.asObservable();
+  public selectedMateria$ = this.selectedMateriaSubject.asObservable();
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private authService: AuthService
-  ) {}
-
-  // Obtener todas las materias del usuario autenticado
-  getMaterias(): Observable<Materia[]> {
-    const userId = this.authService.getCurrentUserId();
-    
-    if (!userId || userId <= 0) {
-      return throwError(() => new Error('Usuario no autenticado. Inicie sesión.'));
-    }
-
-    const params = new HttpParams().set('user_id', userId.toString());
-
-    return this.http.get<MateriasResponse>(this.apiUrl, { params }).pipe(
-      map((response: MateriasResponse) => response.results),
-      tap((materias: Materia[]) => {
-        console.log(`Materias obtenidas: ${materias.length}`);
-      }),
-      catchError((error) => {
-        let errorMessage = 'Error al obtener materias';
-        
-        if (error.status === 401) errorMessage = 'No autorizado';
-        else if (error.status === 403) errorMessage = 'Sin permisos';
-        else if (error.status === 500) errorMessage = 'Error del servidor';
-        
-        return throwError(() => new Error(errorMessage));
-      })
-    );
+  ) {
+    this.loadSelectedMateriaFromStorage();
   }
 
-  // Obtener una materia específica por ID
-  getMateriaById(materiaId: number): Observable<Materia> {
+  // Cargar materia seleccionada desde localStorage
+  private loadSelectedMateriaFromStorage(): void {
+    try {
+      const stored = localStorage.getItem('selectedMateria');
+      if (stored) {
+        const materia: Materia = JSON.parse(stored);
+        this.selectedMateriaSubject.next(materia);
+      }
+    } catch (error) {
+      console.warn('Error al cargar materia desde localStorage:', error);
+      localStorage.removeItem('selectedMateria');
+    }
+  }
+
+  // Obtener materias del usuario actual
+  obtenerMaterias(): Observable<Materia[]> {
     const userId = this.authService.getCurrentUserId();
     
     if (!userId) {
-      return throwError(() => new Error('Usuario no autenticado'));
+      console.error('Usuario no autenticado');
+      return of([]);
     }
 
-    const params = new HttpParams()
-      .set('user_id', userId.toString())
-      .set('materia_id', materiaId.toString());
+    this.loadingSubject.next(true);
+    const url = `${this.apiUrl}materias/?user_id=${userId}`;
 
-    const url = `${this.apiUrl}${materiaId}/`;
-
-    return this.http.get<Materia>(url, { params }).pipe(
-      tap((materia: Materia) => {
-        console.log(`Materia obtenida: ${materia.nombre}`);
+    return this.http.get<any>(url).pipe(
+      map(response => response.results || response),
+      tap(materias => {
+        this.materiasSubject.next(materias);
+        this.loadingSubject.next(false);
       }),
-      catchError((error) => {
-        let errorMessage = `Error al obtener materia ${materiaId}`;
-        if (error.status === 404) {
-          errorMessage = 'Materia no encontrada';
-        }
-        return throwError(() => new Error(errorMessage));
+      catchError(error => {
+        console.error('Error al obtener materias:', error);
+        this.loadingSubject.next(false);
+        return of([]);
       })
     );
   }
 
-  // Verificar si el usuario tiene acceso a una materia específica
-  hasAccessToMateria(materiaId: number): Observable<boolean> {
-    return this.getMateriaById(materiaId).pipe(
-      map(() => true),
-      catchError(() => throwError(() => false))
-    );
+  // Seleccionar materia y guardar en localStorage
+  seleccionarMateria(materia: Materia): void {
+    this.selectedMateriaSubject.next(materia);
+    localStorage.setItem('selectedMateria', JSON.stringify(materia));
+  }
+
+  // Limpiar selección
+  limpiarSeleccion(): void {
+    this.selectedMateriaSubject.next(null);
+    localStorage.removeItem('selectedMateria');
+  }
+
+  // Obtener materia seleccionada (síncrono)
+  getMateriaSeleccionada(): Materia | null {
+    return this.selectedMateriaSubject.value;
+  }
+
+  // Limpiar estado (para logout)
+  limpiarEstado(): void {
+    this.materiasSubject.next([]);
+    this.selectedMateriaSubject.next(null);
+    this.loadingSubject.next(false);
+    localStorage.removeItem('selectedMateria');
   }
 }

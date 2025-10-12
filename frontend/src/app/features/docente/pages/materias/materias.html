@@ -4,7 +4,6 @@
     <p class="lead">Selecciona una materia para gestionar sus actividades y materiales</p>
   </header>
 
-  <!-- Loading -->
   @if (loading) {
     <div class="text-center">
       <div class="spinner-border text-primary" role="status">
@@ -14,7 +13,6 @@
     </div>
   }
 
-  <!-- Error -->
   @if (error && !loading) {
     <div class="alert alert-danger" role="alert">
       <h4 class="alert-heading">Error</h4>
@@ -25,7 +23,6 @@
     </div>
   }
 
-  <!-- Lista de materias -->
   @if (!loading && !error && materias.length > 0) {
     <div class="row">
       <!-- Grid de materias -->
@@ -63,7 +60,7 @@
       <div class="col-lg-4">
         <div class="card position-sticky" style="top: 2rem;">
           <div class="card-header">
-            <h5 class="mb-0">Panel de Gestión</h5>
+            <h2 class="mb-0">Panel de Gestión</h2>
           </div>
           <div class="card-body">
             @if (materiaSeleccionada) {
@@ -103,7 +100,6 @@
     </div>
   }
 
-  <!-- Estado vacío -->
   @if (!loading && !error && materias.length === 0) {
     <div class="text-center mt-5">
       <div class="mb-4">
@@ -112,7 +108,7 @@
       <h3 class="text-muted">No tienes materias asignadas</h3>
       <p class="text-muted">Contacta al administrador para que te asigne materias.</p>
       <button class="btn btn-primary" (click)="cargarMaterias()">
-        Actualizar Lista
+        Recargar
       </button>
     </div>
   }

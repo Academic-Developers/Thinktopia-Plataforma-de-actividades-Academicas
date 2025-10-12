@@ -1,88 +1,158 @@
-/* ==== RESET ==== */
-* {
-  margin: 0;
-  padding: 0;
+/* Contenedor principal */
+.container {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--background-color);
+/* Header */
+.container header h1 {
+  font-family: var(--font-title-primary);
   color: var(--text-color);
+}
+
+.container header .lead {
+  font-family: var(--font-paragraph);
+  color: var(--text-color-secondary);
+}
+
+/* Cards de materias */
+.materia-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #e9ecef;
+  background-color: var(--bg-card-color);
+  border-radius: 8px;
+}
+
+.materia-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(55, 148, 199, 0.15);
+  border-color: var(--primary-color);
+}
+
+.materia-card.selected {
+  border-color: var(--accent-color);
+  background-color: #f0f9ff;
+  box-shadow: 0 4px 12px rgba(65, 169, 230, 0.2);
+}
+
+.materia-card.selected .card-title {
+  color: var(--accent-color);
+}
+
+.materia-card .card-title {
+  font-family: var(--font-title-secondary);
+  color: var(--text-color);
+}
+
+.materia-card .text-muted {
+  font-family: var(--font-paragraph);
+  color: var(--text-color-secondary);
+}
+
+.materia-card .card-text {
+  font-family: var(--font-paragraph);
+  color: var(--text-color-secondary);
+}
+
+/* Panel de gestión */
+.card {
+  background-color: var(--bg-card-color);
+  border-radius: 8px;
+}
+
+.card-header {
+  background-color: var(--bg-secondary-color);
+}
+
+.card-header h5 {
+  font-family: var(--font-title-secondary);
+  color: var(--text-color);
+}
+
+.card-body h6 {
+  font-family: var(--font-title-secondary);
+  color: var(--primary-color);
+}
+
+.card-body .fw-bold {
+  font-family: var(--font-title-secondary);
+  color: var(--text-color);
+}
+
+.card-body .text-muted {
+  font-family: var(--font-paragraph);
+  color: var(--text-color-secondary);
+}
+
+/* Badge */
+.badge {
+  font-size: 0.75rem;
   font-family: var(--font-paragraph);
 }
 
- .title-element {
-  font-family: var(--font-title-primary);
-  font-weight: 700;
-  font-size: 2.4rem;
-  margin:2rem;
-  text-align: center;
-  color: var(--secondary-color);
+.badge.bg-primary {
+  background-color: var(--accent-color) !important;
 }
 
-.materias-container {
-	max-width: 75rem;
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-}
-.custom-card {
-	display: flex;
-	align-items: center;
-	background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-	border-top: 5px solid var(--primary-color); 
-	height: 20dvh;
-	margin:1rem;
-	border-radius: 16px;
-	box-shadow: 
-		0 10px 40px rgba(0, 0, 0, 0.08),
-		0 4px 12px rgba(0, 0, 0, 0.05),
-		inset 0 1px 0 rgba(255, 255, 255, 0.9); 
-}
-.custom-card {
-	flex-wrap: nowrap;
-	min-height: auto;
-	max-height: 100%;
+/* Botones */
+.btn {
+  font-family: var(--font-paragraph);
 }
 
-.card-content {
-	flex: 1 1 0;
-	font-family: var(--font-title-primary);
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	justify-content: center;
-	max-height: 100%;
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  border-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
 }
 
-.card-value {
-	margin-top: 0.75rem;
-	font-size: 1.2rem;
-	line-height: 1.4;
-	font-family: var(--font-paragraph);
-	color: #6c757d;
-	font-weight: 400;
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
 }
 
-.card-title {
-	margin: 0;
-	font-size: 1.2rem;
-	font-weight: 600;
-	color: var(--text-color);
+.btn-success {
+  background-color: var(--btn-secondary-bg);
+  border-color: var(--btn-secondary-bg);
 }
 
-/* .card-link {
-	text-decoration: none;
+.btn-success:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
-.card-link .custom-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 
-		0 20px 60px rgba(0, 0, 0, 0.12),
-		0 8px 24px rgba(0, 0, 0, 0.08),
-		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+/* Estados especiales */
+.position-sticky {
+  position: sticky;
 }
 
-.card-link .custom-card:active {
-	transform: translateY(-2px);
-} */
+.spinner-border {
+  color: var(--primary-color);
+}
+
+.alert-danger {
+  font-family: var(--font-paragraph);
+}
+
+.text-center h3 {
+  font-family: var(--font-title-secondary);
+  color: var(--text-color-secondary);
+}
+
+.text-center p {
+  font-family: var(--font-paragraph);
+  color: var(--text-color-secondary);
+}
+
+/* Responsive mínimo */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .position-sticky {
+    position: static;
+  }
+}
