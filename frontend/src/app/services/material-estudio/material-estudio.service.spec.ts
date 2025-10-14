@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MaterialEstudio } from './material-estudio';
+import { MaterialEstudioService } from './material-estudio.service';
 
 describe('MaterialEstudio', () => {
-  let service: MaterialEstudio;
+  let service: MaterialEstudioService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MaterialEstudio);
+    service = TestBed.inject(MaterialEstudioService);
   });
 
   it('should be created', () => {
