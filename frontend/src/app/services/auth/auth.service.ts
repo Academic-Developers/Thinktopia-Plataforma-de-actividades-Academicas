@@ -16,7 +16,7 @@ export class AuthService {
   public currentUser$ = this.currentUserSubject.asObservable();
   
   // 🌐 URL base de la API
-  private apiUrl = environment.apiUrl || 'http://localhost:8000/api/';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.loadUserFromStorage();
