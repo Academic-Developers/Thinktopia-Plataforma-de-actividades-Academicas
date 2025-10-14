@@ -1,13 +1,22 @@
-<!-- <div class="register-container"> 
+<div class="register-container"> 
 
   <a routerLink="/main/inicio" class="logo">
     <img src="img/logo_oscuro_horizontal_1.png" alt="Thinktopia Logo" />
   </a>
 
   <div class="form-container">
-  <h2 class="form-title">Registrate en Thinktopia</h2>
+    <h2 class="form-title">Registrate en Thinktopia</h2>
+    
+    <!-- Mensaje de error -->
+    @if (errorMessage) {
+      <div class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+    }
+
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
+      <!-- Email -->
       <div class="form-group">
         <label for="email" class="form-label">Correo electrónico</label>
         <div class="input-group">
@@ -29,6 +38,7 @@
         }
       </div>
 
+      <!-- Contraseña -->
       <div class="form-group">
         <label for="password" class="form-label">Contraseña</label>
         <div class="input-group">
@@ -53,8 +63,36 @@
         }
       </div>
 
-      <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">
-        Registrarme
+      <!-- Rol -->
+      <div class="form-group">
+        <label for="role" class="form-label">Tipo de cuenta</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-user-tag"></i>
+          </span>
+          <select
+            class="form-control"
+            id="role"
+            formControlName="role"
+            required
+          >
+            <option value="alumno">Alumno</option>
+            <option value="docente">Docente</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Botón de registro -->
+      <button 
+        type="submit" 
+        class="btn-primary" 
+        [disabled]="registerForm.invalid || isLoading"
+      >
+        @if (isLoading) {
+          <span>Registrando...</span>
+        } @else {
+          <span>Registrarme</span>
+        }
       </button>
     </form>
 
@@ -62,4 +100,4 @@
       <a routerLink="/auth/login" class="form-link">¿Ya tienes una cuenta? </a>
     </div>
   </div>
-</div> -->
+</div>

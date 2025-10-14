@@ -11,7 +11,7 @@ const routes: Routes = [
       { path: 'materias', component: MateriasAlumno },
       { path: 'material-estudio', component: MaterialEstudioAlumno },
       // { path: 'actividades', component: ActividadesAlumnoComponent },
-      { path: '**', redirectTo: 'materias' } // En caso de que se ingrese una ruta invalida, quiero que me lleve a la pagina de materias.
+      { path: '**', redirectTo: 'materias' }, // En caso de que se ingrese una ruta invalida, quiero que me lleve a la pagina de materias.
     ]
   }
 ];
