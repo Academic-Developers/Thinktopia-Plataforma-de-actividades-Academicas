@@ -8,8 +8,6 @@ export interface Actividad {
   tipo: 'Proyecto' | 'Cuestionario' | 'Examen' | 'Tarea' | 'Quiz';
   materia_id: number;
   docente_id: number;
-  puntos: number;
-  instrucciones?: string;
 }
 
 export interface CreateActividadRequest {
@@ -17,10 +15,8 @@ export interface CreateActividadRequest {
   descripcion: string;
   fechaLimite: string;
   tipo: string;
-  puntos: number;
   materia_id: number;
   docente_id: number;
-  instrucciones?: string;
 }
 
 export interface UpdateActividadRequest extends Partial<CreateActividadRequest> {

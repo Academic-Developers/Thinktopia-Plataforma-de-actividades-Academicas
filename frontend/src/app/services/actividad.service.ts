@@ -1,269 +1,149 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, of, forkJoin } from 'rxjs';
-import { map, catchError, tap, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 import { Actividad, CreateActividadRequest, UpdateActividadRequest } from '../models/actividad-models/actividad.interface';
-import { environment } from '../../../environments/environment';
+import { AuthService } from './auth/auth.service';
+import { MateriaService } from './materia/materia.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ActividadService {
-    // Base API URL always ending with a single slash
-    private apiUrl = null
+  private apiUrl = environment.apiUrl;
 
-    // BehaviorSubject para estado reactivo
-    private actividadesSubject = new BehaviorSubject<Actividad[]>([]);
-    private loadingSubject = new BehaviorSubject<boolean>(false);
+  // Estado reactivo de actividades
+  private actividadesSubject = new BehaviorSubject<Actividad[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
 
-    // Observables públicos
-    public actividades$ = this.actividadesSubject.asObservable();
-    public loading$ = this.loadingSubject.asObservable();
+  // Observables públicos
+  public actividades$ = this.actividadesSubject.asObservable();
+  public loading$ = this.loadingSubject.asObservable();
 
-    constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private materiaService: MateriaService
+  ) {}
 
-    // Obtener todas las actividades
-    obtenerActividades(): Observable<Actividad[]> {
-        console.log('🔄 Iniciando obtenerActividades() - URL:', `${this.apiUrl}actividades`);
-        this.loadingSubject.next(true);
-
-        return this.http.get<Actividad[]>(`${this.apiUrl}actividades`).pipe(
-            tap(actividades => {
-                console.log('✅ Actividades obtenidas:', actividades);
-                // Actualizar el BehaviorSubject con los datos obtenidos
-                this.actividadesSubject.next(actividades);
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('❌ Error al obtener actividades:', error);
-                this.loadingSubject.next(false);
-                return of([]); // Retornar array vacío en caso de error
-            })
-        );
+  // Obtener actividades filtradas por materia
+  getActividadesPorMateria(materiaId: number): Observable<Actividad[]> {
+    const userId = this.authService.getCurrentUserId();
+    
+    if (!userId) {
+      console.error('Usuario no autenticado');
+      return of([]);
     }
 
-    // Obtener actividades por docente (para vista docente)
-    obtenerActividadesPorDocente(docenteId: number): Observable<any[]> {
-        this.loadingSubject.next(true);
+    this.loadingSubject.next(true);
+    
+    // Construye la URL con query parameters para filtrar
+    const url = `${this.apiUrl}academico/actividades/?user_id=${userId}&materia_id=${materiaId}`;
 
-        return this.http.get<any[]>(`${this.apiUrl}actividades?docente_id=${docenteId}`).pipe(
-            tap(actividades => {
-                this.actividadesSubject.next(actividades);
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('Error al obtener actividades por docente:', error);
-                this.loadingSubject.next(false);
-                return of([]);
-            })
-        );
-    }
-
-    // Obtener actividades por estudiante (para vista alumno)
-    obtenerActividadesEstudiante(estudianteId: number): Observable<any[]> {
-        this.loadingSubject.next(true);
-
-        // Primero obtener asignaciones del estudiante, luego las actividades
-        return this.http.get<any[]>(`${this.apiUrl}asignaciones?alumno_id=${estudianteId}`).pipe(
-            map(asignaciones => asignaciones.map(a => a.actividad_id)),
-            switchMap(actividadIds =>
-                this.http.get<any[]>(`${this.apiUrl}actividades`).pipe(
-                    map(actividades => actividades.filter(act => actividadIds.includes(act.id)))
-                )
-            ),
-            tap(actividades => {
-                this.actividadesSubject.next(actividades);
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('Error al obtener actividades del estudiante:', error);
-                this.loadingSubject.next(false);
-                return of([]);
-            })
-        );
-    }
-
-    // Obtener actividades por materia
-    obtenerActividadesPorMateria(materiaId: number, estudianteId?: number): Observable<any[]> {
-        this.loadingSubject.next(true);
-
-        // Si es para estudiante, prefiltrar por estado=Activa en el query
-        let url = `${this.apiUrl}actividades?materia_id=${materiaId}`;
-        if (estudianteId) {
-            url += `&estado=Activa`;
-        }
-        console.log('📡 obtenerActividadesPorMateria URL:', url, 'estudianteId:', estudianteId);
-
-        return this.http.get<any[]>(url).pipe(
-            map(actividades => {
-                // Si es estudiante, filtrar solo las asignadas a él
-                if (estudianteId) {
-                    // Aquí podrías hacer una llamada adicional para verificar asignaciones
-                    return actividades; // Por simplicidad, retornamos todas por ahora
-                }
-                return actividades;
-            }),
-            tap(actividades => {
-                console.log('📦 Actividades por materia recibidas:', actividades);
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('Error al obtener actividades por materia:', error);
-                this.loadingSubject.next(false);
-                return of([]);
-            })
-        );
-    }
-
-    /**
-     * Obtiene todas las actividades de las materias asignadas a un docente
-     * @param docenteId ID del docente logueado
-     * @returns Observable<Actividad[]>
-     */
-    obtenerActividadesDeMateriasDelDocente(docenteId: number): Observable<Actividad[]> {
-        this.loadingSubject.next(true);
-        const url = `${this.apiUrl}user_materia?user_id=${docenteId}`;
-        return this.http.get<any[]>(url).pipe(
-            switchMap((userMaterias: any[]) => {
-                const materiaIds: number[] = userMaterias.map((um: any) => um.materia_id);
-                if (materiaIds.length === 0) {
-                    this.loadingSubject.next(false);
-                    return of([]);
-                }
-                // Para cada materia, obtener las actividades
-                const actividadesRequests = materiaIds.map((materiaId: number) => {
-                    const actividadesUrl = `${this.apiUrl}actividades?materia_id=${materiaId}`;
-                    return this.http.get<Actividad[]>(actividadesUrl);
-                });
-                return forkJoin(actividadesRequests).pipe(
-                    map((resultados: Actividad[][]) => resultados.flat()),
-                    tap((actividades: Actividad[]) => {
-                        this.actividadesSubject.next(actividades);
-                        this.loadingSubject.next(false);
-                    })
-                );
-            }),
-            catchError(error => {
-                console.error('Error al obtener actividades de materias del docente:', error);
-                this.loadingSubject.next(false);
-                return of([]);
-            })
-        );
-    }
-
-    // Crear nueva actividad
-    crearActividad(actividad: CreateActividadRequest): Observable<Actividad> {
-        this.loadingSubject.next(true);
-
-        return this.http.post<Actividad>(`${this.apiUrl}actividades`, actividad).pipe(
-            tap(nuevaActividad => {
-                // Actualizar el estado local agregando la nueva actividad
-                const actividadesActuales = this.actividadesSubject.value;
-                this.actividadesSubject.next([...actividadesActuales, nuevaActividad]);
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('Error al crear actividad:', error);
-                this.loadingSubject.next(false);
-                throw error; // Re-lanzar el error para que el componente lo maneje
-            })
-        );
-    }
-
-    // Actualizar actividad
-    actualizarActividad(id: number, actividad: any): Observable<any> {
-        this.loadingSubject.next(true);
-
-        return this.http.put<any>(`${this.apiUrl}actividades/${id}`, actividad).pipe(
-            tap(actividadActualizada => {
-                // Actualizar el estado local
-                const actividadesActuales = this.actividadesSubject.value;
-                const index = actividadesActuales.findIndex(act => act.id === id);
-                if (index !== -1) {
-                    actividadesActuales[index] = actividadActualizada;
-                    this.actividadesSubject.next([...actividadesActuales]);
-                }
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('Error al actualizar actividad:', error);
-                this.loadingSubject.next(false);
-                throw error;
-            })
-        );
-    }
-
-    // Eliminar actividad
-    eliminarActividad(id: number): Observable<any> {
-        this.loadingSubject.next(true);
-
-        return this.http.delete(`${this.apiUrl}actividades/${id}`).pipe(
-            tap(() => {
-                // Actualizar el estado local eliminando la actividad
-                const actividadesActuales = this.actividadesSubject.value;
-                const actividadesFiltradas = actividadesActuales.filter(act => act.id !== id);
-                this.actividadesSubject.next(actividadesFiltradas);
-                this.loadingSubject.next(false);
-            }),
-            catchError(error => {
-                console.error('Error al eliminar actividad:', error);
-                this.loadingSubject.next(false);
-                throw error;
-            })
-        );
-    }
-
-    // Obtener actividad por ID
-    obtenerActividadPorId(id: number): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}actividades/${id}`).pipe(
-            catchError(error => {
-                console.error('Error al obtener actividad:', error);
-                return of(null);
-            })
-        );
-    }
-
-    // Asignar actividad a materias
-    asignarActividad(actividadId: number, materiasIds: number[]): Observable<any> {
-        this.loadingSubject.next(true);
-
-        // Crear múltiples asignaciones
-        const asignaciones = materiasIds.map(materiaId => ({
-            actividad_id: actividadId,
-            materia_id: materiaId,
-            fecha_asignacion: new Date().toISOString()
-        }));
-
-        // Enviar todas las asignaciones
-        const requests = asignaciones.map(asignacion =>
-            this.http.post(`${this.apiUrl}asignaciones`, asignacion)
-        );
-
-        // Usar forkJoin para esperar que todas las requests terminen
-        return new Observable(observer => {
-            Promise.all(requests.map(req => req.toPromise()))
-                .then(results => {
-                    this.loadingSubject.next(false);
-                    observer.next(results);
-                    observer.complete();
-                })
-                .catch(error => {
-                    console.error('Error al asignar actividad:', error);
-                    this.loadingSubject.next(false);
-                    observer.error(error);
-                });
-        });
-    }
-
-    // Método para refrescar datos (útil para actualizaciones)
-    refrescarActividades(): void {
-        this.obtenerActividades().subscribe();
-    }
-
-    // Limpiar estado (útil para logout)
-    limpiarEstado(): void {
-        this.actividadesSubject.next([]);
+    return this.http.get<any>(url).pipe(
+      map(response => response.results || response),
+      tap(actividades => {
+        this.actividadesSubject.next(actividades);
         this.loadingSubject.next(false);
-    }
+        console.log('Actividades obtenidas:', actividades.length);
+      }),
+      catchError(error => {
+        console.error('Error al obtener actividades:', error);
+        this.loadingSubject.next(false);
+        return of([]);
+      })
+    );
+  }
+
+  // Crear nueva actividad (solo docentes)
+  crearActividad(actividadData: CreateActividadRequest): Observable<Actividad | null> {
+    this.loadingSubject.next(true);
+    const url = `${this.apiUrl}academico/actividades/`;
+
+    return this.http.post<Actividad>(url, actividadData).pipe(
+      tap(nuevaActividad => {
+        const actividadesActuales = this.actividadesSubject.value;
+        this.actividadesSubject.next([...actividadesActuales, nuevaActividad]);
+        this.loadingSubject.next(false);
+        console.log('Actividad creada:', nuevaActividad.titulo);
+      }),
+      catchError(error => {
+        console.error('Error al crear actividad:', error);
+        this.loadingSubject.next(false);
+        return of(null);
+      })
+    );
+  }
+
+  // Actualizar actividad existente (solo docentes)
+  actualizarActividad(id: number, actividadData: UpdateActividadRequest): Observable<Actividad | null> {
+    this.loadingSubject.next(true);
+    const url = `${this.apiUrl}academico/actividades/${id}/`;
+
+    return this.http.put<Actividad>(url, actividadData).pipe(
+      tap(actividadActualizada => {
+        const actividadesActuales = this.actividadesSubject.value;
+        const index = actividadesActuales.findIndex(a => a.id === id);
+        
+        if (index !== -1) {
+          actividadesActuales[index] = actividadActualizada;
+          this.actividadesSubject.next([...actividadesActuales]);
+        }
+        
+        this.loadingSubject.next(false);
+        console.log('Actividad actualizada:', actividadActualizada.titulo);
+      }),
+      catchError(error => {
+        console.error('Error al actualizar actividad:', error);
+        this.loadingSubject.next(false);
+        return of(null);
+      })
+    );
+  }
+
+  // Eliminar actividad (solo docentes)
+  eliminarActividad(id: number): Observable<boolean> {
+    this.loadingSubject.next(true);
+    const url = `${this.apiUrl}academico/actividades/${id}/`;
+
+    return this.http.delete<void>(url).pipe(
+      map(() => {
+        const actividadesActuales = this.actividadesSubject.value;
+        const actividadesFiltradas = actividadesActuales.filter(a => a.id !== id);
+        this.actividadesSubject.next(actividadesFiltradas);
+        this.loadingSubject.next(false);
+        console.log('Actividad eliminada, ID:', id);
+        return true;
+      }),
+      catchError(error => {
+        console.error('Error al eliminar actividad:', error);
+        this.loadingSubject.next(false);
+        return of(false);
+      })
+    );
+  }
+
+  // Obtener detalle de una actividad específica
+  getActividadPorId(id: number): Observable<Actividad | null> {
+    const url = `${this.apiUrl}academico/actividades/${id}/`;
+
+    return this.http.get<Actividad>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener actividad por ID:', error);
+        return of(null);
+      })
+    );
+  }
+
+  // Limpiar estado (útil para cambio de materia o logout)
+  limpiarEstado(): void {
+    this.actividadesSubject.next([]);
+    this.loadingSubject.next(false);
+  }
+
+  // Obtener actividades actuales de forma síncrona
+  getActividadesActuales(): Actividad[] {
+    return this.actividadesSubject.value;
+  }
 }

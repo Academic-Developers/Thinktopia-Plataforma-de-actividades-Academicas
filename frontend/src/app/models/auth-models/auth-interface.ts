@@ -19,3 +19,20 @@ export interface LoginRequest {
     email: string;
     password: string;
 }
+
+
+// 📝 Datos que enviamos al backend para hacer registro
+export interface RegisterRequest {
+    email: string;
+    password: string;
+    role: 'alumno' | 'docente';
+}
+
+
+// 📩 Respuesta del backend al registrar
+export interface RegisterResponse {
+    id: number;
+    email: string;
+    role: 'alumno' | 'docente';
+    mensaje?: string;  // Mensaje opcional del servidor
+}
