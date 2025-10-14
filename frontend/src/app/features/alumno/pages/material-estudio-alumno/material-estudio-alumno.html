@@ -1,1 +1,72 @@
-<p>material-estudio-alumno works!</p>
+<div class="material-estudio-container">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h2 class="title">Material de Estudio</h2>
+      @if (materiaSeleccionada) {
+        <p class="subtitle">{{ materiaSeleccionada.nombre }}</p>
+      }
+    </div>
+  </div>
+
+  <!-- Mensaje de error -->
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  <!-- Estado de carga -->
+  @if (loading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Cargando materiales...</p>
+    </div>
+  }
+
+  <!-- Lista vacia -->
+  @if (!loading && materiales.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">📚</div>
+      <p>No hay materiales de estudio disponibles</p>
+      @if (!materiaSeleccionada) {
+        <p class="hint">Selecciona una materia para ver sus materiales</p>
+      }
+    </div>
+  }
+
+  <!-- Grid de materiales (cards) -->
+  @if (!loading && materiales.length > 0) {
+    <div class="materiales-grid">
+      @for (material of materiales; track material.id) {
+        <div class="material-card">
+          <!-- Icono del tipo de archivo -->
+          <div class="card-icon">
+            📄
+          </div>
+          
+          <!-- Contenido -->
+          <div class="card-content">
+            <h3 class="card-title">{{ material.titulo }}</h3>
+            <p class="card-descripcion">{{ material.descripcion }}</p>
+            
+            <!-- Nombre del archivo -->
+            <div class="card-file-info">
+              <span class="file-icon">📎</span>
+              <span class="file-name">{{ obtenerNombreArchivo(material.archivo) }}</span>
+            </div>
+          </div>
+          
+          <!-- Boton de descarga -->
+          <div class="card-footer">
+            <a 
+              [href]="obtenerUrlArchivo(material.archivo)" 
+              target="_blank" 
+              class="btn-download">
+              <span class="download-icon">⬇</span>
+              Ver / Descargar
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

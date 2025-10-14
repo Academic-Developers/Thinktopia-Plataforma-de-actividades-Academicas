@@ -9,7 +9,7 @@ import { catchError} from 'rxjs/operators';
   providedIn: "root",
 })
 export class HomeService {
-  private apiUrl = environment.urlJsonServer; 
+  private apiUrl = environment.apiUrl; 
     
   constructor(private http: HttpClient) {}
 
