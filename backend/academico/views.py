@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from .models import Materia, MaterialEstudio, Actividad
 from .serializers import MateriaSerializer, MaterialEstudioSerializer, ActividadSerializer
@@ -11,7 +12,9 @@ from .serializers import MateriaSerializer, MaterialEstudioSerializer, Actividad
 
 class MateriaListCreateAPIView(APIView):
     """
-    LISTAR (GET): Materias de un usuario (Alumno o Docente), filtradas por user_id.
+    LISTAR (GET): Materias disponibles.
+    - Con user_id: Filtra materias de un usuario específico (Alumno o Docente).
+    - Sin user_id: Devuelve todas las materias disponibles.
     CREAR (POST): Crea una nueva Materia (usada por Docentes/Admin).
     """
 
@@ -19,23 +22,22 @@ class MateriaListCreateAPIView(APIView):
     
         user_id = request.query_params.get('user_id')
 
-        if not user_id:
-            return Response(
-                {"detail": "Filtro obligatorio: Debe enviar el 'user_id' para listar materias."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        # Si se proporciona user_id, filtrar por usuario
+        if user_id:
+            try:
+                # Filtro simplificado: Encuentra materias donde el ID del usuario esté asignado
+                materias = Materia.objects.filter(usuarios__id=user_id)
+            except ValueError:
+                return Response(
+                    {"detail": "ID de usuario inválido."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        else:
+            # Si no se proporciona user_id, devolver todas las materias
+            materias = Materia.objects.all()
         
-        try:
-            # Filtro simplificado: Encuentra materias donde el ID del usuario esté asignado
-            materias = Materia.objects.filter(usuarios__id=user_id)
-            serializer = MateriaSerializer(materias, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        
-        except ValueError:
-             return Response(
-                {"detail": "ID de usuario inválido."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        serializer = MateriaSerializer(materias, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     def post(self, request):
@@ -97,6 +99,7 @@ class MaterialEstudioListCreateAPIView(APIView):
     LISTAR (GET): Materiales de estudio, OBLIGATORIAMENTE filtrados por 'materia_id'.
     CREAR (POST): Crea un nuevo material de estudio (usado por Docentes).
     """
+    parser_classes = [MultiPartParser, FormParser]
 
     def get(self, request):
         """
@@ -141,6 +144,7 @@ class MaterialEstudioDetailAPIView(APIView):
     """
     GESTIÓN DETALLADA: GET (detalle), PUT (actualizar) y DELETE (eliminar) por PK de MaterialEstudio.
     """
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_object(self, pk):
         """
@@ -176,6 +180,7 @@ class ActividadListCreateAPIView(APIView):
     LISTAR (GET): Actividades de una materia, filtradas por materia_id.
     CREAR (POST): Crea una nueva actividad (usada por Docentes).
     """
+    parser_classes = [MultiPartParser, FormParser]
 
     def get(self, request):
         user_id = request.query_params.get('user_id')
@@ -222,6 +227,7 @@ class ActividadDetailAPIView(APIView):
     """
     GESTIÓN DETALLADA: GET (detalle), PUT (actualizar) y DELETE (eliminar) por PK de Actividad.
     """
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_object(self, pk):
         """

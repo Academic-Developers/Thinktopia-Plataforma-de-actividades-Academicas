@@ -14,4 +14,11 @@ class UsuarioRegistroSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password') #Extrae la contraseña del diccionario-objeto para manejarla por separado.
         # Creamos el usuario utilizando el manager personalizado
         user = Usuario.objects.create_user(password=password, **validated_data)
-        return user 
+        return user
+
+
+# Serializador simple para listar usuarios (sin mostrar la contraseña)
+class UsuarioListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['id', 'email', 'role'] 
