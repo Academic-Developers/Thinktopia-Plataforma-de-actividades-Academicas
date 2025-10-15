@@ -120,8 +120,6 @@ Este proyecto se desarrolla bajo una **metodología ágil (Scrum)**, con un enfo
 
 • No se implementan protocolos avanzados de autenticación (ej. JWT, OAuth).
 
-• Funcionalidades excluidas: Recuperación de Contraseña, Soporte Multilingüe, Chat/Videollamadas, Desbloqueo de Logros y Ranking.
-
 •	La interfaz inicial tendrá accesibilidad limitada, priorizando funcionalidades clave en etapas tempranas.
 ________________________________________
 ## Licencia
