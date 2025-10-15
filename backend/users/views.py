@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UsuarioRegistroSerializer
+from .serializers import UsuarioRegistroSerializer, UsuarioListSerializer
 from .models import Usuario 
 
 # Register "Controlador" para usar en el Endpoint que se declara en urls.py
@@ -69,3 +69,19 @@ class LoginUsuarioAPIView(APIView):
                 {"error": "Usuario no encontrado."},
                 status=status.HTTP_404_NOT_FOUND
             )
+
+
+# Listar Usuarios
+class UsuarioListAPIView(APIView):
+    """
+    Vista para listar todos los usuarios registrados.
+    GET: Devuelve una lista con id, email y role de todos los usuarios.
+    """
+
+    def get(self, request):
+        # Obtenemos todos los usuarios de la base de datos
+        usuarios = Usuario.objects.all()
+        # Serializamos los datos
+        serializer = UsuarioListSerializer(usuarios, many=True)
+        # Devolvemos la respuesta
+        return Response(serializer.data, status=status.HTTP_200_OK)
