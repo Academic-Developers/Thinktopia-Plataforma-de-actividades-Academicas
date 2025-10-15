@@ -16,5 +16,5 @@ export interface MateriaRequest {
   nombre: string;
   codigo: string;
   descripcion?: string;
-  usuarios?: number[];  // IDs de usuarios a asignar
+  usuarios?: number[];  
 }

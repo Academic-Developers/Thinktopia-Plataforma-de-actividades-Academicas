@@ -1,0 +1,89 @@
+<div class="actividades-container">
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h2 class="title">Actividades</h2>
+      @if (materiaSeleccionada) {
+        <p class="subtitle">{{ materiaSeleccionada.nombre }}</p>
+      }
+    </div>
+  </div>
+
+  <!-- Mensaje de error -->
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  <!-- Estado de carga -->
+  @if (loading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Cargando actividades...</p>
+    </div>
+  }
+
+  <!-- Lista vacia -->
+  @if (!loading && actividades.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <p>No hay actividades disponibles</p>
+      @if (!materiaSeleccionada) {
+        <p class="hint">Selecciona una materia para ver sus actividades</p>
+      }
+    </div>
+  }
+
+  <!-- Grid de actividades (cards) -->
+  @if (!loading && actividades.length > 0) {
+    <div class="actividades-grid">
+      @for (actividad of actividades; track actividad.id) {
+        <div class="actividad-card" 
+             [class.card-urgente]="esProximoAVencer(actividad.fecha_limite)"
+             [class.card-vencida]="estaVencida(actividad.fecha_limite)">
+          
+          <!-- Header del card con tipo -->
+          <div class="card-header">
+            <span class="badge-tipo">{{ actividad.tipo }}</span>
+            @if (estaVencida(actividad.fecha_limite)) {
+              <span class="badge-estado vencida">Vencida</span>
+            } @else if (esProximoAVencer(actividad.fecha_limite)) {
+              <span class="badge-estado urgente">Urgente</span>
+            }
+          </div>
+          
+          <!-- Contenido -->
+          <div class="card-content">
+            <h3 class="card-title">{{ actividad.titulo }}</h3>
+            <p class="card-descripcion">{{ actividad.descripcion }}</p>
+            
+            <!-- Fecha limite destacada -->
+            <div class="card-fecha">
+              <span class="fecha-icon">⏰</span>
+              <div class="fecha-info">
+                <span class="fecha-label">Fecha límite:</span>
+                <span class="fecha-valor">{{ formatearFechaLimite(actividad.fecha_limite) }}</span>
+              </div>
+            </div>
+
+            <!-- Nombre del archivo -->
+            <div class="card-file-info">
+              <span class="file-icon">📎</span>
+              <span class="file-name">{{ obtenerNombreArchivo(actividad.archivo) }}</span>
+            </div>
+          </div>
+          
+          <!-- Footer del card con boton -->
+          <div class="card-footer">
+            <a 
+              [href]="obtenerUrlArchivo(actividad.archivo)" 
+              target="_blank" 
+              class="btn-download">
+              <span class="download-icon">⬇</span>
+              Ver / Descargar Actividad
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
