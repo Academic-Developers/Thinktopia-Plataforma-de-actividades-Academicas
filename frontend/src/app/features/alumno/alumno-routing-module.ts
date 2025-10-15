@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialEstudioAlumno } from './pages/material-estudio-alumno/material-estudio-alumno';
 import { AlumnoLayout } from './components/alumno-layout/alumno-layout'; 
 import { MateriasAlumno } from './pages/materia/materias';
+import { ActividadesAlumno } from './pages/actividades-alumno/actividades-alumno';
 
 const routes: Routes = [
   { path: '',
@@ -10,7 +11,7 @@ const routes: Routes = [
     children: [
       { path: 'materias', component: MateriasAlumno },
       { path: 'material-estudio', component: MaterialEstudioAlumno },
-      // { path: 'actividades', component: ActividadesAlumnoComponent },
+      { path: 'actividades', component: ActividadesAlumno },
       { path: '**', redirectTo: 'materias' }, // En caso de que se ingrese una ruta invalida, quiero que me lleve a la pagina de materias.
     ]
   }

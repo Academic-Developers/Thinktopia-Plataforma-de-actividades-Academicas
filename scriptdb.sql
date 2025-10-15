@@ -19,11 +19,11 @@ CREATE TABLE "usuario" (
 -- Almacena la información de las materias académicas.
 CREATE TABLE "materia" (
     "id" SERIAL PRIMARY KEY,
-    "nombre" VARCHAR(100) NOT NULL,
+    "nombre" VARCHAR(150) NOT NULL,
     "codigo" VARCHAR(20) NOT NULL UNIQUE,
-    "descripcion" TEXT,
+    "descripcion" VARCHAR(350),
     "created_at" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    "updated_at" TIMESTAMP WITH TIME ZONE
 );
 
 -- Tabla: USER_MATERIA
@@ -42,13 +42,13 @@ CREATE TABLE "user_materia" (
 CREATE TABLE "material_estudio" (
     "id" SERIAL PRIMARY KEY,
     "titulo" VARCHAR(255) NOT NULL,
-    "descripcion" TEXT,
-    "archivo_url" TEXT,
-    "enlace" TEXT,
+    "descripcion" VARCHAR(350),
+    "archivo_url" VARCHAR(300),
+    "enlace" VARCHAR(300),
     "materia_id" INTEGER NOT NULL REFERENCES "materia"("id") ON DELETE CASCADE,
-    "autor_id" INTEGER NOT NULL REFERENCES "usuario"("id") ON DELETE SET NULL,
+    "autor_id" INTEGER NOT NULL REFERENCES "usuario"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    "updated_at" TIMESTAMP WITH TIME ZONE
 );
 
 -- Tabla: ACTIVIDAD
@@ -56,14 +56,14 @@ CREATE TABLE "material_estudio" (
 CREATE TABLE "actividad" (
     "id" SERIAL PRIMARY KEY,
     "titulo" VARCHAR(255) NOT NULL,
-    "descripcion" TEXT NOT NULL,
+    "descripcion" VARCHAR(350) NOT NULL,
     "tipo" VARCHAR(50) NOT NULL,
-    "archivo_url" TEXT,
+    "archivo_url" VARCHAR(300),
     "fecha_limite" TIMESTAMP WITH TIME ZONE,
     "materia_id" INTEGER NOT NULL REFERENCES "materia"("id") ON DELETE CASCADE,
     "docente_id" INTEGER NOT NULL REFERENCES "usuario"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    "updated_at" TIMESTAMP WITH TIME ZONE
 );
 
 -- Tabla: ENTREGA
@@ -72,8 +72,8 @@ CREATE TABLE "entrega" (
     "id" SERIAL PRIMARY KEY,
     "actividad_id" INTEGER NOT NULL REFERENCES "actividad"("id") ON DELETE CASCADE,
     "alumno_id" INTEGER NOT NULL REFERENCES "usuario"("id") ON DELETE CASCADE,
-    "archivo_url" TEXT,
-    "comentario" TEXT,
+    "archivo_url" VARCHAR(300),
+    "comentario" VARCHAR(300),
     "fecha_entrega" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     "calificacion" DECIMAL(5, 2),
     "feedback" TEXT,

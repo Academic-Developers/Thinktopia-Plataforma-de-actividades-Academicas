@@ -1,0 +1,201 @@
+<div class="actividades-container">
+  <!-- Header con titulo y boton crear -->
+  <div class="header">
+    <div>
+      <h2 class="title">Actividades</h2>
+      @if (materiaSeleccionada) {
+        <p class="subtitle">{{ materiaSeleccionada.nombre }}</p>
+      }
+    </div>
+    <button class="btn-primary" (click)="abrirModalCrear()" [disabled]="!materiaSeleccionada">
+      Agregar Actividad
+    </button>
+  </div>
+
+  <!-- Mensajes de estado -->
+  @if (successMessage) {
+    <div class="alert alert-success">{{ successMessage }}</div>
+  }
+
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  <!-- Estado de carga -->
+  @if (loading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Cargando actividades...</p>
+    </div>
+  }
+
+  <!-- Lista vacia -->
+  @if (!loading && actividades.length === 0) {
+    <div class="empty-state">
+      <p>No hay actividades disponibles</p>
+      @if (materiaSeleccionada) {
+        <button class="btn-secondary" (click)="abrirModalCrear()">
+          Crear la primera actividad
+        </button>
+      } @else {
+        <p class="hint">Selecciona una materia para ver sus actividades</p>
+      }
+    </div>
+  }
+
+  <!-- Tabla de actividades -->
+  @if (!loading && actividades.length > 0) {
+    <div class="table-container">
+      <table class="actividad-table">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Fecha Límite</th>
+            <th>Archivo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (actividad of actividades; track actividad.id) {
+            <tr>
+              <td class="col-titulo">{{ actividad.titulo }}</td>
+              <td class="col-tipo">
+                <span class="badge-tipo">{{ actividad.tipo }}</span>
+              </td>
+              <td class="col-descripcion">{{ actividad.descripcion }}</td>
+              <td class="col-fecha">{{ formatearFechaParaMostrar(actividad.fecha_limite) }}</td>
+              <td class="col-url">
+                <a [href]="obtenerUrlArchivo(actividad.archivo)" target="_blank" class="link-url">
+                  Ver archivo
+                </a>
+              </td>
+              <td class="col-acciones">
+                <div class="action-buttons">
+                  <button 
+                    class="btn-icon btn-edit" 
+                    (click)="abrirModalEditar(actividad)"
+                    title="Editar actividad">
+                    Editar
+                  </button>
+                  <button 
+                    class="btn-icon btn-delete" 
+                    (click)="eliminarActividad(actividad)"
+                    title="Eliminar actividad">
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  <!-- Modal para crear/editar actividad -->
+  @if (mostrarModal) {
+    <div class="modal-overlay" (click)="cerrarModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h3>{{ modoEdicion ? 'Editar Actividad' : 'Nueva Actividad' }}</h3>
+          <button class="btn-close" (click)="cerrarModal()">×</button>
+        </div>
+
+        <form class="modal-body" (ngSubmit)="guardarActividad()">
+          <div class="form-group">
+            <label for="titulo">Título *</label>
+            <input 
+              type="text" 
+              id="titulo"
+              [(ngModel)]="formulario.titulo"
+              name="titulo"
+              placeholder="Ej: Trabajo Práctico N°1"
+              required
+              maxlength="255"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tipo">Tipo de Actividad *</label>
+              <select 
+                id="tipo"
+                [(ngModel)]="formulario.tipo"
+                name="tipo"
+                required
+              >
+                @for (tipo of tiposActividad; track tipo) {
+                  <option [value]="tipo">{{ tipo }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fecha_limite">Fecha Límite *</label>
+              <input 
+                type="datetime-local" 
+                id="fecha_limite"
+                [(ngModel)]="formulario.fecha_limite"
+                name="fecha_limite"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción *</label>
+            <textarea 
+              id="descripcion"
+              [(ngModel)]="formulario.descripcion"
+              name="descripcion"
+              placeholder="Describe la actividad..."
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="archivo">
+              Archivo {{ modoEdicion ? '' : '*' }}
+            </label>
+            
+            @if (modoEdicion && nombreArchivoActual) {
+              <div class="archivo-actual">
+                <span>Archivo actual: <strong>{{ nombreArchivoActual }}</strong></span>
+                <small class="form-hint">Sube un nuevo archivo solo si deseas reemplazarlo</small>
+              </div>
+            }
+            
+            <div class="file-input-wrapper">
+              <input 
+                type="file" 
+                id="archivo"
+                (change)="onArchivoSeleccionado($event)"
+                accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.zip"
+                class="file-input"
+              />
+              <label for="archivo" class="file-label">
+                {{ archivoSeleccionado ? archivoSeleccionado.name : 'Seleccionar archivo' }}
+              </label>
+            </div>
+            
+            <small class="form-hint">
+              Formatos permitidos: PDF, Word, PowerPoint, TXT, ZIP (máx. 10MB)
+            </small>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" (click)="cerrarModal()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary" [disabled]="loading">
+              {{ modoEdicion ? 'Actualizar' : 'Crear' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+</div>

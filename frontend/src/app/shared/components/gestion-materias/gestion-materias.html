@@ -54,7 +54,9 @@
             <div class="materia-info">
               <span class="usuarios-count">
                 <i class="fas fa-users"></i>
-                {{ materia.usuarios?.length || 0 }} usuarios
+                @if (usuarios.length ) {
+                  <p> {{usuarios.length}} </p>
+                }
               </span>
             </div>
             

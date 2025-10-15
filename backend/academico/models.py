@@ -15,8 +15,9 @@ class Materia(models.Model):
         unique=True,
         help_text="Código único de la materia (ej: MAT101, HIS201)"
     )
-    descripcion = models.TextField(
-        blank=True, 
+    descripcion = models.CharField(
+        max_length=255,
+        blank=True,
         null=True,
         help_text="Descripción detallada de la materia"
     )
@@ -52,7 +53,8 @@ class MaterialEstudio(models.Model):
         max_length=255,
         help_text="Título del material de estudio (ej: Guía de ejercicios, Presentación)."
     )
-    descripcion = models.TextField(
+    descripcion = models.CharField(
+        max_length=255,
         blank=True,
         null=True,
         help_text="Descripción opcional del material de estudio."
@@ -94,7 +96,8 @@ class Actividad(models.Model):
         max_length=255,
         help_text="Título de la actividad (ej: Trabajo práctico, Examen parcial)."
     )
-    descripcion = models.TextField(
+    descripcion = models.CharField(
+        max_length=255,
         blank=True,
         null=True,
         help_text="Descripción opcional de la actividad."

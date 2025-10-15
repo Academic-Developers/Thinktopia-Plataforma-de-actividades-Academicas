@@ -1,28 +1,13 @@
+// Interface principal para representar una actividad academica
 export interface Actividad {
   id: number;
   titulo: string;
   descripcion: string;
-  fechaCreacion: string;
-  fechaLimite: string;
-  estado: 'Activa' | 'Inactiva' | 'Completada';
-  tipo: 'Proyecto' | 'Cuestionario' | 'Examen' | 'Tarea' | 'Quiz';
-  materia_id: number;
-  docente_id: number;
-  puntos: number;
-  instrucciones?: string;
-}
-
-export interface CreateActividadRequest {
-  titulo: string;
-  descripcion: string;
-  fechaLimite: string;
-  tipo: string;
-  puntos: number;
-  materia_id: number;
-  docente_id: number;
-  instrucciones?: string;
-}
-
-export interface UpdateActividadRequest extends Partial<CreateActividadRequest> {
-  id: number;
+  tipo: string; // Tipo de actividad: Practico, Teorico, Evaluacion, etc.
+  archivo: string; // URL relativa del archivo subido (ej: /media/actividades/documento.pdf)
+  fecha_limite: string; // Fecha limite para completar la actividad (formato ISO)
+  materia: number; // ID de la materia a la que pertenece
+  docente: number; // ID del docente que creo la actividad
+  created_at?: string; // Fecha de creacion (opcional, viene del backend)
+  updated_at?: string; // Fecha de actualizacion (opcional, viene del backend)
 }

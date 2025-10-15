@@ -12,18 +12,12 @@
   <nav class="nav justify-content-center" [class.open]="menuOpen" aria-label="Navegación del dashboard">
     <ul class="nav-list">
       <li class="nav-item">
-        <a routerLink="dashboard" class="nav-link" routerLinkActive="active">Dashboard</a>
-      </li>
-      
+        <a routerLink="materias" class="nav-link" routerLinkActive="active">Materias</a>
+      </li> 
       <li class="nav-item">
-        <a routerLink="actividades" class="nav-link" routerLinkActive="active">Mis Actividades</a>
+        <a routerLink="materias" class="nav-link" >Ver mi perfil</a>
       </li>
-      <li class="nav-item">
-        <a routerLink="entregas" class="nav-link" routerLinkActive="active">Entregas</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="material-estudio" class="nav-link" routerLinkActive="active">Material de Estudio</a>
-      </li>
+      <li class="nav-item nav-link" (click)="logout()">Cerrar sesión</li>
     </ul>
   </nav>
 </header>
