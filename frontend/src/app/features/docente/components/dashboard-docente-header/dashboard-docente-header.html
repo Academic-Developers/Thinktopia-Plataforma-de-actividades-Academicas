@@ -7,28 +7,22 @@
     <span></span>
     <span></span>
   </button>
-  <nav class="nav" [class.open]="menuOpen" >
+  <nav class="nav" [class.open]="menuOpen">
     <ul class="nav justify-content-center">
 
       <li class="nav-item">
-        <a routerLink="dashboard" class="nav-link" routerLinkActive="active">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="actividades" class="nav-link" routerLinkActive="active">Actividades</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="asistencias" class="nav-link" routerLinkActive="active">Asistencias</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="reportes" class="nav-link" routerLinkActive="active">Reportes</a>
+        <a routerLink="materias" class="nav-link" routerLinkActive="active">Mis Materias</a>
       </li>
       <li>
-        <a routerLink="gestion-contenido" class="nav-link" routerLinkActive="active">Gestion Contenido</a> 
+        <a routerLink="mi-perfil" class="nav-link" routerLinkActive="active">Mi perfil</a>
       </li>
+      <!-- <li class="nav-item">
+        <a routerLink="actividades" class="nav-link" routerLinkActive="active">Actividades</a>
+      </li>
+      <li>
+        <a routerLink="material-estudio" class="nav-link" routerLinkActive="active">Material de Estudio</a> 
+      </li> -->
+      <li class="nav-link" (click)="logout()">Cerrar sesión</li>
     </ul>
   </nav>
 </header>
-
-
-
-

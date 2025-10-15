@@ -1,57 +1,71 @@
 <main>
-    <section class="title">
-        <h1 class="title-element">¡Bienvenido, Profesor Pedro!</h1>
-        <button type="button" class="btn btn-dashboard btn-primary btn-md">
-            <img src="/icons/clipboard-check-fill.svg" alt="Crear Tarea" class="btn-icon" />
-            Crear Nueva Tarea
-        </button>
-    </section>
+  <section class="title">
+    <h1 class="title-element">¡Bienvenido, Profesor Pedro!</h1>
+    <button type="button" class="btn btn-dashboard btn-primary btn-md">
+      <img src="/icons/clipboard-check-fill.svg" alt="Crear tarea" class="btn-icon" />
+      Crear Nueva Tarea
+    </button>
+  </section>
 
+  <section>
     <div class="dashboard-container">
-        <a routerLink="/docente/gestion-contenido" class="card-link">
-            <div class="custom-card">
-                <div class="card-icon">
-                    <img src="/icons/cursos_icon.svg" alt="Icono Cursos" class="icon-img" />
-                </div>
-                <div class="card-content">
-                    <h5 class="card-title">Gestión de Contenido</h5>
-                    <p class="card-value">Aquí tienes información relevante sobre tus cursos asignados y progreso.
-                    </p>
-                </div>
-            </div>
-        </a>
-        <a routerLink="/docente/entregas" class="card-link">
-            <div class="custom-card">
-                <div class="card-icon">
-                    <img src="/icons/tareas_icon.svg" alt="Icono Tareas" class="icon-img" />
-                </div>
-                <div class="card-content">
-                    <h5 class="card-title">Tareas Pendientes</h5>
-                    <p class="card-value">Controla tus tareas pendientes y fechas límite fácilmente.</p>
-                </div>
-            </div>
-        </a>
-        <a routerLink="/docente/estadisticas" class="card-link">
-            <div class="custom-card">
-                <div class="card-icon">
-                    <img src="/icons/estadistcas_icon.svg" alt="Icono Estadísticas" class="icon-img" />
-                </div>
-                <div class="card-content">
-                    <h5 class="card-title">Estadísticas</h5>
-                    <p class="card-value">Consulta el rendimiento y participación de tus estudiantes.</p>
-                </div>
-            </div>
-        </a>
-        <a routerLink="/docente/asistencias" class="card-link">
-            <div class="custom-card">
-                <div class="card-icon">
-                    <img src="/icons/asistencia_icon.svg" alt="Icono Asistencias" class="icon-img" />
-                </div>
-                <div class="card-content">
-                    <h5 class="card-title">Asistencias</h5>
-                    <p class="card-value">Accede al historial de asistencias registradas por el sistema.</p>
-                </div>
-            </div>
-        </a>
+
+     <a routerLink="/docente/materias" class="card-link">
+        <div class="custom-card">
+          <div class="card-icon">
+            <img src="/icons/cursos_icon.svg" alt="Icono Cursos" class="icon-img" />
+          </div>
+          
+          <div class="card-content">
+            <h5 class="card-title">Mis Materias</h5>
+            <p class="card-value">Aquí tienes información relevante sobre tus materias.
+            </p>
+          </div>
+        </div>
+      </a>
+
+       <a routerLink="/docente/actividades" class="card-link">
+        <div class="custom-card">
+          <div class="card-icon">
+            <img src="/icons/cursos_icon.svg" alt="Icono Cursos" class="icon-img" />
+          </div>
+          
+          <div class="card-content">
+            <h5 class="card-title">Actividades</h5>
+            <p class="card-value">Aquí tienes información relevante sobre tus actividades.
+            </p>
+          </div>
+        </div>
+      </a>
+
+
+      <a routerLink="/docente/gestion-contenido" class="card-link">
+        <div class="custom-card">
+          <div class="card-icon">
+            <img src="/icons/cursos_icon.svg" alt="Icono Cursos" class="icon-img" />
+          </div>
+          
+          <div class="card-content">
+            <h5 class="card-title">Gestión de Contenido</h5>
+            <p class="card-value">Aquí tienes información relevante sobre tus cursos asignados y
+              progreso.
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <a routerLink="/docente/entregas" class="card-link">
+        <div class="custom-card">
+          <div class="card-icon">
+            <img src="/icons/tareas_icon.svg" alt="Icono Tareas" class="icon-img" />
+          </div>
+
+          <div class="card-content">
+            <h5 class="card-title">Tareas Pendientes</h5>
+            <p class="card-value">Controla tus tareas pendientes y fechas límite fácilmente.</p>
+          </div>
+        </div>
+      </a>
     </div>
+  </section>
 </main>

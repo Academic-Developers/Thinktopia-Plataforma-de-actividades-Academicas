@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './components/main-layout-component/main-layout-component';
 import { Home } from './pages/home/home';
 import { About } from './pages/about/about';
+import { AdminMateriasPage } from './pages/admin-materias/admin-materias';
 
 // Aca las rutas se ponen como hijo (children) del componente MainLayoutComponent, ya que justamente es la plantila que contiene el header y footer de todas estas paginas del modulo "main".. Asi evitamos tener que importar el header y footer en todos los htmls de las paginas del modulo "main". 
 
@@ -11,9 +12,10 @@ export const routes: Routes = [
     path: '',
     component:MainLayoutComponent,
     children: [
-  {path: 'inicio', component: Home},
-  {path:'quienes-somos', component:About},
-  {path: '**', redirectTo: 'inicio'} // En caso de que se ingrese una ruta invalida, quiero que me lleve al home - inicio.
+      {path: 'inicio', component: Home},
+      {path:'quienes-somos', component:About},
+      {path: 'admin-materias', component: AdminMateriasPage}, // 🎓 NUEVA RUTA para gestionar materias
+      {path: '**', redirectTo: 'inicio'} // En caso de que se ingrese una ruta invalida, quiero que me lleve al home - inicio.
     ]
   }
 ];
@@ -22,4 +24,4 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {}

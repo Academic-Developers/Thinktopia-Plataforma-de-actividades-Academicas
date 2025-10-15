@@ -55,11 +55,12 @@
                             <ng-container *ngIf="column.type === 'action'">
                                 <div class="action-buttons">
                                     <ng-container *ngFor="let action of getActionsForRow(row)">
-                                        <button *ngIf="shouldShowAction(action, row)"
-                                                type="button"
-                                                [ngClass]="getActionVariantClass(action.variant)"
-                                                [title]="action.tooltip || action.label"
-                                                (click)="onActionClick(action.id, row, i, $event)">
+                    <button *ngIf="shouldShowAction(action, row)"
+                        type="button"
+                        [ngClass]="[getActionVariantClass(action.variant), action.buttonClass]"
+                        [title]="action.tooltip || action.label"
+                        [attr.aria-label]="action.tooltip || action.label || action.id"
+                        (click)="onActionClick(action.id, row, i, $event)">
                                             
                                             <img *ngIf="action.icon" 
                                                  [src]="action.icon" 
@@ -68,7 +69,7 @@
                                                  width="16" 
                                                  height="16" />
                                             
-                                            <span>{{ action.label }}</span>
+                                            <span *ngIf="action.label">{{ action.label }}</span>
                                         </button>
                                     </ng-container>
                                 </div>

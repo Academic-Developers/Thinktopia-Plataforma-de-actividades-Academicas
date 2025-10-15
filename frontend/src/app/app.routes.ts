@@ -14,5 +14,9 @@ export const routes: Routes = [
     path: 'docente',
     loadChildren: () => import('./features/docente/docente-module').then(m => m.DocenteModule)
   },
-  { path: '**', redirectTo: 'main' }
+  {
+    path: 'alumno',
+    loadChildren: () => import('./features/alumno/alumno-module').then(m => m.AlumnoModule)
+  },
+  { path: '**', redirectTo: 'main' },
 ];

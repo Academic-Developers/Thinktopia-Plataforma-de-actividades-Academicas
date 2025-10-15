@@ -1,5 +1,4 @@
 <div class="login-container">
-
   <a routerLink="/main/inicio" class="logo">
     <img src="img/logo_oscuro_horizontal_1.png" alt="Thinktopia Logo" />
   </a>
@@ -8,6 +7,7 @@
     <h2 class="form-title">Iniciar sesión</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
       <div class="form-group">
         <label for="email" class="form-label">Correo electrónico</label>
         <div class="input-group">
@@ -22,15 +22,20 @@
             formControlName="email"
           />
         </div>
-        <div
-          *ngIf="
-            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
-          "
-          class="text-danger"
-        >
-          Email inválido
-        </div>
+
+        @if (emailControl?.invalid && emailControl?.touched) {
+          <div class="text-danger">
+            @if (emailControl?.errors?.['required']) {
+              <small>El email es requerido</small>
+            }
+            @if (emailControl?.errors?.['email']) {
+              <small>Ingrese un email válido</small>
+            }
+          </div>
+        }
       </div>
+
+      <!-- Password -->
       <div class="form-group">
         <label for="password" class="form-label">Contraseña</label>
         <div class="input-group">
@@ -46,30 +51,51 @@
             type="button"
             class="btn btn-outline-secondary toggle-password"
             aria-label="Mostrar/Ocultar contraseña"
+            (click)="togglePasswordVisibility()"
           >
             <i class="fas fa-eye-slash"></i>
           </button>
         </div>
-        <div
-          *ngIf="
-            loginForm.get('password')?.invalid &&
-            loginForm.get('password')?.touched
-          "
-          class="text-danger"
-        >
-          Contraseña requerida
-        </div>
+
+        @if (passwordControl?.invalid && passwordControl?.touched) {
+          <div class="text-danger">
+            @if (passwordControl?.errors?.['required']) {
+              <small>La contraseña es requerida</small>
+            }
+            @if (passwordControl?.errors?.['minlength']) {
+              <small>La contraseña debe tener al menos 6 caracteres</small>
+            }
+          </div>
+        }
       </div>
-      <button class="btn-primary" type="submit" [disabled]="loginForm.invalid">
-        Iniciar sesión
+
+      <!-- 🚀 Botón de envío con estado de carga -->
+      <button 
+        class="btn-primary" 
+        type="submit" 
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        @if (isLoading) {
+          <i class="fas fa-spinner fa-spin"></i> Iniciando sesión...
+        } @else {
+          Iniciar sesión
+        }
       </button>
+
+      <!-- 🚨 Mostrar errores de autenticación -->
+      @if (errorMessage) {
+        <div class="alert alert-danger mt-3" role="alert">
+          <i class="fas fa-exclamation-triangle"></i>
+          {{ errorMessage }}
+        </div>
+      }
     </form>
+
     <div class="form-link-container">
       <a routerLink="/recuperar" class="form-link">Recuperar contraseña</a>
-      <a routerLink="/auth/register" class="form-link"
-        >¿No tienes una cuenta?</a
-      >
+      <a routerLink="/auth/register" class="form-link">
+        ¿No tienes una cuenta?
+      </a>
     </div>
   </div>
-  
 </div>
