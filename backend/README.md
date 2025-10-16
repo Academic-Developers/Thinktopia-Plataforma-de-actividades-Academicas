@@ -18,12 +18,14 @@ Backend desarrollado con **Django REST Framework** para la gestión de actividad
 
 ```
 backend/
-├── academico/          # Módulo de gestión académica (Materias, Materiales, Actividades)
-├── users/              # Módulo de gestión de usuarios
-├── thinktopia/         # Configuración principal del proyecto
-├── media/              # Archivos subidos por los usuarios que son proveniente de Materiales y Actividades
-├── manage.py           # Script de gestión de Django
-└── requirements.txt    # Dependencias del proyecto
+├── academico/                      # Módulo de gestión académica (Materias, Materiales, Actividades)
+├── users/                          # Módulo de gestión de usuarios
+├── thinktopia/                     # Configuración principal del proyecto
+├── media/                          # Archivos subidos por los usuarios
+├── manage.py                       # Script de gestión de Django
+├── requirements.txt                # Dependencias del proyecto
+├── datos_prueba.sql                # 🆕 Script SQL con datos de prueba
+
 ```
 
 ---
@@ -71,7 +73,20 @@ DB_PORT=5432
 python manage.py migrate
 ```
 
-### 6. Ejecutar el servidor
+### 6. (Opcional) Cargar datos de prueba
+
+Para facilitar las pruebas, se incluye un script SQL con datos de ejemplo.
+
+**Resumen rápido para cargar los datos:**
+1. Abre **pgAdmin 4**
+2. Abre **Query Tool** en tu base de datos
+3. Carga y ejecuta el archivo **`datos_prueba.sql`**
+4. Usuarios de prueba creados (contraseña: `password123`):
+   - `profesor1@mail.com` (docente)
+   - `profesor2@mail.com` (docente)  
+   - `alumno1@mail.com`, `alumno2@mail.com`, `alumno3@mail.com` (alumnos)
+
+### 7. Ejecutar el servidor
 
 ```bash
 python manage.py runserver
