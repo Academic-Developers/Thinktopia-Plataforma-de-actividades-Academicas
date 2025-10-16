@@ -1,0 +1,204 @@
+<div class="gestion-materias-container">
+  <!-- Header -->
+  <div class="header">
+    <h2> Gestión de Materias</h2>
+    <button class="btn-crear" (click)="abrirModalCrear()">
+      <i class="fas fa-plus"></i> Nueva Materia
+    </button>
+  </div>
+
+  <!-- Mensajes -->
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      ❌ {{ errorMessage }}
+    </div>
+  }
+  
+  @if (successMessage) {
+    <div class="alert alert-success">
+      ✅ {{ successMessage }}
+    </div>
+  }
+
+  <!-- Loading -->
+  @if (isLoading && !isModalOpen) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Cargando materias...</p>
+    </div>
+  }
+
+  <!-- Lista de Materias -->
+  @if (!isLoading || isModalOpen) {
+    <div class="materias-grid">
+      @if (materias.length === 0) {
+        <div class="empty-state">
+          <i class="fas fa-book"></i>
+          <p>No hay materias creadas</p>
+          <button class="btn-crear" (click)="abrirModalCrear()">
+            Crear primera materia
+          </button>
+        </div>
+      } @else {
+        @for (materia of materias; track materia.id) {
+          <div class="materia-card">
+            <div class="materia-header">
+              <h3>{{ materia.nombre }}</h3>
+              <span class="codigo">{{ materia.codigo }}</span>
+            </div>
+            
+            @if (materia.descripcion) {
+              <p class="descripcion">{{ materia.descripcion }}</p>
+            }
+            
+            <div class="materia-info">
+              <span class="usuarios-count">
+                <i class="fas fa-users"></i>
+                @if (usuarios.length ) {
+                  <p> {{usuarios.length}} </p>
+                }
+              </span>
+            </div>
+            
+            <div class="materia-actions">
+              <button 
+                class="btn-editar" 
+                (click)="abrirModalEditar(materia)"
+                title="Editar materia"
+              >
+                <i class="fas fa-edit"></i> Editar
+              </button>
+              <button 
+                class="btn-eliminar" 
+                (click)="eliminarMateria(materia)"
+                title="Eliminar materia"
+              >
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  }
+
+  <!-- Modal -->
+  @if (isModalOpen) {
+    <div class="modal-overlay" (click)="cerrarModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3>
+            @if (isEditing) {
+              ✏️ Editar Materia
+            } @else {
+              ➕ Nueva Materia
+            }
+          </h3>
+          <button class="btn-close" (click)="cerrarModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <form [formGroup]="materiaForm" (ngSubmit)="guardarMateria()">
+          <!-- Nombre -->
+          <div class="form-group">
+            <label for="nombre">
+              Nombre de la Materia <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              formControlName="nombre"
+              placeholder="Ej: Matemáticas, Historia, Programación"
+              maxlength="110"
+            />
+            @if (materiaForm.get('nombre')?.invalid && materiaForm.get('nombre')?.touched) {
+              <small class="error">El nombre es requerido</small>
+            }
+          </div>
+
+          <!-- Código -->
+          <div class="form-group">
+            <label for="codigo">
+              Código <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="codigo"
+              formControlName="codigo"
+              placeholder="Ej: MAT101, HIS201"
+              maxlength="10"
+            />
+            @if (materiaForm.get('codigo')?.invalid && materiaForm.get('codigo')?.touched) {
+              <small class="error">El código es requerido</small>
+            }
+          </div>
+
+          <!-- Descripción -->
+          <div class="form-group">
+            <label for="descripcion">Descripción (opcional)</label>
+            <textarea
+              id="descripcion"
+              formControlName="descripcion"
+              placeholder="Descripción detallada de la materia"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <!-- Usuarios -->
+          <div class="form-group">
+            <label>Asignar Usuarios (opcional)</label>
+            <div class="usuarios-list">
+              @if (usuarios.length === 0) {
+                <p class="no-usuarios">No hay usuarios disponibles</p>
+              } @else {
+                @for (usuario of usuarios; track usuario.id) {
+                  <label class="usuario-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="isUsuarioSeleccionado(usuario.id)"
+                      (change)="toggleUsuario(usuario.id)"
+                    />
+                    <span class="usuario-info">
+                      <span class="email">{{ usuario.email }}</span>
+                      <span class="badge" [class.badge-docente]="usuario.role === 'docente'">
+                        {{ usuario.role }}
+                      </span>
+                    </span>
+                  </label>
+                }
+              }
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="modal-actions">
+            <button 
+              type="button" 
+              class="btn-cancelar" 
+              (click)="cerrarModal()"
+              [disabled]="isLoading"
+            >
+              Cancelar
+            </button>
+            <button 
+              type="submit" 
+              class="btn-guardar"
+              [disabled]="materiaForm.invalid || isLoading"
+            >
+              @if (isLoading) {
+                <span>Guardando...</span>
+              } @else if (isEditing) {
+                <span>💾 Actualizar</span>
+              } @else {
+                <span>💾 Crear</span>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+</div>

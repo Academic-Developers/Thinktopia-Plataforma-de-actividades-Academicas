@@ -1,43 +1,87 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../../services/auth/auth-service';
+import { RouterModule, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MateriaService } from '../../../../services/materia/materia.service';
-import { User } from '../../../../models/auth-models/auth-models';
-import { Materia } from '../../../../models/materias-models/materias-models';
+import { Materia } from '../../../../models/materias-models/materia.interface';
 
 @Component({
-  selector: 'app-materias',
+  selector: 'app-materias-docente',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './materias.html',
-  styleUrls: ['./materias.css'],
+  styleUrl: './materias.css'
 })
-export class Materias implements OnInit {
-  loggedInUser: User | null = null;
+export class MateriasDocente implements OnInit, OnDestroy {
   materias: Materia[] = [];
+  materiaSeleccionada: Materia | null = null;
+  loading = false;
+  error: string | null = null;
+
+  private subscriptions = new Subscription();
 
   constructor(
-    private authService: AuthService,
-    private materiaService: MateriaService, private router: Router
+    private materiaService: MateriaService,
+    private router: Router
   ) {}
 
-    ngOnInit(): void {
-    this.loggedInUser = this.authService.getLoggedInUser();
-    console.log('👤 Usuario logueado en Materias:', this.loggedInUser);
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.materiaService.materias$.subscribe(materias => {
+        this.materias = materias;
+      })
+    );
 
-    if (this.loggedInUser) {
-      this.materiaService.getMaterias(Number(this.loggedInUser.id)).subscribe({
-        next: (materias) => {
-          this.materias = materias;
-          console.log(' Materias cargadas en el componente:', this.materias);
-        },
-        error: (err) => {
-          console.error(' Error al cargar las materias:', err);
-        },
-      });
-    } else {
-      console.warn(' No hay usuario logueado, no se pueden cargar materias');
+    this.subscriptions.add(
+      this.materiaService.selectedMateria$.subscribe(materia => {
+        this.materiaSeleccionada = materia;
+      })
+    );
+
+    this.subscriptions.add(
+      this.materiaService.loading$.subscribe(loading => {
+        this.loading = loading;
+      })
+    );
+
+    this.cargarMaterias();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  cargarMaterias(): void {
+    this.error = null;
+    this.materiaService.obtenerMaterias().subscribe({
+      error: (error) => {
+        this.error = 'Error al cargar las materias. Intente nuevamente.';
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  seleccionarMateria(materia: Materia): void {
+    this.materiaService.seleccionarMateria(materia);
+  }
+
+  esMateriaSeleccionada(materia: Materia): boolean {
+    return this.materiaSeleccionada?.id === materia.id;
+  }
+
+  verActividades(): void {
+    if (this.materiaSeleccionada) {
+      this.router.navigate(['/docente/actividades']);
     }
+  }
+
+  verMateriales(): void {
+    if (this.materiaSeleccionada) {
+      this.router.navigate(['/docente/material-estudio']);
+    }
+  }
+
+  limpiarSeleccion(): void {
+    this.materiaService.limpiarSeleccion();
   }
 }

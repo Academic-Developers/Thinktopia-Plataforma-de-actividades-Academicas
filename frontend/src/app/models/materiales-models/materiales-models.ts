@@ -3,6 +3,7 @@ export interface MaterialEstudio {
   materia_id: number;
   titulo: string;
   descripcion: string;
-  url: string;
-  autor_id: number;
+  archivo: string; // URL relativa del archivo subido (ej: /media/materiales_estudio/documento.pdf)
+  autor_id: number; // ID del docente que creo el material
 }
+
