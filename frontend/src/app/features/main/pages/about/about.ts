@@ -61,14 +61,6 @@ export class About {
 
   equipo_desarrollo = [
     {
-      nombre: "Cáceres Giménez Cesia Fiorella",
-      img:"img/profile_cesia.png",
-      rol: "Desarrolladora y Diseñadora",
-      descripcion: "Me desempeño como desarrolladora y diseñadora en este proyecto. Participo en la construcción de la plataforma desde el diseño de interfaces hasta la implementación de funcionalidades.", 
-      link_portfolio:"portfolios/portfolio_cesia/portfolio_cesia.html",
-      tipo: "local"
-    }, 
-    {
       nombre: "Toro Goitea Francisco Nicolás",
       img:"img/img-fran.jpeg",
       rol: "Desarrollador Full Stack",
